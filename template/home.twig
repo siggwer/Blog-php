@@ -1,0 +1,35 @@
+{% extends 'layout.twig' %}
+
+{% block title %}<title>Accueil</title>{% endblock %}
+
+{% block content %}
+<!-- Main Content -->
+    {% for data in articles %}
+    <!--Content index Page-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-preview">
+                    <a href="" target="_blank">
+                        <h2 class="post-title">
+                            {{ data.getTitle }}
+                        </h2>
+                        <h3 class="post-subtitle">
+                            {{ data.getChapo }}
+                        </h3>
+                    </a>
+                    <p class="post-meta">Posté par
+
+                        <a>{{ data.getPseudo }}</a>
+                        le {{ data.getPublicationDate }}</p>
+                </div>
+            </div>
+        </div>
+    <div class="col-lg-8 col-md-10 mx-auto clearfix">
+        <a class="btn btn-primary float-left" href="" target="_blank">Voir les commentaires</a>
+    </div>
+    </div>
+
+    <hr>
+    {% endfor %}
+{% endblock %}
