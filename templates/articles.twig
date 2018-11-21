@@ -19,44 +19,49 @@
                         le {{ data.getPublicationDate }}
                     </p>
         </div>
+        <hr>
     {% endfor %}
 
-    {% for data in comments %}
+    {% if comments == true %}
         <div class="col-lg-8 col-md-10 mx-auto">
             <p></p>
             <h2 class="section-heading">commentaires : {{ data.getComment }}</h2>
-
             <p>commenté par : {{ data.getAuthor }}</p>
-
             <p>commenté le : {{ data.getCommentDate }}</p>
         </div>
+        <br />
+    {% else %}
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <p>Il n'y a pas de commentaires.</p>
+        </div>
+
+    {% endif %}
+    <hr>
         <div id="contact" class="contact col-lg-8 col-md-10 mx-auto clearfix">
             <h3>Ajouter un commentaire</h3>
-            <form action="/articleDetailsView/<?= $articles['articleId'];?>" method="post">
-                <div class="control-group">
-                    <div class="form-group floating-label-form-group controls">
-                        <label>Auteur</label>
-                        <input type="text" class="form-control" placeholder="<?php if(isset($session['pseudo'])){ echo $session['pseudo'];} else{echo 'pseudo';}?>" id="author" name="author" required data-validation-required-message="Entrer votre pseudo." value="<?php $session['pseudo']?>">
-                        <p class="help-block text-danger"></p>
+                 <form action="/articleDetailsView/<?= $articles['articleId'];?>" method="post">
+                    <div class="control-group">
+                         <div class="form-group floating-label-form-group controls">
+                             <label>Auteur</label>
+                             <input type="text" class="form-control" placeholder="<?php if(isset($session['pseudo'])){ echo $session['pseudo'];} else{echo 'pseudo';}?>" id="author" name="author" required data-validation-required-message="Entrer votre pseudo." value="<?php $session['pseudo']?>">
+                             <p class="help-block text-danger"></p>
+                        </div>
                     </div>
-                </div>
-                <div class="control-group">
-                    <div class="form-group floating-label-form-group controls">
-                        <label>Commentaire</label>
-                        <textarea rows="3" class="form-control" placeholder="message" id="comments" name="comments" required data-validation-required-message="Entrer votre message."></textarea>
-                        <p class="help-block text-danger"></p>
+                    <div class="control-group">
+                         <div class="form-group floating-label-form-group controls">
+                            <label>Commentaire</label>
+                            <textarea rows="3" class="form-control" placeholder="message" id="comments" name="comments" required data-validation-required-message="Entrer votre message."></textarea>
+                            <p class="help-block text-danger"></p>
+                         </div>
                     </div>
-                </div>
-                <div id="success"></div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary" id="sendMessageButton">Envoyer</button>
-                </div>
-            </form>
+                    <div id="success"></div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" id="sendMessageButton">Envoyer</button>
+                        </div>
+                </form>
         </div>
         <div class="col-lg-8 col-md-10 mx-auto clearfix">
             <a class="btn btn-primary float-right" href="/addArticle">Ajouter un article</a>
         </div>
-        <br />
-    {% endfor %}
 
 {% endblock %}
