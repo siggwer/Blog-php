@@ -205,7 +205,7 @@ $(function () {
     assert.strictEqual($('.popover').length, 0, 'popover was removed')
   })
 
-  QUnit.test('should respect custom template', function (assert) {
+  QUnit.test('should respect custom templates', function (assert) {
     assert.expect(3)
     var $popover = $('<a href="#">@fat</a>')
       .appendTo('#qunit-fixture')
