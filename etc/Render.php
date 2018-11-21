@@ -17,7 +17,7 @@ class Render implements RenderInterfaces
     public function __construct()
     {
         $this->loader = new \Twig_Loader_Filesystem('../templates/');
-        $this->twig = new \Twig_Environment($this->loader, []);
+        $this->twig = new \Twig_Environment($this->loader, array('debug' => true));
     }
 
     /**
