@@ -5,12 +5,16 @@ namespace App\Model;
 
 class Article
 {
+    /**
+     * @var Article
+     */
     private $id;
     private $title;
     private $chapo;
     private $content;
     private $publication_date;
     private $author_id;
+    private $pseudo;
 
     /**
      * @return mixed
@@ -89,7 +93,7 @@ class Article
      */
     public function setAuthor($author_id)
     {
-        $this->author = $author_id;
+        $this->author_id = $author_id;
     }
 
     /**
@@ -106,6 +110,22 @@ class Article
     public function setPublicationDate($publication_date)
     {
         $this->publication_date = $publication_date;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPseudo()
+    {
+        return $this->pseudo;
+    }
+
+    /**
+     * @param mixed $pseudo
+     */
+    public function setPseudo($pseudo)
+    {
+        $this->pseudo = $pseudo;
     }
 
     /**
