@@ -2,23 +2,43 @@
 
 namespace App\Repository;
 
+use App\Model\Comment;
 use Framework\Connexion;
 
 class CommentRepository extends connexion
 {
     //Returns a comment related to the article
-    public function getCheckComment($id)
-    {
-        //var_dump($id);
-        $bdd = $this->getBdd();
-        $comments = $bdd->prepare("SELECT `article`.`id` AS articleId, `title`, `chapo`, `content`, DATE_FORMAT(`publication_date`, '%d/%m/%Y') AS creation_date_fr, `author_id`, `comment`.`id`, `comments`, `author`, DATE_FORMAT(`comment_date`, '%d/%m/%Y') AS update_date, `comment`.`article_id` FROM `article` LEFT JOIN `comment` ON `comment`.`article_id` = `article`.`id`  WHERE article.id = :id ORDER BY `comment`.`comment_date` DESC ");
-        $comments->ExecuteRequest(array($id));
-        if(\count($comments) > 0)
-            return $comments->fetch();
-        else
-            echo "Une erreur est survenue. Merci de ressayer plus tard.";
+    /**
+     * @param $artId
+     * @return array
+     */
+    public function getComment($artId) {
+        $sql = ('SELECT `comment`.`id` AS commentId, `comments`, `author`, DATE_FORMAT(`comment_date`, \'%d/%m/%Y\') AS update_date, `article_id` FROM `comment` WHERE `article_id` = ?');
+        $result = $this->sql($sql, [$artId]);
+        $comments = [];
+        foreach ($result as $row) {
+            $commentId = $row['commentId'];
+            $comments[$commentId] = $this->buildObject($row);
+        }
+        return $comments;
 
     }
+
+    /**
+     * @param array $row
+     * @return Comment
+     */
+    private function buildObject(array $row) {
+        $comments = new Comment();
+        $comments->setId($row['commentId']);
+        $comments->setComment($row['comments']);
+        $comments->setAuthor($row['author']);
+        $comments->setCommentDate($row['update_date']);
+        $comments->setArticleId($row['article_id']);
+        return $comments;
+    }
+
+
 
     //Insert a new comment related to the article
     function getAddComment($param = [])
