@@ -6,19 +6,19 @@ namespace Framework;
 
 use Framework\Interfaces\RouteInterface;
 
-class Route
+class Route implements RouteInterface
 {
+    /**
+     * @var Route
+     */
     private $path;
-
     private $controller;
-
     private $params = [];
 
     /**
      * @inheritdoc
      */
-    public function __construct($path, $controller, array $params = [])
-    {
+    public function __construct($path, $controller, array $params = []) {
         $this->path = $path;
         $this->controller = $controller;
         $this->params = $params;
@@ -27,37 +27,36 @@ class Route
     /**
      * @param mixed $path
      */
-    public function setPath($path)
-    {
+    public function setPath($path) {
         $this->path = $path;
     }
 
     /**
      * @return mixed
      */
-    public function getPath()
-    {
+    public function getPath() {
         return $this->path;
     }
 
     /**
      * @return mixed
      */
-    public function getController()
-    {
+    public function getController() {
         return $this->controller;
     }
 
-    public function addParam($key, $value)
-    {
+    /**
+     * @param $key
+     * @param $value
+     */
+    public function addParam($key, $value) {
         $this->params[$key] = $value;
     }
 
     /**
      * @return array
      */
-    public function getParams()
-    {
+    public function getParams() {
         return $this->params;
     }
 }
