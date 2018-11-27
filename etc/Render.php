@@ -18,6 +18,7 @@ class Render implements RenderInterfaces
     {
         $this->loader = new \Twig_Loader_Filesystem('../templates/');
         $this->twig = new \Twig_Environment($this->loader, array('debug' => true));
+        $this->twig->addExtension(new \Twig_Extension_Debug());
     }
 
     /**
