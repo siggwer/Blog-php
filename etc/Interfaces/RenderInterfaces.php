@@ -1,21 +1,33 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: admin
- * Date: 14/11/2018
- * Time: 15:57
- */
 
 namespace Framework\Interfaces;
 
 
 interface RenderInterfaces
 {
+    /**
+     * RenderInterfaces constructor.
+     */
     public function __construct();
+
+    /**
+     * @param string $namespace
+     * @param null|string $path
+     */
 
     public function addPath(string $namespace, ?string $path = null): void;
 
+    /**
+     * @param string $key
+     * @param $value
+     */
     public function addGlobal(string $key, $value): void;
 
-    public function render(string $view, array $params = null);
+    /**
+     * @param string $view
+     * @param array|null $params
+     * @param string $type
+     * @return mixed
+     */
+    public function render(string $view, array $params = null, $type = 'html');
 }

@@ -42,13 +42,14 @@ class Render implements RenderInterfaces
 
     /**
      * @param string $view
-     * @param array $params
-     * @return string
+     * @param array|null $params
+     * @param string $type
+     * @return mixed|string
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function render(string $view, array $params = null)
+    public function render(string $view, array $params = null, $type = 'html')
     {
         return $this->twig->render($view, $params);
     }
