@@ -2,8 +2,8 @@
 
 session_start();
 
-//use Framework\Router;
 use Framework\Application;
+//use Framework\Router;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -27,9 +27,9 @@ if (empty($_SESSION['counter'])) {
 try {
     $app = new Application();
     $app->init();
-    $app->handleRequest();
+    $app->handleRequest($_SERVER);
 
 } catch (Exception $exception) {
-    var_dump($exception->getMessage());
+    //var_dump($exception->getMessage());
 }
 

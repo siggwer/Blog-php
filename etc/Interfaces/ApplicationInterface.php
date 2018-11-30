@@ -1,13 +1,16 @@
 <?php
-
-
 namespace Framework\Interfaces;
 
 
-interface RouterInterface
+interface ApplicationInterface
 {
     /**
-     * RouterInterface constructor.
+     * @return mixed
+     */
+    public function init();
+
+    /**
+     * ApplicationInterface constructor.
      */
     public function __construct();
 
@@ -16,5 +19,4 @@ interface RouterInterface
      * @return mixed
      */
     public function handleRequest(array $request = []);
-
 }

@@ -66,6 +66,8 @@ class Router implements RouterInterface
         if (is_array($routes)) {
             foreach ($routes as $route) {
                 $this->routes[] = new Route($route['path'], $route['controller'], $route['params'] ?? []);
+                var_dump($this->routes[] = new Route($route['path'], $route['controller'], $route['params'] ?? []));
+                die;
             }
         }
     }
