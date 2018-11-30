@@ -35,14 +35,7 @@ class Application implements ApplicationInterface
         $this->loadRoutes();
     }
 
-    /**
-     * Router constructor.
-     */
-    public function __construct() {
-        $this->loadRoutes();
-    }
-
-    /**
+        /**
      * @param array $request
      * @return NotFoundController
      */

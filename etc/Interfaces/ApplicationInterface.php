@@ -10,11 +10,6 @@ interface ApplicationInterface
     public function init();
 
     /**
-     * ApplicationInterface constructor.
-     */
-    public function __construct();
-
-    /**
      * @param array $request
      * @return mixed
      */
