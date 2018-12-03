@@ -28,6 +28,8 @@ class ComposerStaticInit616a586f573e024ce4c85b86095ca873
         ),
         'P' => 
         array (
+            'Psr\\Http\\Server\\' => 16,
+            'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
             'PhpParser\\' => 10,
             'PhpDocReader\\' => 13,
@@ -46,9 +48,6 @@ class ComposerStaticInit616a586f573e024ce4c85b86095ca873
         ),
         'A' => 
         array (
-            'App\\Repository\\' => 15,
-            'App\\Model\\' => 10,
-            'App\\Controller\\' => 15,
             'App\\' => 4,
         ),
     );
@@ -78,6 +77,15 @@ class ComposerStaticInit616a586f573e024ce4c85b86095ca873
         array (
             0 => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src',
         ),
+        'Psr\\Http\\Server\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-server-handler/src',
+            1 => __DIR__ . '/..' . '/psr/http-server-middleware/src',
+        ),
+        'Psr\\Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
@@ -101,18 +109,6 @@ class ComposerStaticInit616a586f573e024ce4c85b86095ca873
         'DI\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-di/php-di/src',
-        ),
-        'App\\Repository\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src/Repository',
-        ),
-        'App\\Model\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src/Model',
-        ),
-        'App\\Controller\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src/Controller',
         ),
         'App\\' => 
         array (

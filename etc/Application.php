@@ -5,6 +5,8 @@ namespace Framework;
 
 use DI\Container;
 use DI\ContainerBuilder;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Framework\Interfaces\ApplicationInterface;
 use App\Controller\NotFoundController;
 

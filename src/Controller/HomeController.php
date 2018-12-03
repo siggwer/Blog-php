@@ -23,7 +23,7 @@ class HomeController
 
     //public function __construct(Container $container) {
         //$this->articles = new ArticleRepository();
-        //$this->contianer = $container;
+        //$this->container = $container;
     //}
 
     public function __invoke()
