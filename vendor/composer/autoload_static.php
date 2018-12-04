@@ -7,13 +7,33 @@ namespace Composer\Autoload;
 class ComposerStaticInit616a586f573e024ce4c85b86095ca873
 {
     public static $files = array (
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
+        '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '6f2c5977e422114bbaec553e7c77ee8b' => __DIR__ . '/..' . '/http-interop/response-sender/src/functions.php',
         'b33e3d135e5d9e47d845c576147bda89' => __DIR__ . '/..' . '/php-di/php-di/src/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'Z' => 
+        array (
+            'Zend\\Validator\\' => 15,
+            'Zend\\Uri\\' => 9,
+            'Zend\\Stdlib\\' => 12,
+            'Zend\\ServiceManager\\' => 20,
+            'Zend\\Router\\' => 12,
+            'Zend\\Loader\\' => 12,
+            'Zend\\Http\\' => 10,
+            'Zend\\Expressive\\Router\\' => 23,
+            'Zend\\Escaper\\' => 13,
+        ),
+        'W' => 
+        array (
+            'Whoops\\' => 7,
+        ),
         'T' => 
         array (
             'Twig\\' => 5,
@@ -28,19 +48,37 @@ class ComposerStaticInit616a586f573e024ce4c85b86095ca873
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Server\\' => 16,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
             'PhpParser\\' => 10,
             'PhpDocReader\\' => 13,
         ),
+        'N' => 
+        array (
+            'Negotiation\\' => 12,
+        ),
+        'M' => 
+        array (
+            'Middlewares\\Utils\\' => 18,
+            'Middlewares\\' => 12,
+        ),
         'I' => 
         array (
             'Invoker\\' => 8,
+            'Interop\\Http\\Server\\' => 20,
+            'Interop\\Container\\' => 18,
+        ),
+        'G' => 
+        array (
+            'GuzzleHttp\\Psr7\\' => 16,
         ),
         'F' => 
         array (
             'Framework\\' => 10,
+            'Fig\\Http\\Message\\' => 17,
+            'FastRoute\\' => 10,
         ),
         'D' => 
         array (
@@ -53,6 +91,47 @@ class ComposerStaticInit616a586f573e024ce4c85b86095ca873
     );
 
     public static $prefixDirsPsr4 = array (
+        'Zend\\Validator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-validator/src',
+        ),
+        'Zend\\Uri\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-uri/src',
+        ),
+        'Zend\\Stdlib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-stdlib/src',
+        ),
+        'Zend\\ServiceManager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-servicemanager/src',
+        ),
+        'Zend\\Router\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-router/src',
+        ),
+        'Zend\\Loader\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-loader/src',
+        ),
+        'Zend\\Http\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-http/src',
+        ),
+        'Zend\\Expressive\\Router\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-expressive-fastroute/src',
+            1 => __DIR__ . '/..' . '/zendframework/zend-expressive-router/src',
+        ),
+        'Zend\\Escaper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-escaper/src',
+        ),
+        'Whoops\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/filp/whoops/src/Whoops',
+        ),
         'Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',
@@ -77,6 +156,10 @@ class ComposerStaticInit616a586f573e024ce4c85b86095ca873
         array (
             0 => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
         'Psr\\Http\\Server\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-server-handler/src',
@@ -84,7 +167,8 @@ class ComposerStaticInit616a586f573e024ce4c85b86095ca873
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Container\\' => 
         array (
@@ -98,13 +182,45 @@ class ComposerStaticInit616a586f573e024ce4c85b86095ca873
         array (
             0 => __DIR__ . '/..' . '/php-di/phpdoc-reader/src/PhpDocReader',
         ),
+        'Negotiation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/willdurand/negotiation/src/Negotiation',
+        ),
+        'Middlewares\\Utils\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/middlewares/utils/src',
+        ),
+        'Middlewares\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/middlewares/whoops/src',
+        ),
         'Invoker\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-di/invoker/src',
         ),
+        'Interop\\Http\\Server\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/http-interop/http-middleware/src',
+        ),
+        'Interop\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
+        ),
+        'GuzzleHttp\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+        ),
         'Framework\\' => 
         array (
             0 => __DIR__ . '/../..' . '/etc',
+        ),
+        'Fig\\Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fig/http-message-util/src',
+        ),
+        'FastRoute\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nikic/fast-route/src',
         ),
         'DI\\' => 
         array (

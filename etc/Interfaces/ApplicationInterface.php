@@ -10,8 +10,9 @@ interface ApplicationInterface
     public function init();
 
     /**
-     * @param array $request
      * @return mixed
      */
-    public function handleRequest(array $request = []);
+    public function handleRequest();
+
+
 }

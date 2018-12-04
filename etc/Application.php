@@ -5,9 +5,13 @@ namespace Framework;
 
 use DI\Container;
 use DI\ContainerBuilder;
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\ServerRequest;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Framework\Interfaces\ApplicationInterface;
+use Zend\Expressive\Router\FastRouteRouter;
+use Zend\Expressive\Router\Route;
 use App\Controller\NotFoundController;
 
 class Application implements ApplicationInterface
@@ -18,9 +22,34 @@ class Application implements ApplicationInterface
     private $container;
 
     /**
+     * @var ServerRequestInterface $request
+     */
+    private $request;
+
+    /**
+     * @var ResponseInterface $response
+     */
+    private $response;
+
+    /**
      * @var array
      */
-    private $routes = [];
+    private $middlewares;
+
+    /**
+     * @var FastRouteRouter $router
+     */
+    private $router;
+
+    /**
+     * Application constructor.
+     */
+    public function __construct()
+    {
+        $this->middlewares = [];
+        var_dump($this->middlewares = []);
+        //die;
+    }
 
     /**
      * @throws \Exception
@@ -37,53 +66,53 @@ class Application implements ApplicationInterface
         $this->loadRoutes();
     }
 
-        /**
-     * @param array $request
-     * @return NotFoundController
-     */
-    public function handleRequest(array $request = [])
-    {
-        foreach ($this->routes as $route) {
-            $this->catchParams($route->getParams(), $request['REQUEST_URI'], $route);
-            if ($request['REQUEST_URI'] === $route->getPath()) {
-                $controller = $route->getController();
-                $class = new $controller();
-                return $class($route->getParams());
-            }
-        }
-
-        $controller = new NotFoundController();
-        return $controller();
-    }
-
-    /**
-     * @param array $params
-     * @param string $request
-     * @param Route $route
-     */
-    private function catchParams(array $params, string $request, Route &$route) {
-        if (isset($params) && !empty($params)) {
-            foreach ($params as $key => $regex) {
-                preg_match(sprintf('#%s#', $regex), $request, $result);
-                if (!empty($result)) {
-                    $route->addParam($key, $result[0]);
-                    $route->setPath(strtr($route->getPath(), [sprintf('{%s}', $key) => $result[0]]));
-                }
-            }
-        }
-    }
-
     /**
      *
      */
-    private function loadRoutes() {
-        $routes = include __DIR__ . '/../config/route.php';
+    public function handleRequest() {
+        $this->request = ServerRequest::fromGlobals();
+        $this->response = new Response();
 
-        if (is_array($routes)) {
-            foreach ($routes as $route) {
-                $this->routes[] = new Route($route['path'], $route['controller'], $route['params'] ?? []);
+        $route = $this->router->match($this->request);
+        if ($route->isSuccess()) {
+            foreach ($route->getMatchedParams() as $name => $value) {
+                $this->request = $this->request->withAttribute($name, $value);
             }
+
+            $middlewares = $this->middlewares[$route->getMatchedRouteName()];
+            if ($middlewares === null) {
+                $middlewares = [];
+            }
+            $middlewaresGlobals = (require __DIR__.'/../app/Middlewares/GlobalsMiddlewares/Middlewares.php');
+            $middlewares = array_merge($middlewaresGlobals, $middlewares);
+
+            $dispatcher = new Dispatcher($this->container, $middlewares);
+            $dispatcher->pipe($route->getMatchedMiddleware());
+            $result = $dispatcher->process($this->request, $this->response);
+
+            $location = $result->getHeader('Location');
+            if (!empty($location)) {
+                header("HTTP/{$result->getProtocolVersion()} 301 Moved Permantly", false, 301);
+                header('Location: '.$location[0]);
+                exit();
+            }
+
+            send_response($result);
+        } else {
+            $rendering = $this->container->get(RenderInterface::class)->render('Errors/404');
+            send_response(new Response(404, [], $rendering));
         }
     }
 
+    private function loadRoutes() {
+        $this->router = new FastRouteRouter();
+
+        $routes = (require __DIR__.'/../config/route.php');
+        foreach ($routes as $name => $route) {
+            $routeAdd = new Route($route['path'], $route['action'], $route['methods'], $name);
+            $this->router->addRoute($routeAdd);
+
+            $this->middlewares[$name] = $route['middlewares'];
+        }
+    }
 }

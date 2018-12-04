@@ -3,7 +3,15 @@
     "require": {
         "twig/twig": "^2.0",
         "php-di/php-di": "^6.0",
-        "psr/http-server-middleware": "^1.0"
+        "psr/http-server-middleware": "^1.0",
+        "psr/http-message": "^1.0",
+        "guzzlehttp/psr7": "^1.5",
+        "http-interop/response-sender": "^1.0",
+        "zendframework/zend-expressive-fastroute": "^3.0",
+        "willdurand/negotiation": "^2.3",
+        "http-interop/http-middleware": "^0.5.0",
+        "middlewares/whoops": "^1.2",
+        "zendframework/zend-router": "^3.2"
     },
     "autoload": {
         "psr-4": {
