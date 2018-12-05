@@ -9,6 +9,8 @@ use Psr\Http\Message\ServerRequestInterface;
 use Framework\Flash;
 class ConfMiddleware
 {
+    use Flash;
+
     /**
      * @param ServerRequestInterface $request
      * @param Response $response

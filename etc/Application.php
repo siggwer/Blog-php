@@ -5,6 +5,7 @@ namespace Framework;
 
 use DI\Container;
 use DI\ContainerBuilder;
+use Framework\Interfaces\RenderInterfaces;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\ServerRequest;
 use Psr\Http\Message\ResponseInterface;
@@ -47,7 +48,7 @@ class Application implements ApplicationInterface
     public function __construct()
     {
         $this->middlewares = [];
-        var_dump($this->middlewares = []);
+        //var_dump($this->middlewares = []);
         //die;
     }
 
@@ -74,20 +75,22 @@ class Application implements ApplicationInterface
         $this->response = new Response();
 
         $route = $this->router->match($this->request);
+
         if ($route->isSuccess()) {
             foreach ($route->getMatchedParams() as $name => $value) {
                 $this->request = $this->request->withAttribute($name, $value);
+                var_dump($route);
             }
 
             $middlewares = $this->middlewares[$route->getMatchedRouteName()];
             if ($middlewares === null) {
                 $middlewares = [];
             }
-            $middlewaresGlobals = (require __DIR__.'/../app/Middlewares/GlobalsMiddlewares/Middlewares.php');
+            $middlewaresGlobals = (require __DIR__.'/middlewares.php');
             $middlewares = array_merge($middlewaresGlobals, $middlewares);
 
             $dispatcher = new Dispatcher($this->container, $middlewares);
-            $dispatcher->pipe($route->getMatchedMiddleware());
+            $dispatcher->pipe($route->getMatchMiddleware());
             $result = $dispatcher->process($this->request, $this->response);
 
             $location = $result->getHeader('Location');
@@ -99,7 +102,7 @@ class Application implements ApplicationInterface
 
             send_response($result);
         } else {
-            $rendering = $this->container->get(RenderInterface::class)->render('Errors/404');
+            $rendering = $this->container->get(RenderInterfaces::class)->render('Errors/404');
             send_response(new Response(404, [], $rendering));
         }
     }
@@ -109,7 +112,7 @@ class Application implements ApplicationInterface
 
         $routes = (require __DIR__.'/../config/route.php');
         foreach ($routes as $name => $route) {
-            $routeAdd = new Route($route['path'], $route['action'], $route['methods'], $name);
+            $routeAdd = new Route($route['path'], $route['controller'], $route['methods'], $name);
             $this->router->addRoute($routeAdd);
 
             $this->middlewares[$name] = $route['middlewares'];

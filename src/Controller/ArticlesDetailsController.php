@@ -36,6 +36,6 @@ class ArticlesDetailsController
     {
         $articles = $this->articles->getArticlesDetails($params['id']);
         $comments = $this->comments->getComment($params['id']);
-        echo $this->render->render('articles.twig',['articles' => $articles,'comments' => $comments]);
+        echo $this->render->render('articles.html.twig',['articles' => $articles,'comments' => $comments]);
     }
 }

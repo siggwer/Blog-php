@@ -9,9 +9,9 @@
         "http-interop/response-sender": "^1.0",
         "zendframework/zend-expressive-fastroute": "^3.0",
         "willdurand/negotiation": "^2.3",
-        "http-interop/http-middleware": "^0.5.0",
         "middlewares/whoops": "^1.2",
-        "zendframework/zend-router": "^3.2"
+        "zendframework/zend-router": "^3.2",
+        "zendframework/zend-expressive-router": "^3.1"
     },
     "autoload": {
         "psr-4": {

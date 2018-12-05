@@ -4,7 +4,9 @@
 return [
     'home' => [
         'path' => '/',
-        'controller' => App\Controller\HomeController::class
+        'methods' => ['GET'],
+        'controller' => App\Controller\HomeController::class,
+        'middlewares' => []
     ],
     'article_details' => [
         'path' => '/article_details/{id}',

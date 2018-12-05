@@ -19,14 +19,12 @@
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
       <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
-      <path value="$PROJECT_DIR$/vendor/http-interop/response-sender" />
       <path value="$PROJECT_DIR$/vendor/zendframework/zend-expressive-router" />
       <path value="$PROJECT_DIR$/vendor/zendframework/zend-expressive-fastroute" />
       <path value="$PROJECT_DIR$/vendor/zendframework/zend-stdlib" />
       <path value="$PROJECT_DIR$/vendor/fig/http-message-util" />
       <path value="$PROJECT_DIR$/vendor/nikic/fast-route" />
       <path value="$PROJECT_DIR$/vendor/willdurand/negotiation" />
-      <path value="$PROJECT_DIR$/vendor/http-interop/http-middleware" />
       <path value="$PROJECT_DIR$/vendor/middlewares/whoops" />
       <path value="$PROJECT_DIR$/vendor/middlewares/utils" />
       <path value="$PROJECT_DIR$/vendor/filp/whoops" />
@@ -40,6 +38,8 @@
       <path value="$PROJECT_DIR$/vendor/zendframework/zend-uri" />
       <path value="$PROJECT_DIR$/vendor/zendframework/zend-router" />
       <path value="$PROJECT_DIR$/vendor/zendframework/zend-loader" />
+      <path value="$PROJECT_DIR$/vendor/http-interop/response-sender" />
+      <path value="$PROJECT_DIR$/vendor/http-interop/http-middleware" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

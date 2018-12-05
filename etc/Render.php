@@ -51,6 +51,17 @@ class Render implements RenderInterfaces
      */
     public function render(string $view, array $params = null, $type = 'html')
     {
-        return $this->twig->render($view, $params);
+        if (isset($_SESSION['flash'])) {
+        $params['__flash'] = $_SESSION['flash'];
+        unset($_SESSION['flash']);
+    }
+
+        $params['__session'] = $_SESSION;
+        $params['__auth'] = $_SESSION['auth'] ?? null;
+        $params['__csrf'] = $_SESSION['__csrf'] ?? null;
+        $params['__page'] = $view.".{$type}.twig";
+
+        return $this->twig->render($view.".{$type}.twig", $params);
+        //return $this->twig->render($view, $params);
     }
 }
