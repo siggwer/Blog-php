@@ -6,10 +6,9 @@ namespace Framework;
 use DI\Container;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ServerRequestInterface;
-use Framework\Flash;
 class CsrMiddleware
 {
-    use Flash;
+    use Token, Flash, GetFiled;
     /**
      * @param ServerRequestInterface $request
      * @param Response $response

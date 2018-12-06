@@ -13,7 +13,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Framework\Interfaces\ApplicationInterface;
 use Zend\Expressive\Router\FastRouteRouter;
 use Zend\Expressive\Router\Route;
-use App\Controller\NotFoundController;
+//use App\Controller\NotFoundController;
 
 class Application implements ApplicationInterface
 {
@@ -59,7 +59,7 @@ class Application implements ApplicationInterface
     {
         $containerBuilder = new ContainerBuilder();
         $containerBuilder->useAutowiring(true);
-        //$containerBuilder->addDefinitions(__DIR__.'/../configs/dic/database.php');
+        $containerBuilder->addDefinitions(__DIR__.'/../config/db.php');
         //$containerBuilder->addDefinitions(__DIR__.'/../configs/dic/repositories.php');
         $containerBuilder->addDefinitions(__DIR__.'/../etc/Render.php');
         //$containerBuilder->addDefinitions(__DIR__. '/../configs/dic/SwiftMailer.php');
@@ -90,7 +90,7 @@ class Application implements ApplicationInterface
             $middlewares = array_merge($middlewaresGlobals, $middlewares);
 
             $dispatcher = new Dispatcher($this->container, $middlewares);
-            $dispatcher->pipe($route->getMatchMiddleware());
+            $dispatcher->pipe($route->getMatchedMiddleware());
             $result = $dispatcher->process($this->request, $this->response);
 
             $location = $result->getHeader('Location');
@@ -112,10 +112,12 @@ class Application implements ApplicationInterface
 
         $routes = (require __DIR__.'/../config/route.php');
         foreach ($routes as $name => $route) {
+            var_dump($route);
             $routeAdd = new Route($route['path'], $route['controller'], $route['methods'], $name);
             $this->router->addRoute($routeAdd);
 
             $this->middlewares[$name] = $route['middlewares'];
+            var_dump( $this->middlewares[$name] = $route['middlewares']);
         }
     }
 }

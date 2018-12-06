@@ -4,19 +4,14 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Repository\ArticleRepository;
+use App\Model\Home;
 use DI\Container;
 use Framework\Interfaces\RenderInterfaces;
-use DI\DependencyException;
-use DI\NotFoundException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-
-
 class HomeController
 {
-
-    //private $articles;
+    private $articles;
     //private $render;
     //private $container;
 
@@ -42,6 +37,14 @@ class HomeController
     //}
 
     /**
+     * HomeController constructor.
+     * @param Home $articles
+     */
+    public function __construct(Home $articles) {
+        $this->articles = $articles;
+    }
+
+    /**
      * @param ServerRequestInterface $request
      * @param ResponseInterface $response
      * @param Container $container
@@ -51,7 +54,8 @@ class HomeController
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {
-        $view = $container->get(RenderInterface::class)->render('home');
+        $articles = $this->articles->home();
+        $view = $container->get(RenderInterfaces::class)->render('home', ['articles' => $articles]);
         $response->getBody()->write($view);
         return $response;
     }
