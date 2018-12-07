@@ -55,7 +55,7 @@ class HomeController
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {
         $articles = $this->articles->home();
-        $view = $container->get(RenderInterfaces::class)->render('home', ['articles' => $articles]);var_dump($articles);
+        $view = $container->get(RenderInterfaces::class)->render('home', ['articles' => $articles]);
         $response->getBody()->write($view);
         return $response;
     }

@@ -12,21 +12,21 @@
                 <div class="post-preview">
                     <a href="" target="_blank">
                         <h2 class="post-title">
-                            {{ data.getTitle }}
+                            {{ data.title }}
                         </h2>
                         <h3 class="post-subtitle">
-                            {{ data.getChapo }}
+                            {{ data.chapo }}
                         </h3>
                     </a>
                     <p class="post-meta">Posté par
 
-                        <a>{{ data.getPseudo }}</a>
-                        le {{ data.getPublicationDate }}</p>
+                        <a>{{ data.pseudo }}</a>
+                        le {{ data.publicationDate }}</p>
                 </div>
             </div>
         </div>
     <div class="col-lg-8 col-md-10 mx-auto clearfix">
-        <a class="btn btn-primary float-left" href="/article_details/{{ data.getId }}" target="_blank">Voir les commentaires</a>
+        <a class="btn btn-primary float-left" href="/article_details/{{ data.id }}" target="_blank">Voir les commentaires</a>
     </div>
     </div>
 
