@@ -2,7 +2,7 @@
 
 namespace App\Repository\Interfaces;
 
-//use App\Pdo\Interfaces\PdoStatementInterface;
+use App\Pdo\Interfaces\PdoStatementInterface;
 interface HomeRepositoryInterface
 {
     /**

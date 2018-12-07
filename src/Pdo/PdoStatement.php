@@ -13,7 +13,7 @@ class PdoStatement implements PdoStatementInterface
 
     /**
      * PdoStatement constructor.
-     * @param PdoStatement $statement
+     * @param PDOState $statement
      */
     public function __construct(PDOState $statement)
     {
@@ -48,4 +48,16 @@ class PdoStatement implements PdoStatementInterface
         }
         return null;
     }
+
+    /**
+     * @return mixed|null
+     */
+    public function fetchAll()
+    {
+        if ($this->statement) {
+            return $this->statement->fetchAll();
+        }
+        return null;
+    }
+
 }

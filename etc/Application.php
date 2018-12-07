@@ -15,6 +15,8 @@ use Zend\Expressive\Router\FastRouteRouter;
 use Zend\Expressive\Router\Route;
 //use App\Controller\NotFoundController;
 
+use function QuimCalpe\ResponseSender\send AS send_response;
+
 class Application implements ApplicationInterface
 {
     /**
@@ -52,25 +54,29 @@ class Application implements ApplicationInterface
         //die;
     }
 
+
     /**
-     * @throws \Exception
+     * @return mixed|void
      */
     public function init()
     {
         $containerBuilder = new ContainerBuilder();
         $containerBuilder->useAutowiring(true);
-        $containerBuilder->addDefinitions(__DIR__.'/../config/db.php');
-        //$containerBuilder->addDefinitions(__DIR__.'/../configs/dic/repositories.php');
-        $containerBuilder->addDefinitions(__DIR__.'/../etc/Render.php');
+        $containerBuilder->addDefinitions(__DIR__ . '/../config/db.php');
+        $containerBuilder->addDefinitions(__DIR__. '/../config/repository.php');
+        $containerBuilder->addDefinitions(__DIR__ . '/../config/render.php');
         //$containerBuilder->addDefinitions(__DIR__. '/../configs/dic/SwiftMailer.php');
         $this->container = $containerBuilder->build();
         $this->loadRoutes();
     }
 
     /**
-     *
+     * @return mixed|void
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
      */
-    public function handleRequest() {
+    public function handleRequest()
+    {
         $this->request = ServerRequest::fromGlobals();
         $this->response = new Response();
 
@@ -86,7 +92,7 @@ class Application implements ApplicationInterface
             if ($middlewares === null) {
                 $middlewares = [];
             }
-            $middlewaresGlobals = (require __DIR__.'/middlewares.php');
+            $middlewaresGlobals = (require __DIR__ . '/middlewares.php');
             $middlewares = array_merge($middlewaresGlobals, $middlewares);
 
             $dispatcher = new Dispatcher($this->container, $middlewares);
@@ -96,7 +102,7 @@ class Application implements ApplicationInterface
             $location = $result->getHeader('Location');
             if (!empty($location)) {
                 header("HTTP/{$result->getProtocolVersion()} 301 Moved Permantly", false, 301);
-                header('Location: '.$location[0]);
+                header('Location: ' . $location[0]);
                 exit();
             }
 
@@ -107,17 +113,19 @@ class Application implements ApplicationInterface
         }
     }
 
-    private function loadRoutes() {
+    private function loadRoutes()
+    {
         $this->router = new FastRouteRouter();
 
-        $routes = (require __DIR__.'/../config/route.php');
+        $routes = (require __DIR__ . '/../config/route.php');
         foreach ($routes as $name => $route) {
-            var_dump($route);
+
             $routeAdd = new Route($route['path'], $route['controller'], $route['methods'], $name);
             $this->router->addRoute($routeAdd);
 
             $this->middlewares[$name] = $route['middlewares'];
-            var_dump( $this->middlewares[$name] = $route['middlewares']);
+
         }
     }
+
 }

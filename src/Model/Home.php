@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use App\Repository\Interfaces\HomeRepositoryInterface;
-use App\Pdo\Interfaces\PdoStatementInterface;
+//use App\Pdo\Interfaces\PdoStatementInterface;
 class Home
 {
     /**
@@ -25,8 +25,8 @@ class Home
      */
     public function home(): array
     {
-        $allPost = $this->articles->all();
-        return $allPost;
+        $allpost = $this->articles->all();
+        return $allpost;
     }
 
 }

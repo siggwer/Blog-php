@@ -3,14 +3,12 @@
 namespace App\Pdo\Interfaces;
 
 
+/**
+ * Interface PdoStatementInterface
+ * @package App\Pdo\Interfaces
+ */
 interface PdoStatementInterface
 {
-    /**
-     * PdoStatementInterface constructor.
-     * @param PDOState $statement
-     */
-    public function __construct(PDOState $statement);
-
     /**
      * @param $parameter
      * @param $value
@@ -30,5 +28,9 @@ interface PdoStatementInterface
      */
     public function fetch();
 
+    /**
+     * @return mixed
+     */
+    public function fetchAll();
 
 }

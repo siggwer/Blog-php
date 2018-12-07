@@ -7,8 +7,9 @@ interface RenderInterfaces
 {
     /**
      * RenderInterfaces constructor.
+     * @param string $path
      */
-    public function __construct();
+    public function __construct(string $path);
 
     /**
      * @param string $namespace

@@ -13,10 +13,11 @@ class Render implements RenderInterfaces
 
     /**
      * Render constructor.
+     * @param string $path
      */
-    public function __construct()
+    public function __construct(string $path)
     {
-        $this->loader = new \Twig_Loader_Filesystem('../templates/');
+        $this->loader = new \Twig_Loader_Filesystem($path);
         $this->twig = new \Twig_Environment($this->loader, array('debug' => true));
         $this->twig->addExtension(new \Twig_Extension_Debug());
     }
