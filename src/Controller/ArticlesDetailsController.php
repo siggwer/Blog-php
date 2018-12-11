@@ -8,6 +8,7 @@ use App\Repository\ArticleRepository;
 use App\Repository\CommentRepository;
 use Framework\Render;
 
+
 class ArticlesDetailsController
 {
     /**

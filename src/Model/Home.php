@@ -2,20 +2,20 @@
 
 namespace App\Model;
 
-use App\Repository\Interfaces\HomeRepositoryInterface;
+use App\Repository\Interfaces\ArticleRepositoryInterface;
 //use App\Pdo\Interfaces\PdoStatementInterface;
 class Home
 {
     /**
-     * @var HomeRepositoryInterface
+     * @var ArticleRepositoryInterface
      */
     private $articles;
 
     /**
      * Home constructor.
-     * @param HomeRepositoryInterface $articles
+     * @param ArticleRepositoryInterface $articles
      */
-    public function __construct(HomeRepositoryInterface $articles)
+    public function __construct(ArticleRepositoryInterface $articles)
     {
         $this->articles = $articles;
     }

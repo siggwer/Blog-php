@@ -3,7 +3,7 @@
 namespace App\Repository\Interfaces;
 
 use App\Pdo\Interfaces\PdoStatementInterface;
-interface HomeRepositoryInterface
+interface ArticleRepositoryInterface
 {
     /**
      * @return array

@@ -2,56 +2,96 @@
 
 namespace App\Repository;
 
-use App\Model\Article;
-use Framework\Connexion;
+use App\Pdo\Interfaces\PdoDatabaseInterface;
+use App\Repository\Interfaces\ArticleRepositoryInterface;
 
-class ArticleRepository extends Connexion
+//use App\Pdo\Interfaces\PdoStatementInterface;
+class ArticleRepository implements ArticleRepositoryInterface
 {
-    //Returns an article related to the user
+    /**
+     * @var PdoDatabaseInterface
+     */
+    private $database;
+
+    /**
+     * ArticleRepository constructor.
+     * @param PdoDatabaseInterface $database
+     */
+    public function __construct(PdoDatabaseInterface $database){
+        $this->database = $database;
+    }
+
     /**
      * @return array
      */
-    public function getArticles() {
-        $sql = ('SELECT `article`.`id` AS articleId,`title`, `chapo`, `content`, DATE_FORMAT(`publication_date`, \'%d/%m/%Y\') AS creation_date_fr, `author_id`,`pseudo`, `article`.`id` FROM `user` LEFT JOIN `article` ON `article`.`author_id` = `user`.`id` WHERE `content` IS NOT NULL ORDER BY `publication_date` DESC');
-        $result = $this->sql($sql);
-        $articles = [];
-        foreach ($result as $row){
-            $articlesId = $row['articleId'];
-            $articles[$articlesId] = $this->buildObject($row);
-        }
-        return $articles;
-
+    public function all(): array
+    {
+        return $this->database->request('SELECT `article`.`id` AS articleId,`title`, `chapo`, `content`, DATE_FORMAT(`publication_date`, \'%d/%m/%Y\') AS creation_date_fr, `author_id`,`pseudo`, `article`.`id` FROM `user` LEFT JOIN `article` ON `article`.`author_id` = `user`.`id` WHERE `content` IS NOT NULL ORDER BY `publication_date` DESC')->fetchAll();
     }
 
     /**
-     * @param $artId
+     * @param int $id
+     * @return mixed
+     */
+    public function getByArticleId(int $id)
+    {
+        return $this->database->request('SELECT * FROM article  WHERE id = :id', [
+            ':id' => $id
+        ])->fetch();
+    }
+
+    /**
+     * @param $post
      * @return array
      */
-    public function getArticlesDetails($artId) {
-        $sql = ('SELECT `article`.`id` AS articleId,`title`, `chapo`, `content`, DATE_FORMAT(`publication_date`, \'%d/%m/%Y\') AS creation_date_fr, `author_id`,`pseudo` FROM `user` LEFT JOIN `article` ON `article`.`author_id` = `user`.`id` WHERE `article`.`id` = ?');
-        $result = $this->sql($sql, [$artId]);
-        $articles = [];
-        foreach ($result as $row) {
-            $articlesId = $row['articleId'];
-            $articles[$articlesId] = $this->buildObject($row);
-        }
-        return $articles;
+    public function insertPost($post): array
+    {
+        $this->database->request('INSERT INTO article(title, chapo, content, author, creation_at, img) 
+            VALUES(:title, :chapo, :content, :author, NOW(), :img)', [
+            ':title' => $post['title'],
+            ':chapo' => $post['chapo'],
+            ':content' => $post['content'],
+            ':author' => $post ['author'],
+            ':img' => $post['img']
+        ]);
+
+        $post['id'] = $this->database->lastId();
+        return $post;
+    }
+
+
+    /**
+     * @param $post
+     * @return StatementInterface
+     */
+    public function updatePost($post): StatementInterface
+    {
+        return $this->database->request('UPDATE article
+        SET title = :title,
+            chapo = :chapo,
+            content = :content,
+            author = :author,
+            img = :img, 
+            update_at = NOW()
+        WHERE id = :id', [
+            ':id' => $post['id'],
+            ':title' => $post['title'],
+            ':chapo' => $post['chapo'],
+            ':content' => $post['content'],
+            ':author' => $post['author'],
+            ':img' => $post['img']
+        ]);
     }
 
     /**
-     * @param array $row
-     * @return Article
+     * @param int $id
+     * @return mixed
      */
-    private function buildObject(array $row) {
-        $articles = new Article();
-        $articles->setId($row['articleId']);
-        $articles->setTitle($row['title']);
-        $articles->setChapo($row['chapo']);
-        $articles->setContent($row['content']);
-        $articles->setPublicationDate($row['creation_date_fr']);
-        $articles->setAuthor($row['author_id']);
-        $articles->setPseudo($row['pseudo']);
-        return $articles;
+    public function deletePost(int $id)
+    {
+        return $this->database->request('DELETE FROM article WHERE id = :id', [
+            ':id' => $id
+        ])->fetch();
     }
+
 }
-
