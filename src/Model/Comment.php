@@ -3,96 +3,69 @@
 namespace App\Model;
 
 
+use App\Repository\Interfaces\CommentRepositoryInterface;
+
 class Comment
 {
     /**
-     * @var Comment
+     * @var CommentRepositoryInterface $comment
      */
-    private $id;
     private $comment;
-    private $author;
-    private $comment_date;
-    private $article_id;
 
     /**
-     * @return mixed
+     * @param CommentRepositoryInterface $comment
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getComment()
-    {
-        return $this->comment;
-    }
-
-    /**
-     * @param $comment
-     */
-    public function setComment($comment)
-    {
+    public function _construct(CommentRepositoryInterface $comment){
         $this->comment = $comment;
     }
 
     /**
+     * @param int $articleId
+     * @return array
+     */
+    public function getCommentId(int $articleId): array
+    {
+        $comment = $this->comment->getCommentById($articleId);
+        return $comment;
+    }
+
+    /**
+     * @param int $id
      * @return mixed
      */
-    public function getAuthor()
+    public function getComment(int $id)
     {
-        return $this->author;
+        $commentId = $this->comment->getComment($id);
+        return $commentId;
     }
 
     /**
-     * @param mixed $author_id
+     * @return array
      */
-    public function setAuthor($author)
+    public function allComments(): array
     {
-        $this->author = $author;
+        $allComments = $this->comment->all();
+        return $allComments;
     }
 
     /**
+     * @param $comment
+     * @return array
+     */
+    public function insertComment($comment): array
+    {
+        $comment = $this->comment->insertComment($comment);
+        return $comment;
+    }
+
+    /**
+     * @param $comment
      * @return mixed
      */
-    public function getCommentDate()
+    public function updateComment($comment)
     {
-        return $this->comment_date;
+        $comment = $this->comment->updateComment($comment);
+        return $comment;
     }
-
-    /**
-     * @param mixed $publication_date
-     */
-    public function setCommentDate($comment_date)
-    {
-        $this->comment_date = $comment_date;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getArticleId()
-    {
-        return $this->article_id;
-    }
-
-    /**
-     * @param mixed $publication_date
-     */
-    public function setArticleId($article_id)
-    {
-        $this->article_id = $article_id;
-    }
-
 
 }

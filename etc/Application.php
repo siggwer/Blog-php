@@ -85,7 +85,6 @@ class Application implements ApplicationInterface
         if ($route->isSuccess()) {
             foreach ($route->getMatchedParams() as $name => $value) {
                 $this->request = $this->request->withAttribute($name, $value);
-                var_dump($route);
             }
 
             $middlewares = $this->middlewares[$route->getMatchedRouteName()];

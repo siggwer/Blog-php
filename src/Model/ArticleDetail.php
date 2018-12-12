@@ -3,8 +3,8 @@
 namespace App\Model;
 
 
-use App\Repository\ArticleRepository;
-use Romss\Database\StatementInterface;
+use App\Repository\Interfaces\ArticleRepositoryInterface;
+use App\Pdo\Interfaces\PdoStatementInterface;
 
 class ArticleDetail
 {
@@ -21,10 +21,43 @@ class ArticleDetail
 
     }
 
-    public function getArticleWithId(int $id)
+    /**
+     * @param int $articleId
+     * @return mixed
+     */
+    public function getArticleWithId(int $articleId)
     {
-        $post = $this->articleDetail->getByArticleId($id);
-        return $post;
+        $article = $this->articleDetail->getByArticleId($articleId);
+        return  $article;
+    }
+
+    /**
+     * @param $articleId
+     * @return PdoStatementInterface
+     */
+    public function updatePost($articleId): PdoStatementInterface
+    {
+        $article = $this->articleDetail->updatePost($articleId);
+        return $article;
+    }
+
+    /**
+     * @param $articleId
+     * @return array
+     */
+    public function insertPost($articleId): array
+    {
+        $article = $this->articleDetail->insertPost($articleId);
+        return $article;
+    }
+
+    /**
+     * @param int $articleId
+     * @return mixed
+     */
+    public function deletePost(int $articleId){
+        $article = $this->articleDetail->deletePost($articleId);
+        return  $article;
     }
 
 }

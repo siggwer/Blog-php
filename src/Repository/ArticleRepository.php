@@ -3,13 +3,12 @@
 namespace App\Repository;
 
 use App\Pdo\Interfaces\PdoDatabaseInterface;
+use App\Pdo\Interfaces\PdoStatementInterface;
 use App\Repository\Interfaces\ArticleRepositoryInterface;
-
-//use App\Pdo\Interfaces\PdoStatementInterface;
 class ArticleRepository implements ArticleRepositoryInterface
 {
     /**
-     * @var PdoDatabaseInterface
+     * @var PdoDatabaseInterface $database
      */
     private $database;
 
@@ -30,67 +29,66 @@ class ArticleRepository implements ArticleRepositoryInterface
     }
 
     /**
-     * @param int $id
+     * @param int $articleId
      * @return mixed
      */
-    public function getByArticleId(int $id)
+    public function getByArticleId(int $articleId)
     {
-        return $this->database->request('SELECT * FROM article  WHERE id = :id', [
-            ':id' => $id
+        return $this->database->request('SELECT * FROM article  WHERE `article`.`id` = :articleId', [
+            ':articleId' => $articleId
         ])->fetch();
     }
 
     /**
-     * @param $post
+     * @param $articleId
      * @return array
      */
-    public function insertPost($post): array
+    public function insertPost($articleId): array
     {
-        $this->database->request('INSERT INTO article(title, chapo, content, author, creation_at, img) 
-            VALUES(:title, :chapo, :content, :author, NOW(), :img)', [
-            ':title' => $post['title'],
-            ':chapo' => $post['chapo'],
-            ':content' => $post['content'],
-            ':author' => $post ['author'],
-            ':img' => $post['img']
+        $this->database->request('INSERT INTO article(title, chapo, content, author, publication_date) 
+            VALUES(:title, :chapo, :content, :author, NOW())', [
+            ':title' => $articleId['title'],
+            ':chapo' => $articleId['chapo'],
+            ':content' => $articleId['content'],
+            ':author' => $articleId['author']
+            //':img' => $article['img']
         ]);
 
-        $post['id'] = $this->database->lastId();
-        return $post;
+        $article['id'] = $this->database->lastId();
+        return $article;
     }
 
 
     /**
-     * @param $post
-     * @return StatementInterface
+     * @param $articleId
+     * @return PdoStatementInterface
      */
-    public function updatePost($post): StatementInterface
+    public function updatePost($articleId): PdoStatementInterface
     {
         return $this->database->request('UPDATE article
         SET title = :title,
             chapo = :chapo,
             content = :content,
-            author = :author,
-            img = :img, 
-            update_at = NOW()
+            author_id = :author_id, 
+            publication_date = NOW()
         WHERE id = :id', [
-            ':id' => $post['id'],
-            ':title' => $post['title'],
-            ':chapo' => $post['chapo'],
-            ':content' => $post['content'],
-            ':author' => $post['author'],
-            ':img' => $post['img']
+            ':id' => $articleId['id'],
+            ':title' => $articleId['title'],
+            ':chapo' => $articleId['chapo'],
+            ':content' => $articleId['content'],
+            ':author' => $articleId['author_id']
+            //':img' => $post['img']
         ]);
     }
 
     /**
-     * @param int $id
+     * @param int $articleId
      * @return mixed
      */
-    public function deletePost(int $id)
+    public function deletePost(int $articleId)
     {
         return $this->database->request('DELETE FROM article WHERE id = :id', [
-            ':id' => $id
+            ':id' => $articleId
         ])->fetch();
     }
 

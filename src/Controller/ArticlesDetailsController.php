@@ -4,39 +4,50 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Repository\ArticleRepository;
-use App\Repository\CommentRepository;
-use Framework\Render;
-
-
+use App\Model\ArticleDetail;
+use App\Model\Comment;
+use DI\Container;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Framework\Interfaces\RenderInterfaces;
 class ArticlesDetailsController
 {
     /**
-     * @var CommentRepository
+     * @var $articleDetail
      */
-    private $articles;
-    private $comments;
-    private $render;
+    private $articleDetail;
+
+    /**
+     * @var $comment
+     */
+    private $comment;
 
     /**
      * ArticlesDetailsController constructor.
+     * @param ArticleDetail $articleDetail
+     * @param Comment $comment
      */
-    public function __construct() {
-        $this->articles = new ArticleRepository();
-        $this->comments = new CommentRepository();
-        $this->render = new Render();
+    public function __construct(ArticleDetail $articleDetail, Comment $comment)
+    {
+        $this->articleDetail = $articleDetail;
+        $this->comment = $comment;
     }
 
     /**
-     * @param array $params
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface $response
+     * @param Container $container
+     * @return ResponseInterface
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
      */
-    public function __invoke(array $params = [])
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {
-        $articles = $this->articles->getArticlesDetails($params['id']);
-        $comments = $this->comments->getComment($params['id']);
-        echo $this->render->render('articles.html.twig',['articles' => $articles,'comments' => $comments]);
+        //$comments = $this->comment->getCommentId($request->getAttribute('articleId', 0));
+        $article = $this->articleDetail->getArticleWithId($request->getAttribute('articleId', 0));
+        var_dump($article);
+        $view = $container->get(RenderInterfaces::class)->render('articles', ['article' => $article, 'comments' => $comments]);
+        $response->getBody()->write($view);
+        return $response;
     }
 }
