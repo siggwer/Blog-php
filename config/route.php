@@ -10,7 +10,7 @@ return [
     ],
     'article_details' => [
         'methods' => ['GET'],
-        'path' => '/article_details/{article:[0-9]+}',
+        'path' => '/article_details/{articles:[0-9]+}',
         'controller' => App\Controller\ArticlesDetailsController::class,
         //'params' => [
             //'id' => '\d+'

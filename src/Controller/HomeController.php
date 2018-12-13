@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Model\Home;
+use App\Model\Articles;
 use DI\Container;
 use Framework\Interfaces\RenderInterfaces;
 use Psr\Http\Message\ResponseInterface;
@@ -38,9 +38,9 @@ class HomeController
 
     /**
      * HomeController constructor.
-     * @param Home $articles
+     * @param Articles $articles
      */
-    public function __construct(Home $articles) {
+    public function __construct(Articles $articles) {
         $this->articles = $articles;
     }
 

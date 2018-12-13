@@ -4,29 +4,30 @@
 
 {% block content %}
 <!-- Main Content -->
-    {% for data in articles %}
+    {% for article in articles %}
     <!--Content index Page-->
     <div class="container">
         <div class="row">
+            {{ dump(article) }}
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="post-preview">
                     <a href="" target="_blank">
                         <h2 class="post-title">
-                            {{ data.title }}
+                            {{ article.title }}
                         </h2>
                         <h3 class="post-subtitle">
-                            {{ data.chapo }}
+                            {{ article.chapo }}
                         </h3>
                     </a>
                     <p class="post-meta">Posté par
 
-                        <a>{{ data.pseudo }}</a>
-                        le {{ data.creation_date_fr }}</p>
+                        <a>{{ article.pseudo }}</a>
+                        le {{ article.creation_date_fr }}</p>
                 </div>
             </div>
         </div>
     <div class="col-lg-8 col-md-10 mx-auto clearfix">
-        <a class="btn btn-primary float-left" href="/article_details/{{ data.id }}" target="_blank">Voir les commentaires</a>
+        <a class="btn btn-primary float-left" href="/article_details/{{ article.id }}" target="_blank">Voir les commentaires</a>
     </div>
     </div>
 

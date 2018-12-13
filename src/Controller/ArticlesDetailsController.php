@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Model\ArticleDetail;
+use App\Model\Articles;
 use App\Model\Comment;
 use DI\Container;
 use Psr\Http\Message\ResponseInterface;
@@ -13,9 +13,9 @@ use Framework\Interfaces\RenderInterfaces;
 class ArticlesDetailsController
 {
     /**
-     * @var $articleDetail
+     * @var $articles
      */
-    private $articleDetail;
+    private $articles;
 
     /**
      * @var $comment
@@ -24,12 +24,12 @@ class ArticlesDetailsController
 
     /**
      * ArticlesDetailsController constructor.
-     * @param ArticleDetail $articleDetail
+     * @param Articles $articles
      * @param Comment $comment
      */
-    public function __construct(ArticleDetail $articleDetail, Comment $comment)
+    public function __construct(Articles $articles, Comment $comment)
     {
-        $this->articleDetail = $articleDetail;
+        $this->articles = $articles;
         $this->comment = $comment;
     }
 
@@ -43,9 +43,8 @@ class ArticlesDetailsController
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {
-        //$comments = $this->comment->getCommentId($request->getAttribute('articleId', 0));
-        $article = $this->articleDetail->getArticleWithId($request->getAttribute('articleId', 0));
-        var_dump($article);
+        $comments = $this->comment->getCommentId($request->getAttribute('articleId', 0));
+        $article = $this->articles->getArticleWithId($request->getAttribute('article', 0));
         $view = $container->get(RenderInterfaces::class)->render('articles', ['article' => $article, 'comments' => $comments]);
         $response->getBody()->write($view);
         return $response;

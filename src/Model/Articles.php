@@ -6,19 +6,28 @@ namespace App\Model;
 use App\Repository\Interfaces\ArticleRepositoryInterface;
 use App\Pdo\Interfaces\PdoStatementInterface;
 
-class ArticleDetail
+class Articles
 {
     /**
-     * @var $articleDetail
+     * @var $articles
      */
-    private $articleDetail;
+    private $articles;
 
     /**
-     * @param ArticleRepositoryInterface $articleDetail
+     * @param ArticleRepositoryInterface $articles
      */
-    public function _construct(ArticleRepositoryInterface $articleDetail){
-        $this->articleDetail = $articleDetail;
+    public function __construct(ArticleRepositoryInterface $articles){
+        $this->articles = $articles;
 
+    }
+
+    /**
+     * @return array
+     */
+    public function home(): array
+    {
+        $allPost = $this->articles->all();
+        return $allPost;
     }
 
     /**
@@ -27,7 +36,7 @@ class ArticleDetail
      */
     public function getArticleWithId(int $articleId)
     {
-        $article = $this->articleDetail->getByArticleId($articleId);
+        $article = $this->articles->getByArticleId($articleId);
         return  $article;
     }
 
@@ -37,7 +46,7 @@ class ArticleDetail
      */
     public function updatePost($articleId): PdoStatementInterface
     {
-        $article = $this->articleDetail->updatePost($articleId);
+        $article = $this->articles->updatePost($articleId);
         return $article;
     }
 
@@ -47,7 +56,7 @@ class ArticleDetail
      */
     public function insertPost($articleId): array
     {
-        $article = $this->articleDetail->insertPost($articleId);
+        $article = $this->articles->insertPost($articleId);
         return $article;
     }
 
@@ -56,7 +65,7 @@ class ArticleDetail
      * @return mixed
      */
     public function deletePost(int $articleId){
-        $article = $this->articleDetail->deletePost($articleId);
+        $article = $this->articles->deletePost($articleId);
         return  $article;
     }
 

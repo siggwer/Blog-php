@@ -15,7 +15,7 @@ class Comment
     /**
      * @param CommentRepositoryInterface $comment
      */
-    public function _construct(CommentRepositoryInterface $comment){
+    public function __construct(CommentRepositoryInterface $comment){
         $this->comment = $comment;
     }
 

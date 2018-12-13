@@ -118,7 +118,6 @@ class Application implements ApplicationInterface
 
         $routes = (require __DIR__ . '/../config/route.php');
         foreach ($routes as $name => $route) {
-
             $routeAdd = new Route($route['path'], $route['controller'], $route['methods'], $name);
             $this->router->addRoute($routeAdd);
 

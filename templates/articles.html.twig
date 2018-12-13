@@ -4,19 +4,19 @@
 
 {% block content %}
 <!-- Main Content -->
-    {% for data in article %}
+    {% for article in articles %}
         <!--Article Content-->
         <div class="col-lg-8 col-md-10 mx-auto">
             <h2 class="post-title">
-                {{ data.getTitle }}
+                {{ article.title }}
             </h2>
                 <p>
-                    {{ data.getChapo }}
+                    {{ article.chapo }}
                 </p>
-                    <p>{{ data.getContent }}</p>
+                    <p>{{ article.content }}</p>
                     <p class="post-meta">Posté par
-                        <a>{{ data.getPseudo }}</a>
-                        le {{ data.getPublicationDate }}
+                        <a>{{ article.pseudo }}</a>
+                        le {{ article.creation_date_fr }}
                     </p>
         </div>
         <hr>

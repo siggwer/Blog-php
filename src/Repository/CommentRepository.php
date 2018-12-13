@@ -35,8 +35,8 @@ class CommentRepository implements CommentRepositoryInterface
      */
     public function getComment(int $articleId)
     {
-        return $this->database->request('SELECT * FROM comment  WHERE id = :id', [
-            ':id' => $articleId
+        return $this->database->request('SELECT * FROM comment  WHERE article_id = :articleId', [
+            ':articleId' => $articleId
         ])->fetch();
     }
 
