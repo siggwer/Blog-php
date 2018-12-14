@@ -11,21 +11,16 @@ interface CommentRepositoryInterface
     public function all(): array;
 
     /**
-     * @param int $articleId
+     * @param int $id
      * @return mixed
      */
-    public function getComment(int $articleId);
+    public function getComment(int $id);
 
     /**
-     * @param int $articleId
+     * @param int $id
      * @return array
      */
-    public function getCommentById(int $articleId):array;
-
-    /**
-     * @return array
-     */
-    public function allComments(): array;
+    public function getCommentById(int $id):array;
 
     /**
      * @param $comment

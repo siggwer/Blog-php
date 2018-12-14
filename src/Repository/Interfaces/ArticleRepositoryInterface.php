@@ -11,27 +11,27 @@ interface ArticleRepositoryInterface
     public function all(): array;
 
     /**
-     * @param int $articleId
+     * @param int $id
      * @return mixed
      */
-    public function getByArticleId(int $articleId);
+    public function getByArticleId(int $id);
 
     /**
-     * @param $articleId
+     * @param $id
      * @return array
      */
-    public function insertPost($articleId): array;
+    public function insertPost($id): array;
 
     /**
-     * @param $articleId
+     * @param $id
      * @return PdoStatementInterface
      */
-    public function updatePost($articleId): PdoStatementInterface;
+    public function updatePost($id): PdoStatementInterface;
 
     /**
-     * @param int $articleId
+     * @param int $id
      * @return mixed
      */
-    public function deletePost(int $articleId);
+    public function deletePost(int $id);
 
 }

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Pdo\Interfaces\PdoDatabaseInterface;
 use App\Pdo\Interfaces\PdoStatementInterface;
+use App\Repository\Interfaces\CommentRepositoryInterface;
 
 class CommentRepository implements CommentRepositoryInterface
 {
@@ -30,26 +31,25 @@ class CommentRepository implements CommentRepositoryInterface
     }
 
     /**
-     * @param int $articleId
+     * @param int $id
      * @return mixed
      */
-    public function getComment(int $articleId)
+    public function getComment(int $id)
     {
-        return $this->database->request('SELECT * FROM comment  WHERE article_id = :articleId', [
-            ':articleId' => $articleId
+        return $this->database->request('SELECT * FROM comment  WHERE article_id = :id', [
+            ':id' => $id
         ])->fetch();
     }
 
     /**
-     * @param int $articleId
-     * @param bool $checkValidated
+     * @param int $id
      * @return array
      */
-    public function getCommentById(int $articleId): array
+    public function getCommentById(int $id): array
     {
         return $this->database->request('
-            SELECT * FROM `comment` LEFT JOIN `article` ON `comment`.`article_id` = `article`.`id`  WHERE article_id = :articleId ORDER BY comment_date DESC', [
-                ':article_id' => $articleId,
+            SELECT * FROM `comment` LEFT JOIN `article` ON `comment`.`article_id` = `article`.`id`  WHERE article_id = :id ORDER BY comment_date DESC', [
+                ':id' => $id,
         ])->fetchAll();
     }
 

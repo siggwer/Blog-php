@@ -2,7 +2,6 @@
 
 namespace App\Model;
 
-
 use App\Repository\Interfaces\CommentRepositoryInterface;
 
 class Comment
@@ -20,12 +19,12 @@ class Comment
     }
 
     /**
-     * @param int $articleId
+     * @param int $id
      * @return array
      */
-    public function getCommentId(int $articleId): array
+    public function getCommentId(int $id): array
     {
-        $comment = $this->comment->getCommentById($articleId);
+        $comment = $this->comment->getCommentById($id);
         return $comment;
     }
 

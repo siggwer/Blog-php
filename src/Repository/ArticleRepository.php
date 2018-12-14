@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Pdo\Interfaces\PdoDatabaseInterface;
 use App\Pdo\Interfaces\PdoStatementInterface;
 use App\Repository\Interfaces\ArticleRepositoryInterface;
+
 class ArticleRepository implements ArticleRepositoryInterface
 {
     /**
@@ -25,32 +26,32 @@ class ArticleRepository implements ArticleRepositoryInterface
      */
     public function all(): array
     {
-        return $this->database->request('SELECT `article`.`id` AS articleId,`title`, `chapo`, `content`, DATE_FORMAT(`publication_date`, \'%d/%m/%Y\') AS creation_date_fr, `author_id`,`pseudo`, `article`.`id` FROM `user` LEFT JOIN `article` ON `article`.`author_id` = `user`.`id` WHERE `content` IS NOT NULL ORDER BY `publication_date` DESC')->fetchAll();
+        return $this->database->request('SELECT `article`.`id`,`title`, `chapo`, `content`, DATE_FORMAT(`publication_date`, \'%d/%m/%Y\') AS creation_date_fr, `author_id`,`pseudo`, `article`.`id` FROM `user` LEFT JOIN `article` ON `article`.`author_id` = `user`.`id` WHERE `content` IS NOT NULL ORDER BY `publication_date` DESC')->fetchAll();
     }
 
     /**
-     * @param int $articleId
+     * @param int $id
      * @return mixed
      */
-    public function getByArticleId(int $articleId)
+    public function getByArticleId(int $id)
     {
-        return $this->database->request('SELECT * FROM article  WHERE `article`.`id` = :articleId', [
-            ':articleId' => $articleId
+        return $this->database->request('SELECT * FROM article  WHERE `article`.`id` = :id', [
+            ':id' => $id
         ])->fetch();
     }
 
     /**
-     * @param $articleId
+     * @param $id
      * @return array
      */
-    public function insertPost($articleId): array
+    public function insertPost($id): array
     {
         $this->database->request('INSERT INTO article(title, chapo, content, author, publication_date) 
             VALUES(:title, :chapo, :content, :author, NOW())', [
-            ':title' => $articleId['title'],
-            ':chapo' => $articleId['chapo'],
-            ':content' => $articleId['content'],
-            ':author' => $articleId['author']
+            ':title' => $id['title'],
+            ':chapo' => $id['chapo'],
+            ':content' => $id['content'],
+            ':author' => $id['author']
             //':img' => $article['img']
         ]);
 
@@ -60,10 +61,10 @@ class ArticleRepository implements ArticleRepositoryInterface
 
 
     /**
-     * @param $articleId
+     * @param $id
      * @return PdoStatementInterface
      */
-    public function updatePost($articleId): PdoStatementInterface
+    public function updatePost($id): PdoStatementInterface
     {
         return $this->database->request('UPDATE article
         SET title = :title,
@@ -72,23 +73,23 @@ class ArticleRepository implements ArticleRepositoryInterface
             author_id = :author_id, 
             publication_date = NOW()
         WHERE id = :id', [
-            ':id' => $articleId['id'],
-            ':title' => $articleId['title'],
-            ':chapo' => $articleId['chapo'],
-            ':content' => $articleId['content'],
-            ':author' => $articleId['author_id']
+            ':id' => $id['id'],
+            ':title' => $id['title'],
+            ':chapo' =>$id['chapo'],
+            ':content' => $id['content'],
+            ':author' => $id['author_id']
             //':img' => $post['img']
         ]);
     }
 
     /**
-     * @param int $articleId
+     * @param int $id
      * @return mixed
      */
-    public function deletePost(int $articleId)
+    public function deletePost(int $id)
     {
         return $this->database->request('DELETE FROM article WHERE id = :id', [
-            ':id' => $articleId
+            ':id' => $id
         ])->fetch();
     }
 

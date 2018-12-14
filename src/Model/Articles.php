@@ -31,41 +31,41 @@ class Articles
     }
 
     /**
-     * @param int $articleId
+     * @param int $id
      * @return mixed
      */
-    public function getArticleWithId(int $articleId)
+    public function getArticleWithId(int $id)
     {
-        $article = $this->articles->getByArticleId($articleId);
+        $article = $this->articles->getByArticleId($id);
         return  $article;
     }
 
     /**
-     * @param $articleId
+     * @param $id
      * @return PdoStatementInterface
      */
-    public function updatePost($articleId): PdoStatementInterface
+    public function updatePost($id): PdoStatementInterface
     {
-        $article = $this->articles->updatePost($articleId);
+        $article = $this->articles->updatePost($id);
         return $article;
     }
 
     /**
-     * @param $articleId
+     * @param $id
      * @return array
      */
-    public function insertPost($articleId): array
+    public function insertPost($id): array
     {
-        $article = $this->articles->insertPost($articleId);
+        $article = $this->articles->insertPost($id);
         return $article;
     }
 
     /**
-     * @param int $articleId
+     * @param int $id
      * @return mixed
      */
-    public function deletePost(int $articleId){
-        $article = $this->articles->deletePost($articleId);
+    public function deletePost(int $id){
+        $article = $this->articles->deletePost($id);
         return  $article;
     }
 

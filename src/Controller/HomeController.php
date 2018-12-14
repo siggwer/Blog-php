@@ -11,6 +11,9 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 class HomeController
 {
+    /**
+     * @var Articles
+     */
     private $articles;
     //private $render;
     //private $container;

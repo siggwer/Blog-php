@@ -30,6 +30,6 @@ try {
     $app->handleRequest();
 
 } catch (Exception $exception) {
-    //var_dump($exception->getMessage());
+    var_dump($exception->getMessage());
 }
 

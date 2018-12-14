@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+//declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -43,9 +43,9 @@ class ArticlesDetailsController
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {
-        $comments = $this->comment->getCommentId($request->getAttribute('articleId', 0));
-        $article = $this->articles->getArticleWithId($request->getAttribute('article', 0));
-        $view = $container->get(RenderInterfaces::class)->render('articles', ['article' => $article, 'comments' => $comments]);
+        $articles = $this->articles->getArticleWithId($request->getAttribute('article', 0));
+        $comments = $this->comment->getCommentId($request->getAttribute('article', 0));
+        $view = $container->get(RenderInterfaces::class)->render('articles', ['article' => $articles, 'comment' => $comments]);
         $response->getBody()->write($view);
         return $response;
     }
