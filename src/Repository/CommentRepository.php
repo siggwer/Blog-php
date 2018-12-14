@@ -15,9 +15,9 @@ class CommentRepository implements CommentRepositoryInterface
 
     /**
      * CommentRepository constructor.
-     * @param PdoStatementInterface $database
+     * @param PdoDatabaseInterface $database
      */
-    public function __construct(PdoStatementInterface $database)
+    public function __construct(PdoDatabaseInterface $database)
     {
         $this->database = $database;
     }
