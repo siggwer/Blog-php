@@ -43,9 +43,9 @@ class ArticlesDetailsController
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {
-        $articles = $this->articles->getArticleWithId($request->getAttribute('article', 0));
-        $comments = $this->comment->getCommentId($request->getAttribute('article', 0));
-        $view = $container->get(RenderInterfaces::class)->render('articles', ['article' => $articles, 'comment' => $comments]);
+        $articles = $this->articles->getArticleWithId($request->getAttribute('articles', 0));
+        $comments = $this->comment->getCommentId($request->getAttribute('articles', 0));
+        $view = $container->get(RenderInterfaces::class)->render('articles', ['articles' => $articles, 'comments' => $comments]);
         $response->getBody()->write($view);
         return $response;
     }

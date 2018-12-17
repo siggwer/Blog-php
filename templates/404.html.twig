@@ -1,4 +1,4 @@
-{% extends "layout.html.twig" %}
+{% extends "layoutErrors.html.twig" %}
 
 {% block title %}
     <title>404</title>
@@ -8,6 +8,8 @@
 {% block content %}
     <div class="container-fluid">
         <h1 class="text-center">404 Not Found</h1>
-        <img class="img404 text-center" src="#">
+        <div class="col-lg-8 col-md-10 col-sm-10 mx-auto">
+            <img class="img404 text-center img-responsive" src="../img/error.png">
+        </div>
     </div>
 {% endblock %}

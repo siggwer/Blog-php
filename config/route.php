@@ -17,4 +17,10 @@ return [
         //]
         'middlewares' => []
     ],
+    'administration' => [
+        'methods' => ['GET'],
+        'path' => '/administration',
+        'controller' => App\Controller\AdministrationController::class,
+        'middlewwares' => [Framework\ConfMiddleware::class]
+    ]
 ];

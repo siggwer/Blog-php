@@ -107,7 +107,7 @@ class Application implements ApplicationInterface
 
             send_response($result);
         } else {
-            $rendering = $this->container->get(RenderInterfaces::class)->render('Errors/404');
+            $rendering = $this->container->get(RenderInterfaces::class)->render('404');
             send_response(new Response(404, [], $rendering));
         }
     }

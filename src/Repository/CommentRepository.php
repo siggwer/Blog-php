@@ -47,8 +47,7 @@ class CommentRepository implements CommentRepositoryInterface
      */
     public function getCommentById(int $id): array
     {
-        return $this->database->request('
-            SELECT * FROM `comment` LEFT JOIN `article` ON `comment`.`article_id` = `article`.`id`  WHERE article_id = :id ORDER BY comment_date DESC', [
+        return $this->database->request('SELECT * FROM `comment` LEFT JOIN `article` ON `comment`.`article_id` = `article`.`id`  WHERE article_id = :id ORDER BY comment_date DESC', [
                 ':id' => $id,
         ])->fetchAll();
     }
