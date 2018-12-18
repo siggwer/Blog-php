@@ -3,7 +3,7 @@
 namespace Framework;
 
 
-trait GetFiled
+trait GetField
 {
     /**
      * @param $field

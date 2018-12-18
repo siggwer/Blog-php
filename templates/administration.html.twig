@@ -11,14 +11,16 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Mes articles</h5>
-                        <?php foreach ($articles as $value => $data): ?>
-                        <h5 class="card-title"><?= $data['title'] ?></h5>
-                        <h6 class="card-subtitle mb-2 text-muted"><?= $data['chapo'] ?></h6>
-                        <p class="card-text"><?= $data['content'] ?></p>
-                        <p class="card-link">le <?= $data['creation_date_fr'] ?></p>
-                        <!--<p class="card-link">Another link</p>-->
-                        <a class="btn btn-success" href="/modifyArticle/<?= $data['articleId']?>" target="_blank">Modifier</a>
-                        <?php endforeach; ?>
+                        {% if user %}
+                            {% for user in user %}
+                                <h5 class="card-title"><?= $data['title'] ?></h5>
+                                <h6 class="card-subtitle mb-2 text-muted"><?= $data['chapo'] ?></h6>
+                                <p class="card-text"><?= $data['content'] ?></p>
+                                <p class="card-link">le <?= $data['creation_date_fr'] ?></p>
+                                <!--<p class="card-link">Another link</p>-->
+                                <a class="btn btn-success" href="/modifyArticle/<?= $data['articleId']?>" target="_blank">Modifier</a>
+                            {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
             </div>

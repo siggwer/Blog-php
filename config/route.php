@@ -17,10 +17,10 @@ return [
         //]
         'middlewares' => []
     ],
-    'administration' => [
-        'methods' => ['GET'],
-        'path' => '/administration',
-        'controller' => App\Controller\AdministrationController::class,
-        'middlewwares' => [Framework\ConfMiddleware::class]
+    'login' => [
+        'methods' => ['GET', 'POST'],
+        'path' => '/login',
+        'controller' => App\Controller\LoginController::class,
+        'middlewwares' => []
     ]
 ];

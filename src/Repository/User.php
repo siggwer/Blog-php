@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use DateTime;
-class Users
+class User
 {
     /**
      * @var
@@ -13,11 +13,11 @@ class Users
         $email,
         $email_token,
         $rank,
-        $connection_at,
+        $connexion_at,
         $register_at;
 
     /**
-     * Users constructor.
+     * User constructor.
      * @param array $data
      */
     public function __construct($data = [])
@@ -89,9 +89,9 @@ class Users
     /**
      * @param $connection_at
      */
-    public function setConnection_at($connection_at)
+    public function setConnexion_at($connexion_at)
     {
-        $this->connection_at = $this->setDateTime($connection_at);
+        $this->connection_at = $this->setDateTime($connexion_at);
     }
 
     /**
@@ -147,9 +147,9 @@ class Users
     /**
      * @return mixed
      */
-    public function connection_at()
+    public function connexion_at()
     {
-        return $this->connection_at;
+        return $this->connexion_at;
     }
 
     /**

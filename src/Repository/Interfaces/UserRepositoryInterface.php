@@ -3,11 +3,13 @@
 
 namespace App\Repository\Interfaces;
 
+use App\Pdo\Interfaces\PdoStatementInterface;
+use App\Repository\User;
 
 Interface UserRepositoryInterface
 {
     /**
-     * @param User $user
+     * @param $user
      * @return User
      */
     public function registerUser(User $user): User;
@@ -16,7 +18,7 @@ Interface UserRepositoryInterface
      * @param User $user
      * @return StatementInterface
      */
-    public function updateUser(User $user): StatementInterface;
+    public function updateUser(User $user): PdoStatementInterface;
 
     /**
      * @param $email

@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Pdo\Interfaces\PdoDatabaseInterface;
 use App\Pdo\Interfaces\PdoStatementInterface;
+use App\Repository\Interfaces\UserRepositoryInterface;
+
 class UserRepository implements UserRepositoryInterface
 {
     /**
@@ -27,7 +29,7 @@ class UserRepository implements UserRepositoryInterface
     public function registerUser(User $user): User
     {
         $this->database->request('
-            INSERT INTO users (password, email, email_token, register_at, connection_at, rank) 
+            INSERT INTO user (password, email, email_token, register_at, connection_at, rank) 
             VALUES (:password, :email, :emailToken, NOW(), NULL, 1)',[
             ':password' => $user->password(),
             ':email' => $user->email(),
@@ -44,15 +46,15 @@ class UserRepository implements UserRepositoryInterface
     public function updateUser(User $user): PdoStatementInterface
     {
         return $this->database->request(
-            'UPDATE users
+            'UPDATE user
         SET email = :email,
             email_token = :email_token,
-            connection_at = :connection_at,
+            connexion_at = :connexion_at,
             rank = :rank
         WHERE id = :userId', [
             ':email' => $user->email(),
             ':email_token' => $user->email_token(),
-            ':connection_at' => $user->connection_at(),
+            ':connexion_at' => $user->connexion_at(),
             ':rank' => $user->rank(),
             ':userId' => $user->id()
         ]);
@@ -64,9 +66,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function getUserByEmail($email): User
     {
-        return new User($this->database->request(
-            'SELECT id, password, email, email_token, register_at, connection_at, rank FROM users
-        WHERE email = :email',[
+        return new User($this->database->request('SELECT id, password, email, email_token, register_at, connexion_at, rank FROM user WHERE email = :email',[
             ':email' => $email
         ])->fetch());
     }
@@ -78,9 +78,7 @@ class UserRepository implements UserRepositoryInterface
     public function getUserById(int $userId)
     {
         return new User($this->database->request(
-            'SELECT id, password, email, email_token, register_at, connection_at, rank FROM users
-        WHERE id = :userId
-        LIMIT 0, 1' ,[
+            'SELECT id, password, email, email_token, register_at, connexion_at, rank FROM user WHERE id = :userId LIMIT 0, 1' ,[
             ':userId' => $userId
         ])->fetch());
     }
@@ -91,9 +89,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function getRank(User $rankAdmin)
     {
-        return $this->database->request('
-            SELECT * FROM blog.users  WHERE rank = :rankAdmin', [
-
+        return $this->database->request('SELECT * FROM blog.user  WHERE rank = :rankAdmin', [
             ':rankAdmin' => intval($rankAdmin->rank())
         ])->fetchAll();
     }
@@ -104,7 +100,7 @@ class UserRepository implements UserRepositoryInterface
     public function allusers()
     {
         return $this->database->request(
-            'SELECT * FROM users'
+            'SELECT * FROM user'
         )->fetchAll();
     }
 }

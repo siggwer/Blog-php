@@ -8,7 +8,7 @@ use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ServerRequestInterface;
 class CsrMiddleware
 {
-    use Token, Flash, GetFiled;
+    use Token, Flash, GetField;
     /**
      * @param ServerRequestInterface $request
      * @param Response $response
