@@ -4,7 +4,7 @@ namespace App\Model;
 
 use App\Repository\Interfaces\CommentRepositoryInterface;
 
-class Comment
+class Comments
 {
     /**
      * @var CommentRepositoryInterface $comment

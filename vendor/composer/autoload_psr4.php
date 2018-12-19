@@ -21,6 +21,7 @@ return array(
     'Framework\\' => array($baseDir . '/etc'),
     'Fig\\Http\\Message\\' => array($vendorDir . '/fig/http-message-util/src'),
     'FastRoute\\' => array($vendorDir . '/nikic/fast-route/src'),
+    'Egulias\\EmailValidator\\' => array($vendorDir . '/egulias/email-validator/EmailValidator'),
     'DI\\' => array($vendorDir . '/php-di/php-di/src/DI'),
     'App\\' => array($baseDir . '/src'),
 );

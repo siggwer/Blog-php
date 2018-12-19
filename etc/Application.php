@@ -65,7 +65,7 @@ class Application implements ApplicationInterface
         $containerBuilder->addDefinitions(__DIR__ . '/../config/db.php');
         $containerBuilder->addDefinitions(__DIR__. '/../config/repository.php');
         $containerBuilder->addDefinitions(__DIR__ . '/../config/render.php');
-        //$containerBuilder->addDefinitions(__DIR__. '/../configs/dic/SwiftMailer.php');
+        $containerBuilder->addDefinitions(__DIR__. '/../etc/SwiftMailer.php');
         $this->container = $containerBuilder->build();
         $this->loadRoutes();
     }

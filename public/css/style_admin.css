@@ -3,12 +3,12 @@
 
 @font-face {
     font-family: Ubuntu-Regular;
-    src: url('/vendor/font-awesome/fonts/ubuntu/Ubuntu-Regular.ttf');
+    src: url('../css/font-awesome/fonts/ubuntu/Ubuntu-Regular.ttf');
 }
 
 @font-face {
     font-family: Ubuntu-Bold;
-    src: url('/vendor/font-awesome/fonts/ubuntu/Ubuntu-Bold.ttf');
+    src: url('../css/font-awesome/fonts/ubuntu/Ubuntu-Bold.ttf');
 }
 
 /*//////////////////////////////////////////////////////////////////
@@ -363,6 +363,48 @@ iframe {
     background-color: #0085A1;
 }
 
+/*------------------------------------------------------------------
+[ a ]*/
+.login100-form-btn {
+    font-family: Ubuntu-Bold;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    /*width: 50%;*/
+    height: 62px;
+    background-color: #868e96;
+    border-radius: 3px;
+    text-decoration : none;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+/*------------------------------------------------------------------
+[ list-inline ]*/
+
+.list-inline {
+    padding-left: 0;
+    list-style: none;
+}
+
+.list-inline-item {
+    display: inline-block;
+}
+
+.list-inline-item:not(:last-child) {
+    margin-right: 5px;
+}
 
 /*------------------------------------------------------------------
 [ Alert validate ]*/

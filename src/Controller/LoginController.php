@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Model\User;
+use App\Model\Users;
 use DI\Container;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
@@ -16,11 +16,11 @@ class LoginController
     use Token, Flash, GetField;
 
     /**
-     * @var User
+     * @var Users
      */
     private $userServices;
 
-    public function __construct(User $userServices)
+    public function __construct(Users $userServices)
     {
         $this->userServices = $userServices;
     }

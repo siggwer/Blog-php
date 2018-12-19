@@ -14,4 +14,5 @@ return array(
     '6f2c5977e422114bbaec553e7c77ee8b' => $vendorDir . '/http-interop/response-sender/src/functions.php',
     'bbf73f3db644d3dced353b837903e74c' => $vendorDir . '/php-di/php-di/src/DI/functions.php',
     'a1283d0ded43dbcb11ae5d2c4a103cab' => $vendorDir . '/quimcalpe/psr7-response-sender/src/response_sender.php',
+    '2c102faa651ef8ea5874edb585946bce' => $vendorDir . '/swiftmailer/swiftmailer/lib/swift_required.php',
 );

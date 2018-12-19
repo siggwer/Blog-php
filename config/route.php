@@ -18,9 +18,15 @@ return [
         'middlewares' => []
     ],
     'login' => [
-        'methods' => ['GET', 'POST'],
+        'methods' => ['GET','POST'],
         'path' => '/login',
         'controller' => App\Controller\LoginController::class,
-        'middlewwares' => []
+        'middlewares' => []
+    ],
+    'register' => [
+        'methods' => ['GET','POST'],
+        'path' => '/register',
+        'controller' => App\Controller\RegisterController::class,
+        'middlewares' => []
     ]
 ];

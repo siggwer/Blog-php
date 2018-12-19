@@ -5,7 +5,7 @@
 namespace App\Controller;
 
 use App\Model\Articles;
-use App\Model\Comment;
+use App\Model\Comments;
 use DI\Container;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -25,9 +25,9 @@ class ArticlesDetailsController
     /**
      * ArticlesDetailsController constructor.
      * @param Articles $articles
-     * @param Comment $comment
+     * @param Comments $comment
      */
-    public function __construct(Articles $articles, Comment $comment)
+    public function __construct(Articles $articles, Comments $comment)
     {
         $this->articles = $articles;
         $this->comment = $comment;

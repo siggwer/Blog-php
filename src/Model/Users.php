@@ -4,7 +4,7 @@ namespace App\Model;
 
 use App\Repository\Interfaces\UserRepositoryInterface;
 use App\Pdo\Interfaces\PdoStatementInterface;
-class User
+class Users
 {
     /**
      * @var $user
@@ -12,7 +12,7 @@ class User
     private $user;
 
     /**
-     * User constructor.
+     * Users constructor.
      * @param UserRepositoryInterface $user
      */
     public function __construct(UserRepositoryInterface $user)
@@ -69,9 +69,7 @@ class User
      * @return mixed
      */
     public function getRank($rankAdmin){
-        var_dump($rankAdmin);
         $users = $this->user->getRank($rankAdmin);
         return $users;
-        var_dump($users);
     }
 }

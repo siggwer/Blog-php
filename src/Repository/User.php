@@ -17,7 +17,7 @@ class User
         $register_at;
 
     /**
-     * User constructor.
+     * Users constructor.
      * @param array $data
      */
     public function __construct($data = [])
