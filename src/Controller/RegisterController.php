@@ -12,6 +12,9 @@ use Framework\GetField;
 use Framework\Flash;
 use Framework\Token;
 use Framework\Interfaces\RenderInterfaces;
+use Swift_Mailer;
+use Swift_Message;
+use Swift_SmtpTransport;
 class RegisterController
 {
     use Token, Flash, GetField;
@@ -98,8 +101,15 @@ class RegisterController
             'user' => $userRegister
         ], 'text');
 
+        $conf = require __DIR__ . '/../../config/mail.php';
+
+        // Create the Transport
+        $transport = $container->get(new Swift_SmtpTransport($conf['smtp'], $conf['port']))
+            ->setUsername($conf['userName'])
+            ->setPassword($conf['password']);
+
         // Connexion au smtp
-        $transport = $container->get(Swift_SmtpTransport::class);
+        //$transport = $container->get(Swift_SmtpTransport::class);
 
         // Container du mail
         $mailer = new Swift_Mailer($transport);

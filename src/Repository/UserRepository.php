@@ -29,11 +29,12 @@ class UserRepository implements UserRepositoryInterface
     public function registerUser(User $user): User
     {
         $this->database->request('
-            INSERT INTO user (password, email, email_token, register_at, connection_at, rank) 
-            VALUES (:password, :email, :emailToken, NOW(), NULL, 1)',[
-            ':password' => $user->password(),
-            ':email' => $user->email(),
-            ':emailToken' => $user->email_token()
+            INSERT INTO user (pseudo, password, email, email_token, register_at, connection_at, rank) 
+            VALUES (:pseudo, :password, :email, :emailToken, NOW(), NULL, 1)',[
+                ':pseudo' => $user->pseudo(),
+                ':password' => $user->password(),
+                ':email' => $user->email(),
+                ':emailToken' => $user->email_token()
         ]);
         $user->setId($this->database->lastId());
         return $user;
@@ -66,7 +67,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function getUserByEmail($email): User
     {
-        return new User($this->database->request('SELECT id, password, email, email_token, register_at, connexion_at, rank FROM user WHERE email = :email',[
+        return new User($this->database->request('SELECT id,pseudo, password, email, email_token, register_at, connexion_at, rank FROM user WHERE email = :email',[
             ':email' => $email
         ])->fetch());
     }
