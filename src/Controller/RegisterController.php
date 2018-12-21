@@ -43,8 +43,8 @@ class RegisterController
 
         $pseudo = $this->getField('pseudo');
         $email = $this->getField('email');
-        $pass = $this->getField('pass');
-        $pass_confirm = $this->getField('pass_confirm');
+        $pass = $this->getField('password');
+        $pass_confirm = $this->getField('repassword');
 
 
         $users = $this->users->getUserByEmail($email);

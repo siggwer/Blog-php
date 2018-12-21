@@ -9,6 +9,7 @@ class User
      * @var
      */
     private $id,
+        $pseudo,
         $password,
         $email,
         $email_token,
