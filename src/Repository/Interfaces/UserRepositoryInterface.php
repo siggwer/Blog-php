@@ -16,7 +16,7 @@ Interface UserRepositoryInterface
 
     /**
      * @param User $user
-     * @return StatementInterface
+     * @return PdoStatementInterface
      */
     public function updateUser(User $user): PdoStatementInterface;
 

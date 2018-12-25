@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Repository\User;
-use App\Model\Users;
+//use App\Repository\User;
+use App\Service\Users;
 use DI\Container;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;

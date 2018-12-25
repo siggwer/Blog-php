@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Model\Users;
+use App\Service\Users;
 use DI\Container;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;

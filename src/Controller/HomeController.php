@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Model\Articles;
+use App\Service\Articles;
 use DI\Container;
 use Framework\Interfaces\RenderInterfaces;
 use Psr\Http\Message\ResponseInterface;

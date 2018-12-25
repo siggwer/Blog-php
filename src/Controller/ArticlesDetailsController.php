@@ -4,8 +4,8 @@
 
 namespace App\Controller;
 
-use App\Model\Articles;
-use App\Model\Comments;
+use App\Service\Articles;
+use App\Service\Comments;
 use DI\Container;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

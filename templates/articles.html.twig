@@ -22,14 +22,21 @@
         <hr>
     {% endif %}
 
-    {% for comments in comments %}
+    {% if comments == false %}
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <h2 class="section-heading">commentaires</h2>
+            <p><strong>Il n'y a pas de commentaires</strong></p>
+            <p></p>
+        </div>
+        <br />
+    {% else %}
         <div class="col-lg-8 col-md-10 mx-auto">
             <h2 class="section-heading">commentaires</h2>
             <p><strong>Par : {{ comments.author }} le : {{ comments.comment_date }}</strong></p>
-                <p>{{ comments.comments |nl2br }}</p>
+            <p>{{ comments.comments |nl2br }}</p>
         </div>
         <br />
-    {% endfor %}
+    {% endif %}
     <hr>
         <div id="contact" class="contact col-lg-8 col-md-10 mx-auto clearfix">
             <h3>Ajouter un commentaire</h3>
@@ -37,7 +44,7 @@
                     <div class="control-group">
                          <div class="form-group floating-label-form-group controls">
                              <label>Auteur</label>
-                             <input type="text" class="form-control" placeholder="<?php if(isset($session['pseudo'])){ echo $session['pseudo'];} else{echo 'pseudo';}?>" id="author" name="author" required data-validation-required-message="Entrer votre pseudo." value="<?php $session['pseudo']?>">
+                             <input type="text" class="form-control" placeholder="" id="author" name="author" required data-validation-required-message="Entrer votre pseudo." value="">
                              <p class="help-block text-danger"></p>
                         </div>
                     </div>

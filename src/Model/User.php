@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Repository;
+namespace App\Model;
 
 use DateTime;
 class User
 {
     /**
-     * @var
+     * @var $id $pseudo $password $email $email_token $rank $connexion_at $register_at
      */
-    private $id,
-        $pseudo,
-        $password,
-        $email,
-        $email_token,
-        $rank,
-        $connexion_at,
-        $register_at;
+    private $id;
+    private $pseudo;
+    private $password;
+    private $email;
+    private $email_token;
+    private $rank;
+    private $connexion_at;
+    private $register_at;
 
     /**
      * Users constructor.
@@ -53,6 +53,14 @@ class User
     public function setId($id)
     {
         $this->id = (int) $id;
+    }
+
+    /**
+     * @param $pseudo
+     */
+    public function setPseudo($pseudo)
+    {
+        $this->pseudo = $pseudo;
     }
 
     /**
@@ -111,6 +119,14 @@ class User
     public function id()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function pseudo()
+    {
+        return $this->pseudo;
     }
 
     /**
