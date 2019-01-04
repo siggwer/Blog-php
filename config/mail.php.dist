@@ -14,5 +14,5 @@ use function \DI\string as di_string;
 
 return[
 
-    'api.key' => di_string('SENGRID_APIKEY')
+    'sendgrid.api.key' => di_string('SENGRID_APIKEY')
 ];
