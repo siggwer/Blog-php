@@ -1,8 +1,8 @@
 <?php
 
 use Framework\MailHelper;
-use function \DI\string as di_string;
+use function \DI\object as di_object;
 
 return [
-  MailHelper::class => di_string(MailHelper::class)
+  MailHelper::class => di_object(MailHelper::class)
 ];

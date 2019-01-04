@@ -3,12 +3,11 @@
 namespace App\Model;
 
 use DateTime;
-class Article
+class Article extends AbstractModel
 {
     /**
      * @var $id, $title, $chapo, $content, $publication_date, $update_date, $author_id
      */
-    private $id;
     private $title;
     private $chapo;
     private $content;
@@ -17,42 +16,8 @@ class Article
     private $author_id;
 
     /**
-     * Article constructor.
-     * @param array $data
-     */
-    public function __construct($data =[])
-    {
-        if(!empty($data))
-        {
-            $this->hydrate($data);
-        }
-    }
-
-    /**
-     * @param array $data
-     */
-    public function hydrate(array $data)
-    {
-        foreach($data as $key => $value)
-        {
-            $method = 'set'.ucfirst($key);
-
-            if (is_callable([$this, $method]))
-            {
-                $this->$method($value);
-            }
-        }
-    }
 
     //SETTERS
-
-    /**
-     * @param $id
-     */
-    public function setId($id)
-    {
-        $this->id = (int) $id;
-    }
 
     /**
      * @param $title
@@ -107,14 +72,6 @@ class Article
     /**
      * @return mixed
      */
-    public function id()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @return mixed
-     */
     public function title()
     {
         return $this->title;
@@ -158,17 +115,5 @@ class Article
     public function author_id()
     {
         return $this->author_id;
-    }
-
-    /**
-     * @param $value
-     * @return bool|DateTime
-     */
-    protected function setDateTime($value)
-    {
-        if (is_string($value)) {
-            return DateTime::createFromFormat('Y-m-d H:i:s', $value);
-        }
-        return $value;
     }
 }

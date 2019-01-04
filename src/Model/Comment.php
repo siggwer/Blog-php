@@ -3,55 +3,18 @@
 namespace App\Model;
 
 use DateTime;
-class Comment
+class Comment extends AbstractModel
 {
     /**
      * @var $id, $comments, $author, $comment_date, $validated, $article_id
      */
-    private $id;
     private $comments;
     private $author;
     private $comment_date;
     private $validated;
     private $article_id;
 
-    /**
-     * Comment constructor.
-     * @param array $data
-     */
-    public function __construct($data =[])
-    {
-        if(!empty($data))
-        {
-            $this->hydrate($data);
-        }
-    }
-
-    /**
-     * @param array $data
-     */
-    public function hydrate(array $data)
-    {
-        foreach($data as $key => $value)
-        {
-            $method = 'set'.ucfirst($key);
-
-            if (is_callable([$this, $method]))
-            {
-                $this->$method($value);
-            }
-        }
-    }
-
     //SETTERS
-
-    /**
-     * @param $id
-     */
-    public function setId($id)
-    {
-        $this->id = (int) $id;
-    }
 
     /**
      * @param $comments
@@ -95,14 +58,6 @@ class Comment
     /**
      * @return mixed
      */
-    public function id()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @return mixed
-     */
     public function comments()
     {
         return $this->comments;
@@ -138,17 +93,5 @@ class Comment
     public function article_id()
     {
         return $this->article_id;
-    }
-
-    /**
-     * @param $value
-     * @return bool|DateTime
-     */
-    protected function setDateTime($value)
-    {
-        if (is_string($value)) {
-            return DateTime::createFromFormat('Y-m-d H:i:s', $value);
-        }
-        return $value;
     }
 }

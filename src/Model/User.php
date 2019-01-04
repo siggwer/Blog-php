@@ -3,12 +3,11 @@
 namespace App\Model;
 
 use DateTime;
-class User
+class User extends AbstractModel
 {
     /**
      * @var $id $pseudo $password $email $email_token $rank $connexion_at $register_at
      */
-    private $id;
     private $pseudo;
     private $password;
     private $email;
@@ -17,43 +16,7 @@ class User
     private $connexion_at;
     private $register_at;
 
-    /**
-     * Users constructor.
-     * @param array $data
-     */
-    public function __construct($data = [])
-    {
-        if (!empty($data))
-        {
-            $this->hydrate($data);
-        }
-    }
-
-    /**
-     * @param array $data
-     */
-    public function hydrate(array $data)
-    {
-        foreach ($data as $key => $value)
-        {
-            $method = 'set'.ucfirst($key);
-
-            if (is_callable([$this, $method]))
-            {
-                $this->$method($value);
-            }
-        }
-    }
-
     // SETTERS //
-
-    /**
-     * @param $id
-     */
-    public function setId($id)
-    {
-        $this->id = (int) $id;
-    }
 
     /**
      * @param $pseudo
@@ -116,14 +79,6 @@ class User
     /**
      * @return mixed
      */
-    public function id()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @return mixed
-     */
     public function pseudo()
     {
         return $this->pseudo;
@@ -175,17 +130,5 @@ class User
     public function register_at()
     {
         return $this->register_at;
-    }
-
-    /**
-     * @param $value
-     * @return bool|DateTime
-     */
-    protected function setDateTime($value)
-    {
-        if (is_string($value)) {
-            return DateTime::createFromFormat('Y-m-d H:i:s', $value);
-        }
-        return $value;
     }
 }
