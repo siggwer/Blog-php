@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Repository\Interfaces\UserRepositoryInterface;
 use App\Pdo\Interfaces\PdoStatementInterface;
+
 class Users
 {
     /**

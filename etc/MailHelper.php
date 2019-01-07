@@ -3,12 +3,13 @@
 namespace Framework;
 
 use Framework\Interfaces\RenderInterfaces;
+
 class MailHelper
 {
     /**
      * @var $sendgridApiKey
      */
-    private $sendgridApiKey;
+    private $sendGridApiKey;
 
     /**
      * @var RenderInterfaces
@@ -17,11 +18,13 @@ class MailHelper
 
     /**
      * MailHelper constructor.
+     *
      * @param string $sendgridApiKey
+     * @param RenderInterfaces $render
      */
-    public function __construct(string $sendgridApiKey, RenderInterfaces $render) {
+    public function __construct(string $sendGridApiKey, RenderInterfaces $render) {
 
-        $this->sendgridApiKey = $sendgridApiKey;
+        $this->sendgridApiKey = $sendGridApiKey;
         $this->render = $render;
     }
 
@@ -29,6 +32,11 @@ class MailHelper
      * @param string $subject
      * @param array $from
      * @param array $to
+     * @param string $template
+     *
+     * @return \SendGrid\Mail\Mail
+     *
+     * @throws \SendGrid\Mail\TypeException
      */
     private function builtMail(string $subject, array $from, array $to, string $template) {
 
@@ -41,7 +49,6 @@ class MailHelper
         );
 
         return $email;
-
     }
 
     /**
@@ -49,6 +56,8 @@ class MailHelper
      * @param array $from
      * @param array $to
      * @param string $template
+     *
+     * @throws \SendGrid\Mail\TypeException
      */
     public function sendMail(string $subject, array $from, array $to, string $template) {
 

@@ -24,6 +24,7 @@ class ArticlesDetailsController
 
     /**
      * ArticlesDetailsController constructor.
+     *
      * @param Articles $articles
      * @param Comments $comment
      */
@@ -37,7 +38,9 @@ class ArticlesDetailsController
      * @param ServerRequestInterface $request
      * @param ResponseInterface $response
      * @param Container $container
+     *
      * @return ResponseInterface
+     *
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
      */
