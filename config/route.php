@@ -23,6 +23,13 @@ return [
         'controller' => App\Controller\LoginController::class,
         'middlewares' => []
     ],
+    'contact' => [
+        'methods' => ['GET', 'POST'],
+        'path' => '/contact',
+        'action' => App\Controller\ContactController::class,
+        'middlewares' => []
+    ],
+
     'register' => [
         'methods' => ['GET','POST'],
         'path' => '/register',
