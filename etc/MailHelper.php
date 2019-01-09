@@ -3,6 +3,7 @@
 namespace Framework;
 
 use Framework\Interfaces\RenderInterfaces;
+use SendGrid\Mail\Mail;
 
 class MailHelper
 {
@@ -40,7 +41,7 @@ class MailHelper
      */
     private function builtMail(string $subject, array $from, array $to, string $template) {
 
-        $email = new \SendGrid\Mail\Mail();
+        $email = new Mail();
         $email->setFrom($from['email'],$from['name']);
         $email->setSubject($subject);
         $email->addTo($to['email'], $to['name']);

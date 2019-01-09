@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Pdo\Interfaces\PdoDatabaseInterface;
 use App\Pdo\Interfaces\PdoStatementInterface;
 use App\Repository\Interfaces\UserRepositoryInterface;
+use App\Model\User;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -29,7 +30,7 @@ class UserRepository implements UserRepositoryInterface
     public function registerUser(User $user): User
     {
         $this->database->request('
-            INSERT INTO user (pseudo, password, email, email_token, register_at, connection_at, rank) 
+            INSERT INTO user (pseudo, password, email, email_token, register_at, connexion_at, rank) 
             VALUES (:pseudo, :password, :email, :emailToken, NOW(), NULL, 1)',[
                 ':pseudo' => $user->pseudo(),
                 ':password' => $user->password(),

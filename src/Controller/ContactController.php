@@ -4,28 +4,31 @@
 namespace App\Controller;
 
 use DI\Container;
+use Framework\Interfaces\RenderInterfaces;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Romss\Flashable;
-use Romss\GetField;
-use Romss\Render\RenderInterface;
+use Framework\Flash;
+use Framework\GetField;
 
 class ContactController
 {
-    use Flashable, GetField;
+    use Flash, GetField;
+
     /**
      * @param ServerRequestInterface $request
      * @param ResponseInterface $response
      * @param Container $container
+     *
      * @return ResponseInterface
+     *
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {
         if ($request->getMethod() === 'GET') {
-            $view = $container->get(RenderInterface::class)->render('Contact');
+            $view = $container->get(RenderInterfaces::class)->render('Contact');
             $response->getBody()->write($view);
 
             return $response;

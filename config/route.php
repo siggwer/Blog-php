@@ -12,9 +12,6 @@ return [
         'methods' => ['GET'],
         'path' => '/article_details/{articles:[0-9]+}',
         'controller' => App\Controller\ArticlesDetailsController::class,
-        //'params' => [
-            //'id' => '\d+'
-        //]
         'middlewares' => []
     ],
     'login' => [
@@ -26,10 +23,9 @@ return [
     'contact' => [
         'methods' => ['GET', 'POST'],
         'path' => '/contact',
-        'action' => App\Controller\ContactController::class,
+        'controller' => App\Controller\ContactController::class,
         'middlewares' => []
     ],
-
     'register' => [
         'methods' => ['GET','POST'],
         'path' => '/register',

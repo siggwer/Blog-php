@@ -7,6 +7,7 @@
     <div id="contact" class="contact col-lg-8 col-md-10 mx-auto clearfix">
         <h3></h3>
         <form name="sentMessage" id="contactForm" novalidate method="post" action="/contact">
+            <input type="hidden" name="__csrf" id="__csrf" value="{{ __csrf }}" />
             <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
                     <label>Nom</label>

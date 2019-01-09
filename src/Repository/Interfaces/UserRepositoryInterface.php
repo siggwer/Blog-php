@@ -4,7 +4,7 @@
 namespace App\Repository\Interfaces;
 
 use App\Pdo\Interfaces\PdoStatementInterface;
-use App\Repository\User;
+use App\Model\User;
 
 Interface UserRepositoryInterface
 {

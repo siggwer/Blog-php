@@ -12,11 +12,13 @@ use Framework\GetField;
 use Framework\Flash;
 use Framework\Token;
 use Framework\Interfaces\RenderInterfaces;
-use SendGrid\Mail\Mail;
 use Framework\MailHelper;
+use SendGrid\Mail\Subject;
+
 //use Swift_Mailer;
 //use Swift_Message;
 //use Swift_SmtpTransport;
+
 class RegisterController
 {
     use Token, Flash, GetField;
@@ -34,7 +36,8 @@ class RegisterController
     /**
      * RegisterController constructor.
      *
-     * @param Users $userServices
+     * @param Users $users
+     * @param MailHelper $mailHelper
      */
     public function __construct(Users $users, MailHelper $mailHelper)
     {
@@ -48,6 +51,10 @@ class RegisterController
      * @param Container $container
      *
      * @return Response
+     *
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
+     * @throws \SendGrid\Mail\TypeException
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {
@@ -59,15 +66,16 @@ class RegisterController
 
         $pseudo = $this->getField('pseudo');
         $email = $this->getField('email');
-        $pass = $this->getField('password');
-        $pass_confirm = $this->getField('repassword');
+        $password = $this->getField('password');
+        $repassword = $this->getField('repassword');
 
 
         $users = $this->users->getUserByEmail($email);
 
-        if (addslashes(htmlspecialchars(htmlentities(trim($pseudo))))) {
+        if (!addslashes(htmlspecialchars(htmlentities(trim($pseudo))))) {
             $this->setFlash("attention", "Votre pseudo n'est pas valide");
             return new Response(301, ['Location' => '/register']);
+            var_dump($pseudo);
         }
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -85,21 +93,21 @@ class RegisterController
         }
 
 
-        $passLength = strlen($pass);
+        $passLength = strlen($password);
         if ($passLength < 8){
             $this->setFlash("danger", "Votre mot de passe doit contenir au minimum 8 caractères");
             return new Response(301, [
                 'Location' => '/register'
             ]);
         }
-        if ($pass != $pass_confirm){
+        if ($password != $repassword){
             $this->setFlash("danger", "Le mot de passe de confirmation n'est pas identique à votre mot de passe");
             return new Response(301, [
                 'Location' => '/'
             ]);
         }
         $tokenRegister = $this->generateToken();
-        $passwordHash = password_hash($email.'#-$'.$pass, PASSWORD_BCRYPT, ['cost' => 12]);
+        $passwordHash = password_hash($email.'#-$'.$password, PASSWORD_BCRYPT, ['cost' => 12]);
 
         $users = new User([
             'pseudo' => $pseudo,
@@ -128,17 +136,27 @@ class RegisterController
         //$transport = $container->get(Swift_SmtpTransport::class);
 
         // Container du mail
-        $mailer =  $container->get(new \SendGrid('sengrid.api.key'));
+        //$mailer =  $container->get(new \SendGrid('sengrid.api.key'));
+        //$mailer = new Mail();
+
 
         // Le message à envoyer
-        $message = new \SendGrid\Mail\Subject('Confirmation de votre compte');
-        $message
-            ->setFrom(['localhost@local.dev' => 'Admin localhost'])
-            ->setTo([$email => explode('@', $email)[0]])
-            ->setBody($renderHtml, 'text/html')
-            ->addPart($renderText, 'text/plain');
+        //$message = new \SendGrid\Mail\Subject('Confirmation de votre compte');
+        //$message
+            //->setFrom(['localhost@local.dev' => 'Admin localhost'])
+            //->setTo([$email => explode('@', $email)[0]])
+            //->setBody($renderHtml, 'text/html')
+            //->addPart($renderText, 'text/plain');
 
-        $result = $mailer->send($message);
+        //$result = $mailer->send($message);
+        //$result = $mailer->sendMail();
+
+        $subject = ('Confirmation de votre compte');
+        $from = ['localhost@local.dev' => 'Admin localhost'];
+        $to = [$email => explode('@', $email)[0]];
+        $template = ($renderHtml);
+
+        $result = $this->MailHelper->sendMail($subject['Confirmation de votre compte'], $from, $to, $template);
         if ($result) {
             $this->setFlash('success', 'Un email vous a été envoyé pour confirmer votre compte');
         }

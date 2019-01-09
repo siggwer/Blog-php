@@ -11,6 +11,7 @@ use Framework\GetField;
 use Framework\Flash;
 use Framework\Token;
 use Framework\Interfaces\RenderInterfaces;
+
 class LoginController
 {
     use Token, Flash, GetField;
@@ -20,17 +21,23 @@ class LoginController
      */
     private $userServices;
 
+    /**
+     * LoginController constructor.
+     *
+     * @param Users $userServices
+     */
     public function __construct(Users $userServices)
     {
         $this->userServices = $userServices;
     }
 
-
     /**
      * @param ServerRequestInterface $request
      * @param ResponseInterface $response
      * @param Container $container
+     *
      * @return ResponseInterface
+     *
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
      */
