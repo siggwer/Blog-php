@@ -2,7 +2,6 @@
 
 namespace App\Model;
 
-use DateTime;
 class Article extends AbstractModel
 {
     /**

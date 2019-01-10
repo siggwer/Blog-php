@@ -13,8 +13,6 @@ use Framework\Flash;
 use Framework\Token;
 use Framework\Interfaces\RenderInterfaces;
 use Framework\MailHelper;
-use SendGrid\Mail\Subject;
-
 //use Swift_Mailer;
 //use Swift_Message;
 //use Swift_SmtpTransport;
@@ -151,12 +149,14 @@ class RegisterController
         //$result = $mailer->send($message);
         //$result = $mailer->sendMail();
 
-        $subject = ('Confirmation de votre compte');
-        $from = ['localhost@local.dev' => 'Admin localhost'];
-        $to = [$email => explode('@', $email)[0]];
-        $template = ($renderHtml);
+        //$subject = ('Confirmation de votre compte');
+        //$from = ['localhost@local.dev' => 'Admin localhost'];
+        //$to = [$email => explode('@', $email)[0]];
+        //$template = ($renderHtml);
 
-        $result = $this->MailHelper->sendMail($subject['Confirmation de votre compte'], $from, $to, $template);
+        //$result = $this->MailHelper->sendMail($subject['Confirmation de votre compte'], $from, $to, $template);
+
+        $result = $this->MailHelper->sendMail('Confirmation de votre compte', ['localhost@local.dev' => 'Admin localhost'], [$email => explode('@', $email)[0]], 'mailVerify');
         if ($result) {
             $this->setFlash('success', 'Un email vous a été envoyé pour confirmer votre compte');
         }

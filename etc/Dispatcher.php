@@ -8,6 +8,7 @@ use DI\DependencyException;
 use DI\NotFoundException;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
+
 class Dispatcher
 {
     /**
@@ -20,8 +21,17 @@ class Dispatcher
      */
     private $container;
 
+    /**
+     * @var int
+     */
     private $indexMiddleware;
 
+    /**
+     * Dispatcher constructor.
+     *
+     * @param Container $container
+     * @param array $middlewares
+     */
     public function __construct(Container $container, array $middlewares = [])
     {
         $this->container = $container;
@@ -32,6 +42,9 @@ class Dispatcher
         }
     }
 
+    /**
+     * @param string $middleware
+     */
     public function pipe(string $middleware)
     {
         try {
@@ -44,6 +57,7 @@ class Dispatcher
     /**
      * @param ServerRequestInterface $request
      * @param ResponseInterface $response
+     *
      * @return ResponseInterface
      */
     public function process(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
@@ -58,6 +72,9 @@ class Dispatcher
         return $middleware($request, $response, $this->container, [$this, 'process']);
     }
 
+    /**
+     * @return mixed|null
+     */
     private function getMiddleware()
     {
         return $this->middlewares[$this->indexMiddleware] ?? null;

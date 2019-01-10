@@ -1,6 +1,6 @@
 {% extends 'layoutLogin.html.twig' %}
 
-{% block title %}<title>Mon compte</title>{% endblock %}
+{% block title %}<title>Connexion</title>{% endblock %}
 
 {% block content %}
     <!-- Main Content -->
@@ -9,25 +9,26 @@
             <div class="container-login100">
                 <div class="wrap-login100 p-t-50 p-b-90">
                     <form class="login100-form validate-form flex-sb flex-w" method="post" action="/login">
+                        <input type="hidden" name="__csrf" id="__csrf" value="{{ __csrf }}" />
 					<span class="login100-form-title p-b-51">
 						Connexion
 					</span>
 
                         <div class="wrap-input100 validate-input m-b-16">
-                            <input class="input100" type="text" name="pseudo" placeholder="Pseudo" required data-validation-required-message="Pseudo requis.">
+                            <input class="input100" type="text" id="pseudo" name="pseudo" placeholder="Pseudo" value="{{ users.pseudo }}" required data-validation-required-message="Pseudo requis.">
                             <span class="focus-input100"></span>
                         </div>
 
 
                         <div class="wrap-input100 validate-input m-b-16">
-                            <input class="input100" type="password" name="password" placeholder="Mot de passe" required data-validation-required-message="Mot de passe requis">
+                            <input class="input100" type="password" id="password" name="password" placeholder="Mot de passe" required data-validation-required-message="Mot de passe requis">
                             <span class="focus-input100"></span>
                         </div>
 
                         <div class="flex-sb-m w-full p-t-3 p-b-24">
                             <div class="contact100-form-checkbox">
-                                <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                                <label class="label-checkbox100" for="ckb1">
+                                <input class="input-checkbox100" id="remember-me" type="checkbox" name="remember-me">
+                                <label class="label-checkbox100" for="remember-me">
                                     Se souvenir de moi
                                 </label>
                             </div>
@@ -40,7 +41,7 @@
                         </div>
 
                         <div class="container-login100-form-btn m-t-17">
-                            <button type="submit" class="login100-form-btn" name="submit" value="Login">
+                            <button type="submit" class="login100-form-btn" id="submit" name="submit" value="Login">
                                 Login
                             </button>
                             <a class="login100-form-btn button-center" href="/">

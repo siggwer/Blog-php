@@ -20,16 +20,22 @@ return [
         'controller' => App\Controller\LoginController::class,
         'middlewares' => []
     ],
-    'contact' => [
-        'methods' => ['GET', 'POST'],
-        'path' => '/contact',
-        'controller' => App\Controller\ContactController::class,
-        'middlewares' => []
-    ],
     'register' => [
         'methods' => ['GET','POST'],
         'path' => '/register',
         'controller' => App\Controller\RegisterController::class,
+        'middlewares' => []
+    ],
+    'account' => [
+        'methods' => ['GET','POST'],
+        'path' => '/account',
+        'controller' => App\Controller\AdministrationAccount::class,
+        'middlewares' => [\Framework\ConfMiddleware::class]
+    ],
+    'contact' => [
+        'methods' => ['GET', 'POST'],
+        'path' => '/contact',
+        'controller' => App\Controller\ContactController::class,
         'middlewares' => []
     ]
 ];

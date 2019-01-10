@@ -7,6 +7,7 @@ trait GetField
 {
     /**
      * @param $field
+     *
      * @return mixed
      */
     protected function getField($field)
@@ -16,6 +17,7 @@ trait GetField
 
     /**
      * @param $session
+     *
      * @return null
      */
     protected function  getSession($session)
@@ -25,6 +27,7 @@ trait GetField
 
     /**
      * @param $files
+     *
      * @return null
      */
     protected function getFiles($files)

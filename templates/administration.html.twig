@@ -11,9 +11,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Mes articles</h5>
-                        {% if user %}
+                        {% if articles %}
                             {% for user in user %}
-                                <h5 class="card-title"><?= $data['title'] ?></h5>
+                                <h5 class="card-title">{{ articles.title |nl2br }}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted"><?= $data['chapo'] ?></h6>
                                 <p class="card-text"><?= $data['content'] ?></p>
                                 <p class="card-link">le <?= $data['creation_date_fr'] ?></p>

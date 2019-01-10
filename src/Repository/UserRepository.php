@@ -16,6 +16,7 @@ class UserRepository implements UserRepositoryInterface
 
     /**
      * UserRepository constructor.
+     *
      * @param PdoDatabaseInterface $database
      */
     public function __construct(PdoDatabaseInterface $database)
@@ -25,6 +26,7 @@ class UserRepository implements UserRepositoryInterface
 
     /**
      * @param User $user
+     *
      * @return User
      */
     public function registerUser(User $user): User
@@ -43,6 +45,7 @@ class UserRepository implements UserRepositoryInterface
 
     /**
      * @param User $user
+     *
      * @return PdoStatementInterface
      */
     public function updateUser(User $user): PdoStatementInterface
@@ -64,17 +67,31 @@ class UserRepository implements UserRepositoryInterface
 
     /**
      * @param $email
+     *
      * @return User
      */
     public function getUserByEmail($email): User
     {
-        return new User($this->database->request('SELECT id,pseudo, password, email, email_token, register_at, connexion_at, rank FROM user WHERE email = :email',[
+        return new User($this->database->request('SELECT id, pseudo, password, email, email_token, register_at, connexion_at, rank FROM user WHERE email = :email',[
             ':email' => $email
         ])->fetch());
     }
 
     /**
+     * @param $pseudo
+     *
+     * @return User
+     */
+    public function getUserByPseudo($pseudo): User
+    {
+        return new User($this->database->request('SELECT id, pseudo, password, email, email_token, register_at, connexion_at, rank FROM user WHERE pseudo = :pseudo',[
+            ':pseudo' => $pseudo
+        ])->fetch());
+    }
+
+    /**
      * @param int $userId
+     *
      * @return User
      */
     public function getUserById(int $userId)
@@ -87,6 +104,7 @@ class UserRepository implements UserRepositoryInterface
 
     /**
      * @param User $rankAdmin
+     *
      * @return mixed
      */
     public function getRank(User $rankAdmin)
@@ -104,5 +122,16 @@ class UserRepository implements UserRepositoryInterface
         return $this->database->request(
             'SELECT * FROM user'
         )->fetchAll();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function allArticlesByPseudo($pseudo): User
+    {
+        return new User($this->database->request(
+            'SELECT id, article.id AS articleId, title, chapo, content, DATE_FORMAT(publication_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, author_id, pseudo, email FROM user LEFT JOIN article ON article.author_id = user.id WHERE pseudo = :pseudo',[
+            'pseudo' => $pseudo
+        ])->fetchAll());
     }
 }
