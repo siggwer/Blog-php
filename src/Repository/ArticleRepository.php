@@ -15,6 +15,7 @@ class ArticleRepository implements ArticleRepositoryInterface
 
     /**
      * ArticleRepository constructor.
+     *
      * @param PdoDatabaseInterface $database
      */
     public function __construct(PdoDatabaseInterface $database){
@@ -31,6 +32,7 @@ class ArticleRepository implements ArticleRepositoryInterface
 
     /**
      * @param int $id
+     *
      * @return mixed
      */
     public function getByArticleId(int $id)
@@ -42,6 +44,7 @@ class ArticleRepository implements ArticleRepositoryInterface
 
     /**
      * @param $id
+     *
      * @return array
      */
     public function insertPost($id): array
@@ -62,6 +65,7 @@ class ArticleRepository implements ArticleRepositoryInterface
 
     /**
      * @param $id
+     *
      * @return PdoStatementInterface
      */
     public function updatePost($id): PdoStatementInterface
@@ -84,6 +88,7 @@ class ArticleRepository implements ArticleRepositoryInterface
 
     /**
      * @param int $id
+     *
      * @return mixed
      */
     public function deletePost(int $id)
@@ -92,5 +97,4 @@ class ArticleRepository implements ArticleRepositoryInterface
             ':id' => $id
         ])->fetch();
     }
-
 }
