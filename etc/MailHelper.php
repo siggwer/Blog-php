@@ -2,6 +2,7 @@
 
 namespace Framework;
 
+use function DI\value;
 use Framework\Interfaces\RenderInterfaces;
 use SendGrid\Mail\Mail;
 
@@ -63,7 +64,14 @@ class MailHelper
     public function sendMail(string $subject, array $from, array $to, string $template) {
 
         $mail = $this->builtMail($subject, $from, $to, $template);
-        $this->getSendGrid()->send($mail);
+
+        try{
+         return $this->getSendGrid()->send($mail);
+
+        } catch (\Exception $e){
+            echo 'Caught exception: '. $e->getMessage() ."\n";
+            exit;
+        }
     }
 
     /**

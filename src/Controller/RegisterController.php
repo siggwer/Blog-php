@@ -73,7 +73,6 @@ class RegisterController
         if (!addslashes(htmlspecialchars(htmlentities(trim($pseudo))))) {
             $this->setFlash("attention", "Votre pseudo n'est pas valide");
             return new Response(301, ['Location' => '/register']);
-            var_dump($pseudo);
         }
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -105,7 +104,7 @@ class RegisterController
             ]);
         }
         $tokenRegister = $this->generateToken();
-        $passwordHash = password_hash($email.'#-$'.$password, PASSWORD_BCRYPT, ['cost' => 12]);
+        $passwordHash = password_hash($pseudo.'#-$'.$password, PASSWORD_BCRYPT, ['cost' => 12]);
 
         $users = new User([
             'pseudo' => $pseudo,
@@ -155,9 +154,16 @@ class RegisterController
         //$template = ($renderHtml);
 
         //$result = $this->MailHelper->sendMail($subject['Confirmation de votre compte'], $from, $to, $template);
-
-        $result = $this->MailHelper->sendMail('Confirmation de votre compte', ['localhost@local.dev' => 'Admin localhost'], [$email => explode('@', $email)[0]], 'mailVerify');
-        if ($result) {
+        $from =[
+            'email' => 'test@yopmail.com',
+            'name' => 'admin',
+        ];
+        $to = [
+          'email' => $email,
+          'name' =>  explode('@', $email)[0],
+        ];
+        $result = $this->MailHelper->sendMail('Confirmation de votre compte', $from, $to, 'mailVerify');
+        if ($result->statusCode() === 202) {
             $this->setFlash('success', 'Un email vous a été envoyé pour confirmer votre compte');
         }
 

@@ -64,6 +64,8 @@ class LoginController
         }
 
         if ($user && password_verify($pseudo . '#-$' . $password, $user->password()) && $user->email_token() === null) {
+            var_dump($user);
+            exit;
             if (!empty($remember)) {
                 $token = $this->generateToken();
                 setcookie('remember-me', $token, time() + 3600 * 24 * 7, '/', null, false, true);

@@ -68,7 +68,9 @@
         </div>
     </div>
 </header>
-
+{% if(__flash) %}
+    {{ __flash.type }}
+{% endif %}
 <!-- Main Content -->
 {% block content %} {% endblock %}
 
