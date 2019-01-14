@@ -3,13 +3,8 @@
 session_start();
 
 use Framework\Application;
-//use Framework\Router;
 
 require_once __DIR__ . '/../vendor/autoload.php';
-
-//$router = new Router();
-//$router->handleRequest($_SERVER);
-//var_dump($router);
 
 $sessionId = session_id();
 $cookieId = $_COOKIE['PHPSESSID'] ?? 0;

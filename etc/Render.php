@@ -13,6 +13,7 @@ class Render implements RenderInterfaces
 
     /**
      * Render constructor.
+     *
      * @param string $path
      */
     public function __construct(string $path)
@@ -25,6 +26,7 @@ class Render implements RenderInterfaces
     /**
      * @param string $namespace
      * @param null|string $path
+     *
      * @throws \Twig_Error_Loader
      */
     public function addPath(string $namespace, ?string $path = null): void
@@ -45,7 +47,9 @@ class Render implements RenderInterfaces
      * @param string $view
      * @param array|null $params
      * @param string $type
+     *
      * @return mixed|string
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax

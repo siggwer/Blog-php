@@ -1065,16 +1065,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.6.0",
+            "version": "v2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "a11dd39f5b6589e14f0ff3b36675d06047c589b1"
+                "reference": "a06a6f3d14f3691a13fc7e871593117143201d5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/a11dd39f5b6589e14f0ff3b36675d06047c589b1",
-                "reference": "a11dd39f5b6589e14f0ff3b36675d06047c589b1",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/a06a6f3d14f3691a13fc7e871593117143201d5a",
+                "reference": "a06a6f3d14f3691a13fc7e871593117143201d5a",
                 "shasum": ""
             },
             "require": {
@@ -1128,7 +1128,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2018-12-16T10:36:48+00:00"
+            "time": "2019-01-14T08:23:05+00:00"
         },
         {
             "name": "willdurand/negotiation",

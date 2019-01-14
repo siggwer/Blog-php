@@ -37,5 +37,11 @@ return [
         'path' => '/contact',
         'controller' => App\Controller\ContactController::class,
         'middlewares' => []
+    ],
+    'verifyToken' =>[
+        'methods' =>['GET'],
+        'path' => '/verify/{id:[0-9]+}-{token:[a-z\-0-9]+}',
+        'controller' => App\Controller\VerificationEmail::class,
+        'middlewares' => []
     ]
 ];

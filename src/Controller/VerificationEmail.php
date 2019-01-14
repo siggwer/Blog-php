@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Model\Users;
+use App\Service\Users;
 use DateTime;
 use DateTimeZone;
 use DI\Container;
@@ -10,6 +10,7 @@ use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Framework\Flash;
+
 class VerificationEmail
 {
     use Flash;
@@ -21,6 +22,7 @@ class VerificationEmail
 
     /**
      * VerificationEmail constructor.
+     *
      * @param Users $users
      */
     public function __construct(Users $users)
@@ -32,7 +34,10 @@ class VerificationEmail
      * @param ServerRequestInterface $request
      * @param ResponseInterface $response
      * @param Container $container
+     *
      * @return Response
+     *
+     * @throws \Exception
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {

@@ -68,9 +68,9 @@ class RegisterController
         $repassword = $this->getField('repassword');
 
 
-        $users = $this->users->getUserByEmail($email);
+        $users = $this->users->getUserByPseudo($pseudo);
 
-        if (!addslashes(htmlspecialchars(htmlentities(trim($pseudo))))) {
+        if (!addslashes(!htmlspecialchars(!htmlentities(trim($pseudo))))) {
             $this->setFlash("attention", "Votre pseudo n'est pas valide");
             return new Response(301, ['Location' => '/register']);
         }
@@ -104,8 +104,8 @@ class RegisterController
             ]);
         }
         $tokenRegister = $this->generateToken();
-        $passwordHash = password_hash($pseudo.'#-$'.$password, PASSWORD_BCRYPT, ['cost' => 12]);
-
+        $passwordHash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
+        //$pseudo.'#-$'.$password
         $users = new User([
             'pseudo' => $pseudo,
             'password' => $passwordHash,
@@ -114,7 +114,6 @@ class RegisterController
         ]);
 
         $userRegister = $this->users->registerUser($users);
-
         $renderHtml = $container->get(RenderInterfaces::class)->render('mailVerify', [
             'user' => $userRegister
         ]);
@@ -122,38 +121,6 @@ class RegisterController
             'user' => $userRegister
         ], 'text');
 
-        //$conf = require __DIR__ . '/../../config/mail.php';
-
-        // Create the Transport
-        //$transport = $container->get(new Swift_SmtpTransport($conf['smtp'], $conf['port']))
-            //->setUsername($conf['userName'])
-            //->setPassword($conf['password']);
-
-        // Connexion au smtp
-        //$transport = $container->get(Swift_SmtpTransport::class);
-
-        // Container du mail
-        //$mailer =  $container->get(new \SendGrid('sengrid.api.key'));
-        //$mailer = new Mail();
-
-
-        // Le message à envoyer
-        //$message = new \SendGrid\Mail\Subject('Confirmation de votre compte');
-        //$message
-            //->setFrom(['localhost@local.dev' => 'Admin localhost'])
-            //->setTo([$email => explode('@', $email)[0]])
-            //->setBody($renderHtml, 'text/html')
-            //->addPart($renderText, 'text/plain');
-
-        //$result = $mailer->send($message);
-        //$result = $mailer->sendMail();
-
-        //$subject = ('Confirmation de votre compte');
-        //$from = ['localhost@local.dev' => 'Admin localhost'];
-        //$to = [$email => explode('@', $email)[0]];
-        //$template = ($renderHtml);
-
-        //$result = $this->MailHelper->sendMail($subject['Confirmation de votre compte'], $from, $to, $template);
         $from =[
             'email' => 'test@yopmail.com',
             'name' => 'admin',
@@ -168,7 +135,7 @@ class RegisterController
         }
 
         return new Response(301, [
-            'Location' => '/'
+            'Location' => '/account'
         ]);
     }
 }

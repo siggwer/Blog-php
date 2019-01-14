@@ -6,7 +6,7 @@ namespace Framework;
 use DI\Container;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ServerRequestInterface;
-use Framework\Flash;
+
 class ConfMiddleware
 {
     use Flash;
@@ -16,6 +16,7 @@ class ConfMiddleware
      * @param Response $response
      * @param Container $container
      * @param $next
+     *
      * @return Response
      */
     public function __invoke(ServerRequestInterface $request, Response $response, Container $container, $next)
