@@ -8,7 +8,14 @@ use Framework\Interfaces\RenderInterfaces;
 
 class Render implements RenderInterfaces
 {
+    /**
+     * @var \Twig_Environment
+     */
     private $twig;
+
+    /**
+     * @var \Twig_Loader_Filesystem
+     */
     private $loader;
 
     /**

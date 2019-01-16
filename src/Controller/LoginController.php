@@ -69,10 +69,10 @@ class LoginController
                 $token = $this->generateToken();
                 setcookie('remember-me', $token, time() + 3600 * 24 * 7, '/', null, false, true);
             }
-
-            $_SESSION['auth'] = $user;
             var_dump($user);
             exit;
+
+            $_SESSION['auth'] = $user;
 
             $this->setFlash('success', 'Vous êtes maintenant connecté !');
             return new Response(301, [

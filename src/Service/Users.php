@@ -2,7 +2,6 @@
 
 namespace App\Service;
 
-use App\Model\User;
 use App\Repository\Interfaces\UserRepositoryInterface;
 use App\Pdo\Interfaces\PdoStatementInterface;
 

@@ -70,6 +70,7 @@ class RegisterController
 
         $users = $this->users->getUserByPseudo($pseudo);
 
+
         if (!addslashes(!htmlspecialchars(!htmlentities(trim($pseudo))))) {
             $this->setFlash("attention", "Votre pseudo n'est pas valide");
             return new Response(301, ['Location' => '/register']);
@@ -82,8 +83,8 @@ class RegisterController
             ]);
         }
 
-        if ($email === $users->email()){
-            $this->setFlash("danger", "Vous êtes déjà enregistré avec cette adresse mail");
+        if ($email === $users->pseudo()){
+            $this->setFlash("danger", "Vous êtes déjà enregistré avec ce pseudo");
             return new Response(301, [
                 'Location' => '/register'
             ]);
@@ -100,7 +101,7 @@ class RegisterController
         if ($password != $repassword){
             $this->setFlash("danger", "Le mot de passe de confirmation n'est pas identique à votre mot de passe");
             return new Response(301, [
-                'Location' => '/'
+                'Location' => '/register'
             ]);
         }
         $tokenRegister = $this->generateToken();

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\User;
 use App\Service\Users;
 use DI\Container;
 use Framework\Interfaces\RenderInterfaces;
@@ -39,9 +40,9 @@ class AdministrationAccount
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container) {
 
-        $user = $this->user->getRank($rankAdmin = 2);
+        //$user = $this->user->getRank($rankAdmin = 2);
 
-        //$user = $this->users->allArticlesByPseudo($request->getAttribute('pseudo', 0));
+        $user = $this->users->allArticlesByPseudo($request->getAttribute('pseudo', 0));
 
         if ($request->getMethod() === 'GET') {
             $view = $container->get(RenderInterfaces::class)->render('administration', ['user' => $user]);
