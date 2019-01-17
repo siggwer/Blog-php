@@ -17,7 +17,7 @@ use Framework\MailHelper;
 
 return[
 
-    'sendgrid.api.key' => di_string('SENDGRID_APIKEY'),
+    'sendgrid.api.key' => di_string('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'),
 
     MailHelper::class => di_object(MailHelper::class)->constructor(
         di_get('sendgrid.api.key')

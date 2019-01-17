@@ -69,8 +69,6 @@ class LoginController
                 $token = $this->generateToken();
                 setcookie('remember-me', $token, time() + 3600 * 24 * 7, '/', null, false, true);
             }
-            var_dump($user);
-            exit;
 
             $_SESSION['auth'] = $user;
 

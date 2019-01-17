@@ -10,6 +10,7 @@ use DI\Container;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Framework\Interfaces\RenderInterfaces;
+
 class ArticlesDetailsController
 {
     /**

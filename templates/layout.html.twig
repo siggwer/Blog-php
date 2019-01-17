@@ -68,6 +68,7 @@
         </div>
     </div>
 </header>
+<!-- Main Content -->
 {% if(__flash) %}
     <div class="container-fluid">
         <div class="alert alert-dismissible alert-{{ __flash.type }}">
@@ -76,7 +77,6 @@
         </div>
     </div>
 {% endif %}
-<!-- Main Content -->
 {% block content %} {% endblock %}
 
 <!-- Pager -->

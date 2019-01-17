@@ -136,7 +136,7 @@ class RegisterController
         }
 
         return new Response(301, [
-            'Location' => '/account'
+            'Location' => '/'
         ]);
     }
 }
