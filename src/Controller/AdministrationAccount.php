@@ -16,7 +16,7 @@ class AdministrationAccount
     /**
      * @var
      */
-    private $user;
+    private $users;
 
     /**
      * AdministrationAccount constructor.
@@ -41,9 +41,16 @@ class AdministrationAccount
 
         //$user = $this->user->getRank($rankAdmin = 2);
 
-        $user = $this->user->allArticlesByPseudo($request->getAttribute('pseudo', 0));
-
+        //$user = $this->user->allArticlesByPseudo($request->getAttribute('pseudo', 0));
+        //$article = $this->users->allArticlesByPseudo($request->getAttribute('post', 0));
+        //$user = $this->users->allArticlesByPseudo($request->getAttribute('user', 0));
+        $pseudo = $request->getAttribute('user', 0);
+        $user = $this->users->allArticlesByPseudo($request->getAttribute($pseudo));
+        var_dump($user);
+        exit;
         if ($request->getMethod() === 'GET') {
+            //$pseudo = $request->getAttribute('user', 0);
+            //$user = $this->users->allArticlesByPseudo($pseudo);
             $view = $container->get(RenderInterfaces::class)->render('administration', ['user' => $user]);
             $response->getBody()->write($view);
             return $response;

@@ -56,20 +56,23 @@ class LoginController
 
         $user = $this->userServices->getUserByPseudo($pseudo);
 
-        if (!empty($_SESSION['auth']) && $_SESSION['auth']->pseudo() === $pseudo) {
+        //var_dump(password_verify($password,$user->password()) && $user->email_token() === null); exit;
+
+        if (!empty($_SESSION['auth'])) {
+            //&& $_SESSION['auth']->pseudo() === $pseudo
             $this->setFlash('warning', 'Vous êtes déjà connecté !');
             return new Response(301, [
                 'Location' => '/account'
             ]);
         }
 
-        if ($user && password_verify($password, $user->password()) && $user->email_token() === null) {
+        if ($user && password_verify($password, $user->password())) {
         //$pseudo . '#-$' . $password
+            ////&& $user->email_token() === null
             if (!empty($remember)) {
                 $token = $this->generateToken();
                 setcookie('remember-me', $token, time() + 3600 * 24 * 7, '/', null, false, true);
             }
-
             $_SESSION['auth'] = $user;
 
             $this->setFlash('success', 'Vous êtes maintenant connecté !');

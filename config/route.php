@@ -30,7 +30,7 @@ return [
         'methods' => ['GET','POST'],
         'path' => '/account',
         'controller' => App\Controller\AdministrationAccount::class,
-        'middlewares' => []
+        'middlewares' => [\Framework\ConfMiddleware::class]
     ],
     'contact' => [
         'methods' => ['GET', 'POST'],
