@@ -3,7 +3,6 @@
 
 namespace Framework;
 
-use App\Service\Users;
 use DI\Container;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ServerRequestInterface;
@@ -22,7 +21,10 @@ class ConfMiddleware
      */
     public function __invoke(ServerRequestInterface $request, Response $response, Container $container, $next)
     {
-        if (!isset($_SESSION['auth']) || $_SESSION['auth']->rank() <= 2) {
+        var_dump($_SESSION['auth']);
+        //Verifier le var dump sur le projet de romain pour voir si le rank vient du model ou du service.
+
+        if (!isset($_SESSION['auth']) || $_SESSION['auth']->rank() <= 1) {
             $this->setFlash("danger", "Vous devez être admin pour entrer");
             return new Response(301, [
                 'Location' => '/'

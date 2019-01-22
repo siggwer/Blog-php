@@ -102,7 +102,8 @@ class Users
      *
      * @return mixed
      */
-    public function getRank($rankAdmin){
+    public function getRank($rankAdmin)
+    {
         $users = $this->user->getRank($rankAdmin);
         return $users;
     }
