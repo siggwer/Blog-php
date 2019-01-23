@@ -7,12 +7,12 @@ use DI\Container;
 use Framework\Interfaces\RenderInterfaces;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-//use Framework\GetField;
-//use Framework\Flash;
+use Framework\GetField;
+use Framework\Flash;
 
 class AdministrationAccount
 {
-    //use GetField, Flash;
+    use GetField, Flash;
     /**
      * @var
      */

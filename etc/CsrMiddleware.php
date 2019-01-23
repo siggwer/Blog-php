@@ -9,11 +9,13 @@ use Psr\Http\Message\ServerRequestInterface;
 class CsrMiddleware
 {
     use Token, Flash, GetField;
+
     /**
      * @param ServerRequestInterface $request
      * @param Response $response
      * @param Container $container
      * @param $next
+     *
      * @return Response
      */
     public function __invoke(ServerRequestInterface $request, Response $response, Container $container,  $next)

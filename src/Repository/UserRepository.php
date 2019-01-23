@@ -119,9 +119,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function allusers()
     {
-        return $this->database->request(
-            'SELECT * FROM user'
-        )->fetchAll();
+        return $this->database->request('SELECT * FROM user')->fetchAll();
     }
 
     /**

@@ -21,6 +21,7 @@
                                 <a class="btn btn-success" href="/modifyArticle/<?= $data['articleId']?>" target="_blank">Modifier</a>
                             {% endfor %}
                         {% endif %}
+                        {{ dump(__flash.content) }}
                     </div>
                 </div>
             </div>
