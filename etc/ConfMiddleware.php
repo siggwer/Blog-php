@@ -21,9 +21,9 @@ class ConfMiddleware
      */
     public function __invoke(ServerRequestInterface $request, Response $response, Container $container, $next)
     {
-        var_dump($_SESSION['auth']);
-        print_r($_SESSION['auth']);
-        exit;
+        //var_dump($_SESSION['auth']);
+        //print_r($_SESSION['auth']);
+
         //Verifier le var dump sur le projet de romain pour voir si le rank vient du model ou du service.
         //Voir l'id de la table user qui peut provoquer cette erreur;
 

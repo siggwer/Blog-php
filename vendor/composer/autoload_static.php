@@ -4,19 +4,17 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit616a586f573e024ce4c85b86095ca873
+class ComposerStaticInit91fe698ec85d5db258d17e9059bcd0
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '6f2c5977e422114bbaec553e7c77ee8b' => __DIR__ . '/..' . '/http-interop/response-sender/src/functions.php',
         'bbf73f3db644d3dced353b837903e74c' => __DIR__ . '/..' . '/php-di/php-di/src/DI/functions.php',
         'a1283d0ded43dbcb11ae5d2c4a103cab' => __DIR__ . '/..' . '/quimcalpe/psr7-response-sender/src/response_sender.php',
-        '3f8bdd3b35094c73a26f0106e3c0f8b2' => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/SendGrid.php',
-        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -32,10 +30,6 @@ class ComposerStaticInit616a586f573e024ce4c85b86095ca873
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
-            'SendGrid\\Stats\\' => 15,
-            'SendGrid\\Mail\\' => 14,
-            'SendGrid\\Contacts\\' => 18,
-            'SendGrid\\' => 9,
         ),
         'P' => 
         array (
@@ -63,10 +57,6 @@ class ComposerStaticInit616a586f573e024ce4c85b86095ca873
             'Fig\\Http\\Message\\' => 17,
             'FastRoute\\' => 10,
         ),
-        'E' => 
-        array (
-            'Egulias\\EmailValidator\\' => 23,
-        ),
         'D' => 
         array (
             'DI\\' => 3,
@@ -80,8 +70,8 @@ class ComposerStaticInit616a586f573e024ce4c85b86095ca873
     public static $prefixDirsPsr4 = array (
         'Zend\\Expressive\\Router\\' => 
         array (
-            0 => __DIR__ . '/..' . '/zendframework/zend-expressive-router/src',
-            1 => __DIR__ . '/..' . '/zendframework/zend-expressive-fastroute/src',
+            0 => __DIR__ . '/..' . '/zendframework/zend-expressive-fastroute/src',
+            1 => __DIR__ . '/..' . '/zendframework/zend-expressive-router/src',
         ),
         'Twig\\' => 
         array (
@@ -94,23 +84,6 @@ class ComposerStaticInit616a586f573e024ce4c85b86095ca873
         'Symfony\\Polyfill\\Ctype\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
-        ),
-        'SendGrid\\Stats\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/stats',
-        ),
-        'SendGrid\\Mail\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/mail',
-        ),
-        'SendGrid\\Contacts\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/contacts',
-        ),
-        'SendGrid\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/sendgrid/php-http-client/lib',
-            1 => __DIR__ . '/..' . '/sendgrid/sendgrid/lib',
         ),
         'Psr\\Http\\Server\\' => 
         array (
@@ -157,10 +130,6 @@ class ComposerStaticInit616a586f573e024ce4c85b86095ca873
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
         ),
-        'Egulias\\EmailValidator\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator',
-        ),
         'DI\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-di/php-di/src/DI',
@@ -179,21 +148,14 @@ class ComposerStaticInit616a586f573e024ce4c85b86095ca873
                 0 => __DIR__ . '/..' . '/twig/twig/lib',
             ),
         ),
-        'D' => 
-        array (
-            'Doctrine\\Common\\Lexer\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/doctrine/lexer/lib',
-            ),
-        ),
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit616a586f573e024ce4c85b86095ca873::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit616a586f573e024ce4c85b86095ca873::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit616a586f573e024ce4c85b86095ca873::$prefixesPsr0;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit91fe698ec85d5db258d17e9059bcd0::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit91fe698ec85d5db258d17e9059bcd0::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit91fe698ec85d5db258d17e9059bcd0::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }
