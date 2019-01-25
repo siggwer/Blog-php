@@ -44,6 +44,8 @@ class LoginController
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {
+        //var_dump($_SESSION['auth'],$container);
+        //exit;
         if ($request->getMethod() === 'GET') {
             $view = $container->get(RenderInterfaces::class)->render('login');
             $response->getBody()->write($view);
@@ -56,10 +58,7 @@ class LoginController
 
         $user = $this->userServices->getUserByPseudo($pseudo);
 
-        var_dump($user,$_SESSION['auth'],$container);
-        exit;
-
-        //var_dump(password_verify($password,$user->password()) && $user->email_token() === null); exit;
+        //$_SESSION['auth'] = $user;
 
         if (!empty($_SESSION['auth']) || $_SESSION['auth']->pseudo() === $pseudo) {
             //&& $_SESSION['auth']->pseudo() === $pseudo

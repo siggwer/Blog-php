@@ -1,5 +1,5 @@
 <?php
 
 return [
-    \Framework\CsrfMiddleware::class
+    \Framework\CsrMiddleware::class
 ];

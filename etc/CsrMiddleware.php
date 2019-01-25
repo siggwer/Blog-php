@@ -6,6 +6,7 @@ namespace Framework;
 use DI\Container;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ServerRequestInterface;
+
 class CsrMiddleware
 {
     use Token, Flash, GetField;

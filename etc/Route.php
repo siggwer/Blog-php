@@ -9,10 +9,18 @@ use Framework\Interfaces\RouteInterface;
 class Route implements RouteInterface
 {
     /**
-     * @var Route
+     * @var
      */
     private $path;
+
+    /**
+     * @var
+     */
     private $controller;
+
+    /**
+     * @var array
+     */
     private $params = [];
 
     /**

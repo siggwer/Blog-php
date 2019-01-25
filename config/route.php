@@ -26,7 +26,7 @@ return [
         'controller' => App\Controller\RegisterController::class,
         'middlewares' => []
     ],
-    'logout.index' => [
+    'logout' => [
         'methods' => ['GET'],
         'path' => '/logout',
         'controller' => App\Controller\LogOutController::class,

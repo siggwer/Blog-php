@@ -40,7 +40,7 @@ class AdministrationAccount
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {
 
-        var_dump($_SESSION['auth']);
+        var_dump($_SESSION['auth'],$container);
         exit;
 
     }
