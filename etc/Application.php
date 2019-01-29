@@ -92,7 +92,7 @@ class Application implements ApplicationInterface
             if ($middlewares === null) {
                 $middlewares = [];
             }
-            $middlewaresGlobals = (require __DIR__ . '/middlewares.php');
+            $middlewaresGlobals = (require __DIR__ . '/../etc/middlewares.php');
             $middlewares = array_merge($middlewaresGlobals, $middlewares);
 
             $dispatcher = new Dispatcher($this->container, $middlewares);

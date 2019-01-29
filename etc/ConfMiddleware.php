@@ -21,7 +21,7 @@ class ConfMiddleware
      */
     public function __invoke(ServerRequestInterface $request, Response $response, Container $container, $next)
     {
-        var_dump($_SESSION['auth'],$container,$next);
+        //var_dump($_SESSION['auth'],$container,$next);
         //print_r($_SESSION['auth']);
         //var_dump($container);
         //exit;

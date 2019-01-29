@@ -1,12 +1,11 @@
 <?php
 
-
 namespace Framework;
-
 
 trait Flash
 {
-    protected function setFlash($type, $content) {
-        $session['flash'] = compact('type', 'content' );
+    protected function setFlash($type, $content)
+    {
+       $_SESSION['flash'] = compact('type', 'content' );
     }
 }

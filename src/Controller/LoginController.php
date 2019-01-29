@@ -44,8 +44,6 @@ class LoginController
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {
-        //var_dump($_SESSION['auth'],$container);
-        //exit;
         if ($request->getMethod() === 'GET') {
             $view = $container->get(RenderInterfaces::class)->render('login');
             $response->getBody()->write($view);
@@ -60,7 +58,7 @@ class LoginController
 
         //$_SESSION['auth'] = $user;
 
-        if (!empty($_SESSION['auth']) || $_SESSION['auth']->pseudo() === $pseudo) {
+        if (!empty($_SESSION['auth']) && $_SESSION['auth']->pseudo() === $pseudo) {
             //&& $_SESSION['auth']->pseudo() === $pseudo
             $this->setFlash('warning', 'Vous êtes déjà connecté !');
             return new Response(301, [

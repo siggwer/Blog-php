@@ -40,6 +40,7 @@ class CsrMiddleware
             ]);
         }
         $_SESSION['__csrf'] = $csrf;
+
         return $next($request, $response);
     }
 }
