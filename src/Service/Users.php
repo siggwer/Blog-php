@@ -80,7 +80,7 @@ class Users
     /**
      * @return mixed
      */
-    public function  allusers()
+    public function allusers()
     {
         $users = $this->user->allusers();
         return $users;

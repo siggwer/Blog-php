@@ -5,14 +5,32 @@ namespace App\Model;
 class User extends AbstractModel
 {
     /**
-     * @var $id $pseudo $password $email $email_token $rank $connexion_at $register_at
+     * @var
      */
     private $pseudo;
+    /**
+     * @var
+     */
     private $password;
+    /**
+     * @var
+     */
     private $email;
+    /**
+     * @var
+     */
     private $email_token;
+    /**
+     * @var
+     */
     private $rank;
+    /**
+     * @var
+     */
     private $connexion_at;
+    /**
+     * @var
+     */
     private $register_at;
 
     // SETTERS //

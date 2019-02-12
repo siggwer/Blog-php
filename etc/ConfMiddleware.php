@@ -26,15 +26,14 @@ class ConfMiddleware
         //var_dump($container);
         //exit;
 
-        //Verifier le var dump sur le projet de romain pour voir si le rank vient du model ou du service.
-        //Voir l'id de la table user qui peut provoquer cette erreur;
-
-        if (!isset($_SESSION['auth']) || $_SESSION['auth']->getRank() <= 1) {
-            $this->setFlash("danger", "Vous devez être admin pour entrer");
-            return new Response(301, [
-                'Location' => '/'
-            ]);
+        if(array_key_exists('auth', $_SESSION)){
+            if (!isset($_SESSION['auth']) || $_SESSION['auth']->getRank() <= 1) {
+                $this->setFlash("danger", "Vous devez être admin pour entrer");
+                return new Response(301, [
+                    'Location' => '/'
+                ]);
+            }
+            return $next($request, $response);
         }
-        return $next($request, $response);
     }
 }

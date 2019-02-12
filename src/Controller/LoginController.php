@@ -55,6 +55,9 @@ class LoginController
         $remember = $this->getField('remember-me');
 
         $user = $this->userServices->getUserByPseudo($pseudo);
+        var_dump($user);
+
+
 
         //$_SESSION['auth'] = $user;
 
@@ -68,7 +71,7 @@ class LoginController
             }
         }
 
-        if ($user && password_verify($password, $user->password()) && $user->email_token() === null) {
+        if ($user && password_verify($password, $user->password())) {
         //$pseudo . '#-$' . $password
             //&& $user->email_token() === null
             if (!empty($remember)) {
