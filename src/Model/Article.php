@@ -5,16 +5,34 @@ namespace App\Model;
 class Article extends AbstractModel
 {
     /**
-     * @var $id, $title, $chapo, $content, $publication_date, $update_date, $author_id
+     * @var
      */
     private $title;
-    private $chapo;
-    private $content;
-    private $publication_date;
-    private $update_date;
-    private $author_id;
 
     /**
+     * @var
+     */
+    private $chapo;
+
+    /**
+     * @var
+     */
+    private $content;
+
+    /**
+     * @var
+     */
+    private $publication_date;
+
+    /**
+     * @var
+     */
+    private $update_date;
+
+    /**
+     * @var
+     */
+    private $author_id;
 
     //SETTERS
 

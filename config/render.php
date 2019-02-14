@@ -11,7 +11,7 @@ use Framework\Render;
 
 return [
     'twig.path' => di_string(__DIR__.'/../templates'),
-    RenderInterfaces::class => di_object(Render::class)
-    ->constructor(di_get('twig.path'))
+     RenderInterfaces::class => di_object(Render::class)
+     ->constructor(di_get('twig.path'))
 ];
 

@@ -16,7 +16,8 @@ class Articles
     /**
      * @param ArticleRepositoryInterface $articles
      */
-    public function __construct(ArticleRepositoryInterface $articles){
+    public function __construct(ArticleRepositoryInterface $articles)
+    {
         $this->articles = $articles;
 
     }

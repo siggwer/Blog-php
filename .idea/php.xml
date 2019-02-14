@@ -33,7 +33,7 @@
       <path value="$PROJECT_DIR$/vendor/quimcalpe/psr7-response-sender" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="7" />
   <component name="PhpRuntimeConfiguration">
     <extensions>
       <extension name="Parle" enabled="true" />

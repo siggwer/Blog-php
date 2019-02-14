@@ -55,7 +55,6 @@ class LoginController
         $remember = $this->getField('remember-me');
 
         $user = $this->userServices->getUserByPseudo($pseudo);
-        var_dump($user);
 
 
 

@@ -27,7 +27,8 @@ class ConfMiddleware
         //exit;
 
         if(array_key_exists('auth', $_SESSION)){
-            if (!isset($_SESSION['auth']) || $_SESSION['auth']->getRank() <= 1) {
+            if (!isset($_SESSION['auth'])) {
+                //|| $_SESSION['auth']->getRank() <= 1
                 $this->setFlash("danger", "Vous devez être admin pour entrer");
                 return new Response(301, [
                     'Location' => '/'
