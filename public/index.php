@@ -1,10 +1,10 @@
 <?php
 
-session_start();
-
 use Framework\Application;
 
 require_once __DIR__ . '/../vendor/autoload.php';
+
+session_start();
 
 $sessionId = session_id();
 $cookieId = $_COOKIE['PHPSESSID'] ?? 0;

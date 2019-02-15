@@ -96,7 +96,7 @@ class User extends AbstractModel
     /**
      * @return mixed
      */
-    public function pseudo()
+    public function getPseudo()
     {
         return $this->pseudo;
     }
@@ -104,7 +104,7 @@ class User extends AbstractModel
     /**
      * @return mixed
      */
-    public function rank()
+    public function getRank()
     {
         return $this->rank;
     }
@@ -112,7 +112,7 @@ class User extends AbstractModel
     /**
      * @return mixed
      */
-    public function password()
+    public function getPassword()
     {
         return $this->password;
     }
@@ -120,7 +120,7 @@ class User extends AbstractModel
     /**
      * @return mixed
      */
-    public function email()
+    public function getEmail()
     {
         return $this->email;
     }
@@ -128,7 +128,7 @@ class User extends AbstractModel
     /**
      * @return mixed
      */
-    public function email_token()
+    public function getEmail_token()
     {
         return $this->email_token;
     }
@@ -136,7 +136,7 @@ class User extends AbstractModel
     /**
      * @return mixed
      */
-    public function connexion_at()
+    public function getConnexion_at()
     {
         return $this->connexion_at;
     }
@@ -144,7 +144,7 @@ class User extends AbstractModel
     /**
      * @return mixed
      */
-    public function register_at()
+    public function getRegister_at()
     {
         return $this->register_at;
     }

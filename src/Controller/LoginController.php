@@ -61,7 +61,7 @@ class LoginController
         //$_SESSION['auth'] = $user;
 
         if (array_key_exists('auth', $_SESSION)){
-            if (!empty($_SESSION['auth']) && $_SESSION['auth']->pseudo() === $pseudo) {
+            if (!empty($_SESSION['auth']) && $_SESSION['auth']->getPseudo() === $pseudo) {
                 //&& $_SESSION['auth']->pseudo() === $pseudo
                 $this->setFlash('warning', 'Vous êtes déjà connecté !');
                 return new Response(301, [
@@ -70,7 +70,7 @@ class LoginController
             }
         }
 
-        if ($user && password_verify($password, $user->password())) {
+        if ($user && password_verify($password, $user->getPassword()) && $user->getEmail_token() === null) {
         //$pseudo . '#-$' . $password
             //&& $user->email_token() === null
             if (!empty($remember)) {
