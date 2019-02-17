@@ -2,7 +2,6 @@
 
 namespace Framework;
 
-use function DI\value;
 use Framework\Interfaces\RenderInterfaces;
 use SendGrid\Mail\Mail;
 

@@ -23,5 +23,3 @@ return[
         di_get('sendgrid.api.key')
     )
 ];
-
-//SENGRID_APIKEY
