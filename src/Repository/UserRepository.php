@@ -32,12 +32,12 @@ class UserRepository implements UserRepositoryInterface
     public function registerUser(User $user): User
     {
         $this->database->request('
-            INSERT INTO user (pseudo, password, email, email_token, register_at, connexion_at, rank) 
-            VALUES (:pseudo, :password, :email, :emailToken, NOW(), NULL, 1)',[
-                ':pseudo' => $user->pseudo(),
-                ':password' => $user->password(),
-                ':email' => $user->email(),
-                ':emailToken' => $user->email_token()
+          INSERT INTO user (pseudo, password, email, email_token, register_at, connexion_at, rank) 
+          VALUES (:pseudo, :password, :email, :emailToken, NOW(), NULL, 1)',[
+                ':pseudo' => $user->getPseudo(),
+                ':password' => $user->getPassword(),
+                ':email' => $user->getEmail(),
+                ':emailToken' => $user->getEmail_token()
         ]);
         $user->setId($this->database->lastId());
         return $user;
@@ -57,11 +57,11 @@ class UserRepository implements UserRepositoryInterface
             connexion_at = :connexion_at,
             rank = :rank
         WHERE id = :userId', [
-            ':email' => $user->email(),
-            ':email_token' => $user->email_token(),
-            ':connexion_at' => $user->connexion_at(),
-            ':rank' => $user->rank(),
-            ':userId' => $user->id()
+            ':email' => $user->getEmail(),
+            ':email_token' => $user->getEmail_token(),
+            ':connexion_at' => $user->getConnexion_at(),
+            ':rank' => $user->getRank(),
+            ':userId' => $user->getId()
         ]);
     }
 
@@ -110,7 +110,7 @@ class UserRepository implements UserRepositoryInterface
     public function getRank(User $rankAdmin)
     {
         return $this->database->request('SELECT * FROM blog.user  WHERE rank = :rankAdmin', [
-            ':rankAdmin' => intval($rankAdmin->rank())
+            ':rankAdmin' => intval($rankAdmin->getRank())
         ])->fetchAll();
     }
 

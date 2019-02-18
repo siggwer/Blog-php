@@ -58,6 +58,8 @@ class MailHelper
      * @param array $to
      * @param string $template
      *
+     * @return \SendGrid\Response
+     *
      * @throws \SendGrid\Mail\TypeException
      */
     public function sendMail(string $subject, array $from, array $to, string $template) {

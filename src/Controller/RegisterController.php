@@ -83,7 +83,7 @@ class RegisterController
             ]);
         }
 
-        if ($email === $users->pseudo()){
+        if ($email === $users->getPseudo()){
             $this->setFlash("danger", "Vous êtes déjà enregistré avec ce pseudo");
             return new Response(301, [
                 'Location' => '/register'
@@ -115,6 +115,7 @@ class RegisterController
         ]);
 
         $userRegister = $this->users->registerUser($users);
+
         $renderHtml = $container->get(RenderInterfaces::class)->render('mailVerify', [
             'user' => $userRegister
         ]);
@@ -126,10 +127,12 @@ class RegisterController
             'email' => 'test@yopmail.com',
             'name' => 'admin',
         ];
+
         $to = [
           'email' => $email,
           'name' =>  explode('@', $email)[0],
         ];
+
         $result = $this->MailHelper->sendMail('Confirmation de votre compte', $from, $to, 'mailVerify');
         if ($result->statusCode() === 202) {
             $this->setFlash('success', 'Un email vous a été envoyé pour confirmer votre compte');
