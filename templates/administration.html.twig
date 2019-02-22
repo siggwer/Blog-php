@@ -11,17 +11,15 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Mes articles</h5>
-                        {% if articles %}
-                            {% for user in user %}
-                                <h5 class="card-title">{{ articles.title |nl2br }}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><?= $data['chapo'] ?></h6>
-                                <p class="card-text"><?= $data['content'] ?></p>
-                                <p class="card-link">le <?= $data['creation_date_fr'] ?></p>
+                        {% if(posts) %}
+                            {{ dump(posts) }}
+                                <h5 class="card-title">{{ posts.title |nl2br }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ posts.chapo |nl2br }}</h6>
+                                <p class="card-text">{{ posts.content |nl2br }}</p>
+                                <p class="card-link">{{ posts.creation_date_fr |nl2br }}</p>
                                 <!--<p class="card-link">Another link</p>-->
                                 <a class="btn btn-success" href="/modifyArticle/<?= $data['articleId']?>" target="_blank">Modifier</a>
-                            {% endfor %}
-                        {% endif %}
-                        {{ dump(__flash.content) }}
+                        {{ __flash.content }}
                     </div>
                 </div>
             </div>
@@ -41,14 +39,16 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <th scope="row"><?= $data['pseudo'] ?></th>
-                                <td><?= $data['email'] ?></td>
+                                <th scope="row">{{ posts.pseudo |nl2br }}</th>
+                                <td>{{ posts.email |nl2br }}</td>
                                 <td>Modifier mon mot de passe</td>
                             </tr>
                             </tbody>
                         </table>
+                        {% endif %}
                     </div>
                 </div>
+                <a class="btn btn-success" href="/" target="_blank">Retour au blog</a>
             </div>
         </div>
     </div>

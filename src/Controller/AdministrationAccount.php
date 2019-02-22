@@ -39,8 +39,10 @@ class AdministrationAccount
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {
-        $pseudo = $request->getAttribute('post', 0);
+        $pseudo = $request->getAttribute('post',0);
+        var_dump($pseudo  = $request->getAttribute('post',0));
         $posts = $this->users->allArticlesByPseudo($pseudo);
+        var_dump($posts);
         if ($request->getMethod() === 'GET') {
             $view = $container->get(RenderInterfaces::class)->render('administration', ['posts' => $posts]);
             $response->getBody()->write($view);
