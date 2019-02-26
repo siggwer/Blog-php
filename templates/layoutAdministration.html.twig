@@ -45,8 +45,8 @@
             </div>
         </div>
     </nav>-->
-    <!--<nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
-        <a class="navbar-brand"><?php if(isset($_SESSION['id'])){ echo $_SESSION['pseudo'];} else{echo 'auteur';}?></a>
+   <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
+        <a class="navbar-brand">{% if __session.auth is defined %} {{ __session.auth.pseudo }} {% endif %}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -79,8 +79,16 @@
                 </li>
             </ul>
         </div>
-    </nav>-->
+    </nav>
     <!-- Main Content -->
+    {% if(__flash) %}
+        <div class="container-fluid">
+            <div class="alert alert-dismissible alert-{{ __flash.type }}">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ __flash.content }}
+            </div>
+        </div>
+    {% endif %}
     {% block content %} {% endblock %}
 
 

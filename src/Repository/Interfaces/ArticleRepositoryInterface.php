@@ -19,6 +19,13 @@ interface ArticleRepositoryInterface
     public function getByArticleId(int $id);
 
     /**
+     * @param string $pseudo
+     *
+     * @return mixed
+     */
+    public function getByArticlePseudo(string $pseudo);
+
+    /**
      * @param $id
      *
      * @return array

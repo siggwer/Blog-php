@@ -33,6 +33,7 @@ class Articles
 
     /**
      * @param int $id
+     *
      * @return mixed
      */
     public function getArticleWithId(int $id)
@@ -41,8 +42,15 @@ class Articles
         return  $article;
     }
 
+    public function getArticleWithPseudo(string $pseudo)
+    {
+        $article = $this->articles->getByArticlePseudo($pseudo);
+        return  $article;
+    }
+
     /**
      * @param $id
+     *
      * @return PdoStatementInterface
      */
     public function updatePost($id): PdoStatementInterface
@@ -53,6 +61,7 @@ class Articles
 
     /**
      * @param $id
+     *
      * @return array
      */
     public function insertPost($id): array
@@ -63,6 +72,7 @@ class Articles
 
     /**
      * @param int $id
+     *
      * @return mixed
      */
     public function deletePost(int $id){

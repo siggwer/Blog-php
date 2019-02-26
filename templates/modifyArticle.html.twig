@@ -6,33 +6,29 @@
 
     <!-- Main Content -->
     <div class="container">
-        <div class="flashbag">
-            <?php if(isset($_SESSION['flash']['failure'])): ?>
-            <p><?= $_SESSION['flash']['failure']; ?></p>
-            <?php endif; ?>
-        </div>
         <div class="row">
             <div class="col-lg-10 col-md-10 mx-auto">
-                <?php foreach ($articles as $value => $data): ?>
-                <form class="form" role="form" action="/modifyArticle/<?= $articles['articleId'] ?>" method="post">
+                {% if articles.title is defined and articles.chapo is defined and articles.content is defined and articles.creation_date_fr is defined %}
+                <form class="form" role="form" action="/modifyArticle/{{ articles.id }}" method="post">
+                    <input type="hidden" name="__csrf" id="__csrf" value="{{ __csrf }}" />
                     <div class="form-group">
                         <label for="author">Auteur :</label>
-                        <input type="text" class="form-control" id="author" name="author" placeholder="<?php if(isset($session['id'])){ echo $session['pseudo'];} else{echo 'auteur';}?>" value="<?php $session['pseudo']?>">
+                        <input type="text" class="form-control" id="author" name="author" placeholder="{% if __session.auth is defined %} {{ __session.auth.pseudo }} {% endif %}" value="{{ articles.author |nl2br }}">
                         <span class="help-inline"></span>
                     </div>
                     <div class="form-group">
                         <label for="title">Titre :</label>
-                        <input type="text" class="form-control" id="title" name="title" placeholder="<?= $data['title'] ?>" value="<?= $data['title'] ?>">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="{{ articles.title |nl2br }}" value="{{ articles.title |nl2br }}">
                         <span class="help-inline"></span>
                     </div>
                     <div class="form-group">
                         <label for="chapo">Chapô :</label>
-                        <textarea type="text" class="form-control" id="chapo" name="chapo" placeholder="<?= $data['chapo'] ?>"  value="<?= $data['chapo'] ?> rows="5"></textarea>
+                        <textarea type="text" class="form-control" id="chapo" name="chapo" placeholder="{{ articles.chapo |nl2br }}"  value="{{ articles.chapo |nl2br }} ?> rows="5"></textarea>
                         <span class="help-inline"></span>
                     </div>
                     <div class="form-group">
                         <label for="content">Contenu :</label>
-                        <textarea type="text" class="form-control" id="content" name="content" placeholder="<?= $data['content'] ?>" value="<?= $data['content'] ?> rows="15"></textarea>
+                        <textarea type="text" class="form-control" id="content" name="content" placeholder="{{ articles.content |nl2br }}" value="{{ articles.content|nl2br }}" rows="15"></textarea>
                         <span class="help-inline"></span>
                     </div>
                     <br>
@@ -41,7 +37,7 @@
                         <a class="btn btn-primary" href="/administration">Retour</a>
                     </div>
                 </form>
-                <?php endforeach; ?>
+                {% endif %}
             </div>
         </div>
     </div>

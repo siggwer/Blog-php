@@ -11,24 +11,27 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Mes articles</h5>
-                        {% if(posts) %}
-                            {{ dump(posts) }}
-                                <h5 class="card-title">{{ posts.title |nl2br }}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ posts.chapo |nl2br }}</h6>
-                                <p class="card-text">{{ posts.content |nl2br }}</p>
-                                <p class="card-link">{{ posts.creation_date_fr |nl2br }}</p>
-                                <!--<p class="card-link">Another link</p>-->
-                                <a class="btn btn-success" href="/modifyArticle/<?= $data['articleId']?>" target="_blank">Modifier</a>
-                        {{ __flash.content }}
+                        {% if articles.title is defined and articles.chapo is defined and articles.content is defined and articles.creation_date_fr is defined %}
+                            <h5 class="card-title">{{ articles.title |nl2br }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ articles.chapo |nl2br }}</h6>
+                            <p class="card-text">{{ articles.content |nl2br }}</p>
+                            <p class="card-link">{{ articles.creation_date_fr |nl2br }}</p>
+                            <!--<p class="card-link">Another link</p>-->
+                        {% else %}
+                            <p class="card-text">Aucun article trouvé</p>
+                        {% endif %}
                     </div>
                 </div>
+                <a class="btn btn-success" href="/modifyArticle/{{ articles.id }}" target="_blank">Modifier</a>
             </div>
         </div>
+        <br />
         <div class="row">
             <div class="col">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Mes informations</h5>
+                        {% if posts %}
                         <table class="table">
                             <thead>
                             <tr>
