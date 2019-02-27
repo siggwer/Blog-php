@@ -37,7 +37,7 @@ interface ArticleRepositoryInterface
      *
      * @return PdoStatementInterface
      */
-    public function updatePost($id): PdoStatementInterface;
+    public function updatePost($articles): PdoStatementInterface;
 
     /**
      * @param int $id

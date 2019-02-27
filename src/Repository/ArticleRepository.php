@@ -80,7 +80,7 @@ class ArticleRepository implements ArticleRepositoryInterface
      *
      * @return PdoStatementInterface
      */
-    public function updatePost($id): PdoStatementInterface
+    public function updatePost($articles): PdoStatementInterface
     {
         return $this->database->request('UPDATE article
         SET title = :title,
@@ -89,12 +89,13 @@ class ArticleRepository implements ArticleRepositoryInterface
             author_id = :author_id, 
             publication_date = NOW()
         WHERE id = :id', [
-            ':id' => $id['id'],
-            ':title' => $id['title'],
-            ':chapo' =>$id['chapo'],
-            ':content' => $id['content'],
-            ':author' => $id['author_id']
-            //':img' => $post['img']
+            ':id' => $articles['id'],
+            ':title' => $articles['title'],
+            ':chapo' => $articles['chapo'],
+            ':content' => $articles['content'],
+            ':author' => $articles['author'],
+            ':author_id' => $articles['author_id']
+            //':img' =>  $articles['img']
         ]);
     }
 

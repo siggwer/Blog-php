@@ -49,13 +49,13 @@ class Articles
     }
 
     /**
-     * @param $id
+     * @param $articles
      *
      * @return PdoStatementInterface
      */
-    public function updatePost($id): PdoStatementInterface
+    public function updatePost($articles): PdoStatementInterface
     {
-        $article = $this->articles->updatePost($id);
+        $article = $this->articles->updatePost($articles);
         return $article;
     }
 

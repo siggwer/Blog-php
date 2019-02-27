@@ -39,7 +39,7 @@ class RegisterController
      */
     public function __construct(Users $users, MailHelper $mailHelper)
     {
-        $this->MailHelper = $mailHelper;
+        $this->mailHelper = $mailHelper;
         $this->users = $users;
     }
 
@@ -133,7 +133,7 @@ class RegisterController
           'name' =>  explode('@', $email)[0],
         ];
 
-        $result = $this->MailHelper->sendMail('Confirmation de votre compte', $from, $to, 'mailVerify');
+        $result = $this->mailHelper->sendMail('Confirmation de votre compte', $from, $to, 'mailVerify');
         if ($result->statusCode() === 202) {
             $this->setFlash('success', 'Un email vous a été envoyé pour confirmer votre compte');
         }
