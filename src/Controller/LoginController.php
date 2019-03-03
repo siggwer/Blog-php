@@ -56,7 +56,7 @@ class LoginController
 
 
         $user = $this->userServices->getUserByPseudo($pseudo);
-        var_dump($user);
+        //var_dump($user);
 
         //$_SESSION['auth'] = $user;
 
@@ -70,7 +70,7 @@ class LoginController
             }
         }
 
-        if ($user && password_verify($password, $user->getPassword())) {
+        if ($user && password_verify($password, $user->getPassword()) && $user->getEmail_token() === null) {
         //$pseudo . '#-$' . $password
             //&& $user->getEmail_token() === null
             if (!empty($remember)) {
@@ -85,8 +85,8 @@ class LoginController
                 'Location' => '/account'
             ]);
         }
-        var_dump($pseudo);
-        exit;
+        //var_dump($pseudo);
+        //exit;
         $this->setFlash('danger', 'Mauvais mot de passe ou pseudo');
         return new Response(301, [
             'Location' => '/login'

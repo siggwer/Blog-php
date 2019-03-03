@@ -93,7 +93,6 @@ class ArticleRepository implements ArticleRepositoryInterface
             ':title' => $articles['title'],
             ':chapo' => $articles['chapo'],
             ':content' => $articles['content'],
-            ':author' => $articles['author'],
             ':author_id' => $articles['author_id']
             //':img' =>  $articles['img']
         ]);

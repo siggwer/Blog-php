@@ -103,6 +103,8 @@ class ModifyArticleController
         }
 
         $contentLength = strlen($content);
+        var_dump($contentLength);
+        exit;
         if ($contentLength < 30) {
             $this->setFlash("danger", "Votre message doit contenir au minimum 50 caractères ou ne doit pas être vide");
             return new Response(301, [
