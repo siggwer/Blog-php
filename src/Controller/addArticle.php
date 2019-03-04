@@ -13,7 +13,7 @@ use Framework\GetField;
 use Framework\Flash;
 use Framework\MailHelper;
 
-class ModifyArticleController
+class addArticle
 {
     use GetField, Flash;
 
@@ -154,4 +154,5 @@ class ModifyArticleController
             'Location' => '/account'
         ]);
     }
+
 }

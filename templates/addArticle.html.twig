@@ -1,0 +1,48 @@
+{% extends 'layoutAdministration.html.twig' %}
+
+{% block title %}<title>Ajouter un article</title>{% endblock %}
+
+{% block content %}
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-md-10 mx-auto">
+                {% if articles.title is defined and articles.chapo is defined and articles.content is defined and articles.creation_date_fr is defined %}
+                    <form  name="modify" class="form" role="form" action="/modifyArticle/{{ articles.id }}" method="post">
+                        <input type="hidden" name="__csrf" id="__csrf" value="{{ __csrf }}" />
+                        <div class="form-group">
+                            <label id="author" for="author">Auteur : *</label>
+                            <select required id="author" name="author">{% for post in post %}<option value="{{ post.id|nl2br }}">{{ post.pseudo |nl2br }}{% endfor %}</select>
+                            <span class="help-inline"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Titre : *</label>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Ajouter un titre." required data-validation-required-message="Entrer un titre.">
+                            <span class="help-inline"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="chapo">Chapô : *</label>
+                            <input type="text" class="form-control" id="chapo" name="chapo" placeholder="Ajouter un chapo." rows="5" required data-validation-required-message="Entrer un chapo.">
+                            <span class="help-inline"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="content">Contenu : *</label>
+                            <textarea class="form-control" id="editor" name="content" rows="15" required data-validation-required-message="Ajouter un contenu"></textarea>
+                            <span class="help-inline"></span>
+                        </div>
+                        <p>* : Champs obligatoires</p>
+                        <br>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-success">Modifier</button>
+                            <a class="btn btn-primary" href="/account">Retour</a>
+                        </div>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+{% endblock %}

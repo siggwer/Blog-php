@@ -12,8 +12,8 @@ trait GetField
      */
     protected function getField($field)
     {
-        var_dump($_POST);
-        die;
+        //var_dump($_POST);
+        //die;
         return filter_var($_POST[$field] ?? null, FILTER_SANITIZE_STRING);
     }
 

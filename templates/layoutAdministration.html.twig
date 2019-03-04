@@ -18,6 +18,9 @@
     <!-- Custom styles for this template -->
     <link href="/css/style_admin.css" rel="stylesheet">
     <link href="/css/util.css" rel="stylesheet">
+
+    <!-- Script -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
 </head>
 
 <body>
@@ -95,5 +98,15 @@
 </div>
 <!-- Script -->
 <script src="/js/jquery/jquery.min.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ), {
+            //removePlugins: [ 'image', 'Link' ]}
+            toolbar: [ 'heading', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ]}
+        )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 </body>
 </html>
