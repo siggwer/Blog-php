@@ -40,8 +40,8 @@ return [
     ],
     'add' => [
         'methods' => ['GET','POST'],
-        'path' => '/account',
-        'controller' => App\Controller\AdministrationAccount::class,
+        'path' => '/add',
+        'controller' => App\Controller\addArticle::class,
         'middlewares' => [\Framework\ConfMiddleware::class]
         ],
     'modify' => [
