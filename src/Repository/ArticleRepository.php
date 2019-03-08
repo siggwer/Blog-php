@@ -76,7 +76,7 @@ class ArticleRepository implements ArticleRepositoryInterface
 
 
     /**
-     * @param $id
+     * @param $articles
      *
      * @return PdoStatementInterface
      */

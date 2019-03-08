@@ -42,6 +42,7 @@ class HomeController
 
     /**
      * HomeController constructor.
+     *
      * @param Articles $articles
      */
     public function __construct(Articles $articles) {
@@ -52,7 +53,9 @@ class HomeController
      * @param ServerRequestInterface $request
      * @param ResponseInterface $response
      * @param Container $container
+     *
      * @return ResponseInterface
+     *
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
      */

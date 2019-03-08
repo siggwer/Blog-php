@@ -56,9 +56,6 @@ class LoginController
 
 
         $user = $this->userServices->getUserByPseudo($pseudo);
-        //var_dump($user);
-
-        //$_SESSION['auth'] = $user;
 
         if (array_key_exists('auth', $_SESSION)){
             if (!empty($_SESSION['auth']) && $_SESSION['auth']->getPseudo() === $pseudo) {
@@ -71,8 +68,6 @@ class LoginController
         }
 
         if ($user && password_verify($password, $user->getPassword()) && $user->getEmail_token() === null) {
-        //$pseudo . '#-$' . $password
-            //&& $user->getEmail_token() === null
             if (!empty($remember)) {
                 $token = $this->generateToken();
                 setcookie('remember-me', $token, time() + 3600 * 24 * 7, '/', null, false, true);
@@ -85,8 +80,7 @@ class LoginController
                 'Location' => '/account'
             ]);
         }
-        //var_dump($pseudo);
-        //exit;
+
         $this->setFlash('danger', 'Mauvais mot de passe ou pseudo');
         return new Response(301, [
             'Location' => '/login'

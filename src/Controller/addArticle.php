@@ -59,20 +59,14 @@ class addArticle
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {
-        if (array_key_exists('auth', $_SESSION)){
-            $post = $this->users->allusers();
-            $posts = $this->users->allArticlesByPseudo($_SESSION['auth']->getPseudo('pseudo'));
-            $articles = $this->article->getArticleWithPseudo($_SESSION['auth']->getPseudo('pseudo'));
-
-            if ($articles && $posts === false) {
-                $this->setFlash("danger", "Article inconnu");
+        if(!array_key_exists('auth', $_SESSION)) {
+                $this->setFlash("danger", "Merci de vous connecter pour ajouter un article.");
                 return new Response(301, [
-                    'Location' => '/account'
+                    'Location' => '/login'
                 ]);
-            }
 
-            if ($request->getMethod() === 'GET') {
-                $view = $container->get(RenderInterfaces::class)->render('ModifyArticle', ['post' => $post, 'posts' => $posts, 'articles' => $articles]);
+            if (array_key_exists('auth', $_SESSION)) {
+                $view = $container->get(RenderInterfaces::class)->render('addArticle');
                 $response->getBody()->write($view);
                 return $response;
             }
@@ -85,7 +79,7 @@ class addArticle
         $author_id = $_SESSION['auth']->getId('id');
         $email = $_SESSION['auth']->getEmail('email');
 
-        $path = '/modifyArticle/'.$articles['id'];
+        $path = '/add/';
 
         $titleLength = strlen($title);
         if ( $titleLength < 10 ) {
@@ -119,8 +113,8 @@ class addArticle
             ]);
         }
 
-        $updatePost = $this->article->updatePost([
-            'id' => $articles['id'],
+        $updatePost = $this->article->insertPost([
+            //'id' => $articles['id'],
             //'img' => $imgName,
             'title' => $title,
             'chapo' => $chapo,

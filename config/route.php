@@ -43,10 +43,10 @@ return [
         'path' => '/add',
         'controller' => App\Controller\addArticle::class,
         'middlewares' => [\Framework\ConfMiddleware::class]
-        ],
+    ],
     'modify' => [
         'methods' => ['GET','POST'],
-        'path' => '/addArticle',
+        'path' => '/modifyArticle',
         'controller' => App\Controller\addArticle::class,
         'middlewares' => [\Framework\ConfMiddleware::class]
     ],
