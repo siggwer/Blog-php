@@ -61,8 +61,8 @@ class ModifyArticleController
     {
         if (array_key_exists('auth', $_SESSION)){
             $post = $this->users->allusers();
-            $posts = $this->users->allArticlesByPseudo($_SESSION['auth']->getPseudo('pseudo'));
-            $articles = $this->article->getArticleWithPseudo($_SESSION['auth']->getPseudo('pseudo'));
+            $posts = $this->users->allArticlesByPseudo($_SESSION['auth']->getPseudo());
+            $articles = $this->article->getArticleWithPseudo($_SESSION['auth']->getPseudo());
 
             if ($articles && $posts === false) {
                 $this->setFlash("danger", "Article inconnu");
@@ -81,9 +81,8 @@ class ModifyArticleController
         $title = $this->getField('title');
         $chapo = $this->getField('chapo');
         $content = $this->getField('content');
-        $author = $this->getField('author');
-        $author_id = $_SESSION['auth']->getId('id');
-        $email = $_SESSION['auth']->getEmail('email');
+        $update_by = $_SESSION['auth']->getId();
+        $email = $_SESSION['auth']->getEmail();
 
         $path = '/modifyArticle/'.$articles['id'];
 
@@ -111,22 +110,13 @@ class ModifyArticleController
             ]);
         }
 
-        $authorLength = strlen($author);
-        if ($authorLength < 4) {
-            $this->setFlash("danger", "Auteur doit contenir au minimum 4 caractères ou ne doit pas être vide");
-            return new Response(301, [
-                'Location' => $path
-            ]);
-        }
-
         $updatePost = $this->article->updatePost([
             'id' => $articles['id'],
             //'img' => $imgName,
             'title' => $title,
             'chapo' => $chapo,
             'content' => $content,
-            'author' => $author,
-            'author_id' => $author_id
+            'update_by' => $update_by
         ]);
 
         if ($updatePost){

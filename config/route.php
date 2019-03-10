@@ -41,13 +41,13 @@ return [
     'add' => [
         'methods' => ['GET','POST'],
         'path' => '/add',
-        'controller' => App\Controller\addArticle::class,
+        'controller' => App\Controller\AddArticleController::class,
         'middlewares' => [\Framework\ConfMiddleware::class]
     ],
     'modify' => [
         'methods' => ['GET','POST'],
-        'path' => '/modifyArticle',
-        'controller' => App\Controller\addArticle::class,
+        'path' => '/modifyArticle/{articles:[0-9]+}',
+        'controller' => App\Controller\ModifyArticleController::class,
         'middlewares' => [\Framework\ConfMiddleware::class]
     ],
     'contact' => [

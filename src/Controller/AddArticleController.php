@@ -13,7 +13,7 @@ use Framework\GetField;
 use Framework\Flash;
 use Framework\MailHelper;
 
-class addArticle
+class AddArticleController
 {
     use GetField, Flash;
 
@@ -66,7 +66,7 @@ class addArticle
                 ]);
 
             if (array_key_exists('auth', $_SESSION)) {
-                $view = $container->get(RenderInterfaces::class)->render('addArticle');
+                $view = $container->get(RenderInterfaces::class)->render('addArticleController');
                 $response->getBody()->write($view);
                 return $response;
             }

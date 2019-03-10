@@ -86,14 +86,14 @@ class ArticleRepository implements ArticleRepositoryInterface
         SET title = :title,
             chapo = :chapo,
             content = :content,
-            author_id = :author_id, 
+            update_by = :update_by,
             publication_date = NOW()
         WHERE id = :id', [
             ':id' => $articles['id'],
             ':title' => $articles['title'],
             ':chapo' => $articles['chapo'],
             ':content' => $articles['content'],
-            ':author_id' => $articles['author_id']
+            ':update_by' => $articles['update_by']
             //':img' =>  $articles['img']
         ]);
     }
