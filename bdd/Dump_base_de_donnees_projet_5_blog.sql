@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 18 déc. 2018 à 14:18
--- Version du serveur :  5.7.21
--- Version de PHP :  7.2.4
+-- Généré le :  lun. 11 mars 2019 à 12:49
+-- Version du serveur :  5.7.24
+-- Version de PHP :  7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -39,17 +39,18 @@ CREATE TABLE IF NOT EXISTS `article` (
   `publication_date` datetime NOT NULL,
   `update_date` datetime DEFAULT NULL,
   `author_id` int(10) UNSIGNED NOT NULL,
+  `update_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_user_article` (`author_id`),
   KEY `index_date_article` (`publication_date`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `article`
 --
 
-INSERT INTO `article` (`id`, `title`, `chapo`, `content`, `publication_date`, `update_date`, `author_id`) VALUES
-(1, 'L\'homme doit explorer, et c\'est l\'exploration à son meilleur', 'Les problèmes semblent puissants à partir de 150 miles', 'Lorem ipsum', '2018-12-18 15:16:00', NULL, 3);
+INSERT INTO `article` (`id`, `title`, `chapo`, `content`, `publication_date`, `update_date`, `author_id`, `update_by`) VALUES
+(1, 'L&#39;homme doit explorer, et c&#39;est l&#39;exploration à son meilleur', 'Les problèmes semblent puissants à partir de 150 miles', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit neque id diam convallis consectetur. In hac habitasse platea dictumst. Praesent commodo est nisl, a mattis velit dignissim non. Proin ultricies arcu sit amet finibus gravida. Quisque porta leo accumsan accumsan efficitur. Sed metus libero, suscipit vitae interdum a, suscipit pellentesque lacus. Sed ac augue eu quam scelerisque ornare. Aliquam sed tellus lobortis, mattis turpis sed, consequat ipsum. Vivamus rutrum neque nibh, non gravida velit semper ut.', '2019-02-27 16:25:46', NULL, 13, NULL);
 
 -- --------------------------------------------------------
 
@@ -81,21 +82,22 @@ CREATE TABLE IF NOT EXISTS `user` (
   `pseudo` varchar(100) NOT NULL,
   `email` varchar(200) NOT NULL,
   `email_token` varchar(255) DEFAULT NULL,
-  `password` char(40) NOT NULL,
+  `password` char(255) NOT NULL,
   `register_at` datetime DEFAULT NULL,
   `connexion_at` datetime DEFAULT NULL,
   `rank` tinyint(3) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_email` (`email`),
   UNIQUE KEY `unique_pseudo` (`pseudo`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `pseudo`, `email`, `email_token`, `password`, `register_at`, `connexion_at`, `rank`) VALUES
-(3, 'test', 'test@blog.com', NULL, 'test', '2018-12-18 15:14:00', NULL, NULL);
+(4, 'admin', 'admin@yostmail.com', NULL, '$2y$12$255mUws1dmzCIGPat1a2TuxPZqk6KZXSnIWscV2mzZfbqQ58dciB.', '2019-01-18 21:10:00', NULL, 2),
+(13, 'test4', 'test4@yopmail.com', NULL, '$2y$12$JLK/.vZ8bFDxlVzsB6qTneIMNZ3ZoAOX4aW84GUIANSveZ3tlNftW', '2019-02-21 16:25:44', NULL, 2);
 
 --
 -- Contraintes pour les tables déchargées

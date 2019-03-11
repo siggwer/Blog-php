@@ -16,29 +16,6 @@ class HomeController
      * @var Articles
      */
     private $articles;
-    //private $render;
-    //private $container;
-
-    //public function __construct() {
-        //$this->articles = new ArticleRepository();
-        //$this->render = new Render();
-
-    //}
-
-    //public function __construct(Container $container) {
-        //$this->articles = new ArticleRepository();
-        //$this->container = $container;
-    //}
-
-    //public function __invoke()
-    //{
-        //$articles = $this->articles->getArticles();
-        //$this->render->render('home', ['articles' => $articles]);
-        //echo $this->render->render('home.html.twig', ['articles' => $articles]);
-        //echo $this->container->get(Render::class)->render('home.html.twig', ['articles' => $articles]);
-        //$this->getConteneur()['article_repository'];
-        //$this->getConteneur()->get('article_repository');
-    //}
 
     /**
      * HomeController constructor.

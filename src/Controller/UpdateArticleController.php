@@ -13,7 +13,7 @@ use Framework\GetField;
 use Framework\Flash;
 use Framework\MailHelper;
 
-class AddArticleController
+class UpdateArticleController
 {
     use GetField, Flash;
 
@@ -33,7 +33,7 @@ class AddArticleController
     private $mailHelper;
 
     /**
-     * ModifyArticleController constructor.
+     * UpdateArticleController constructor.
      *
      * @param Users $user
      * @param Articles $article
@@ -51,7 +51,7 @@ class AddArticleController
      * @param ResponseInterface $response
      * @param Container $container
      *
-     * @return Response
+     * @return ResponseInterface
      *
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
@@ -59,14 +59,20 @@ class AddArticleController
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {
-        if(!array_key_exists('auth', $_SESSION)) {
-                $this->setFlash("danger", "Merci de vous connecter pour ajouter un article.");
-                return new Response(301, [
-                    'Location' => '/login'
-                ]);
+        if (array_key_exists('auth', $_SESSION)){
+            $post = $this->users->allusers();
+            $posts = $this->users->allArticlesByPseudo($_SESSION['auth']->getPseudo());
+            $articles = $this->article->getArticleWithPseudo($_SESSION['auth']->getPseudo());
 
-            if (array_key_exists('auth', $_SESSION)) {
-                $view = $container->get(RenderInterfaces::class)->render('addArticleController');
+            if ($articles && $posts === false) {
+                $this->setFlash("danger", "Article inconnu");
+                return new Response(301, [
+                    'Location' => '/account'
+                ]);
+            }
+
+            if ($request->getMethod() === 'GET') {
+                $view = $container->get(RenderInterfaces::class)->render('updateArticle', ['post' => $post, 'posts' => $posts, 'articles' => $articles]);
                 $response->getBody()->write($view);
                 return $response;
             }
@@ -75,11 +81,10 @@ class AddArticleController
         $title = $this->getField('title');
         $chapo = $this->getField('chapo');
         $content = $this->getField('content');
-        $author = $this->getField('author');
-        $author_id = $_SESSION['auth']->getId('id');
-        $email = $_SESSION['auth']->getEmail('email');
+        $update_by = $_SESSION['auth']->getId();
+        $email = $_SESSION['auth']->getEmail();
 
-        $path = '/add/';
+        $path = '/updateArticle/'.$articles['id'];
 
         $titleLength = strlen($title);
         if ( $titleLength < 10 ) {
@@ -105,22 +110,13 @@ class AddArticleController
             ]);
         }
 
-        $authorLength = strlen($author);
-        if ($authorLength < 4) {
-            $this->setFlash("danger", "Auteur doit contenir au minimum 4 caractères ou ne doit pas être vide");
-            return new Response(301, [
-                'Location' => $path
-            ]);
-        }
-
-        $updatePost = $this->article->insertPost([
-            //'id' => $articles['id'],
+        $updatePost = $this->article->updateArticle([
+            'id' => $articles['id'],
             //'img' => $imgName,
             'title' => $title,
             'chapo' => $chapo,
             'content' => $content,
-            'author' => $author,
-            'author_id' => $author_id
+            'update_by' => $update_by
         ]);
 
         if ($updatePost){
@@ -148,5 +144,4 @@ class AddArticleController
             'Location' => '/account'
         ]);
     }
-
 }

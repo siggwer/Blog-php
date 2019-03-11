@@ -59,7 +59,7 @@ class ArticleRepository implements ArticleRepositoryInterface
      *
      * @return array
      */
-    public function insertPost($id): array
+    public function insertArticle($id): array
     {
         $this->database->request('INSERT INTO article(title, chapo, content, author, publication_date) 
             VALUES(:title, :chapo, :content, :author, NOW())', [
@@ -80,7 +80,7 @@ class ArticleRepository implements ArticleRepositoryInterface
      *
      * @return PdoStatementInterface
      */
-    public function updatePost($articles): PdoStatementInterface
+    public function updateArticle($articles): PdoStatementInterface
     {
         return $this->database->request('UPDATE article
         SET title = :title,
@@ -103,7 +103,7 @@ class ArticleRepository implements ArticleRepositoryInterface
      *
      * @return mixed
      */
-    public function deletePost(int $id)
+    public function deleteArticle(int $id)
     {
         return $this->database->request('DELETE FROM article WHERE id = :id', [
             ':id' => $id

@@ -53,9 +53,9 @@ class Articles
      *
      * @return PdoStatementInterface
      */
-    public function updatePost($articles): PdoStatementInterface
+    public function updateArticle($articles): PdoStatementInterface
     {
-        $article = $this->articles->updatePost($articles);
+        $article = $this->articles->updateArticle($articles);
         return $article;
     }
 
@@ -64,9 +64,9 @@ class Articles
      *
      * @return array
      */
-    public function insertPost($id): array
+    public function insertArticle($id): array
     {
-        $article = $this->articles->insertPost($id);
+        $article = $this->articles->insertArticle($id);
         return $article;
     }
 
@@ -75,8 +75,8 @@ class Articles
      *
      * @return mixed
      */
-    public function deletePost(int $id){
-        $article = $this->articles->deletePost($id);
+    public function deleteArticle(int $id){
+        $article = $this->articles->deleteArticle($id);
         return  $article;
     }
 

@@ -13,9 +13,6 @@ use Framework\Flash;
 use Framework\Token;
 use Framework\Interfaces\RenderInterfaces;
 use Framework\MailHelper;
-//use Swift_Mailer;
-//use Swift_Message;
-//use Swift_SmtpTransport;
 
 class RegisterController
 {
@@ -106,7 +103,7 @@ class RegisterController
         }
         $tokenRegister = $this->generateToken();
         $passwordHash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
-        //$pseudo.'#-$'.$password
+
         $users = new User([
             'pseudo' => $pseudo,
             'password' => $passwordHash,

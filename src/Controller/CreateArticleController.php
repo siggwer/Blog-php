@@ -13,7 +13,7 @@ use Framework\GetField;
 use Framework\Flash;
 use Framework\MailHelper;
 
-class ModifyArticleController
+class CreateArticleController
 {
     use GetField, Flash;
 
@@ -33,7 +33,7 @@ class ModifyArticleController
     private $mailHelper;
 
     /**
-     * ModifyArticleController constructor.
+     * UpdateArticleController constructor.
      *
      * @param Users $user
      * @param Articles $article
@@ -59,20 +59,14 @@ class ModifyArticleController
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {
-        if (array_key_exists('auth', $_SESSION)){
-            $post = $this->users->allusers();
-            $posts = $this->users->allArticlesByPseudo($_SESSION['auth']->getPseudo());
-            $articles = $this->article->getArticleWithPseudo($_SESSION['auth']->getPseudo());
-
-            if ($articles && $posts === false) {
-                $this->setFlash("danger", "Article inconnu");
+        if(!array_key_exists('auth', $_SESSION)) {
+                $this->setFlash("danger", "Merci de vous connecter pour ajouter un article.");
                 return new Response(301, [
-                    'Location' => '/account'
+                    'Location' => '/login'
                 ]);
-            }
 
-            if ($request->getMethod() === 'GET') {
-                $view = $container->get(RenderInterfaces::class)->render('ModifyArticle', ['post' => $post, 'posts' => $posts, 'articles' => $articles]);
+            if (array_key_exists('auth', $_SESSION)) {
+                $view = $container->get(RenderInterfaces::class)->render('createArticle');
                 $response->getBody()->write($view);
                 return $response;
             }
@@ -81,10 +75,11 @@ class ModifyArticleController
         $title = $this->getField('title');
         $chapo = $this->getField('chapo');
         $content = $this->getField('content');
-        $update_by = $_SESSION['auth']->getId();
-        $email = $_SESSION['auth']->getEmail();
+        $author = $this->getField('author');
+        $author_id = $_SESSION['auth']->getId('id');
+        $email = $_SESSION['auth']->getEmail('email');
 
-        $path = '/modifyArticle/'.$articles['id'];
+        $path = '/add/';
 
         $titleLength = strlen($title);
         if ( $titleLength < 10 ) {
@@ -110,13 +105,22 @@ class ModifyArticleController
             ]);
         }
 
-        $updatePost = $this->article->updatePost([
-            'id' => $articles['id'],
+        $authorLength = strlen($author);
+        if ($authorLength < 4) {
+            $this->setFlash("danger", "Auteur doit contenir au minimum 4 caractères ou ne doit pas être vide");
+            return new Response(301, [
+                'Location' => $path
+            ]);
+        }
+
+        $updatePost = $this->article->insertPost([
+            //'id' => $articles['id'],
             //'img' => $imgName,
             'title' => $title,
             'chapo' => $chapo,
             'content' => $content,
-            'update_by' => $update_by
+            'author' => $author,
+            'author_id' => $author_id
         ]);
 
         if ($updatePost){
@@ -144,4 +148,5 @@ class ModifyArticleController
             'Location' => '/account'
         ]);
     }
+
 }

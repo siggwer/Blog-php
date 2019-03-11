@@ -2,17 +2,33 @@
 
 namespace App\Model;
 
-use DateTime;
 class Comment extends AbstractModel
 {
+
     /**
-     * @var $id, $comments, $author, $comment_date, $validated, $article_id
+     * @var
      */
     private $comments;
+
+    /**
+     * @var
+     */
     private $author;
-    private $comment_date;
+
+    /**
+     * @var
+     */
+    private $commentDate;
+
+    /**
+     * @var
+     */
     private $validated;
-    private $article_id;
+
+    /**
+     * @var
+     */
+    private $articleId;
 
     //SETTERS
 
@@ -33,11 +49,11 @@ class Comment extends AbstractModel
     }
 
     /**
-     * @param $comment_date
+     * @param $commentDate
      */
-    public function setComment_date($comment_date)
+    public function setCommentDate($commentDate)
     {
-        $this->comment_date = $this->setDateTime($comment_date);
+        $this->commentDate = $this->setDateTime($commentDate);
     }
 
     /**
@@ -48,9 +64,12 @@ class Comment extends AbstractModel
         $this->validated = (int) $validated;
     }
 
-    public function setArticle_id($article_id)
+    /**
+     * @param $articleId
+     */
+    public function setArticleId($articleId)
     {
-        $this->article_id = (int) $article_id;
+        $this->articleId = (int) $articleId;
     }
 
     //GETTERS
@@ -58,7 +77,7 @@ class Comment extends AbstractModel
     /**
      * @return mixed
      */
-    public function comments()
+    public function getComments()
     {
         return $this->comments;
     }
@@ -66,7 +85,7 @@ class Comment extends AbstractModel
     /**
      * @return mixed
      */
-    public function author()
+    public function getAuthor()
     {
         return $this->author;
     }
@@ -74,15 +93,15 @@ class Comment extends AbstractModel
     /**
      * @return mixed
      */
-    public function comment_date()
+    public function getCommentDate()
     {
-        return $this->comment_date;
+        return $this->commentDate;
     }
 
     /**
      * @return mixed
      */
-    public function validated()
+    public function getValidated()
     {
         return $this->validated;
     }
@@ -90,8 +109,8 @@ class Comment extends AbstractModel
     /**
      * @return mixed
      */
-    public function article_id()
+    public function getArticleId()
     {
-        return $this->article_id;
+        return $this->articleId;
     }
 }

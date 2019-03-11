@@ -19,7 +19,7 @@ class User extends AbstractModel
     /**
      * @var
      */
-    private $email_token;
+    private $emailToken;
     /**
      * @var
      */
@@ -27,11 +27,11 @@ class User extends AbstractModel
     /**
      * @var
      */
-    private $connexion_at;
+    private $connexionAt;
     /**
      * @var
      */
-    private $register_at;
+    private $registerAt;
 
     // SETTERS //
 
@@ -68,27 +68,27 @@ class User extends AbstractModel
     }
 
     /**
-     * @param $email_token
+     * @param $emailToken
      */
-    public function setEmail_token($email_token)
+    public function setEmailToken($emailToken)
     {
-        $this->email_token = $email_token;
+        $this->emailToken = $emailToken;
     }
 
     /**
-     * @param $connection_at
+     * @param $connexionAt
      */
-    public function setConnexion_at($connexion_at)
+    public function setConnexionAt($connexionAt)
     {
-        $this->connection_at = $this->setDateTime($connexion_at);
+        $this->connectionAt = $this->setDateTime($connexionAt);
     }
 
     /**
-     * @param $register_at
+     * @param $registerAt
      */
-    public function setRegister_at($register_at)
+    public function setRegisterAt($registerAt)
     {
-        $this->register_at = $this->setDateTime($register_at);
+        $this->registerAt = $this->setDateTime($registerAt);
     }
 
     // GETTERS //
@@ -128,24 +128,24 @@ class User extends AbstractModel
     /**
      * @return mixed
      */
-    public function getEmail_token()
+    public function getEmailToken()
     {
-        return $this->email_token;
+        return $this->emailToken;
     }
 
     /**
      * @return mixed
      */
-    public function getConnexion_at()
+    public function getConnexionAt()
     {
-        return $this->connexion_at;
+        return $this->connexionAt;
     }
 
     /**
      * @return mixed
      */
-    public function getRegister_at()
+    public function getRegisterAt()
     {
-        return $this->register_at;
+        return $this->registerAt;
     }
 }

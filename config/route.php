@@ -38,16 +38,16 @@ return [
         'controller' => App\Controller\AdministrationAccount::class,
         'middlewares' => [\Framework\ConfMiddleware::class]
     ],
-    'add' => [
+    'create' => [
         'methods' => ['GET','POST'],
-        'path' => '/add',
-        'controller' => App\Controller\AddArticleController::class,
+        'path' => '/create',
+        'controller' => App\Controller\CreateArticleController::class,
         'middlewares' => [\Framework\ConfMiddleware::class]
     ],
-    'modify' => [
+    'update' => [
         'methods' => ['GET','POST'],
-        'path' => '/modifyArticle/{articles:[0-9]+}',
-        'controller' => App\Controller\ModifyArticleController::class,
+        'path' => '/update/{articles:[0-9]+}',
+        'controller' => App\Controller\UpdateArticleController::class,
         'middlewares' => [\Framework\ConfMiddleware::class]
     ],
     'contact' => [

@@ -88,21 +88,6 @@ class ContactController
             ]);
         }
 
-        // Connexion au smtp
-       //$transport = $container->get(Swift_SmtpTransport::class);
-
-        // Container du mail
-        //$mailer = new Swift_Mailer($transport);
-
-        // Le message à envoyer
-        //$message = new Swift_Message($name);
-        //$message
-            //->setFrom(['localhost@test' => 'Admin'])
-            //->setTo([$email => $name])
-            //->setBody($content);
-
-        //$result = $mailer->send($message);
-
         $from = [
             'email' => 'test@yopmail.com',
             'name' => 'admin',

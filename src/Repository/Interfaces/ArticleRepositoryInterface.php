@@ -30,20 +30,20 @@ interface ArticleRepositoryInterface
      *
      * @return array
      */
-    public function insertPost($id): array;
+    public function insertArticle($id): array;
 
     /**
-     * @param $id
+     * @param $articles
      *
      * @return PdoStatementInterface
      */
-    public function updatePost($articles): PdoStatementInterface;
+    public function updateArticle($articles): PdoStatementInterface;
 
     /**
      * @param int $id
      *
      * @return mixed
      */
-    public function deletePost(int $id);
+    public function deleteArticle(int $id);
 
 }

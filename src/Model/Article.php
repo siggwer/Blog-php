@@ -22,17 +22,22 @@ class Article extends AbstractModel
     /**
      * @var
      */
-    private $publication_date;
+    private $publicationDate;
 
     /**
      * @var
      */
-    private $update_date;
+    private $updateDate;
 
     /**
      * @var
      */
-    private $author_id;
+    private $authorId;
+
+    /**
+     * @var
+     */
+    private $updateBy;
 
     //SETTERS
 
@@ -61,27 +66,35 @@ class Article extends AbstractModel
     }
 
     /**
-     * @param $publication_date
+     * @param $publicationDate
      */
-    public function setPublication_date($publication_date)
+    public function setPublicationDate($publicationDate)
     {
-        $this->publication_date = $this->setDateTime($publication_date);
+        $this->publicationDate = $this->setDateTime($publicationDate);
     }
 
     /**
-     * @param $update_date
+     * @param $updateDate
      */
-    public function setUpdate_date($update_date)
+    public function setUpdateDate($updateDate)
     {
-        $this->update_date = $this->setDateTime($update_date);
+        $this->updateDate = $this->setDateTime($updateDate);
     }
 
     /**
-     * @param $author_id
+     * @param $authorId
      */
-    public function setAuthor_id($author_id)
+    public function setAuthorId($authorId)
     {
-        $this->author_id = (int) $author_id;
+        $this->authorId = (int) $authorId;
+    }
+
+    /**
+     * @param $updateBy
+     */
+    public function setUpdateBy($updateBy)
+    {
+        $this->updateBy = (int) $updateBy;
     }
 
     //GETTERS
@@ -89,7 +102,7 @@ class Article extends AbstractModel
     /**
      * @return mixed
      */
-    public function title()
+    public function getTitle()
     {
         return $this->title;
     }
@@ -97,7 +110,7 @@ class Article extends AbstractModel
     /**
      * @return mixed
      */
-    public function chapo()
+    public function getChapo()
     {
         return $this->chapo;
     }
@@ -105,7 +118,7 @@ class Article extends AbstractModel
     /**
      * @return mixed
      */
-    public function content()
+    public function getContent()
     {
         return $this->content;
     }
@@ -113,24 +126,32 @@ class Article extends AbstractModel
     /**
      * @return mixed
      */
-    public function publication_date()
+    public function getPublicationDate()
     {
-        return $this->publication_date;
+        return $this->publicationDate;
     }
 
     /**
      * @return mixed
      */
-    public function update_date()
+    public function getUpdateDate()
     {
-        return $this->update_date;
+        return $this->updateDate;
     }
 
     /**
      * @return mixed
      */
-    public function author_id()
+    public function getAuthorId()
     {
-        return $this->author_id;
+        return $this->authorId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function updateBy()
+    {
+        return $this->updateBy;
     }
 }
