@@ -61,12 +61,13 @@ class ArticleRepository implements ArticleRepositoryInterface
      */
     public function insertArticle($id): array
     {
-        $this->database->request('INSERT INTO article(title, chapo, content, author, publication_date) 
-            VALUES(:title, :chapo, :content, :author, NOW())', [
+        $this->database->request('INSERT INTO article(title, chapo, content, author, author_id, publication_date) 
+            VALUES(:title, :chapo, :content, :author, :author_id, NOW())', [
             ':title' => $id['title'],
             ':chapo' => $id['chapo'],
             ':content' => $id['content'],
-            ':author' => $id['author']
+            ':author' => $id['author'],
+            ':author_id'=> $id['author_id']
             //':img' => $article['img']
         ]);
 

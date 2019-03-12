@@ -9,11 +9,15 @@
         <div class="row">
             <div class="col-lg-10 col-md-10 mx-auto">
                 {% if articles.title is defined and articles.chapo is defined and articles.content is defined and articles.creation_date_fr is defined %}
-                <form  name="modify" class="form" role="form" action="/updateArticle/{{ articles.id }}" method="post">
+                <form  name="modify" class="form" role="form" action="/update/{{ articles.id }}" method="post">
                     <input type="hidden" name="__csrf" id="__csrf" value="{{ __csrf }}" />
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label id="author" for="author">Auteur : *</label>
                         <select required id="author" name="author">{% for post in post %}<option value="{{ post.id|nl2br }}">{{ post.pseudo |nl2br }}{% endfor %}</select>
+                        <span class="help-inline"></span>
+                    </div>-->
+                    <div class="form-group">
+                        <label id="author" for="author">Modifier l'article {{ posts.pseudo }}</label>
                         <span class="help-inline"></span>
                     </div>
                     <div class="form-group">

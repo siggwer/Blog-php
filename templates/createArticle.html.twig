@@ -8,11 +8,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-md-10 mx-auto">
-                    <form  name="create" class="form" role="form" action="/create" method="post">
+                {% if posts.pseudo is defined %}
+                    <form name="create" class="form" role="form" action="/create" method="post">
                         <input type="hidden" name="__csrf" id="__csrf" value="{{ __csrf }}" />
                         <div class="form-group">
-                            <label id="author" for="author">Auteur : *</label>
-                            <select required id="author" name="author">{% for post in post %}<option value="{{ post.id|nl2br }}">{{ post.pseudo |nl2br }}{% endfor %}</select>
+                            <label id="author" for="author">Ajouter un nouvel article {{ posts.pseudo }}</label>
                             <span class="help-inline"></span>
                         </div>
                         <div class="form-group">
@@ -33,15 +33,13 @@
                         <p>* : Champs obligatoires</p>
                         <br>
                         <div class="form-actions">
-                            <button type="submit" class="btn btn-success">Modifier</button>
+                            <button type="submit" class="btn btn-success">Ajouter</button>
                             <a class="btn btn-primary" href="/account">Retour</a>
                         </div>
                     </form>
                 {% endif %}
             </div>
         </div>
-    </div>
-
-    <hr>
+  </div>
 
 {% endblock %}

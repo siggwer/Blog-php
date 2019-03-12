@@ -12,7 +12,6 @@
                     <div class="card-body">
                         <h5 class="card-title">Mes articles</h5>
                         {% if articles.id is defined and articles.title is defined and articles.chapo is defined and articles.content is defined and articles.creation_date_fr is defined %}
-                            {{ dump(articles) }}
                             <h5 class="card-title">{{ articles.title |nl2br }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ articles.chapo |nl2br }}</h6>
                             <p class="card-text">{{ articles.content |nl2br }}</p>

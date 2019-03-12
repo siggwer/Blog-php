@@ -59,14 +59,11 @@ class CreateArticleController
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {
-        if(!array_key_exists('auth', $_SESSION)) {
-                $this->setFlash("danger", "Merci de vous connecter pour ajouter un article.");
-                return new Response(301, [
-                    'Location' => '/login'
-                ]);
+        if (array_key_exists('auth', $_SESSION)) {
+            $posts = $this->users->allArticlesByPseudo($_SESSION['auth']->getPseudo('pseudo'));
 
-            if (array_key_exists('auth', $_SESSION)) {
-                $view = $container->get(RenderInterfaces::class)->render('createArticle');
+            if ($request->getMethod() === 'GET') {
+                $view = $container->get(RenderInterfaces::class)->render('createArticle', ['posts' => $posts]);
                 $response->getBody()->write($view);
                 return $response;
             }
@@ -79,7 +76,7 @@ class CreateArticleController
         $author_id = $_SESSION['auth']->getId('id');
         $email = $_SESSION['auth']->getEmail('email');
 
-        $path = '/add/';
+        $path = '/create';
 
         $titleLength = strlen($title);
         if ( $titleLength < 10 ) {
@@ -113,7 +110,7 @@ class CreateArticleController
             ]);
         }
 
-        $updatePost = $this->article->insertPost([
+        $updatePost = $this->article->insertArticle([
             //'id' => $articles['id'],
             //'img' => $imgName,
             'title' => $title,
@@ -124,7 +121,7 @@ class CreateArticleController
         ]);
 
         if ($updatePost){
-            $this->setFlash('success','Votre article a bien été modifié');
+            $this->setFlash('success','Votre article a bien été créé.');
         }else{
             $this->setFlash('warning','Un problème est survenue');
         }
@@ -141,7 +138,7 @@ class CreateArticleController
 
         $result = $this->mailHelper->sendMail('Modification de l\'article.', $from, $to, 'mailVerify');
         if ($result->statusCode() === 202) {
-            $this->setFlash('success', 'Un email vous a été envoyé pour confirmer la modification de l\'article.');
+            $this->setFlash('success', 'Un email vous a été envoyé pour confirmer la création de l\'article.');
         }
 
         return new Response(301, [

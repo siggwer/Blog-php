@@ -100,6 +100,7 @@ class Application implements ApplicationInterface
             $result = $dispatcher->process($this->request, $this->response);
 
             $location = $result->getHeader('Location');
+
             if (!empty($location)) {
                 header("HTTP/{$result->getProtocolVersion()} 301 Moved Permantly", false, 301);
                 header('Location: ' . $location[0]);
