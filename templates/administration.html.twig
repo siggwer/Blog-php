@@ -11,18 +11,19 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Mes articles</h5>
-                        {% if articles.id is defined and articles.title is defined and articles.chapo is defined and articles.content is defined and articles.creation_date_fr is defined %}
+                            {% for articles in articles %}
                             <h5 class="card-title">{{ articles.title |nl2br }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ articles.chapo |nl2br }}</h6>
                             <p class="card-text">{{ articles.content |nl2br }}</p>
                             <p class="card-link">{{ articles.creation_date_fr |nl2br }}</p>
                             <!--<p class="card-link">Another link</p>-->
+                                <a class="btn btn-success" href="/update/{{ articles.id }}" target="_blank">Modifier</a>
                         {% else %}
                             <p class="card-text">Aucun article trouvé</p>
-                        {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
-                <a class="btn btn-success" href="/update/{{ articles.id }}" target="_blank">Modifier</a>
+
                 <a class="btn btn-primary" href="/create" target="_blank">Ajouter un article</a>
             </div>
         </div>

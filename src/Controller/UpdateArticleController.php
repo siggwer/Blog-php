@@ -60,9 +60,8 @@ class UpdateArticleController
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {
         if (array_key_exists('auth', $_SESSION)){
-            $post = $this->users->allusers();
             $posts = $this->users->allArticlesByPseudo($_SESSION['auth']->getPseudo());
-            $articles = $this->article->getArticleWithPseudo($_SESSION['auth']->getPseudo());
+            $articles = $this->article->getArticleWithId($request->getAttribute('articles', 0));
 
             if ($articles && $posts === false) {
                 $this->setFlash("danger", "Article inconnu");
@@ -72,7 +71,7 @@ class UpdateArticleController
             }
 
             if ($request->getMethod() === 'GET') {
-                $view = $container->get(RenderInterfaces::class)->render('updateArticle', ['post' => $post, 'posts' => $posts, 'articles' => $articles]);
+                $view = $container->get(RenderInterfaces::class)->render('updateArticle', ['posts' => $posts, 'articles' => $articles]);
                 $response->getBody()->write($view);
                 return $response;
             }
@@ -110,7 +109,7 @@ class UpdateArticleController
             ]);
         }
 
-        $updatePost = $this->article->updateArticle([
+        $updateArticle = $this->article->updateArticle([
             'id' => $articles['id'],
             //'img' => $imgName,
             'title' => $title,
@@ -119,7 +118,7 @@ class UpdateArticleController
             'update_by' => $update_by
         ]);
 
-        if ($updatePost){
+        if ($updateArticle){
             $this->setFlash('success','Votre article a bien été modifié');
         }else{
             $this->setFlash('warning','Un problème est survenue');

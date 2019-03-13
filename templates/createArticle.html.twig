@@ -8,13 +8,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-md-10 mx-auto">
-                {% if posts.pseudo is defined %}
-                    <form name="create" class="form" role="form" action="/create" method="post">
+                <h2>Ajouter un nouvel article</h2>
+                <br />
+                    <form name="creat" class="form" role="form" action="/create" method="post">
                         <input type="hidden" name="__csrf" id="__csrf" value="{{ __csrf }}" />
-                        <div class="form-group">
-                            <label id="author" for="author">Ajouter un nouvel article {{ posts.pseudo }}</label>
-                            <span class="help-inline"></span>
-                        </div>
                         <div class="form-group">
                             <label for="title">Titre : *</label>
                             <input type="text" class="form-control" id="title" name="title" placeholder="Ajouter un titre." required data-validation-required-message="Entrer un titre.">
@@ -27,7 +24,7 @@
                         </div>
                         <div class="form-group">
                             <label for="content">Contenu : *</label>
-                            <textarea class="form-control" id="editor" name="content" rows="15" required data-validation-required-message="Ajouter un contenu"></textarea>
+                            <textarea class="form-control" id="editor" name="content" rows="15" data-validation-required-message="Ajouter un contenu"></textarea>
                             <span class="help-inline"></span>
                         </div>
                         <p>* : Champs obligatoires</p>
@@ -37,9 +34,9 @@
                             <a class="btn btn-primary" href="/account">Retour</a>
                         </div>
                     </form>
-                {% endif %}
             </div>
         </div>
   </div>
 
 {% endblock %}
+

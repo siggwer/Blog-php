@@ -72,14 +72,13 @@ class CreateArticleController
         $title = $this->getField('title');
         $chapo = $this->getField('chapo');
         $content = $this->getField('content');
-        $author = $this->getField('author');
         $author_id = $_SESSION['auth']->getId('id');
         $email = $_SESSION['auth']->getEmail('email');
 
         $path = '/create';
 
         $titleLength = strlen($title);
-        if ( $titleLength < 10 ) {
+        if ($titleLength < 10 ) {
             $this->setFlash("danger", "Votre titre doit contenir au moins 10 caractères ou ne doit pas être vide");
             return new Response(301, [
                 'Location' => $path
@@ -96,31 +95,22 @@ class CreateArticleController
 
         $contentLength = strlen($content);
         if ($contentLength < 30) {
-            $this->setFlash("danger", "Votre message doit contenir au minimum 50 caractères ou ne doit pas être vide");
+            $this->setFlash("danger", "Votre contenu doit contenir au minimum 50 caractères ou ne doit pas être vide");
             return new Response(301, [
                 'Location' => $path
             ]);
         }
 
-        $authorLength = strlen($author);
-        if ($authorLength < 4) {
-            $this->setFlash("danger", "Auteur doit contenir au minimum 4 caractères ou ne doit pas être vide");
-            return new Response(301, [
-                'Location' => $path
-            ]);
-        }
-
-        $updatePost = $this->article->insertArticle([
+        $createArticle = $this->article->insertArticle([
             //'id' => $articles['id'],
             //'img' => $imgName,
             'title' => $title,
             'chapo' => $chapo,
             'content' => $content,
-            'author' => $author,
             'author_id' => $author_id
         ]);
 
-        if ($updatePost){
+        if ($createArticle){
             $this->setFlash('success','Votre article a bien été créé.');
         }else{
             $this->setFlash('warning','Un problème est survenue');

@@ -8,18 +8,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-md-10 mx-auto">
+                <h2>Modifier l'article</h2>
+                <br />
                 {% if articles.title is defined and articles.chapo is defined and articles.content is defined and articles.creation_date_fr is defined %}
-                <form  name="modify" class="form" role="form" action="/update/{{ articles.id }}" method="post">
+                    <form name="update" class="form" role="form" action="/update/{{ articles.id }}" method="post">
                     <input type="hidden" name="__csrf" id="__csrf" value="{{ __csrf }}" />
-                    <!--<div class="form-group">
-                        <label id="author" for="author">Auteur : *</label>
-                        <select required id="author" name="author">{% for post in post %}<option value="{{ post.id|nl2br }}">{{ post.pseudo |nl2br }}{% endfor %}</select>
-                        <span class="help-inline"></span>
-                    </div>-->
-                    <div class="form-group">
-                        <label id="author" for="author">Modifier l'article {{ posts.pseudo }}</label>
-                        <span class="help-inline"></span>
-                    </div>
                     <div class="form-group">
                         <label for="title">Titre : *</label>
                         <input type="text" class="form-control" id="title" name="title" placeholder="{{ articles.title |nl2br }}" value="{{ articles.title |nl2br }}" required data-validation-required-message="Entrer un titre.">
@@ -32,7 +25,7 @@
                     </div>
                     <div class="form-group">
                         <label for="content">Contenu : *</label>
-                        <textarea class="form-control" id="editor" name="content" rows="15" required data-validation-required-message="Entrez un contenu.">{{ articles.content|nl2br }}</textarea>
+                        <textarea class="form-control" id="editor" name="content" rows="15" data-validation-required-message="Entrez un contenu.">{{ articles.content|nl2br }}</textarea>
                         <span class="help-inline"></span>
                     </div>
                     <p>* : Champs obligatoires</p>
@@ -47,6 +40,6 @@
         </div>
     </div>
 
-    <hr>
+    <hr />
 
 {% endblock %}

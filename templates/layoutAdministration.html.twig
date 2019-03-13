@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,7 +65,10 @@
                     <a class="nav-link" href="/create">Ajouter un article</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/deconnexion">Déconnexion</a>
+                    <a class="nav-link" href="/comment">Commentaires</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Déconnexion</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-md-auto d-md-flex">
@@ -78,7 +81,10 @@
                     <a class="nav-link" href="/create">Ajouter un article</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/deconnexion">Déconnexion</a>
+                    <a class="nav-link" href="/comment">Commentaires</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Déconnexion</a>
                 </li>
             </ul>
         </div>
@@ -94,18 +100,18 @@
     {% endif %}
     {% block content %} {% endblock %}
 
-
 </div>
+
 <!-- Script -->
 <script src="/js/jquery/jquery.min.js"></script>
 <script>
     ClassicEditor
-        .create( document.querySelector( '#editor' ), {
+        .create(document.querySelector('#editor'), {
             //removePlugins: [ 'image', 'Link' ]}
-            toolbar: [ 'heading', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ]}
+            toolbar: ['heading', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote']}
         )
-        .catch( error => {
-            console.error( error );
+        .catch(error => {
+            console.error(error);
         });
 </script>
 </body>
