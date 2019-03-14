@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Service\Users;
 use App\Service\Articles;
+use App\Service\Comments;
 use DI\Container;
 use GuzzleHttp\Psr7\Response;
 use Framework\Interfaces\RenderInterfaces;
@@ -30,6 +31,11 @@ class UpdateArticleController
     /**
      * @var
      */
+    private $comment;
+
+    /**
+     * @var
+     */
     private $mailHelper;
 
     /**
@@ -37,12 +43,14 @@ class UpdateArticleController
      *
      * @param Users $user
      * @param Articles $article
+     * @param Comments $comment
      * @param MailHelper $mailHelper
      */
-    public function __construct(Users $user, Articles $article, MailHelper $mailHelper)
+    public function __construct(Users $user, Articles $article,Comments $comment, MailHelper $mailHelper)
     {
         $this->users = $user;
         $this->article = $article;
+        $this->comment = $comment;
         $this->mailHelper = $mailHelper;
     }
 
@@ -62,8 +70,9 @@ class UpdateArticleController
         if (array_key_exists('auth', $_SESSION)){
             $posts = $this->users->allArticlesByPseudo($_SESSION['auth']->getPseudo());
             $articles = $this->article->getArticleWithId($request->getAttribute('articles', 0));
+            $comments = $this->comment->getCommentId($request->getAttribute('articles', 0));
 
-            if ($articles && $posts === false) {
+            if ($posts && $articles && $comments === false) {
                 $this->setFlash("danger", "Article inconnu");
                 return new Response(301, [
                     'Location' => '/account'
@@ -71,7 +80,7 @@ class UpdateArticleController
             }
 
             if ($request->getMethod() === 'GET') {
-                $view = $container->get(RenderInterfaces::class)->render('updateArticle', ['posts' => $posts, 'articles' => $articles]);
+                $view = $container->get(RenderInterfaces::class)->render('updateArticle', ['posts' => $posts, 'articles' => $articles, 'comments' => $comments]);
                 $response->getBody()->write($view);
                 return $response;
             }

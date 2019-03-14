@@ -15,6 +15,7 @@ class CommentRepository implements CommentRepositoryInterface
 
     /**
      * CommentRepository constructor.
+     *
      * @param PdoDatabaseInterface $database
      */
     public function __construct(PdoDatabaseInterface $database)
@@ -32,6 +33,7 @@ class CommentRepository implements CommentRepositoryInterface
 
     /**
      * @param int $id
+     *
      * @return mixed
      */
     public function getComment(int $id)
@@ -43,6 +45,7 @@ class CommentRepository implements CommentRepositoryInterface
 
     /**
      * @param int $id
+     *
      * @return array
      */
     public function getCommentById(int $id): array
@@ -54,6 +57,7 @@ class CommentRepository implements CommentRepositoryInterface
 
     /**
      * @param $comment
+     *
      * @return array
      */
     public function insertComment($comment): array
@@ -71,6 +75,7 @@ class CommentRepository implements CommentRepositoryInterface
 
     /**
      * @param $comment
+     *
      * @return PdoStatementInterface
      */
     public function updateComment($comment): PdoStatementInterface

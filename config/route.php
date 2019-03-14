@@ -50,6 +50,12 @@ return [
         'controller' => App\Controller\UpdateArticleController::class,
         'middlewares' => [\Framework\ConfMiddleware::class]
     ],
+    'comment' => [
+        'methods' => ['GET','POST'],
+        'path' => '/comment/{articles:[0-9]+}',
+        'controller' => App\Controller\CommentController::class,
+        'middlewares' => [\Framework\ConfMiddleware::class]
+    ],
     'contact' => [
         'methods' => ['GET', 'POST'],
         'path' => '/contact',

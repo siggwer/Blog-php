@@ -17,14 +17,26 @@
                             <p class="card-text">{{ articles.content |nl2br }}</p>
                             <p class="card-link">{{ articles.creation_date_fr |nl2br }}</p>
                             <!--<p class="card-link">Another link</p>-->
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Commentaires</h5>
+                                        {% for comments in comments %}
+                                            <h5 class="card-title">{{ comments.auhtor |nl2br }}</h5>
+                                            <p class="card-text">{{ comments.comments |nl2br }}</p>
+                                            <p class="card-link">{{ comments.comment_date|nl2br }}</p>
+                                            <!--<p class="card-link">Another link</p>-->
+                                        {% else %}
+                                            <p class="card-text">Aucun commentaire trouvé</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
                                 <a class="btn btn-success" href="/update/{{ articles.id }}" target="_blank">Modifier</a>
+                                <a class="btn btn-secondary" href="/comment/{{ articles.id }}" target="_blank">Voir les commentaires</a>
                         {% else %}
                             <p class="card-text">Aucun article trouvé</p>
                         {% endfor %}
                     </div>
                 </div>
-
-                <a class="btn btn-primary" href="/create" target="_blank">Ajouter un article</a>
             </div>
         </div>
         <br />
@@ -54,6 +66,7 @@
                     </div>
                 </div>
                 <a class="btn btn-success" href="/" target="_blank">Retour au blog</a>
+                <a class="btn btn-primary" href="/create" target="_blank">Ajouter un article</a>
             </div>
         </div>
     </div>
