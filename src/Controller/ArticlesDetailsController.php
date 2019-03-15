@@ -7,12 +7,17 @@ namespace App\Controller;
 use App\Service\Articles;
 use App\Service\Comments;
 use DI\Container;
+use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Framework\Interfaces\RenderInterfaces;
+use Framework\GetField;
+use Framework\Flash;
 
 class ArticlesDetailsController
 {
+    use GetField, Flash;
+
     /**
      * @var $articles
      */
@@ -49,8 +54,54 @@ class ArticlesDetailsController
     {
         $articles = $this->articles->getArticleWithId($request->getAttribute('articles', 0));
         $comments = $this->comment->getCommentId($request->getAttribute('articles', 0));
-        $view = $container->get(RenderInterfaces::class)->render('articles', ['articles' => $articles, 'comments' => $comments]);
-        $response->getBody()->write($view);
-        return $response;
+
+        if ($articles && $comments === false) {
+            $this->setFlash("danger", "Article inconnu");
+            return new Response(301, [
+                'Location' => '/'
+            ]);
+        }
+
+        if ($request->getMethod() === 'GET'){
+            $view = $container->get(RenderInterfaces::class)->render('articles', ['articles' => $articles, 'comments' => $comments]);
+            $response->getBody()->write($view);
+            return $response;
+        }
+
+        $author = $this->getField('author');
+        $comment = $this->getField('commentaire');
+
+        $path = '/article_details/'.$articles['id'];
+
+        $authorLength = strlen($author);
+        if ($authorLength < 4 ) {
+            $this->setFlash("danger", "Votre nom doit contenir au moins 4 caractères");
+            return new Response(301, [
+                'Location' => $path
+            ]);
+        }
+        $commentLength = strlen($comment);
+        if ($commentLength < 3) {
+            $this->setFlash("danger", "Votre commentaire doit contenir au minimum 3 caractères");
+            return new Response(301, [
+                'Location' => $path
+            ]);
+        }
+
+        $addComment = $this->comment->insertComment([
+            //'id' => $comments['id'],
+            'author' => $author,
+            'comments' => $comment,
+            'article_id' => $articles['id']
+        ]);
+
+        if ($addComment){
+            $this->setFlash('success','Votre commentaire est en cours de modération');
+        }else{
+            $this->setFlash('warning','Un problème est survenue');
+        }
+        return new Response(301, [
+            'Location' => $path
+        ]);
     }
 }

@@ -9,7 +9,7 @@ return [
         'middlewares' => []
     ],
     'article_details' => [
-        'methods' => ['GET'],
+        'methods' => ['GET','POST'],
         'path' => '/article_details/{articles:[0-9]+}',
         'controller' => App\Controller\ArticlesDetailsController::class,
         'middlewares' => []

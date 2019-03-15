@@ -23,6 +23,7 @@
     {% endif %}
 
     {% if comments == false %}
+        {{ dump(comments) }}
         <div class="col-lg-8 col-md-10 mx-auto">
             <h2 class="section-heading">commentaires</h2>
             <p><strong>Il n'y a pas de commentaires</strong></p>
@@ -40,29 +41,26 @@
     <hr>
         <div id="contact" class="contact col-lg-8 col-md-10 mx-auto clearfix">
             <h3>Ajouter un commentaire</h3>
-                 <form action="/articleDetailsView/<?= $articles['articleId'];?>" method="post">
-                    <div class="control-group">
-                         <div class="form-group floating-label-form-group controls">
-                             <label>Auteur</label>
-                             <input type="text" class="form-control" placeholder="" id="author" name="author" required data-validation-required-message="Entrer votre pseudo." value="">
-                             <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                         <div class="form-group floating-label-form-group controls">
-                            <label>Commentaire</label>
-                            <textarea rows="3" class="form-control" placeholder="message" id="comments" name="comments" required data-validation-required-message="Entrer votre message."></textarea>
-                            <p class="help-block text-danger"></p>
-                         </div>
-                    </div>
-                    <div id="success"></div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary" id="sendMessageButton">Envoyer</button>
-                        </div>
-                </form>
-        </div>
-        <div class="col-lg-8 col-md-10 mx-auto clearfix">
-            <a class="btn btn-primary float-right" href="/addArticle">Ajouter un article</a>
+            <form name="commentaires" class="form" role="form" action="/article_details/{{ articles.id }}" method="post">
+                <input type="hidden" name="__csrf" id="__csrf" value="{{ __csrf }}" />
+                <div class="form-group">
+                    <label>Auteur : *</label>
+                    <input type="text" class="form-control" placeholder="" id="author" name="author" required data-validation-required-message="Entrer votre pseudo." value="">
+                    <p class="help-block text-danger"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="content">Commentaires : *</label>
+                    <textarea class="form-control" id="editor" name="commentaire" rows="15" data-validation-required-message="Ajouter un contenu"></textarea>
+                    <span class="help-inline"></span>
+                </div>
+                <p>* : Champs obligatoires</p>
+                <br>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success">Ajouter</button>
+                    <a class="btn btn-primary" href="/">Accueil</a>
+                </div>
+            </form>
         </div>
 
 {% endblock %}

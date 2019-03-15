@@ -67,7 +67,7 @@ class UpdateArticleController
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
     {
-        if (array_key_exists('auth', $_SESSION)){
+        if(array_key_exists('auth', $_SESSION)){
             $posts = $this->users->allArticlesByPseudo($_SESSION['auth']->getPseudo());
             $articles = $this->article->getArticleWithId($request->getAttribute('articles', 0));
             $comments = $this->comment->getCommentId($request->getAttribute('articles', 0));
@@ -79,7 +79,7 @@ class UpdateArticleController
                 ]);
             }
 
-            if ($request->getMethod() === 'GET') {
+            if($request->getMethod() === 'GET') {
                 $view = $container->get(RenderInterfaces::class)->render('updateArticle', ['posts' => $posts, 'articles' => $articles, 'comments' => $comments]);
                 $response->getBody()->write($view);
                 return $response;
@@ -95,7 +95,7 @@ class UpdateArticleController
         $path = '/updateArticle/'.$articles['id'];
 
         $titleLength = strlen($title);
-        if ( $titleLength < 10 ) {
+        if( $titleLength < 10 ) {
             $this->setFlash("danger", "Votre titre doit contenir au moins 10 caractères ou ne doit pas être vide");
             return new Response(301, [
                 'Location' => $path
@@ -103,7 +103,7 @@ class UpdateArticleController
         }
 
         $chapoLength = strlen($chapo);
-        if ($chapoLength < 20 ) {
+        if($chapoLength < 20 ) {
             $this->setFlash("danger", "Le chapoô doit contenir au moins 20 caractères ou ne doit pas être vide");
             return new Response(301, [
                 'Location' => $path
@@ -111,7 +111,7 @@ class UpdateArticleController
         }
 
         $contentLength = strlen($content);
-        if ($contentLength < 30) {
+        if($contentLength < 30) {
             $this->setFlash("danger", "Votre message doit contenir au minimum 50 caractères ou ne doit pas être vide");
             return new Response(301, [
                 'Location' => $path
@@ -127,7 +127,7 @@ class UpdateArticleController
             'update_by' => $update_by
         ]);
 
-        if ($updateArticle){
+        if($updateArticle){
             $this->setFlash('success','Votre article a bien été modifié');
         }else{
             $this->setFlash('warning','Un problème est survenue');

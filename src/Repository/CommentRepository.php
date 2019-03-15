@@ -62,11 +62,11 @@ class CommentRepository implements CommentRepositoryInterface
      */
     public function insertComment($comment): array
     {
-        $this->database->request('INSERT INTO comment(id, author, comments, comment_date) 
-            VALUES(:id, :author, :comments, NOW())', [
-            'id'=>$comment['id'],
+        $this->database->request('INSERT INTO comment(author, comments, comment_date, article_id) 
+            VALUES(:author, :comments, NOW(), :article_id)', [
             ':author' => $comment['author'],
             ':comments' => $comment['comments'],
+            'article_id' => $comment['article_id']
         ]);
 
         $comment['id'] = $this->database->lastId();

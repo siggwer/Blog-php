@@ -15,6 +15,7 @@ use Framework\Flash;
 class AdministrationAccount
 {
     use GetField, Flash;
+
     /**
      * @var
      */

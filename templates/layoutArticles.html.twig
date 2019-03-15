@@ -23,6 +23,8 @@
         <!-- Custom styles for this templates -->
         <link href="/css/clean-blog.css" rel="stylesheet">
 
+        <!-- Script -->
+        <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
     </head>
 
 <body>
@@ -111,6 +113,16 @@
     <script src="/css/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Custom scripts for this templates -->
     <script src="/js/clean-blog.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                //removePlugins: [ 'image', 'Link' ]}
+                toolbar: ['heading', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote']}
+            )
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 </footer>
 </body>
 </html>

@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Commentaires</h4>
-                        {% if articles in articles %}
+                        {% if articles %}
                             <h5 class="card-title">{{ articles.title |nl2br }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ articles.chapo |nl2br }}</h6>
                             <p class="card-text">{{ articles.content |nl2br }}</p>
@@ -23,6 +23,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     <div class="row">
         <div class="col">
             <div class="card">
@@ -42,6 +43,5 @@
     </div>
         </div>
         <br />
-    </div>
 
 {% endblock %}
