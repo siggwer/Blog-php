@@ -25,5 +25,5 @@ try {
     $app->handleRequest();
 
 } catch (Exception $exception) {
-    var_dump($exception->getMessage());
+    echo($exception->getMessage());
 }
