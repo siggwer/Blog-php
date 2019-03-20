@@ -13,7 +13,6 @@ use Psr\Http\Message\ServerRequestInterface;
 use Framework\Interfaces\ApplicationInterface;
 use Zend\Expressive\Router\FastRouteRouter;
 use Zend\Expressive\Router\Route;
-//use App\Controller\NotFoundController;
 
 use function QuimCalpe\ResponseSender\send AS send_response;
 

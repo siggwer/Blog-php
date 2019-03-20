@@ -19,13 +19,16 @@ class CsrMiddleware
      *
      * @return Response
      */
-    public function __invoke(ServerRequestInterface $request, Response $response, Container $container,  $next)
+    public function __invoke(ServerRequestInterface $request,
+                             Response $response,
+                             Container $container,  $next)
     {
         $csrf = $this->generateToken();
 
         if (in_array($request->getMethod(), ['POST' , 'PUT', 'DELETE', 'PATCH'])) {
-            $checked = !empty($_SESSION['__csrf']) && !empty($this->getField('__csrf')) &&
-                ($_SESSION['__csrf'] === $this->getField('__csrf'));
+            $checked = !empty($_SESSION['__csrf'])
+                && !empty($this->getField('__csrf'))
+                && ($_SESSION['__csrf'] === $this->getField('__csrf'));
 
             $_SESSION['__csrf'] = $csrf;
 
@@ -33,7 +36,8 @@ class CsrMiddleware
                 return $next($request, $response);
             }
 
-            $this->setFlash('danger', 'Jeton invalide, merci de rafraichir et de réessayer');
+            $this->setFlash('danger',
+                'Jeton invalide, merci de rafraichir et de réessayer');
             return new Response(301, [
                 'Location' => $request->getUri()->getPath()
 

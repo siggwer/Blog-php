@@ -32,7 +32,8 @@ class Dispatcher
      * @param Container $container
      * @param array $middlewares
      */
-    public function __construct(Container $container, array $middlewares = [])
+    public function __construct(Container $container,
+                                array $middlewares = [])
     {
         $this->container = $container;
         $this->indexMiddleware = 0;
@@ -60,7 +61,8 @@ class Dispatcher
      *
      * @return ResponseInterface
      */
-    public function process(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
+    public function process(ServerRequestInterface $request,
+                            ResponseInterface $response): ResponseInterface
     {
         $middleware = $this->getMiddleware();
         $this->indexMiddleware += 1;
@@ -69,7 +71,8 @@ class Dispatcher
             return $response;
         }
 
-        return $middleware($request, $response, $this->container, [$this, 'process']);
+        return $middleware(
+            $request, $response, $this->container, [$this, 'process']);
     }
 
     /**
