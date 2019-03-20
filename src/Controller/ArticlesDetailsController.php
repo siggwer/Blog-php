@@ -102,7 +102,7 @@ class ArticlesDetailsController
         ]);
         }else{
             $this->setFlash('warning',
-                'Vous devez connecté pour ajouter un commentaire');
+                'Vous devez être connecté pour ajouter un commentaire');
             return new Response(301, [
                 'Location' => '/login'
             ]);
