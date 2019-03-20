@@ -38,6 +38,12 @@ return [
         'controller' => App\Controller\AdministrationAccount::class,
         'middlewares' => [\Framework\ConfMiddleware::class]
     ],
+    'adminaccount' => [
+        'methods' => ['GET','POST'],
+        'path' => '/adminaccount',
+        'controller' => App\Controller\SuperAdminAccountController::class,
+        'middlewares' => [\Framework\ConfMiddleware::class]
+    ],
     'create' => [
         'methods' => ['GET','POST'],
         'path' => '/create',

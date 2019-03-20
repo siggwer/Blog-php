@@ -50,7 +50,9 @@ class ArticlesDetailsController
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
+    public function __invoke(ServerRequestInterface $request,
+                             ResponseInterface $response,
+                             Container $container)
     {
         $articles = $this->articles->getArticleWithId($request->getAttribute(
             'articles', 0));

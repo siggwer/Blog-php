@@ -42,13 +42,15 @@ class LoginController
      * @throws \DI\NotFoundException
      */
 
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
+    public function __invoke(ServerRequestInterface $request,
+                             ResponseInterface $response,
+                             Container $container)
     {
         if ($request->getMethod() === 'GET') {
         $view = $container->get(RenderInterfaces::class)->render('login');
         $response->getBody()->write($view);
         return $response;
-    }
+        }
 
         $pseudo = $this->getField('pseudo');
         $password = $this->getField('password');
@@ -58,18 +60,29 @@ class LoginController
         $user = $this->userServices->getUserByPseudo($pseudo);
 
         if (array_key_exists('auth', $_SESSION)){
-            if (!empty($_SESSION['auth']) && $_SESSION['auth']->getPseudo() === $pseudo) {
+            if (!empty($_SESSION['auth']) &&
+                $_SESSION['auth']->getPseudo() === $pseudo) {
                 $this->setFlash('warning', 'Vous êtes déjà connecté !');
                 return new Response(301, [
                     'Location' => '/account'
                 ]);
+            }if(!empty($_SESSION['auth']) &&
+                $_SESSION['auth']->getPseudo() === $pseudo &&
+                $_SESSION['auth']->getRank() === 3){
+                $this->setFlash('warning', 'Vous êtes déjà connecté !');
+                return new Response(301, [
+                    'Location' => '/adminaccount'
+                ]);
             }
         }
 
-        if ($user && password_verify($password, $user->getPassword()) && $user->getEmailToken() === null) {
+        if ($user && password_verify($password, $user->getPassword())
+            && $user->getEmailToken() === null
+            && $user->getRank() === 2) {
             if (!empty($remember)) {
                 $token = $this->generateToken();
-                setcookie('remember-me', $token, time() + 3600 * 24 * 7, '/', null, false, true);
+                setcookie('remember-me',
+                    $token, time() + 3600 * 24 * 7, '/', null, false, true);
             }
 
             $_SESSION['auth'] = $user;
@@ -77,6 +90,23 @@ class LoginController
             $this->setFlash('success', 'Vous êtes maintenant connecté !');
             return new Response(301, [
                 'Location' => '/account'
+            ]);
+        }
+
+        if ($user && password_verify($password, $user->getPassword())
+            && $user->getEmailToken() === null
+            && $user->getRank() === 3) {
+            if (!empty($remember)) {
+                $token = $this->generateToken();
+                setcookie('remember-me',
+                    $token, time() + 3600 * 24 * 7, '/', null, false, true);
+            }
+
+            $_SESSION['auth'] = $user;
+
+            $this->setFlash('success', 'Vous êtes maintenant connecté !');
+            return new Response(301, [
+                'Location' => '/adminaccount'
             ]);
         }
 

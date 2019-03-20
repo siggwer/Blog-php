@@ -1,0 +1,73 @@
+{% extends 'layoutAdministration.html.twig' %}
+
+{% block title %}<title>Compte administrateur</title>{% endblock %}
+
+{% block content %}
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Tous les articles</h5>
+                        {% for articles in articles %}
+                            <h5 class="card-title">{{ articles.title |nl2br }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ articles.chapo |nl2br }}</h6>
+                            <p class="card-text">{{ articles.content |nl2br }}</p>
+                            <p class="card-link">{{ articles.creation_date_fr |nl2br }}</p>
+                            <!--<p class="card-link">Another link</p>-->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Commentaires</h5>
+                                    {% for comments in comments %}
+                                        <h5 class="card-title">{{ comments.auhtor |nl2br }}</h5>
+                                        <p class="card-text">{{ comments.comments |nl2br }}</p>
+                                        <p class="card-link">{{ comments.comment_date|nl2br }}</p>
+                                        <!--<p class="card-link">Another link</p>-->
+                                    {% else %}
+                                        <p class="card-text">Aucun commentaire trouvé</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <a class="btn btn-success" href="/update/{{ articles.id }}" target="_blank">Modifier</a>
+                            <a class="btn btn-secondary" href="/comment/{{ articles.id }}" target="_blank">Voir les commentaires</a>
+                        {% else %}
+                            <p class="card-text">Aucun article trouvé</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Tous les utilisateurs</h5>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Pseudo</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for posts in posts %}
+                                <tr>
+                                    <th scope="row">{{ posts.pseudo |nl2br }}</th>
+                                    <td>{{ posts.email |nl2br }}</td>
+                                    <td></td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                    </div>
+                </div>
+                <a class="btn btn-success" href="/" target="_blank">Retour au blog</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

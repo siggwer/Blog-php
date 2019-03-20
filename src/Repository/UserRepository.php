@@ -37,7 +37,7 @@ class UserRepository implements UserRepositoryInterface
                 ':pseudo' => $user->getPseudo(),
                 ':password' => $user->getPassword(),
                 ':email' => $user->getEmail(),
-                ':emailToken' => $user->getEmail_token()
+                ':emailToken' => $user->getEmailToken()
         ]);
         $user->setId($this->database->lastId());
         return $user;
@@ -58,8 +58,8 @@ class UserRepository implements UserRepositoryInterface
             rank = :rank
         WHERE id = :userId', [
             ':email' => $user->getEmail(),
-            ':email_token' => $user->getEmail_token(),
-            ':connexion_at' => $user->getConnexion_at(),
+            ':email_token' => $user->getEmailtoken(),
+            ':connexion_at' => $user->getConnexionat(),
             ':rank' => $user->getRank(),
             ':userId' => $user->getId()
         ]);
