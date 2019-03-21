@@ -39,7 +39,10 @@ class MailHelper
      *
      * @throws \SendGrid\Mail\TypeException
      */
-    private function builtMail(string $subject, array $from, array $to, string $template) {
+    private function builtMail(string $subject,
+                               array $from,
+                               array $to,
+                               string $template) {
 
         $email = new Mail();
         $email->setFrom($from['email'],$from['name']);
@@ -62,7 +65,10 @@ class MailHelper
      *
      * @throws \SendGrid\Mail\TypeException
      */
-    public function sendMail(string $subject, array $from, array $to, string $template) {
+    public function sendMail(string $subject,
+                             array $from,
+                             array $to,
+                             string $template) {
 
         $mail = $this->builtMail($subject, $from, $to, $template);
 

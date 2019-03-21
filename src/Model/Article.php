@@ -150,7 +150,7 @@ class Article extends AbstractModel
     /**
      * @return mixed
      */
-    public function updateBy()
+    public function getUpdateBy()
     {
         return $this->updateBy;
     }

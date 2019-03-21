@@ -12,25 +12,36 @@ interface CommentRepositoryInterface
 
     /**
      * @param int $id
+     *
      * @return mixed
      */
     public function getComment(int $id);
 
     /**
      * @param int $id
+     *
      * @return array
      */
-    public function getCommentById(int $id):array;
+    public function getCommentById(int $id): array;
 
     /**
      * @param $comment
+     *
      * @return array
      */
     public function insertComment($comment): array;
 
     /**
      * @param $comment
+     *
      * @return mixed
      */
     public function updateComment($comment): PdoStatementInterface;
+
+    /**
+     * @param $comment
+     *
+     * @return array
+     */
+    public function deleteComment($comment): array;
 }

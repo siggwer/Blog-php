@@ -56,6 +56,12 @@ return [
         'controller' => App\Controller\UpdateArticleController::class,
         'middlewares' => [\Framework\ConfMiddleware::class]
     ],
+    'deletearticle' => [
+        'methods' => ['GET','POST'],
+        'path' => '/deletearticle/{articles:[0-9]+}',
+        'controller' => App\Controller\DeleteArticleController::class,
+        'middlewares' => [\Framework\ConfMiddleware::class]
+    ],
     'comment' => [
         'methods' => ['GET','POST'],
         'path' => '/comment/{articles:[0-9]+}',

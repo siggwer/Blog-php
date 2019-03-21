@@ -86,11 +86,23 @@ class CommentRepository implements CommentRepositoryInterface
             comments = :comments,
             comment_date = NOW(),
         WHERE id = :id', [
-            ':id' =>$comment['id'],
+            ':id' => $comment['id'],
             ':post_id' => $comment['post_id'],
             ':author' => $comment['author'],
             ':comment' => $comment['comment'],
             //':validated' => $comment['validated']
         ]);
+    }
+
+    /**
+     * @param $comment
+     *
+     * @return array
+     */
+    public function deleteComment($comment): array
+    {
+        return $this->database->request('DELETE FROM comment WHERE id = article_id',[
+            'article_id' => $comment['article_id']
+        ])->fetch();
     }
 }

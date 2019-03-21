@@ -20,6 +20,7 @@ class Comments
 
     /**
      * @param int $id
+     *
      * @return array
      */
     public function getCommentId(int $id): array
@@ -30,6 +31,7 @@ class Comments
 
     /**
      * @param int $id
+     *
      * @return mixed
      */
     public function getComment(int $id)
@@ -49,6 +51,7 @@ class Comments
 
     /**
      * @param $comment
+     *
      * @return array
      */
     public function insertComment($comment): array
@@ -59,11 +62,23 @@ class Comments
 
     /**
      * @param $comment
+     *
      * @return mixed
      */
     public function updateComment($comment)
     {
         $comment = $this->comment->updateComment($comment);
+        return $comment;
+    }
+
+    /**
+     * @param $comment
+     *
+     * @return array
+     */
+    public function deleteComment($comment)
+    {
+        $comment = $this->comment->deleteComment($comment);
         return $comment;
     }
 
