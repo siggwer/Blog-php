@@ -64,6 +64,14 @@ class SuperAdminAccountController
                 'Location' => '/login'
             ]);
         }
+
+        if(array_key_exists('auth', $_SESSION) &&
+                $_SESSION['auth']->getRank() < 3){
+        $this->setFlash('warning', 'Vous ne puvez pas accéder à cette espace!');
+        return new Response(301, [
+            'Location' => '/'
+        ]);
+    }
         if (array_key_exists('auth', $_SESSION)){
             $posts = $this->users->allusers();
             $articles = $this->article->home();

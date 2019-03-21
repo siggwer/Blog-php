@@ -47,6 +47,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Déconnexion</a>
                 </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/account"><i class="fa fa-user" aria-hidden="true"></i>{{ __session.auth.pseudo }}</a>
+                    </li>
                 {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Se connecter</a>
@@ -122,7 +125,7 @@
                         </a>
                     </li>
                 </ul>
-                <p class="copyright text-muted">Copyright &copy; Blog 2018 | <a href="/login">Administration</a></p>
+                <p class="copyright text-muted">Copyright &copy; Blog 2018 | <a href="/adminaccount">Administration</a></p>
             </div>
         </div>
     </div>
