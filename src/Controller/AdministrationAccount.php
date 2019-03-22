@@ -68,20 +68,18 @@ class AdministrationAccount
                 'Location' => '/login'
             ]);
         }
-        if (array_key_exists('auth', $_SESSION)){
+        if (array_key_exists('auth', $_SESSION)) {
             $posts = $this->users->allArticlesByPseudo(
                 $_SESSION['auth']->getPseudo('pseudo'));
             $articles = $this->article->getArticleWithPseudo(
                 $_SESSION['auth']->getPseudo('pseudo'));
-            $comments = $this->comment->getCommentId(
-                $request->getAttribute('articles', 0));
         }
 
         if ($request->getMethod() === 'GET') {
             $view = $container->get(RenderInterfaces::class)->render(
                 'administration',
-                ['posts' => $posts, 'articles' => $articles,
-                    'comments' => $comments]);
+                ['posts' => $posts, 'articles' => $articles
+                ]);
             $response->getBody()->write($view);
         }
         return $response;

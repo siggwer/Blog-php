@@ -10,7 +10,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Commentaires</h4>
+                        <h4 class="card-title">Articles</h4>
                         {% if articles %}
                             <h5 class="card-title">{{ articles.title |nl2br }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ articles.chapo |nl2br }}</h6>
@@ -29,14 +29,14 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Commentaires</h5>
-                    {% if comments in comments %}
+                    {% for comments in comments %}
                         <h5 class="card-title">{{ comments.auhtor |nl2br }}</h5>
                         <p class="card-text">{{ comments.comments |nl2br }}</p>
                         <p class="card-link">{{ comments.comment_date|nl2br }}</p>
                         <!--<p class="card-link">Another link</p>-->
                     {% else %}
                         <p class="card-text">Aucun commentaire trouvé</p>
-                    {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>

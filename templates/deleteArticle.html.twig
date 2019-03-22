@@ -10,47 +10,46 @@
         <div class="col-lg-10 col-md-10 mx-auto">
             <h2>Supression de l'article</h2>
             <br />
-            {% if articles.title is defined and articles.chapo is defined and articles.content is defined and articles.creation_date_fr is defined %}
-                <form name="delete" class="form" role="form" action="/deletearticle/{{ articles.id }}" method="post">
-                    <input type="hidden" name="__csrf" id="__csrf" value="{{ __csrf }}" />
-                    <div class="form-group">
-                        <label for="title">Titre :</label>
-                        <input type="text" class="form-control" id="title" name="title" placeholder="{{ articles.title |nl2br }}" value="{{ articles.title |nl2br }}" required data-validation-required-message="Entrer un titre.">
-                        <span class="help-inline"></span>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Commentaires</h4>
+                                {% if articles %}
+                                    <h5 class="card-title">{{ articles.title |nl2br }}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ articles.chapo |nl2br }}</h6>
+                                    <p class="card-text">{{ articles.content |nl2br }}</p>
+                                    <p class="card-link">{{ articles.creation_date_fr |nl2br }}</p>
+                                    <!--<p class="card-link">Another link</p>-->
+                                {% else %}
+                                    <p class="card-text">Aucun article trouvé</p>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="chapo">Chapô :</label>
-                        <input type="text" class="form-control" id="chapo" name="chapo" placeholder="{{ articles.chapo |nl2br }}" value="{{ articles.chapo |nl2br }}" rows="5" required data-validation-required-message="Entrer un chapo.">
-                        <span class="help-inline"></span>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Commentaires</h5>
+                                {% if comments in comments %}
+                                    <h5 class="card-title">{{ comments.auhtor |nl2br }}</h5>
+                                    <p class="card-text">{{ comments.comments |nl2br }}</p>
+                                    <p class="card-link">{{ comments.comment_date|nl2br }}</p>
+                                    <!--<p class="card-link">Another link</p>-->
+                                {% else %}
+                                    <p class="card-text">Aucun commentaire trouvé</p>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="content">Contenu :</label>
-                        <textarea class="form-control" id="editor" name="content" rows="15" data-validation-required-message="Entrez un contenu.">{{ articles.content|nl2br }}</textarea>
-                        <span class="help-inline"></span>
-                    </div>
-            {% endif %}
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Tous les commentaires de l'article</h5>
-                    {% for comments in comments %}
-                        <h5 class="card-title">{{ comments.auhtor |nl2br }}</h5>
-                        <p class="card-text">{{ comments.comments |nl2br }}</p>
-                        <p class="card-link">{{ comments.comment_date|nl2br }}</p>
-                        <!--<p class="card-link">Another link</p>-->
-                    {% else %}
-                        <p class="card-text">Aucun commentaire trouvé</p>
-                    {% endfor %}
+                </div>
+                <div class="form-actions">
+                    <a class="btn btn-danger" href="/deletearticle/{{ articles.id }}" target="_blank">Supprimer</a>
+                    <a class="btn btn-primary" href="/account">Retour</a>
                 </div>
             </div>
-                    <br>
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-danger">Supprimer</button>
-                        <a class="btn btn-primary" href="/account">Retour</a>
-                    </div>
-                </form>
-        </div>
-    </div>
-
-    <hr />
-
+            <hr/>
 {% endblock %}

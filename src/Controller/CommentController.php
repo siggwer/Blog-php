@@ -56,12 +56,17 @@ class CommentController
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
+    public function __invoke(ServerRequestInterface $request,
+                             ResponseInterface $response,
+                             Container $container)
     {
         if (array_key_exists('auth', $_SESSION)) {
-            $posts = $this->users->allArticlesByPseudo($_SESSION['auth']->getPseudo());
-            $articles = $this->article->getArticleWithId($request->getAttribute('articles', 0));
-            $comments = $this->comment->getCommentId($request->getAttribute('articles', 0));
+            $posts = $this->users->allArticlesByPseudo(
+                $_SESSION['auth']->getPseudo());
+            $articles = $this->article->getArticleWithId(
+                $request->getAttribute('articles', 0));
+            $comments = $this->comment->getCommentId(
+                $request->getAttribute('articles', 0));
 
             if ($posts && $articles && $comments === false) {
                 $this->setFlash("danger", "Article inconnu");
@@ -71,11 +76,13 @@ class CommentController
             }
 
             if ($request->getMethod() === 'GET') {
-                $view = $container->get(RenderInterfaces::class)->render('modifyComment', ['posts' => $posts, 'articles' => $articles, 'comments' => $comments]);
+                $view = $container->get(RenderInterfaces::class)->render(
+                    'modifyComment', ['posts' => $posts,
+                        'articles' => $articles,
+                        'comments' => $comments]);
                 $response->getBody()->write($view);
-                return $response;
             }
         }
-
+        return $response;
     }
 }

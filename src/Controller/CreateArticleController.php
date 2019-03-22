@@ -130,7 +130,7 @@ class CreateArticleController
         }
 
         $from =[
-            'email' => 'test@yopmail.com',
+            'email' => 'test1@yopmail.com',
             'name' => 'admin',
         ];
 
@@ -140,7 +140,7 @@ class CreateArticleController
         ];
 
         $result = $this->mailHelper->sendMail('Modification de l\'article.',
-            $from, $to, 'mailVerify');
+            $from, $to, 'mailCreate');
         if ($result->statusCode() === 202) {
             $this->setFlash('success',
                 'Un email vous a été envoyé pour confirmer la création de l\'article.');

@@ -23,7 +23,8 @@ class MailHelper
      * @param string $sendgridApiKey
      * @param RenderInterfaces $render
      */
-    public function __construct(string $sendGridApiKey, RenderInterfaces $render) {
+    public function __construct(string $sendGridApiKey,
+                                RenderInterfaces $render) {
 
         $this->sendgridApiKey = $sendGridApiKey;
         $this->render = $render;

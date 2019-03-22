@@ -85,16 +85,27 @@ class DeleteArticleController
             }
         }
 
-        if(isset($articles['id']) && ($comments['author_id']) === true){
+        if(isset($articles['id'])  === true){
             $deleteArticle = $this->article->deleteArticle($articles['id']);
        }
 
         if($deleteArticle){
-            $this->setFlash('success','Votre article a bien été modifié');
+            $this->setFlash('success','Votre article a bien été supprimé');
         }else{
             $this->setFlash('warning','Un problème est survenue');
         }
 
-    }
+        if(isset($comments['article_id']) === true){
+            $deleteComment = $this->comment->deleteComment($comments['article_id']);
+        }
 
+        if($deleteComment){
+            $this->setFlash('success','Votre article et commentaire ont bien été supprimés');
+        }else{
+            $this->setFlash('warning','Un problème est survenue');
+        }
+        return new Response(301, [
+            'Location' => '/account'
+        ]);
+    }
 }

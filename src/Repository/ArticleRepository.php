@@ -49,7 +49,7 @@ class ArticleRepository implements ArticleRepositoryInterface
      */
     public function getByArticlePseudo(string $pseudo)
     {
-        return $this->database->request('SELECT article.id, title, chapo, content, DATE_FORMAT(publication_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, `author_id`, pseudo, email, email_token, password, register_at, connexion_at, rank, article.id FROM user LEFT JOIN `article` ON article.author_id = user.id WHERE pseudo = :pseudo',[
+        return $this->database->request('SELECT article.id, title, chapo, content, DATE_FORMAT(publication_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, `author_id`, pseudo, email, email_token, password, register_at, connexion_at, rank, article.id FROM user LEFT JOIN `article` ON article.author_id = user.id WHERE pseudo = :pseudo ORDER BY `publication_date` DESC',[
             ':pseudo' => $pseudo
         ])->fetchAll();
     }

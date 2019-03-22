@@ -12,27 +12,17 @@
                     <div class="card-body">
                         <h5 class="card-title">Mes articles</h5>
                             {% for articles in articles %}
+                                <br>
                             <h5 class="card-title">{{ articles.title |nl2br }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ articles.chapo |nl2br }}</h6>
                             <p class="card-text">{{ articles.content |nl2br }}</p>
                             <p class="card-link">{{ articles.creation_date_fr |nl2br }}</p>
+                                <br>
                             <!--<p class="card-link">Another link</p>-->
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Commentaires</h5>
-                                        {% for comments in comments %}
-                                            <h5 class="card-title">{{ comments.auhtor |nl2br }}</h5>
-                                            <p class="card-text">{{ comments.comments |nl2br }}</p>
-                                            <p class="card-link">{{ comments.comment_date|nl2br }}</p>
-                                            <!--<p class="card-link">Another link</p>-->
-                                        {% else %}
-                                            <p class="card-text">Aucun commentaire trouvé</p>
-                                        {% endfor %}
-                                    </div>
-                                </div>
                                 <a class="btn btn-success" href="/update/{{ articles.id }}" target="_blank">Modifier</a>
                                 <a class="btn btn-secondary" href="/comment/{{ articles.id }}" target="_blank">Voir les commentaires</a>
                                 <a class="btn btn-danger" href="/deletearticle/{{ articles.id }}" target="_blank">Supprimer l'article</a>
+                                <br>
                         {% else %}
                             <p class="card-text">Aucun article trouvé</p>
                         {% endfor %}
@@ -52,14 +42,14 @@
                             <tr>
                                 <th scope="col">Pseudo</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Mot de passe</th>
+                                <!--<th scope="col">Mot de passe</th>-->
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <th scope="row">{{ posts.pseudo |nl2br }}</th>
                                 <td>{{ posts.email |nl2br }}</td>
-                                <td>Modifier mon mot de passe</td>
+                                <!--<td>Modifier mon mot de passe</td>-->
                             </tr>
                             </tbody>
                         </table>
