@@ -63,11 +63,11 @@ class CreateArticleController
                              ResponseInterface $response,
                              Container $container)
     {
-        if (array_key_exists('auth', $_SESSION)) {
+        if(array_key_exists('auth', $_SESSION)) {
             $posts = $this->users->allArticlesByPseudo(
                 $_SESSION['auth']->getPseudo('pseudo'));
 
-            if ($request->getMethod() === 'GET') {
+            if($request->getMethod() === 'GET') {
                 $view = $container->get(RenderInterfaces::class)->render(
                     'createArticle',
                     ['posts' => $posts]);
@@ -85,7 +85,7 @@ class CreateArticleController
         $path = '/create';
 
         $titleLength = strlen($title);
-        if ($titleLength < 10 ) {
+        if($titleLength < 10 ) {
             $this->setFlash("danger",
                 "Votre titre doit contenir au moins 10 caractères
                  ou ne doit pas être vide");
@@ -95,7 +95,7 @@ class CreateArticleController
         }
 
         $chapoLength = strlen($chapo);
-        if ($chapoLength < 20 ) {
+        if($chapoLength < 20 ) {
             $this->setFlash("danger",
                 "Le chapoô doit contenir au moins 20 caractères
                  ou ne doit pas être vide");
@@ -105,7 +105,7 @@ class CreateArticleController
         }
 
         $contentLength = strlen($content);
-        if ($contentLength < 30) {
+        if($contentLength < 30) {
             $this->setFlash("danger",
                 "Votre contenu doit contenir au minimum 50 caractères
                  ou ne doit pas être vide");
@@ -123,7 +123,7 @@ class CreateArticleController
             'author_id' => $author_id
         ]);
 
-        if ($createArticle){
+        if($createArticle){
             $this->setFlash('success','Votre article a bien été créé.');
         }else{
             $this->setFlash('warning','Un problème est survenue');
@@ -141,7 +141,7 @@ class CreateArticleController
 
         $result = $this->mailHelper->sendMail('Modification de l\'article.',
             $from, $to, 'mailCreate');
-        if ($result->statusCode() === 202) {
+        if($result->statusCode() === 202) {
             $this->setFlash('success',
                 'Un email vous a été envoyé pour confirmer la création de l\'article.');
         }
