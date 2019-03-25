@@ -29,14 +29,14 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Commentaires</h5>
-                    {% for comments in comments %}
-                        <h5 class="card-title">{{ comments.auhtor |nl2br }}</h5>
+                    {% if comments %}
+                        <h5 class="card-title">{{ comments.author |nl2br }}</h5>
                         <p class="card-text">{{ comments.comments |nl2br }}</p>
                         <p class="card-link">{{ comments.comment_date|nl2br }}</p>
                         <!--<p class="card-link">Another link</p>-->
                     {% else %}
                         <p class="card-text">Aucun commentaire trouvé</p>
-                    {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>

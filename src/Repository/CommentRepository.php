@@ -28,7 +28,7 @@ class CommentRepository implements CommentRepositoryInterface
      */
     public function all(): array
     {
-        return $this->database->request('SELECT * FROM comment')->fetchAll();
+        return $this->database->request('SELECT * FROM comment LEFT JOIN `article` ON `comment`.`article_id` = `article`.`id`')->fetchAll();
     }
 
     /**
@@ -38,7 +38,7 @@ class CommentRepository implements CommentRepositoryInterface
      */
     public function getComment(int $id)
     {
-        return $this->database->request('SELECT * FROM comment  WHERE article_id = :id', [
+        return $this->database->request('SELECT * FROM `comment` WHERE article_id = :id', [
             ':id' => $id
         ])->fetch();
     }
@@ -50,7 +50,7 @@ class CommentRepository implements CommentRepositoryInterface
      */
     public function getCommentById(int $id): array
     {
-        return $this->database->request('SELECT * FROM `comment` LEFT JOIN `article` ON `comment`.`article_id` = `article`.`id`  WHERE article_id = :id ORDER BY comment_date DESC', [
+        return $this->database->request('SELECT * FROM `comment` LEFT JOIN `article` ON `comment`.`article_id` = `article`.`id`  WHERE article_id = :id AND validated = 1 ORDER BY comment_date DESC', [
                 ':id' => $id,
         ])->fetchAll();
     }

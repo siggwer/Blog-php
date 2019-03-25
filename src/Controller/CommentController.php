@@ -65,7 +65,7 @@ class CommentController
                 $_SESSION['auth']->getPseudo());
             $articles = $this->article->getArticleWithId(
                 $request->getAttribute('articles', 0));
-            $comments = $this->comment->getCommentId(
+            $comments = $this->comment->getComment(
                 $request->getAttribute('articles', 0));
 
             if ($posts && $articles && $comments === false) {

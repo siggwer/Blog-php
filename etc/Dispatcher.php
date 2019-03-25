@@ -38,7 +38,7 @@ class Dispatcher
         $this->container = $container;
         $this->indexMiddleware = 0;
 
-        foreach ($middlewares as $middleware) {
+        foreach($middlewares as $middleware) {
             $this->pipe($middleware);
         }
     }
@@ -67,7 +67,7 @@ class Dispatcher
         $middleware = $this->getMiddleware();
         $this->indexMiddleware += 1;
 
-        if (is_null($middleware)) {
+        if(is_null($middleware)) {
             return $response;
         }
 

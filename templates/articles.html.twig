@@ -44,7 +44,7 @@
                 <input type="hidden" name="__csrf" id="__csrf" value="{{ __csrf }}" />
                 <div class="form-group">
                     <label>Auteur : *</label>
-                    <input type="text" class="form-control" placeholder="" id="author" name="author" required data-validation-required-message="Entrer votre pseudo." value="">
+                    <input type="text" class="form-control" placeholder="{% if __session.auth is defined %} {{ __session.auth.pseudo }} {% endif %}" id="author" name="author" required data-validation-required-message="Entrer votre pseudo." value="{{ __session.auth.pseudo }}">
                     <p class="help-block text-danger"></p>
                 </div>
 

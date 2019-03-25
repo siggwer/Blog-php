@@ -72,7 +72,7 @@ class SuperAdminAccountController
             'Location' => '/'
         ]);
     }
-        if (array_key_exists('auth', $_SESSION)){
+        if(array_key_exists('auth', $_SESSION)){
             $posts = $this->users->allusers();
             $articles = $this->article->home();
             $comments = $this->comment->allComments();
