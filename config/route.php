@@ -68,6 +68,12 @@ return [
         'controller' => App\Controller\CommentController::class,
         'middlewares' => [\Framework\ConfMiddleware::class]
     ],
+    'commentvalidated' => [
+        'methods' => ['GET','POST'],
+        'path' => '/commentvalidated/{comments:[0-9]+}',
+        'controller' => App\Controller\CommentValidatedController::class,
+        'middlewares' => [\Framework\ConfMiddleware::class]
+    ],
     'contact' => [
         'methods' => ['GET', 'POST'],
         'path' => '/contact',

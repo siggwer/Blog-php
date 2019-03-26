@@ -38,6 +38,7 @@
                     <table class="table">
                         <thead>
                         <tr>
+                            <th scope="col">Article commenté</th>
                             <th scope="col">Autheur</th>
                             <th scope="col">Commentaire</th>
                             <th scope="col">Date</th>
@@ -46,14 +47,19 @@
                         </thead>
                         <tbody>
                         {% for comments in comments %}
+                            {{ dump(comments) }}
                             <tr>
-                                <th scope="row">{{ comments.author |nl2br }}</th>
+                                <th scope="row">{{ comments.title |nl2br }}</th>
+                                <td>{{ comments.author |nl2br }}</td>
                                 <td>{{ comments.comments |nl2br }}</td>
                                 <td>{{ comments.comment_date|nl2br }}</td>
-                                {% if comments.comments_validated == 1 %}
-                                <td>Validé</td>
-                                {% else %}
-                                    <td>A valider</td>
+                                {% if comments.validated == 1 %}
+                                <td>Comentaire validé</td>
+                                {% elseif comments.validated == 0 %}
+                                    <td><a class="btn btn-success" href="/commentvalidated/{{ comments.id }}" target="_blank">Valider le commentaire</a>
+                                        <a class="btn btn-danger" href="/" target="_blank">Supprimer le commentaire</a>
+                                    </td>
+                                    {% else %}
                                     {% endif %}
                             </tr>
                         {% endfor %}
@@ -62,6 +68,7 @@
                 </div>
             </div>
         </div>
+    </div>
         <br>
         <div class="row">
             <div class="col">
@@ -73,7 +80,7 @@
                                 <tr>
                                     <th scope="col">Pseudo</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col"></th>
+                                    <th scope="col">Type d'utilisateur</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -81,7 +88,13 @@
                                 <tr>
                                     <th scope="row">{{ posts.pseudo |nl2br }}</th>
                                     <td>{{ posts.email |nl2br }}</td>
-                                    <td></td>
+                                    {% if posts.rank < 3 %}
+                                    <td>Utilisateur</td>
+                                    {% elseif posts.rank == 3 %}
+                                        <td>Administrateur
+                                    {% else %}
+                                    {% endif %}
+                                    </td>
                                 </tr>
                                 {% endfor %}
                                 </tbody>
@@ -90,7 +103,6 @@
                 </div>
             </div>
         </div>
-    </div>
         <a class="btn btn-success" href="/" target="_blank">Retour au blog</a>
     </div>
 

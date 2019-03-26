@@ -39,6 +39,20 @@ interface CommentRepositoryInterface
     public function updateComment($comment): PdoStatementInterface;
 
     /**
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function getCommentForvalidated(int $id);
+
+    /**
+     * @param $comment
+     *
+     * @return PdoStatementInterface
+     */
+    public function validatedComment($comment): PdoStatementInterface;
+
+    /**
      * @param $comment
      *
      * @return array

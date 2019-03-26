@@ -85,13 +85,42 @@ class CommentRepository implements CommentRepositoryInterface
             author = :author,
             comments = :comments,
             comment_date = NOW(),
-        WHERE id = :id', [
-            ':id' => $comment['id'],
-            ':post_id' => $comment['post_id'],
+            article_id = :article_id,
+            validated = :validated
+        WHERE article_id = :id', [
             ':author' => $comment['author'],
             ':comment' => $comment['comment'],
-            //':validated' => $comment['validated']
+            ':article_id' => $comment['id'],
+            ':validated' => $comment['validated']
         ]);
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function getCommentForvalidated(int $id)
+    {
+        return $this->database->request('SELECT `comment`.`id`, `comment`.`validated` FROM `comment` WHERE article_id = :id', [
+            ':id' => $id
+        ])->fetch();
+    }
+
+    /**
+     * @param $comment
+     *
+     * @return PdoStatementInterface
+     */
+    public function validatedComment($comment): PdoStatementInterface
+    {
+        return $this->database->request('UPDATE comment 
+        SET id = :id, validated = :validated 
+        WHERE id = :id',[
+            'id' => $comment['id'],
+            ':validated' => $comment['validated']
+        ]);
+
     }
 
     /**

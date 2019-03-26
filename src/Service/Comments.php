@@ -63,12 +63,31 @@ class Comments
     /**
      * @param $comment
      *
-     * @return mixed
+     * @return \App\Pdo\Interfaces\PdoStatementInterface|mixed
      */
     public function updateComment($comment)
     {
         $comment = $this->comment->updateComment($comment);
         return $comment;
+    }
+
+    public function getCommentForvalidated(int $id)
+    {
+        $comment = $this->comment->getCommentForvalidated($id);
+        return $comment;
+
+    }
+
+    /**
+     * @param $comment
+     *
+     * @return \App\Pdo\Interfaces\PdoStatementInterface
+     */
+    public function validatedComment($comment)
+    {
+        $comment = $this->comment->validatedComment($comment);
+        return $comment;
+
     }
 
     /**
