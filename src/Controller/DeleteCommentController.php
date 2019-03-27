@@ -13,7 +13,7 @@ use Framework\GetField;
 use Framework\Flash;
 use Framework\MailHelper;
 
-class CommentValidatedController
+class DeleteCommentController
 {
     use GetField, Flash;
 
@@ -38,7 +38,7 @@ class CommentValidatedController
     private $mailHelper;
 
     /**
-     * CommentValidatedController constructor.
+     * DeleteCommentController constructor.
      *
      * @param Users $user
      * @param Articles $article
@@ -63,8 +63,6 @@ class CommentValidatedController
      *
      * @return Response
      *
-     * @throws \DI\DependencyException
-     * @throws \DI\NotFoundException
      * @throws \SendGrid\Mail\TypeException
      */
     public function __invoke(ServerRequestInterface $request,
@@ -79,16 +77,18 @@ class CommentValidatedController
         }
 
         if(isset($posts) && $comments) {
-            $comments['validated'] = 1;
+            var_dump($comments);
+            exit;
+
         }
 
         $email = $comments['email'];
 
-        $commentValidated = $this->comment->validatedComment($comments);
+       $deleteComment = $this->comment->deleteComment($comments);
 
 
-        if($commentValidated){
-            $this->setFlash('success','Le commentaire a bien été validé');
+        if($deleteComment){
+            $this->setFlash('success','Le commentaire a bien été supprimé');
         }else{
             $this->setFlash('warning','Un problème est survenue');
         }
@@ -105,16 +105,19 @@ class CommentValidatedController
 
         $result = $this->mailHelper->sendMail(
             'Validation du commentaire',
-            $from, $to, 'mailValidatedComment');
+            $from, $to, 'mailVerify');
+
         if ($result->statusCode() === 202) {
             $this->setFlash(
                 'success',
                 'Un email a été envoyé pour confirmer
-                 la validation du commentaire');
+                 la suppression du commentaire');
         }
 
         return new Response(301, [
             'Location' => '/adminaccount'
         ]);
     }
+
+
 }

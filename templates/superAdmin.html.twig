@@ -57,9 +57,10 @@
                                 <td>Comentaire validé</td>
                                 {% elseif comments.validated == 0 %}
                                     <td><a class="btn btn-success" href="/commentvalidated/{{ comments.id }}" target="_blank">Valider le commentaire</a>
-                                        <a class="btn btn-danger" href="/" target="_blank">Supprimer le commentaire</a>
+                                        <a class="btn btn-danger" href="/deletecomment/{{ comments.id }}" target="_blank">Supprimer le commentaire</a>
                                     </td>
                                     {% else %}
+                                        <td>Le commentaire a été supprimé</td>
                                     {% endif %}
                             </tr>
                         {% endfor %}

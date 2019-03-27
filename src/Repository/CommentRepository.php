@@ -137,7 +137,7 @@ class CommentRepository implements CommentRepositoryInterface
      */
     public function deleteComment($comment): array
     {
-        return $this->database->request('DELETE FROM comment WHERE id = article_id',[
+        return $this->database->request('DELETE FROM comment WHERE id = :id',[
             'article_id' => $comment['article_id']
         ])->fetch();
     }

@@ -39,7 +39,9 @@ class VerificationEmail
      *
      * @throws \Exception
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
+    public function __invoke(ServerRequestInterface $request,
+                             ResponseInterface $response,
+                             Container $container)
     {
         $userId = $request->getAttribute('id');
         $token = $request->getAttribute('token');
@@ -47,18 +49,20 @@ class VerificationEmail
         $users = $this->users->getUserById($userId);
 
         if ($users === false || $users->email_token() != $token){
-            $this->setFlash("danger", "Votre lien d'activation n'est pas valide");
+            $this->setFlash("danger",
+                "Votre lien d'activation n'est pas valide");
             return new Response(301, [
                 'Location' => '/'
             ]);
         }
 
-
         $timezone = new DateTimeZone('Europe/Paris');
         $limit = new DateTime('-10 minute', $timezone);
+
         $registerAt = $users->register_at();
         if ($limit > $registerAt){
-            $this->setFlash("warning", "Votre lien n'est plus valide");
+            $this->setFlash("warning",
+                "Votre lien n'est plus valide");
             return new Response(301, [
                 'Location' => '/'
             ]);
@@ -67,7 +71,9 @@ class VerificationEmail
         $users->setEmail_token(null);
         $this->users->updateUser($users);
 
-        $this->setFlash("success", "Votre compte est actif. Vous pouvez vous connecter");
+        $this->setFlash(
+            "success",
+            "Votre compte est actif. Vous pouvez vous connecter");
         return new Response(301,[
             'Location' => '/'
         ]);

@@ -74,6 +74,12 @@ return [
         'controller' => App\Controller\CommentValidatedController::class,
         'middlewares' => [\Framework\ConfMiddleware::class]
     ],
+    'deletecomment' => [
+        'methods' => ['GET','POST'],
+        'path' => '/deletecomment/{comments:[0-9]+}',
+        'controller' => App\Controller\DeleteCommentController::class,
+        'middlewares' => [\Framework\ConfMiddleware::class]
+    ],
     'contact' => [
         'methods' => ['GET', 'POST'],
         'path' => '/contact',
