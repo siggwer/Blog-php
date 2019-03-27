@@ -6,7 +6,6 @@ use App\Service\Users;
 use App\Service\Articles;
 use App\Service\Comments;
 use DI\Container;
-use Framework\Interfaces\RenderInterfaces;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -80,13 +79,13 @@ class CommentValidatedController
         }
 
         if(isset($posts) && $comments) {
-            var_dump($comments);
             $comments['validated'] = 1;
-            var_dump($comments);
-                $commentValidated = $this->comment->validatedComment($comments);
-                var_dump($commentValidated);
-                exit;
         }
+
+        $email = $comments['email'];
+
+        $commentValidated = $this->comment->validatedComment($comments);
+
 
         if($commentValidated){
             $this->setFlash('success','Le commentaire a bien été validé');
@@ -104,9 +103,14 @@ class CommentValidatedController
             'name' =>  explode('@', $email)[0],
         ];
 
-        $result = $this->mailHelper->sendMail('Validation du commentaire', $from, $to, 'mailVerify');
+        $result = $this->mailHelper->sendMail(
+            'Validation du commentaire',
+            $from, $to, 'mailVerify');
         if ($result->statusCode() === 202) {
-            $this->setFlash('success', 'Un email vous a été envoyé pour confirmer la validation du commentaire');
+            $this->setFlash(
+                'success',
+                'Un email a été envoyé pour confirmer
+                 la validation du commentaire');
         }
 
         return new Response(301, [

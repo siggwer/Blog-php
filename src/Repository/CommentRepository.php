@@ -102,7 +102,14 @@ class CommentRepository implements CommentRepositoryInterface
      */
     public function getCommentForvalidated(int $id)
     {
-        return $this->database->request('SELECT `comment`.`id`, `comment`.`validated` FROM `comment` WHERE article_id = :id', [
+        return $this->database->request('SELECT `comment`.`id`,
+        `comment`.`validated`, `article`.`author_id`, `user`.`email` 
+        FROM `comment` 
+        LEFT JOIN `article` 
+        ON `comment`.`article_id` = `article`.`id` 
+	    LEFT JOIN `user` 
+	    ON `article`.`author_id` = `user`.`id`
+	    WHERE article_id = :id', [
             ':id' => $id
         ])->fetch();
     }
@@ -115,7 +122,7 @@ class CommentRepository implements CommentRepositoryInterface
     public function validatedComment($comment): PdoStatementInterface
     {
         return $this->database->request('UPDATE comment 
-        SET id = :id, validated = :validated 
+        SET validated = :validated 
         WHERE id = :id',[
             'id' => $comment['id'],
             ':validated' => $comment['validated']
