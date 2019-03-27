@@ -64,9 +64,9 @@ class DeleteArticleController
         if(array_key_exists('auth', $_SESSION)){
             $posts = $this->users->allArticlesByPseudo(
                 $_SESSION['auth']->getPseudo());
-            $comments = $this->comment->getCommentId(
-                $request->getAttribute('articles', 0));
             $articles = $this->article->getArticleWithId(
+                $request->getAttribute('articles', 0));
+            $comments = $this->comment->getCommentId(
                 $request->getAttribute('articles', 0));
 
             if ($posts && $articles === false) {
@@ -78,12 +78,14 @@ class DeleteArticleController
 
             if($request->getMethod() === 'GET') {
                 $view = $container->get(RenderInterfaces::class)->render(
-                    'DeleteArticle', ['posts' => $posts,
+                    'deleteArticle', ['posts' => $posts,
                     'articles' => $articles, 'comments' => $comments]);
                 $response->getBody()->write($view);
                 return $response;
             }
         }
+
+        $email = $_SESSION['auth']->getEmail();
 
         if(isset($articles['id'])  === true){
             $deleteArticle = $this->article->deleteArticle($articles['id']);
@@ -94,6 +96,32 @@ class DeleteArticleController
             $this->setFlash('success','Votre article a bien été supprimé');
         }else{
             $this->setFlash('warning','Un problème est survenue');
+        }
+
+        if($deleteArticle){
+            $this->setFlash('success','Votre article a bien été modifié');
+        }else{
+            $this->setFlash('warning','Un problème est survenue');
+        }
+
+        $from =[
+            'email' => 'test@yopmail.com',
+            'name' => 'admin',
+        ];
+
+        $to = [
+            'email' => $email,
+            'name' =>  explode('@', $email)[0],
+        ];
+
+        $result = $this->mailHelper->sendMail(
+            'Modification de l\'article.', $from, $to,
+            'mailDeleteArticle');
+
+        if ($result->statusCode() === 202) {
+            $this->setFlash(
+                'success',
+                'Un email vous a été envoyé pour confirmer la modification de l\'article.');
         }
 
         return new Response(301, [

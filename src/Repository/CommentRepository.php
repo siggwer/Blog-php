@@ -28,7 +28,7 @@ class CommentRepository implements CommentRepositoryInterface
      */
     public function all(): array
     {
-        return $this->database->request('SELECT * FROM comment LEFT JOIN `article` ON `comment`.`article_id` = `article`.`id`')->fetchAll();
+        return $this->database->request('SELECT * FROM comment LEFT JOIN `article` ON `comment`.`article_id` = `article`.`id` ORDER BY comment_date DESC')->fetchAll();
     }
 
     /**
@@ -103,7 +103,7 @@ class CommentRepository implements CommentRepositoryInterface
     public function getCommentForvalidated(int $id)
     {
         return $this->database->request('SELECT `comment`.`id`,
-        `comment`.`validated`, `article`.`author_id`, `user`.`email` 
+        `comment`.`validated`, `article`.`author_id`, `comment`.`article_id`, `user`.`email` 
         FROM `comment` 
         LEFT JOIN `article` 
         ON `comment`.`article_id` = `article`.`id` 
@@ -133,12 +133,13 @@ class CommentRepository implements CommentRepositoryInterface
     /**
      * @param $comment
      *
-     * @return array
+     * @return array|mixed
      */
-    public function deleteComment($comment): array
+    public function deleteComment($comment)
     {
-        return $this->database->request('DELETE FROM comment WHERE id = :id',[
-            'article_id' => $comment['article_id']
+        return $this->database->request('DELETE
+        FROM comment WHERE id = :id',[
+            'id' => $comment['id']
         ])->fetch();
     }
 }

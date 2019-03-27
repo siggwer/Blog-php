@@ -85,6 +85,15 @@ class UpdateArticleController
                 return new Response(301, [
                     'Location' => '/account'
                 ]);
+            }else{
+                if(!empty($_SESSION['auth']) &&
+                    $_SESSION['auth']->getPseudo() === $posts &&
+                    $_SESSION['auth']->getRank() === 3){
+                    $this->setFlash('warning', 'Vous êtes déjà connecté !');
+                    return new Response(301, [
+                        'Location' => '/adminaccount'
+                    ]);
+                }
             }
 
             if($request->getMethod() === 'GET') {
@@ -160,9 +169,14 @@ class UpdateArticleController
             'name' =>  explode('@', $email)[0],
         ];
 
-        $result = $this->mailHelper->sendMail('Modification de l\'article.', $from, $to, 'mailVerify');
+        $result = $this->mailHelper->sendMail(
+            'Modification de l\'article.', $from, $to,
+            'mailUpdateArticle');
+
         if ($result->statusCode() === 202) {
-            $this->setFlash('success', 'Un email vous a été envoyé pour confirmer la modification de l\'article.');
+            $this->setFlash(
+                'success',
+                'Un email vous a été envoyé pour confirmer la modification de l\'article.');
         }
 
         return new Response(301, [

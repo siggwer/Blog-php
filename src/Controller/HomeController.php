@@ -36,10 +36,13 @@ class HomeController
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Container $container)
+    public function __invoke(ServerRequestInterface $request,
+                             ResponseInterface $response,
+                             Container $container)
     {
         $articles = $this->articles->home();
-        $view = $container->get(RenderInterfaces::class)->render('home', ['articles' => $articles]);
+        $view = $container->get(RenderInterfaces::class)->render(
+            'home', ['articles' => $articles]);
         $response->getBody()->write($view);
         return $response;
     }

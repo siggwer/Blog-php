@@ -139,8 +139,9 @@ class CreateArticleController
             'name' =>  explode('@', $email)[0],
         ];
 
-        $result = $this->mailHelper->sendMail('Modification de l\'article.',
+        $result = $this->mailHelper->sendMail('Création de l\'article',
             $from, $to, 'mailCreate');
+
         if($result->statusCode() === 202) {
             $this->setFlash('success',
                 'Un email vous a été envoyé pour confirmer la création de l\'article.');

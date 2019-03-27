@@ -57,5 +57,5 @@ interface CommentRepositoryInterface
      *
      * @return array
      */
-    public function deleteComment($comment): array;
+    public function deleteComment($comment);
 }

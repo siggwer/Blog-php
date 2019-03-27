@@ -80,8 +80,9 @@ class SuperAdminAccountController
 
         if ($request->getMethod() === 'GET') {
             $view = $container->get(RenderInterfaces::class)->render(
-                'superAdmin',
-                ['posts' => $posts, 'articles' => $articles,
+                'superAdmin', [
+                    'posts' => $posts,
+                    'articles' => $articles,
                     'comments' => $comments]);
             $response->getBody()->write($view);
         }

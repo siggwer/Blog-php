@@ -116,6 +116,7 @@ class ArticlesDetailsController
         }else{
             $this->setFlash('warning','Un problème est survenue');
         }
+
         return new Response(301, [
             'Location' => $path
         ]);

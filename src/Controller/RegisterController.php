@@ -147,7 +147,8 @@ class RegisterController
             'Confirmation de votre compte', $from, $to, 'mailVerify');
         if ($result->statusCode() === 202) {
             $this->setFlash(
-                'success', 'Un email vous a été envoyé pour confirmer votre compte');
+                'success',
+                'Un email vous a été envoyé pour confirmer votre compte');
         }
 
         return new Response(301, [

@@ -76,16 +76,11 @@ class DeleteCommentController
                 $request->getAttribute('comments', 0));
         }
 
-        if(isset($posts) && $comments) {
-            var_dump($comments);
-            exit;
-
-        }
-
         $email = $comments['email'];
 
-       $deleteComment = $this->comment->deleteComment($comments);
-
+        $deleteComment = $this->comment->deleteComment([
+           'id' => $comments['id']
+       ]);
 
         if($deleteComment){
             $this->setFlash('success','Le commentaire a bien été supprimé');
@@ -105,7 +100,7 @@ class DeleteCommentController
 
         $result = $this->mailHelper->sendMail(
             'Validation du commentaire',
-            $from, $to, 'mailVerify');
+            $from, $to, 'mailDeleteComment');
 
         if ($result->statusCode() === 202) {
             $this->setFlash(
@@ -118,6 +113,4 @@ class DeleteCommentController
             'Location' => '/adminaccount'
         ]);
     }
-
-
 }

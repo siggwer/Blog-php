@@ -21,6 +21,7 @@
                             <!--<p class="card-link">Another link</p>-->
                             <a class="btn btn-success" href="/update/{{ articles.id }}" target="_blank">Modifier</a>
                             <a class="btn btn-secondary" href="/comment/{{ articles.id }}" target="_blank">Voir les commentaires</a>
+                            <a class="btn btn-danger" href="/deletearticle/{{ articles.id }}" target="_blank">Supprimer l'article</a>
                             <br>
                         {% else %}
                             <p class="card-text">Aucun article trouvé</p>
@@ -47,7 +48,6 @@
                         </thead>
                         <tbody>
                         {% for comments in comments %}
-                            {{ dump(comments) }}
                             <tr>
                                 <th scope="row">{{ comments.title |nl2br }}</th>
                                 <td>{{ comments.author |nl2br }}</td>
@@ -56,8 +56,8 @@
                                 {% if comments.validated == 1 %}
                                 <td>Comentaire validé</td>
                                 {% elseif comments.validated == 0 %}
-                                    <td><a class="btn btn-success" href="/commentvalidated/{{ comments.id }}" target="_blank">Valider le commentaire</a>
-                                        <a class="btn btn-danger" href="/deletecomment/{{ comments.id }}" target="_blank">Supprimer le commentaire</a>
+                                    <td><a class="btn btn-success" href="/commentvalidated/{{ comments.id }}">Valider le commentaire</a>
+                                        <a class="btn btn-danger" href="/deletecomment/{{ comments.id }}">Supprimer le commentaire</a>
                                     </td>
                                     {% else %}
                                         <td>Le commentaire a été supprimé</td>

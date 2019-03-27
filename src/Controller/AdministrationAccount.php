@@ -61,13 +61,21 @@ class AdministrationAccount
                              ResponseInterface $response,
                              Container $container)
     {
-        if(!array_key_exists('auth', $_SESSION)){
-            $this->setFlash('warning',
-                'Vous devez être connecté pour accéder à votre espace');
+        if(!array_key_exists('auth', $_SESSION)) {
+            if (empty($_SESSION['auth'])) {
+                $this->setFlash('warning',
+                    'Vous devez être connecté pour accéder à votre espace');
+                return new Response(301, [
+                    'Location' => '/login'
+                ]);
+            }
+        }if(!empty($_SESSION['auth']) &&
+            $_SESSION['auth']->getRank() === 3){
             return new Response(301, [
-                'Location' => '/login'
-            ]);
-        }
+            'Location' => '/adminaccount'
+        ]);
+    }
+
         if (array_key_exists('auth', $_SESSION)) {
             $posts = $this->users->allArticlesByPseudo(
                 $_SESSION['auth']->getPseudo('pseudo'));

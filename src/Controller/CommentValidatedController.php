@@ -104,15 +104,15 @@ class CommentValidatedController
         ];
 
         $result = $this->mailHelper->sendMail(
-            'Validation du commentaire',
-            $from, $to, 'mailValidatedComment');
+            'Validation du commentaire', $from, $to,
+            'mailValidatedComment');
+
         if ($result->statusCode() === 202) {
             $this->setFlash(
                 'success',
                 'Un email a été envoyé pour confirmer
                  la validation du commentaire');
         }
-
         return new Response(301, [
             'Location' => '/adminaccount'
         ]);
