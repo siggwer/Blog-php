@@ -1,4 +1,4 @@
-{<img src="https://api.codacy.com/project/badge/Grade/ebdf191541024da1b3364534f80935af" alt="Codacy code quality" />}[https://www.codacy.com/app/siggwer/Blog-php?utm_source=github.com&utm_medium=referral&utm_content=siggwer/Blog-php&utm_campaign=Badge_Grade]
+<img src="https://api.codacy.com/project/badge/Grade/ebdf191541024da1b3364534f80935af" alt="Codacy code quality" />
 
 "Blog-php" 
 
