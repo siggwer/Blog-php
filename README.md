@@ -1,3 +1,6 @@
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7dee5264c17d48879cb66990ab48a8dc)](https://app.codacy.com/app/siggwer/Blog-php?utm_source=github.com&utm_medium=referral&utm_content=siggwer/Blog-php&utm_campaign=Badge_Grade_Dashboard)
+
 "# Blog-php" 
 
 "Hello,
