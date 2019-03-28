@@ -5,6 +5,7 @@ namespace App\Pdo\Interfaces;
 
 /**
  * Interface PdoStatementInterface
+ *
  * @package App\Pdo\Interfaces
  */
 interface PdoStatementInterface

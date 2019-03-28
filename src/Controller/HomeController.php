@@ -22,14 +22,15 @@ class HomeController
      *
      * @param Articles $articles
      */
-    public function __construct(Articles $articles) {
+    public function __construct(Articles $articles)
+    {
         $this->articles = $articles;
     }
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
-     * @param Container $container
+     * @param ResponseInterface      $response
+     * @param Container              $container
      *
      * @return ResponseInterface
      *
@@ -37,12 +38,13 @@ class HomeController
      * @throws \DI\NotFoundException
      */
     public function __invoke(ServerRequestInterface $request,
-                             ResponseInterface $response,
-                             Container $container)
-    {
+        ResponseInterface $response,
+        Container $container
+    ) {
         $articles = $this->articles->home();
         $view = $container->get(RenderInterfaces::class)->render(
-            'home', ['articles' => $articles]);
+            'home', ['articles' => $articles]
+        );
         $response->getBody()->write($view);
         return $response;
     }

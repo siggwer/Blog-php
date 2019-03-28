@@ -15,10 +15,12 @@ return [
     'db.name' => di_env('db_name', 'blog'),
     'db.port' => di_env('db_port', 3306),
 
-    'db.dsn' => di_string('{db.type}:host={db.host};
+    'db.dsn' => di_string(
+        '{db.type}:host={db.host};
                                                dbname={db.name};
                                                port={db.port};
-                                               charset=utf8'),
+                                               charset=utf8'
+    ),
     'db.user' => di_env('db_user', 'root'),
     'db.pass' => di_env('db_pass', ''),
     'db.options' => [],

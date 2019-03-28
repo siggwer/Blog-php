@@ -26,7 +26,8 @@ class Route implements RouteInterface
     /**
      * @inheritdoc
      */
-    public function __construct($path, $controller, array $params = []) {
+    public function __construct($path, $controller, array $params = [])
+    {
         $this->path = $path;
         $this->controller = $controller;
         $this->params = $params;
@@ -35,21 +36,24 @@ class Route implements RouteInterface
     /**
      * @param mixed $path
      */
-    public function setPath($path) {
+    public function setPath($path)
+    {
         $this->path = $path;
     }
 
     /**
      * @return mixed
      */
-    public function getPath() {
+    public function getPath()
+    {
         return $this->path;
     }
 
     /**
      * @return mixed
      */
-    public function getController() {
+    public function getController()
+    {
         return $this->controller;
     }
 
@@ -57,14 +61,16 @@ class Route implements RouteInterface
      * @param $key
      * @param $value
      */
-    public function addParam($key, $value) {
+    public function addParam($key, $value)
+    {
         $this->params[$key] = $value;
     }
 
     /**
      * @return array
      */
-    public function getParams() {
+    public function getParams()
+    {
         return $this->params;
     }
 }

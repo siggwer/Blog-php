@@ -41,16 +41,16 @@ class UpdateArticleController
     /**
      * UpdateArticleController constructor.
      *
-     * @param Users $user
-     * @param Articles $article
-     * @param Comments $comment
+     * @param Users      $user
+     * @param Articles   $article
+     * @param Comments   $comment
      * @param MailHelper $mailHelper
      */
     public function __construct(Users $user,
-                                Articles $article,
-                                Comments $comment,
-                                MailHelper $mailHelper)
-    {
+        Articles $article,
+        Comments $comment,
+        MailHelper $mailHelper
+    ) {
         $this->users = $user;
         $this->article = $article;
         $this->comment = $comment;
@@ -59,8 +59,8 @@ class UpdateArticleController
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
-     * @param Container $container
+     * @param ResponseInterface      $response
+     * @param Container              $container
      *
      * @return ResponseInterface
      *
@@ -69,30 +69,38 @@ class UpdateArticleController
      * @throws \SendGrid\Mail\TypeException
      */
     public function __invoke(ServerRequestInterface $request,
-                             ResponseInterface $response,
-                             Container $container)
-    {
-        if(array_key_exists('auth', $_SESSION)){
+        ResponseInterface $response,
+        Container $container
+    ) {
+        if(array_key_exists('auth', $_SESSION)) {
             $posts = $this->users->allArticlesByPseudo(
-                $_SESSION['auth']->getPseudo());
+                $_SESSION['auth']->getPseudo()
+            );
             $articles = $this->article->getArticleWithId(
-                $request->getAttribute('articles', 0));
+                $request->getAttribute('articles', 0)
+            );
             $comments = $this->comment->getCommentId(
-                $request->getAttribute('articles', 0));
+                $request->getAttribute('articles', 0)
+            );
 
             if ($posts && $articles && $comments === false) {
                 $this->setFlash("danger", "Article inconnu");
-                return new Response(301, [
+                return new Response(
+                    301, [
                     'Location' => '/account'
-                ]);
+                    ]
+                );
             }else{
-                if(!empty($_SESSION['auth']) &&
-                    $_SESSION['auth']->getPseudo() === $posts &&
-                    $_SESSION['auth']->getRank() === 3){
+                if(!empty($_SESSION['auth']) 
+                    && $_SESSION['auth']->getPseudo() === $posts 
+                    && $_SESSION['auth']->getRank() === 3
+                ) {
                     $this->setFlash('warning', 'Vous êtes déjà connecté !');
-                    return new Response(301, [
+                    return new Response(
+                        301, [
                         'Location' => '/adminaccount'
-                    ]);
+                        ]
+                    );
                 }
             }
 
@@ -100,7 +108,8 @@ class UpdateArticleController
                 $view = $container->get(RenderInterfaces::class)->render(
                     'updateArticle', ['posts' => $posts,
                         'articles' => $articles,
-                        'comments' => $comments]);
+                    'comments' => $comments]
+                );
                 $response->getBody()->write($view);
                 return $response;
             }
@@ -115,48 +124,62 @@ class UpdateArticleController
         $path = '/updateArticle/'.$articles['id'];
 
         $titleLength = strlen($title);
-        if( $titleLength < 10 ) {
-            $this->setFlash("danger",
+        if($titleLength < 10 ) {
+            $this->setFlash(
+                "danger",
                 "Votre titre doit contenir au moins 10 caractères
-                 ou ne doit pas être vide");
-            return new Response(301, [
+                 ou ne doit pas être vide"
+            );
+            return new Response(
+                301, [
                 'Location' => $path
-            ]);
+                ]
+            );
         }
 
         $chapoLength = strlen($chapo);
         if($chapoLength < 20 ) {
-            $this->setFlash("danger",
+            $this->setFlash(
+                "danger",
                 "Le chapoô doit contenir au moins 20 caractères
-                 ou ne doit pas être vide");
-            return new Response(301, [
+                 ou ne doit pas être vide"
+            );
+            return new Response(
+                301, [
                 'Location' => $path
-            ]);
+                ]
+            );
         }
 
         $contentLength = strlen($content);
         if($contentLength < 30) {
-            $this->setFlash("danger",
+            $this->setFlash(
+                "danger",
                 "Votre message doit contenir au minimum 50 caractères
-                 ou ne doit pas être vide");
-            return new Response(301, [
+                 ou ne doit pas être vide"
+            );
+            return new Response(
+                301, [
                 'Location' => $path
-            ]);
+                ]
+            );
         }
 
-        $updateArticle = $this->article->updateArticle([
+        $updateArticle = $this->article->updateArticle(
+            [
             'id' => $articles['id'],
             //'img' => $imgName,
             'title' => $title,
             'chapo' => $chapo,
             'content' => $content,
             'update_by' => $update_by
-        ]);
+            ]
+        );
 
-        if($updateArticle){
-            $this->setFlash('success','Votre article a bien été modifié');
+        if($updateArticle) {
+            $this->setFlash('success', 'Votre article a bien été modifié');
         }else{
-            $this->setFlash('warning','Un problème est survenue');
+            $this->setFlash('warning', 'Un problème est survenue');
         }
 
         $from =[
@@ -171,16 +194,20 @@ class UpdateArticleController
 
         $result = $this->mailHelper->sendMail(
             'Modification de l\'article.', $from, $to,
-            'mailUpdateArticle');
+            'mailUpdateArticle'
+        );
 
         if ($result->statusCode() === 202) {
             $this->setFlash(
                 'success',
-                'Un email vous a été envoyé pour confirmer la modification de l\'article.');
+                'Un email vous a été envoyé pour confirmer la modification de l\'article.'
+            );
         }
 
-        return new Response(301, [
+        return new Response(
+            301, [
             'Location' => '/account'
-        ]);
+            ]
+        );
     }
 }

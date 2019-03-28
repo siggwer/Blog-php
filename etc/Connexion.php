@@ -22,17 +22,21 @@ abstract class Connexion
     {
         try {
             $config = include __DIR__ . '/../config/db.php';
-            $this->connection = new PDO($config['host'],
-                                    $config['username'],
-                                    $config['password']);
+            $this->connection = new PDO(
+                $config['host'],
+                $config['username'],
+                $config['password']
+            );
             $this->connection->setAttribute(
                 PDO::ATTR_ERRMODE,
-                PDO::ERRMODE_EXCEPTION);
+                PDO::ERRMODE_EXCEPTION
+            );
             return $this->connection;
         } catch(Exception $errorConnection) {
             $_SESSION['message'] = sprintf(
                 'Erreur de connection : %s',
-                $errorConnection->getMessage());
+                $errorConnection->getMessage()
+            );
         }
     }
 

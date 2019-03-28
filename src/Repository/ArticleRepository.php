@@ -18,7 +18,8 @@ class ArticleRepository implements ArticleRepositoryInterface
      *
      * @param PdoDatabaseInterface $database
      */
-    public function __construct(PdoDatabaseInterface $database){
+    public function __construct(PdoDatabaseInterface $database)
+    {
         $this->database = $database;
     }
 
@@ -37,9 +38,11 @@ class ArticleRepository implements ArticleRepositoryInterface
      */
     public function getByArticleId(int $id)
     {
-        return $this->database->request('SELECT `article`.`id`,`title`, `chapo`, `content`, DATE_FORMAT(`publication_date`, \'%d/%m/%Y\') AS creation_date_fr, `author_id`,`pseudo`, `article`.`id` FROM `user` LEFT JOIN `article` ON `article`.`author_id` = `user`.`id` WHERE `article`.`id` = :id', [
+        return $this->database->request(
+            'SELECT `article`.`id`,`title`, `chapo`, `content`, DATE_FORMAT(`publication_date`, \'%d/%m/%Y\') AS creation_date_fr, `author_id`,`pseudo`, `article`.`id` FROM `user` LEFT JOIN `article` ON `article`.`author_id` = `user`.`id` WHERE `article`.`id` = :id', [
             ':id' => $id
-        ])->fetch();
+            ]
+        )->fetch();
     }
 
     /**
@@ -49,9 +52,11 @@ class ArticleRepository implements ArticleRepositoryInterface
      */
     public function getByArticlePseudo(string $pseudo)
     {
-        return $this->database->request('SELECT article.id, title, chapo, content, DATE_FORMAT(publication_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, `author_id`, pseudo, email, email_token, password, register_at, connexion_at, rank, article.id FROM user LEFT JOIN `article` ON article.author_id = user.id WHERE pseudo = :pseudo ORDER BY `publication_date` DESC',[
+        return $this->database->request(
+            'SELECT article.id, title, chapo, content, DATE_FORMAT(publication_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, `author_id`, pseudo, email, email_token, password, register_at, connexion_at, rank, article.id FROM user LEFT JOIN `article` ON article.author_id = user.id WHERE pseudo = :pseudo ORDER BY `publication_date` DESC', [
             ':pseudo' => $pseudo
-        ])->fetchAll();
+            ]
+        )->fetchAll();
     }
 
     /**
@@ -61,14 +66,16 @@ class ArticleRepository implements ArticleRepositoryInterface
      */
     public function insertArticle($id): array
     {
-        $this->database->request('INSERT INTO article(title, chapo, content, author_id, publication_date) 
+        $this->database->request(
+            'INSERT INTO article(title, chapo, content, author_id, publication_date) 
             VALUES(:title, :chapo, :content, :author_id, NOW())', [
             ':title' => $id['title'],
             ':chapo' => $id['chapo'],
             ':content' => $id['content'],
             ':author_id'=> $id['author_id']
             //':img' => $article['img']
-        ]);
+            ]
+        );
 
         $article['id'] = $this->database->lastId();
         return $article;
@@ -82,7 +89,8 @@ class ArticleRepository implements ArticleRepositoryInterface
      */
     public function updateArticle($articles): PdoStatementInterface
     {
-        return $this->database->request('UPDATE article
+        return $this->database->request(
+            'UPDATE article
         SET title = :title,
             chapo = :chapo,
             content = :content,
@@ -95,7 +103,8 @@ class ArticleRepository implements ArticleRepositoryInterface
             ':content' => $articles['content'],
             ':update_by' => $articles['update_by']
             //':img' =>  $articles['img']
-        ]);
+            ]
+        );
     }
 
     /**
@@ -105,8 +114,10 @@ class ArticleRepository implements ArticleRepositoryInterface
      */
     public function deleteArticle(int $id)
     {
-        return $this->database->request('DELETE FROM article WHERE id = :id', [
+        return $this->database->request(
+            'DELETE FROM article WHERE id = :id', [
             ':id' => $id
-        ])->fetch();
+            ]
+        )->fetch();
     }
 }

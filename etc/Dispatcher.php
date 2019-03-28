@@ -30,11 +30,11 @@ class Dispatcher
      * Dispatcher constructor.
      *
      * @param Container $container
-     * @param array $middlewares
+     * @param array     $middlewares
      */
     public function __construct(Container $container,
-                                array $middlewares = [])
-    {
+        array $middlewares = []
+    ) {
         $this->container = $container;
         $this->indexMiddleware = 0;
 
@@ -51,19 +51,19 @@ class Dispatcher
         try {
             $this->middlewares[] = $this->container->get($middleware);
         } catch (DependencyException $e) {
-            } catch (NotFoundException $e) {
-                }
+        } catch (NotFoundException $e) {
+        }
     }
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
+     * @param ResponseInterface      $response
      *
      * @return ResponseInterface
      */
     public function process(ServerRequestInterface $request,
-                            ResponseInterface $response): ResponseInterface
-    {
+        ResponseInterface $response
+    ): ResponseInterface {
         $middleware = $this->getMiddleware();
         $this->indexMiddleware += 1;
 
@@ -72,7 +72,8 @@ class Dispatcher
         }
 
         return $middleware(
-            $request, $response, $this->container, [$this, 'process']);
+            $request, $response, $this->container, [$this, 'process']
+        );
     }
 
     /**

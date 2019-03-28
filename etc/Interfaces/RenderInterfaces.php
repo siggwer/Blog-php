@@ -7,12 +7,13 @@ interface RenderInterfaces
 {
     /**
      * RenderInterfaces constructor.
+     *
      * @param string $path
      */
     public function __construct(string $path);
 
     /**
-     * @param string $namespace
+     * @param string      $namespace
      * @param null|string $path
      */
 
@@ -25,9 +26,9 @@ interface RenderInterfaces
     public function addGlobal(string $key, $value): void;
 
     /**
-     * @param string $view
-     * @param array|null $params
-     * @param string $type
+     * @param  string     $view
+     * @param  array|null $params
+     * @param  string     $type
      * @return mixed
      */
     public function render(string $view, array $params = null, $type = 'html');

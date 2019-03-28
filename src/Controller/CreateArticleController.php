@@ -35,14 +35,14 @@ class CreateArticleController
     /**
      * UpdateArticleController constructor.
      *
-     * @param Users $user
-     * @param Articles $article
+     * @param Users      $user
+     * @param Articles   $article
      * @param MailHelper $mailHelper
      */
     public function __construct(Users $user,
-                                Articles $article,
-                                MailHelper $mailHelper)
-    {
+        Articles $article,
+        MailHelper $mailHelper
+    ) {
         $this->users = $user;
         $this->article = $article;
         $this->mailHelper = $mailHelper;
@@ -50,8 +50,8 @@ class CreateArticleController
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
-     * @param Container $container
+     * @param ResponseInterface      $response
+     * @param Container              $container
      *
      * @return Response
      *
@@ -60,17 +60,19 @@ class CreateArticleController
      * @throws \SendGrid\Mail\TypeException
      */
     public function __invoke(ServerRequestInterface $request,
-                             ResponseInterface $response,
-                             Container $container)
-    {
+        ResponseInterface $response,
+        Container $container
+    ) {
         if(array_key_exists('auth', $_SESSION)) {
             $posts = $this->users->allArticlesByPseudo(
-                $_SESSION['auth']->getPseudo('pseudo'));
+                $_SESSION['auth']->getPseudo('pseudo')
+            );
 
             if($request->getMethod() === 'GET') {
                 $view = $container->get(RenderInterfaces::class)->render(
                     'createArticle',
-                    ['posts' => $posts]);
+                    ['posts' => $posts]
+                );
                 $response->getBody()->write($view);
                 return $response;
             }
@@ -86,47 +88,61 @@ class CreateArticleController
 
         $titleLength = strlen($title);
         if($titleLength < 10 ) {
-            $this->setFlash("danger",
+            $this->setFlash(
+                "danger",
                 "Votre titre doit contenir au moins 10 caractères
-                 ou ne doit pas être vide");
-            return new Response(301, [
+                 ou ne doit pas être vide"
+            );
+            return new Response(
+                301, [
                 'Location' => $path
-            ]);
+                ]
+            );
         }
 
         $chapoLength = strlen($chapo);
         if($chapoLength < 20 ) {
-            $this->setFlash("danger",
+            $this->setFlash(
+                "danger",
                 "Le chapoô doit contenir au moins 20 caractères
-                 ou ne doit pas être vide");
-            return new Response(301, [
+                 ou ne doit pas être vide"
+            );
+            return new Response(
+                301, [
                 'Location' => $path
-            ]);
+                ]
+            );
         }
 
         $contentLength = strlen($content);
         if($contentLength < 30) {
-            $this->setFlash("danger",
+            $this->setFlash(
+                "danger",
                 "Votre contenu doit contenir au minimum 50 caractères
-                 ou ne doit pas être vide");
-            return new Response(301, [
+                 ou ne doit pas être vide"
+            );
+            return new Response(
+                301, [
                 'Location' => $path
-            ]);
+                ]
+            );
         }
 
-        $createArticle = $this->article->insertArticle([
+        $createArticle = $this->article->insertArticle(
+            [
             //'id' => $articles['id'],
             //'img' => $imgName,
             'title' => $title,
             'chapo' => $chapo,
             'content' => $content,
             'author_id' => $author_id
-        ]);
+            ]
+        );
 
-        if($createArticle){
-            $this->setFlash('success','Votre article a bien été créé.');
+        if($createArticle) {
+            $this->setFlash('success', 'Votre article a bien été créé.');
         }else{
-            $this->setFlash('warning','Un problème est survenue');
+            $this->setFlash('warning', 'Un problème est survenue');
         }
 
         $from =[
@@ -139,17 +155,23 @@ class CreateArticleController
             'name' =>  explode('@', $email)[0],
         ];
 
-        $result = $this->mailHelper->sendMail('Création de l\'article',
-            $from, $to, 'mailCreate');
+        $result = $this->mailHelper->sendMail(
+            'Création de l\'article',
+            $from, $to, 'mailCreate'
+        );
 
         if($result->statusCode() === 202) {
-            $this->setFlash('success',
-                'Un email vous a été envoyé pour confirmer la création de l\'article.');
+            $this->setFlash(
+                'success',
+                'Un email vous a été envoyé pour confirmer la création de l\'article.'
+            );
         }
 
-        return new Response(301, [
+        return new Response(
+            301, [
             'Location' => '/account'
-        ]);
+            ]
+        );
     }
 
 }

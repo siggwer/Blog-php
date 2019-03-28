@@ -75,7 +75,8 @@ class Articles
      *
      * @return mixed
      */
-    public function deleteArticle(int $id){
+    public function deleteArticle(int $id)
+    {
         $article = $this->articles->deleteArticle($id);
         return  $article;
     }

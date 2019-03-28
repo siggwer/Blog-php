@@ -41,16 +41,16 @@ class DeleteArticleController
     /**
      * DeleteArticleController constructor.
      *
-     * @param Users $user
-     * @param Articles $article
-     * @param Comments $comment
+     * @param Users      $user
+     * @param Articles   $article
+     * @param Comments   $comment
      * @param MailHelper $mailHelper
      */
     public function __construct(Users $user,
-                                Articles $article,
-                                Comments $comment,
-                                MailHelper $mailHelper)
-    {
+        Articles $article,
+        Comments $comment,
+        MailHelper $mailHelper
+    ) {
         $this->users = $user;
         $this->article = $article;
         $this->comment = $comment;
@@ -58,28 +58,34 @@ class DeleteArticleController
     }
 
     public function __invoke(ServerRequestInterface $request,
-                             ResponseInterface $response,
-                             Container $container)
-    {
-        if(array_key_exists('auth', $_SESSION)){
+        ResponseInterface $response,
+        Container $container
+    ) {
+        if(array_key_exists('auth', $_SESSION)) {
             $posts = $this->users->allArticlesByPseudo(
-                $_SESSION['auth']->getPseudo());
+                $_SESSION['auth']->getPseudo()
+            );
             $articles = $this->article->getArticleWithId(
-                $request->getAttribute('articles', 0));
+                $request->getAttribute('articles', 0)
+            );
             $comments = $this->comment->getCommentId(
-                $request->getAttribute('articles', 0));
+                $request->getAttribute('articles', 0)
+            );
 
             if ($posts && $articles === false) {
                 $this->setFlash("danger", "Article inconnu");
-                return new Response(301, [
+                return new Response(
+                    301, [
                     'Location' => '/account'
-                ]);
+                    ]
+                );
             }
 
             if($request->getMethod() === 'GET') {
                 $view = $container->get(RenderInterfaces::class)->render(
                     'deleteArticle', ['posts' => $posts,
-                    'articles' => $articles, 'comments' => $comments]);
+                    'articles' => $articles, 'comments' => $comments]
+                );
                 $response->getBody()->write($view);
                 return $response;
             }
@@ -87,21 +93,21 @@ class DeleteArticleController
 
         $email = $_SESSION['auth']->getEmail();
 
-        if(isset($articles['id'])  === true){
+        if(isset($articles['id'])  === true) {
             $deleteArticle = $this->article->deleteArticle($articles['id']);
-       }
-
-        if($deleteArticle){
-            $this->comment->deleteComment($comments['article_id']);
-            $this->setFlash('success','Votre article a bien été supprimé');
-        }else{
-            $this->setFlash('warning','Un problème est survenue');
         }
 
-        if($deleteArticle){
-            $this->setFlash('success','Votre article a bien été modifié');
+        if($deleteArticle) {
+            $this->comment->deleteComment($comments['article_id']);
+            $this->setFlash('success', 'Votre article a bien été supprimé');
         }else{
-            $this->setFlash('warning','Un problème est survenue');
+            $this->setFlash('warning', 'Un problème est survenue');
+        }
+
+        if($deleteArticle) {
+            $this->setFlash('success', 'Votre article a bien été modifié');
+        }else{
+            $this->setFlash('warning', 'Un problème est survenue');
         }
 
         $from =[
@@ -116,16 +122,20 @@ class DeleteArticleController
 
         $result = $this->mailHelper->sendMail(
             'Modification de l\'article.', $from, $to,
-            'mailDeleteArticle');
+            'mailDeleteArticle'
+        );
 
         if ($result->statusCode() === 202) {
             $this->setFlash(
                 'success',
-                'Un email vous a été envoyé pour confirmer la modification de l\'article.');
+                'Un email vous a été envoyé pour confirmer la modification de l\'article.'
+            );
         }
 
-        return new Response(301, [
+        return new Response(
+            301, [
             'Location' => '/account'
-        ]);
+            ]
+        );
     }
 }

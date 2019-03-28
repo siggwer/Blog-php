@@ -12,7 +12,7 @@ interface RouterInterface
     public function __construct();
 
     /**
-     * @param array $request
+     * @param  array $request
      * @return mixed
      */
     public function handleRequest(array $request = []);

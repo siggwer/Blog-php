@@ -20,11 +20,12 @@ class MailHelper
     /**
      * MailHelper constructor.
      *
-     * @param string $sendgridApiKey
+     * @param string           $sendgridApiKey
      * @param RenderInterfaces $render
      */
     public function __construct(string $sendGridApiKey,
-                                RenderInterfaces $render) {
+        RenderInterfaces $render
+    ) {
 
         $this->sendgridApiKey = $sendGridApiKey;
         $this->render = $render;
@@ -32,8 +33,8 @@ class MailHelper
 
     /**
      * @param string $subject
-     * @param array $from
-     * @param array $to
+     * @param array  $from
+     * @param array  $to
      * @param string $template
      *
      * @return \SendGrid\Mail\Mail
@@ -41,12 +42,13 @@ class MailHelper
      * @throws \SendGrid\Mail\TypeException
      */
     private function builtMail(string $subject,
-                               array $from,
-                               array $to,
-                               string $template) {
+        array $from,
+        array $to,
+        string $template
+    ) {
 
         $email = new Mail();
-        $email->setFrom($from['email'],$from['name']);
+        $email->setFrom($from['email'], $from['name']);
         $email->setSubject($subject);
         $email->addTo($to['email'], $to['name']);
         $email->addContent(
@@ -58,8 +60,8 @@ class MailHelper
 
     /**
      * @param string $subject
-     * @param array $from
-     * @param array $to
+     * @param array  $from
+     * @param array  $to
      * @param string $template
      *
      * @return \SendGrid\Response
@@ -67,14 +69,15 @@ class MailHelper
      * @throws \SendGrid\Mail\TypeException
      */
     public function sendMail(string $subject,
-                             array $from,
-                             array $to,
-                             string $template) {
+        array $from,
+        array $to,
+        string $template
+    ) {
 
         $mail = $this->builtMail($subject, $from, $to, $template);
 
         try{
-         return $this->getSendGrid()->send($mail);
+            return $this->getSendGrid()->send($mail);
 
         } catch (\Exception $e){
             echo 'Caught exception: '. $e->getMessage() ."\n";
@@ -85,7 +88,8 @@ class MailHelper
     /**
      * @return \SendGrid
      */
-    private function getSendGrid() {
+    private function getSendGrid()
+    {
 
         return new \SendGrid($this->sendgridApiKey);
     }

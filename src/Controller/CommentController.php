@@ -35,7 +35,7 @@ class CommentController
     /**
      * CommentController constructor.
      *
-     * @param Users $user
+     * @param Users    $user
      * @param Articles $article
      * @param Comments $comment
      */
@@ -48,8 +48,8 @@ class CommentController
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
-     * @param Container $container
+     * @param ResponseInterface      $response
+     * @param Container              $container
      *
      * @return ResponseInterface
      *
@@ -57,29 +57,35 @@ class CommentController
      * @throws \DI\NotFoundException
      */
     public function __invoke(ServerRequestInterface $request,
-                             ResponseInterface $response,
-                             Container $container)
-    {
+        ResponseInterface $response,
+        Container $container
+    ) {
         if (array_key_exists('auth', $_SESSION)) {
             $posts = $this->users->allArticlesByPseudo(
-                $_SESSION['auth']->getPseudo());
+                $_SESSION['auth']->getPseudo()
+            );
             $articles = $this->article->getArticleWithId(
-                $request->getAttribute('articles', 0));
+                $request->getAttribute('articles', 0)
+            );
             $comments = $this->comment->getComment(
-                $request->getAttribute('articles', 0));
+                $request->getAttribute('articles', 0)
+            );
 
             if ($posts && $articles && $comments === false) {
                 $this->setFlash("danger", "Article inconnu");
-                return new Response(301, [
+                return new Response(
+                    301, [
                     'Location' => '/account'
-                ]);
+                    ]
+                );
             }
 
             if ($request->getMethod() === 'GET') {
                 $view = $container->get(RenderInterfaces::class)->render(
                     'modifyComment', ['posts' => $posts,
                         'articles' => $articles,
-                        'comments' => $comments]);
+                    'comments' => $comments]
+                );
                 $response->getBody()->write($view);
             }
         }

@@ -31,7 +31,7 @@ class Render implements RenderInterfaces
     }
 
     /**
-     * @param string $namespace
+     * @param string      $namespace
      * @param null|string $path
      *
      * @throws \Twig_Error_Loader
@@ -51,9 +51,9 @@ class Render implements RenderInterfaces
     }
 
     /**
-     * @param string $view
+     * @param string     $view
      * @param array|null $params
-     * @param string $type
+     * @param string     $type
      *
      * @return mixed|string
      *
@@ -64,9 +64,9 @@ class Render implements RenderInterfaces
     public function render(string $view, array $params = null, $type = 'html')
     {
         if (isset($_SESSION['flash'])) {
-        $params['__flash'] = $_SESSION['flash'];
-        unset($_SESSION['flash']);
-    }
+            $params['__flash'] = $_SESSION['flash'];
+            unset($_SESSION['flash']);
+        }
 
         $params['__session'] = $_SESSION;
         $params['__auth'] = $_SESSION['auth'] ?? null;

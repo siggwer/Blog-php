@@ -49,10 +49,7 @@ class Application implements ApplicationInterface
     public function __construct()
     {
         $this->middlewares = [];
-        //var_dump($this->middlewares = []);
-        //die;
     }
-
 
     /**
      * @return mixed|void
@@ -91,7 +88,7 @@ class Application implements ApplicationInterface
             if ($middlewares === null) {
                 $middlewares = [];
             }
-            $middlewaresGlobals = (require __DIR__ . '/../etc/middlewares.php');
+            $middlewaresGlobals = (include __DIR__ . '/../etc/middlewares.php');
             $middlewares = array_merge($middlewaresGlobals, $middlewares);
 
             $dispatcher = new Dispatcher($this->container, $middlewares);
@@ -117,7 +114,7 @@ class Application implements ApplicationInterface
     {
         $this->router = new FastRouteRouter();
 
-        $routes = (require __DIR__ . '/../config/route.php');
+        $routes = (include __DIR__ . '/../config/route.php');
         foreach ($routes as $name => $route) {
             $routeAdd = new Route($route['path'], $route['controller'], $route['methods'], $name);
             $this->router->addRoute($routeAdd);

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PHP_CodeSniffer" xsi:noNamespaceSchemaLocation="phpcs.xsd">
+    <description>The coding standard for PHP_CodeSniffer itself.</description>
+
+ <arg name="basepath" value="."/>
+ <arg name="cache" value=".phpcs-cache"/>
+ <arg name="colors"/>
+ <arg name"extensions" value="php"/>
+ <rule ref="PSR1"/>
+ <rule ref="PSR2"/>
+ <exclude-pattern>/css</exclude-pattern>
+ <exclude-pattern>/img</exclude-pattern>
+ <exclude-pattern>/js</exclude-pattern>
+ <exclude-pattern>/scss</exclude-pattern>
+ <exclude-pattern>/templates</exclude-pattern>
+ <exclude-pattern>/vendor</exclude-pattern>
+ <exclude-pattern>/Diagrammes</exclude-pattern>
+  <file>config</file>
+  <file>etc</file>
+  <file>public/file>
+  <file>src</file>
+
+</ruleset>
+

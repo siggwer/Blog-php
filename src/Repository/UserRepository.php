@@ -31,14 +31,16 @@ class UserRepository implements UserRepositoryInterface
      */
     public function registerUser(User $user): User
     {
-        $this->database->request('
+        $this->database->request(
+            '
           INSERT INTO user (pseudo, password, email, email_token, register_at, connexion_at, rank) 
-          VALUES (:pseudo, :password, :email, :emailToken, NOW(), NULL, 1)',[
+          VALUES (:pseudo, :password, :email, :emailToken, NOW(), NULL, 1)', [
                 ':pseudo' => $user->getPseudo(),
                 ':password' => $user->getPassword(),
                 ':email' => $user->getEmail(),
                 ':emailToken' => $user->getEmailToken()
-        ]);
+            ]
+        );
         $user->setId($this->database->lastId());
         return $user;
     }
@@ -62,7 +64,8 @@ class UserRepository implements UserRepositoryInterface
             ':connexion_at' => $user->getConnexionat(),
             ':rank' => $user->getRank(),
             ':userId' => $user->getId()
-        ]);
+            ]
+        );
     }
 
     /**
@@ -72,9 +75,13 @@ class UserRepository implements UserRepositoryInterface
      */
     public function getUserByEmail($email): User
     {
-        return new User($this->database->request('SELECT id, pseudo, password, email, email_token, register_at, connexion_at, rank FROM user WHERE email = :email',[
-            ':email' => $email
-        ])->fetch());
+        return new User(
+            $this->database->request(
+                'SELECT id, pseudo, password, email, email_token, register_at, connexion_at, rank FROM user WHERE email = :email', [
+                ':email' => $email
+                ]
+            )->fetch()
+        );
     }
 
     /**
@@ -84,9 +91,13 @@ class UserRepository implements UserRepositoryInterface
      */
     public function getUserByPseudo($pseudo): User
     {
-        return new User($this->database->request('SELECT id, pseudo, password, email, email_token, register_at, connexion_at, rank FROM user WHERE pseudo = :pseudo',[
-            ':pseudo' => $pseudo
-        ])->fetch());
+        return new User(
+            $this->database->request(
+                'SELECT id, pseudo, password, email, email_token, register_at, connexion_at, rank FROM user WHERE pseudo = :pseudo', [
+                ':pseudo' => $pseudo
+                ]
+            )->fetch()
+        );
     }
 
     /**
@@ -96,10 +107,13 @@ class UserRepository implements UserRepositoryInterface
      */
     public function getUserById(int $userId)
     {
-        return new User($this->database->request(
-            'SELECT id, password, email, email_token, register_at, connexion_at, rank FROM user WHERE id = :userId LIMIT 0, 1' ,[
-            ':userId' => $userId
-        ])->fetch());
+        return new User(
+            $this->database->request(
+                'SELECT id, password, email, email_token, register_at, connexion_at, rank FROM user WHERE id = :userId LIMIT 0, 1', [
+                ':userId' => $userId
+                ]
+            )->fetch()
+        );
     }
 
     /**
@@ -109,9 +123,11 @@ class UserRepository implements UserRepositoryInterface
      */
     public function getRank(User $rankAdmin)
     {
-        return $this->database->request('SELECT * FROM blog.user  WHERE rank = :rankAdmin', [
+        return $this->database->request(
+            'SELECT * FROM blog.user  WHERE rank = :rankAdmin', [
             ':rankAdmin' => intval($rankAdmin->getRank())
-        ])->fetchAll();
+            ]
+        )->fetchAll();
     }
 
     /**
@@ -129,8 +145,12 @@ class UserRepository implements UserRepositoryInterface
      */
     public function allArticlesByPseudo($pseudo): User
     {
-        return new User ($this->database->request('SELECT * FROM user WHERE pseudo = :pseudo',[
-            ':pseudo' => $pseudo
-        ])->fetch());
+        return new User(
+            $this->database->request(
+                'SELECT * FROM user WHERE pseudo = :pseudo', [
+                ':pseudo' => $pseudo
+                ]
+            )->fetch()
+        );
     }
 }

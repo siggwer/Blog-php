@@ -31,20 +31,20 @@ class RegisterController
     /**
      * RegisterController constructor.
      *
-     * @param Users $users
+     * @param Users      $users
      * @param MailHelper $mailHelper
      */
     public function __construct(Users $users,
-                                MailHelper $mailHelper)
-    {
+        MailHelper $mailHelper
+    ) {
         $this->mailHelper = $mailHelper;
         $this->users = $users;
     }
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
-     * @param Container $container
+     * @param ResponseInterface      $response
+     * @param Container              $container
      *
      * @return Response
      *
@@ -53,9 +53,9 @@ class RegisterController
      * @throws \SendGrid\Mail\TypeException
      */
     public function __invoke(ServerRequestInterface $request,
-                             ResponseInterface $response,
-                             Container $container)
-    {
+        ResponseInterface $response,
+        Container $container
+    ) {
         if ($request->getMethod() === 'GET') {
             $view = $container->get(RenderInterfaces::class)->render('register');
             $response->getBody()->write($view);
@@ -73,65 +73,82 @@ class RegisterController
 
         if (!addslashes(!htmlspecialchars(!htmlentities(trim($pseudo))))) {
             $this->setFlash(
-                "attention", "Votre pseudo n'est pas valide");
+                "attention", "Votre pseudo n'est pas valide"
+            );
             return new Response(301, ['Location' => '/register']);
         }
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->setFlash(
-                "danger", "Votre adresse mail n'est pas valide");
-            return new Response(301, [
+                "danger", "Votre adresse mail n'est pas valide"
+            );
+            return new Response(
+                301, [
                 'Location' => '/register'
-            ]);
+                ]
+            );
         }
 
-        if ($email === $users->getPseudo()){
+        if ($email === $users->getPseudo()) {
             $this->setFlash(
-                "danger", "Vous êtes déjà enregistré avec ce pseudo");
-            return new Response(301, [
+                "danger", "Vous êtes déjà enregistré avec ce pseudo"
+            );
+            return new Response(
+                301, [
                 'Location' => '/register'
-            ]);
+                ]
+            );
         }
 
 
         $passLength = strlen($password);
-        if ($passLength < 8){
+        if ($passLength < 8) {
             $this->setFlash(
                 "danger",
-                "Votre mot de passe doit contenir au minimum 8 caractères");
-            return new Response(301, [
+                "Votre mot de passe doit contenir au minimum 8 caractères"
+            );
+            return new Response(
+                301, [
                 'Location' => '/register'
-            ]);
+                ]
+            );
         }
-        if ($password != $repassword){
+        if ($password != $repassword) {
             $this->setFlash(
                 "danger",
                 "Le mot de passe de confirmation
-                 n'est pas identique à votre mot de passe");
-            return new Response(301, [
+                 n'est pas identique à votre mot de passe"
+            );
+            return new Response(
+                301, [
                 'Location' => '/register'
-            ]);
+                ]
+            );
         }
         $tokenRegister = $this->generateToken();
         $passwordHash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
 
-        $users = new User([
+        $users = new User(
+            [
             'pseudo' => $pseudo,
             'password' => $passwordHash,
             'email' => $email,
             'email_token' => $tokenRegister
-        ]);
+            ]
+        );
 
         $userRegister = $this->users->registerUser($users);
 
         $renderHtml = $container->get(RenderInterfaces::class)->render(
             'mailVerify', [
             'user' => $userRegister
-        ]);
+            ]
+        );
         $renderText = $container->get(RenderInterfaces::class)->render(
             'mailVerify', [
             'user' => $userRegister
-        ], 'text');
+            ], 'text'
+        );
 
         $from =[
             'email' => 'test@yopmail.com',
@@ -144,15 +161,19 @@ class RegisterController
         ];
 
         $result = $this->mailHelper->sendMail(
-            'Confirmation de votre compte', $from, $to, 'mailVerify');
+            'Confirmation de votre compte', $from, $to, 'mailVerify'
+        );
         if ($result->statusCode() === 202) {
             $this->setFlash(
                 'success',
-                'Un email vous a été envoyé pour confirmer votre compte');
+                'Un email vous a été envoyé pour confirmer votre compte'
+            );
         }
 
-        return new Response(301, [
+        return new Response(
+            301, [
             'Location' => '/'
-        ]);
+            ]
+        );
     }
 }

@@ -15,10 +15,11 @@ class PdoDatabase extends PDO implements PdoDatabaseInterface
 
     /**
      * PdoDatabase constructor.
+     *
      * @param string $dsn
      * @param string $username
      * @param string $passwd
-     * @param array $options
+     * @param array  $options
      */
     public function __construct(string $dsn, string $username = '', string $passwd = '', array $options = [])
     {
@@ -29,8 +30,8 @@ class PdoDatabase extends PDO implements PdoDatabaseInterface
     }
 
     /**
-     * @param string $statement
-     * @param array $params
+     * @param  string $statement
+     * @param  array  $params
      * @return PdoStatementInterface
      */
     public function request(string $statement, array $params = []): PdoStatementInterface
@@ -58,6 +59,7 @@ class PdoDatabase extends PDO implements PdoDatabaseInterface
 
     /**
      * Return last inserted Id
+     *
      * @return int
      */
     public function lastId(): int

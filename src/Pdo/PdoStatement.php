@@ -13,6 +13,7 @@ class PdoStatement implements PdoStatementInterface
 
     /**
      * PdoStatement constructor.
+     *
      * @param PDOState $statement
      */
     public function __construct(PDOState $statement)

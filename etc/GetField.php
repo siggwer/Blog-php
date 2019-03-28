@@ -22,7 +22,7 @@ trait GetField
      *
      * @return null
      */
-    protected function  getSession($session)
+    protected function getSession($session)
     {
         return $_SESSION[$session] ?? null;
     }

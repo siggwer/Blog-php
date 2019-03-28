@@ -33,8 +33,8 @@ class ContactController
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
-     * @param Container $container
+     * @param ResponseInterface      $response
+     * @param Container              $container
      *
      * @return Response|ResponseInterface
      *
@@ -43,9 +43,9 @@ class ContactController
      * @throws \SendGrid\Mail\TypeException
      */
     public function __invoke(ServerRequestInterface $request,
-                             ResponseInterface $response,
-                             Container $container)
-    {
+        ResponseInterface $response,
+        Container $container
+    ) {
         if ($request->getMethod() === 'GET') {
             $view = $container->get(RenderInterfaces::class)->render('Contact');
             $response->getBody()->write($view);
@@ -58,11 +58,13 @@ class ContactController
         $email = $this->getField('email');
         $message = $this->getField('message');
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->setFlash("danger", "Votre adresse n'est pas valide");
-            return new Response(301, [
+            return new Response(
+                301, [
                 'Location' => '/contact'
-            ]);
+                ]
+            );
         }
 
 
@@ -71,10 +73,13 @@ class ContactController
             $this->setFlash(
                 "danger",
                 "Votre nom doit contenir au moins 4 caractères
-                 ou ne doit pas être vide");
-            return new Response(301, [
+                 ou ne doit pas être vide"
+            );
+            return new Response(
+                301, [
                 'Location' => '/contact'
-            ]);
+                ]
+            );
         }
 
         $firstNameLength = strlen($firstName);
@@ -82,20 +87,26 @@ class ContactController
             $this->setFlash(
                 "danger",
                 "Votre nom doit contenir au moins 4 caractères
-                 ou ne doit pas être vide");
-            return new Response(301, [
+                 ou ne doit pas être vide"
+            );
+            return new Response(
+                301, [
                 'Location' => '/contact'
-            ]);
+                ]
+            );
         }
 
         $messageLength = strlen($message);
         if ($messageLength < 50) {
             $this->setFlash(
                 "danger",
-                "Votre message doit contenir au minimum 50 caractères");
-            return new Response(301, [
+                "Votre message doit contenir au minimum 50 caractères"
+            );
+            return new Response(
+                301, [
                 'Location' => '/contact'
-            ]);
+                ]
+            );
         }
 
         $from = [
@@ -109,14 +120,19 @@ class ContactController
 
         $result = $this->MailHelper->sendMail(
             'Confirmation de votre message',
-            $from, $to, 'mailVerify');
+            $from, $to, 'mailVerify'
+        );
         if ($result->statusCode() === 202) {
-            $this->setFlash('success',
+            $this->setFlash(
+                'success',
                 'Merci pour votre message nous vous répondrons
-                 dans les meilleures délais');
+                 dans les meilleures délais'
+            );
         }
-        return new Response(301,[
+        return new Response(
+            301, [
             'Location' => '/'
-        ]);
+            ]
+        );
     }
 }

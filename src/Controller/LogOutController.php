@@ -14,8 +14,8 @@ class LogOutController
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
-     * @param Container $container
+     * @param ResponseInterface      $response
+     * @param Container              $container
      *
      * @return Response
      */
@@ -24,8 +24,10 @@ class LogOutController
         unset($_SESSION['auth']);
         setcookie('remember', '', -1, '/', null, false, true);
         $this->setFlash('success', 'Vous êtes bien déconnecté');
-        return new Response(301, [
+        return new Response(
+            301, [
             'Location' => '/'
-        ]);
+            ]
+        );
     }
 }

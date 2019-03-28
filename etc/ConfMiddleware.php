@@ -13,22 +13,24 @@ class ConfMiddleware
 
     /**
      * @param ServerRequestInterface $request
-     * @param Response $response
-     * @param Container $container
+     * @param Response               $response
+     * @param Container              $container
      * @param $next
      *
      * @return Response
      */
     public function __invoke(ServerRequestInterface $request,
-                             Response $response,
-                             Container $container, $next)
-    {
-        if(array_key_exists('auth', $_SESSION)){
+        Response $response,
+        Container $container, $next
+    ) {
+        if(array_key_exists('auth', $_SESSION)) {
             if (!isset($_SESSION['auth']) || $_SESSION['auth']->getRank() <= 1) {
                 $this->setFlash("danger", "Vous devez être admin pour entrer");
-                return new Response(301, [
+                return new Response(
+                    301, [
                     'Location' => '/'
-                ]);
+                    ]
+                );
             }
         }
         return $next($request, $response);

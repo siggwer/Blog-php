@@ -35,13 +35,14 @@ class AdministrationAccount
     /**
      * AdministrationAccount constructor.
      *
-     * @param Users $user
+     * @param Users    $user
      * @param Articles $article
      * @param Comments $comment
      */
     public function __construct(Users $user,
-                                Articles $article,
-                                Comments $comment) {
+        Articles $article,
+        Comments $comment
+    ) {
         $this->users = $user;
         $this->article = $article;
         $this->comment = $comment;
@@ -49,8 +50,8 @@ class AdministrationAccount
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
-     * @param Container $container
+     * @param ResponseInterface      $response
+     * @param Container              $container
      *
      * @return ResponseInterface
      *
@@ -58,36 +59,46 @@ class AdministrationAccount
      * @throws \DI\NotFoundException
      */
     public function __invoke(ServerRequestInterface $request,
-                             ResponseInterface $response,
-                             Container $container)
-    {
+        ResponseInterface $response,
+        Container $container
+    ) {
         if(!array_key_exists('auth', $_SESSION)) {
             if (empty($_SESSION['auth'])) {
-                $this->setFlash('warning',
-                    'Vous devez être connecté pour accéder à votre espace');
-                return new Response(301, [
+                $this->setFlash(
+                    'warning',
+                    'Vous devez être connecté pour accéder à votre espace'
+                );
+                return new Response(
+                    301, [
                     'Location' => '/login'
-                ]);
+                    ]
+                );
             }
-        }if(!empty($_SESSION['auth']) &&
-            $_SESSION['auth']->getRank() === 3){
-            return new Response(301, [
-            'Location' => '/adminaccount'
-        ]);
-    }
+        }if(!empty($_SESSION['auth']) 
+            && $_SESSION['auth']->getRank() === 3
+        ) {
+            return new Response(
+                301, [
+                'Location' => '/adminaccount'
+                ]
+            );
+        }
 
         if (array_key_exists('auth', $_SESSION)) {
             $posts = $this->users->allArticlesByPseudo(
-                $_SESSION['auth']->getPseudo('pseudo'));
+                $_SESSION['auth']->getPseudo('pseudo')
+            );
             $articles = $this->article->getArticleWithPseudo(
-                $_SESSION['auth']->getPseudo('pseudo'));
+                $_SESSION['auth']->getPseudo('pseudo')
+            );
         }
 
         if ($request->getMethod() === 'GET') {
             $view = $container->get(RenderInterfaces::class)->render(
                 'administration',
                 ['posts' => $posts, 'articles' => $articles
-                ]);
+                ]
+            );
             $response->getBody()->write($view);
         }
         return $response;

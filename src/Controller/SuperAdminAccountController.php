@@ -41,38 +41,47 @@ class SuperAdminAccountController
      */
     /**
      * SuperAdminAccountController constructor.
-     * @param Users $user
+     *
+     * @param Users    $user
      * @param Articles $article
      * @param Comments $comment
      */
     public function __construct(Users $user,
-                                Articles $article,
-                                Comments $comment) {
+        Articles $article,
+        Comments $comment
+    ) {
         $this->users = $user;
         $this->article = $article;
         $this->comment = $comment;
     }
 
     public function __invoke(ServerRequestInterface $request,
-                             ResponseInterface $response,
-                             Container $container)
-    {
-        if(!array_key_exists('auth', $_SESSION)){
-            $this->setFlash('warning',
-                'Vous devez être connecté pour accéder à votre espace');
-            return new Response(301, [
+        ResponseInterface $response,
+        Container $container
+    ) {
+        if(!array_key_exists('auth', $_SESSION)) {
+            $this->setFlash(
+                'warning',
+                'Vous devez être connecté pour accéder à votre espace'
+            );
+            return new Response(
+                301, [
                 'Location' => '/login'
-            ]);
+                ]
+            );
         }
 
-        if(array_key_exists('auth', $_SESSION) &&
-                $_SESSION['auth']->getRank() < 3){
-        $this->setFlash('warning', 'Vous ne puvez pas accéder à cette espace!');
-        return new Response(301, [
-            'Location' => '/'
-        ]);
-    }
-        if(array_key_exists('auth', $_SESSION)){
+        if(array_key_exists('auth', $_SESSION) 
+            && $_SESSION['auth']->getRank() < 3
+        ) {
+            $this->setFlash('warning', 'Vous ne puvez pas accéder à cette espace!');
+            return new Response(
+                301, [
+                'Location' => '/'
+                ]
+            );
+        }
+        if(array_key_exists('auth', $_SESSION)) {
             $posts = $this->users->allusers();
             $articles = $this->article->home();
             $comments = $this->comment->allComments();
@@ -83,7 +92,8 @@ class SuperAdminAccountController
                 'superAdmin', [
                     'posts' => $posts,
                     'articles' => $articles,
-                    'comments' => $comments]);
+                'comments' => $comments]
+            );
             $response->getBody()->write($view);
         }
         return $response;
