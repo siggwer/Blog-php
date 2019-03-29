@@ -39,7 +39,7 @@ class ArticleRepository implements ArticleRepositoryInterface
     public function getByArticleId(int $id)
     {
         return $this->database->request(
-            'SELECT `article`.`id`,`title`, `chapo`, `content`, DATE_FORMAT(`publication_date`, \'%d/%m/%Y\') AS creation_date_fr, `author_id`,`pseudo`, `article`.`id` FROM `user` LEFT JOIN `article` ON `article`.`author_id` = `user`.`id` WHERE `article`.`id` = :id', [
+            'SELECT `article`.`id`,`title`, `chapo`, `content`, DATE_FORMAT(`publication_date`, \'%d/%m/%Y\ à %Hh%imin%ss\') AS creation_date_fr, `author_id`,`pseudo`, `article`.`id` FROM `user` LEFT JOIN `article` ON `article`.`author_id` = `user`.`id` WHERE `article`.`id` = :id', [
             ':id' => $id
             ]
         )->fetch();
@@ -114,6 +114,8 @@ class ArticleRepository implements ArticleRepositoryInterface
      */
     public function deleteArticle(int $id)
     {
+        var_dump($id);
+        exit;
         return $this->database->request(
             'DELETE FROM article WHERE id = :id', [
             ':id' => $id

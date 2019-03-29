@@ -29,7 +29,7 @@ class CommentRepository implements CommentRepositoryInterface
     public function all(): array
     {
         return $this->database->request(
-            'SELECT * FROM comment
+            'SELECT `comment`.`id`, `comment`.`comments`, `comment`.`author`, DATE_FORMAT(`comment_date`, \'%d/%m/%Y\ à %Hh%imin%ss\') AS creation_date_fr, `comment`.`validated`, `article`.`title` FROM comment
         LEFT JOIN `article` ON `comment`.`article_id` = `article`.`id` 
         ORDER BY comment_date DESC'
         )
@@ -44,7 +44,7 @@ class CommentRepository implements CommentRepositoryInterface
     public function getComment(int $id)
     {
         return $this->database->request(
-            'SELECT * FROM `comment`
+            'SELECT `comment`.`id`, `comment`.`comments`, `comment`.`author`, DATE_FORMAT(`comment_date`, \'%d/%m/%Y\ à %Hh%imin%ss\') AS creation_date_fr, `comment`.`validated` FROM `comment`
         WHERE article_id = :id', [
             ':id' => $id
             ]

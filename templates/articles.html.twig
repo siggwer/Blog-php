@@ -32,7 +32,7 @@
     {% else %}
         <div class="col-lg-8 col-md-10 mx-auto">
             <h2 class="section-heading">commentaires</h2>
-            <p><strong>Par : {{ comments.author }} le : {{ comments.comment_date }}</strong></p>
+            <p><strong>Par : {{ comments.author }} le : {{ comments.creation_date_fr }}</strong></p>
             <p>{{ comments.comments |nl2br }}</p>
         </div>
         <br />

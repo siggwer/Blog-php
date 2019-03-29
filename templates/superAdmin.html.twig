@@ -52,7 +52,7 @@
                                 <th scope="row">{{ comments.title |nl2br }}</th>
                                 <td>{{ comments.author |nl2br }}</td>
                                 <td>{{ comments.comments |nl2br }}</td>
-                                <td>{{ comments.comment_date|nl2br }}</td>
+                                <td>{{ comments.creation_date_fr|nl2br }}</td>
                                 {% if comments.validated == 1 %}
                                 <td>Comentaire validé</td>
                                 {% elseif comments.validated == 0 %}
