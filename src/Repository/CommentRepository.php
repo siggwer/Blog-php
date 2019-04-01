@@ -136,18 +136,17 @@ class CommentRepository implements CommentRepositoryInterface
     }
 
     /**
-     * @param $comment
+     * @param int $id
      *
      * @return PdoStatementInterface
      */
-    public function validatedComment($comment): PdoStatementInterface
+    public function validatedComment(int $id): PdoStatementInterface
     {
         return $this->database->request(
             'UPDATE comment 
-        SET validated = :validated 
+        SET validated = 1 
         WHERE id = :id', [
-            'id' => $comment['id'],
-            ':validated' => $comment['validated']
+                'id' => $id
             ]
         );
 
@@ -160,6 +159,8 @@ class CommentRepository implements CommentRepositoryInterface
      */
     public function deleteComment($comment)
     {
+        var_dump($comment);
+        exit;
         return $this->database->request(
             'DELETE
         FROM comment WHERE id = :id', [

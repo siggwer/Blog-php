@@ -71,22 +71,13 @@ class CommentValidatedController
         ResponseInterface $response,
         Container $container
     ) {
-        if(array_key_exists('auth', $_SESSION)) {
-            $posts = $this->users->allArticlesByPseudo(
-                $_SESSION['auth']->getPseudo()
-            );
-            $comments = $this->comment->getCommentForvalidated(
-                $request->getAttribute('comments', 0)
-            );
-        }
-
-        if(isset($posts) && $comments) {
-            $comments['validated'] = 1;
-        }
+        $comments = $this->comment->getCommentForvalidated(
+            $request->getAttribute('comments', 0));
 
         $email = $comments['email'];
 
-        $commentValidated = $this->comment->validatedComment($comments);
+
+        $commentValidated = $this->comment->validatedComment($request->getAttribute('comments'));
 
 
         if($commentValidated) {
@@ -119,7 +110,7 @@ class CommentValidatedController
         $this->setFlash(
             'success',
             'Un email a été envoyé pour confirmer
-                 la suppression du commentaire'
+                 la validation du commentaire'
         );
         return new Response(
             301, [

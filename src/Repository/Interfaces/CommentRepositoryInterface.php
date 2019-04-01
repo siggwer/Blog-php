@@ -46,11 +46,11 @@ interface CommentRepositoryInterface
     public function getCommentForvalidated(int $id);
 
     /**
-     * @param $comment
+     * @param int $id
      *
      * @return PdoStatementInterface
      */
-    public function validatedComment($comment): PdoStatementInterface;
+    public function validatedComment(int $id): PdoStatementInterface;
 
     /**
      * @param $comment
