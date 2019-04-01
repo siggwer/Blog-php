@@ -129,7 +129,7 @@ class CommentRepository implements CommentRepositoryInterface
         ON `comment`.`article_id` = `article`.`id` 
 	    LEFT JOIN `user` 
 	    ON `article`.`author_id` = `user`.`id`
-	    WHERE article_id = :id', [
+	    WHERE `comment`.`id`= :id', [
             ':id' => $id
             ]
         )->fetch();
