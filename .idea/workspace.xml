@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4769c491-469f-4065-965d-c6f01c4bf741" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Controller/DeleteCommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DeleteCommentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/CommentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CommentRepository.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,8 +68,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/DeleteCommentController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
+            <state relative-caret-position="187">
+              <caret line="71" column="8" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="8" />
               <folding>
                 <element signature="e#34#56#0#PHP" expanded="true" />
               </folding>
@@ -79,8 +80,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Repository/CommentRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="131" column="27" selection-start-line="131" selection-start-column="27" selection-end-line="131" selection-end-column="27" />
+            <state relative-caret-position="279">
+              <caret line="159" column="5" selection-start-line="159" selection-start-column="5" selection-end-line="159" selection-end-column="5" />
               <folding>
                 <element signature="e#34#78#0#PHP" expanded="true" />
               </folding>
@@ -168,10 +169,10 @@
         <option value="$PROJECT_DIR$/templates/superAdmin.html.twig" />
         <option value="$PROJECT_DIR$/src/Repository/Interfaces/CommentRepositoryInterface.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/ecc5b9ef-3734-4e5c-bbe5-5d71fb27fc34/console_5.sql" />
-        <option value="$PROJECT_DIR$/src/Controller/DeleteCommentController.php" />
         <option value="$PROJECT_DIR$/templates/layoutAdministration.html.twig" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/ecc5b9ef-3734-4e5c-bbe5-5d71fb27fc34/console_6.sql" />
         <option value="$PROJECT_DIR$/src/Service/Comments.php" />
+        <option value="$PROJECT_DIR$/src/Controller/DeleteCommentController.php" />
         <option value="$PROJECT_DIR$/src/Repository/CommentRepository.php" />
       </list>
     </option>
@@ -471,12 +472,12 @@
       <workItem from="1553676612876" duration="19354000" />
       <workItem from="1553761508880" duration="9437000" />
       <workItem from="1553848685647" duration="9024000" />
-      <workItem from="1554106958586" duration="8280000" />
+      <workItem from="1554106958586" duration="8462000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="719446000" />
+    <option name="totallyTimeSpent" value="719628000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -945,8 +946,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/DeleteCommentController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
+        <state relative-caret-position="187">
+          <caret line="71" column="8" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="8" />
           <folding>
             <element signature="e#34#56#0#PHP" expanded="true" />
           </folding>
@@ -955,8 +956,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/CommentRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="131" column="27" selection-start-line="131" selection-start-column="27" selection-end-line="131" selection-end-column="27" />
+        <state relative-caret-position="279">
+          <caret line="159" column="5" selection-start-line="159" selection-start-column="5" selection-end-line="159" selection-end-column="5" />
           <folding>
             <element signature="e#34#78#0#PHP" expanded="true" />
           </folding>

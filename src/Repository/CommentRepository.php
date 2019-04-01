@@ -160,8 +160,9 @@ class CommentRepository implements CommentRepositoryInterface
     {
         return $this->database->request(
             'DELETE
-        FROM comment WHERE id = :id', [
-            'id' => $id['id']
+        FROM comment 
+        WHERE id = :id', [
+            'id' => $id
             ]
         );
     }
