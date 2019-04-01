@@ -149,7 +149,6 @@ class CommentRepository implements CommentRepositoryInterface
                 'id' => $id
             ]
         );
-
     }
 
     /**
@@ -157,15 +156,13 @@ class CommentRepository implements CommentRepositoryInterface
      *
      * @return array|mixed
      */
-    public function deleteComment($comment)
+    public function deleteComment(int $id)
     {
-        var_dump($comment);
-        exit;
         return $this->database->request(
             'DELETE
         FROM comment WHERE id = :id', [
-            'id' => $comment['id']
+            'id' => $id['id']
             ]
-        )->fetch();
+        );
     }
 }

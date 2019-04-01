@@ -73,18 +73,17 @@ class DeleteCommentController
             $posts = $this->users->allArticlesByPseudo(
                 $_SESSION['auth']->getPseudo()
             );
-            $comments = $this->comment->getCommentForvalidated(
-                $request->getAttribute('comments', 0)
-            );
         }
-
+        $comments = $this->comment->getCommentForvalidated(
+            $request->getAttribute('comments', 0)
+        );
+        var_dump($comments);
+        exit;
         $email = $comments['email'];
 
-        $deleteComment = $this->comment->deleteComment(
-            [
-            'id' => $comments['id']
-            ]
-        );
+        $deleteComment = $this->comment->deleteComment($request->getAttribute('comments'));
+        var_dump($deleteComment);
+        exit;
 
         if($deleteComment) {
             $this->setFlash('success', 'Le commentaire a bien été supprimé');

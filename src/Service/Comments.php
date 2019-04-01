@@ -72,6 +72,11 @@ class Comments
         return $comment;
     }
 
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
     public function getCommentForvalidated(int $id)
     {
         $comment = $this->comment->getCommentForvalidated($id);
@@ -80,25 +85,25 @@ class Comments
     }
 
     /**
-     * @param $comment
+     * @param int $id
      *
      * @return \App\Pdo\Interfaces\PdoStatementInterface
      */
-    public function validatedComment($comment)
+    public function validatedComment(int $id)
     {
-        $comment = $this->comment->validatedComment($comment);
+        $comment = $this->comment->validatedComment($id);
         return $comment;
 
     }
 
     /**
-     * @param $comment
+     * @param int $id
      *
      * @return array
      */
-    public function deleteComment($comment)
+    public function deleteComment(int $id)
     {
-        $comment = $this->comment->deleteComment($comment);
+        $comment = $this->comment->deleteComment($id);
         return $comment;
     }
 
