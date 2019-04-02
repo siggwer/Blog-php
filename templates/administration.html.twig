@@ -12,6 +12,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Mes articles</h5>
                             {% for articles in articles %}
+                                {{ dump(articles) }}
                                 <br>
                             <h5 class="card-title">{{ articles.title |nl2br }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ articles.chapo |nl2br }}</h6>
@@ -21,7 +22,7 @@
                             <!--<p class="card-link">Another link</p>-->
                                 <a class="btn btn-success" href="/update/{{ articles.id }}" target="_blank">Modifier</a>
                                 <a class="btn btn-secondary" href="/comment/{{ articles.id }}" target="_blank">Voir les commentaires</a>
-                                <a class="btn btn-danger" href="/deletearticle/{{ articles.id }}" target="_blank">Supprimer l'article</a>
+                                <a class="btn btn-danger" href="/deletearticle/{{ articles.id }}">Supprimer l'article</a>
                                 <br>
                         {% else %}
                             <p class="card-text">Aucun article trouvé</p>

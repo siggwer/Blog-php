@@ -7,7 +7,7 @@
   </component>
   <component name="PhpCSFixer">
     <phpcsfixer_settings>
-      <PhpCSFixerConfiguration standards="PSR1;PSR2;Symfony;DoctrineAnnotation;PHP70Migration;PHP71Migration" tool_path="$USER_HOME$/AppData/Roaming/Composer/vendor/bin/php-cs-fixer" />
+      <PhpCSFixerConfiguration standards="PSR1;PSR2;Symfony;DoctrineAnnotation;PHP70Migration;PHP71Migration" />
     </phpcsfixer_settings>
   </component>
   <component name="PhpCodeSniffer">
