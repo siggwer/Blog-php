@@ -7,7 +7,6 @@ use App\Service\Articles;
 use App\Service\Comments;
 use DI\Container;
 use GuzzleHttp\Psr7\Response;
-use Framework\Interfaces\RenderInterfaces;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Framework\GetField;
@@ -80,15 +79,6 @@ class DeleteArticleController
                     ]
                 );
             }
-
-            //if($request->getMethod() === 'GET') {
-                //$view = $container->get(RenderInterfaces::class)->render(
-                   // 'deleteArticle', ['posts' => $posts,
-                   // 'articles' => $articles, 'comments' => $comments]
-                //);
-                //$response->getBody()->write($view);
-               // return $response;
-            //}
         }
 
         $email = $articles['email'];
@@ -125,16 +115,20 @@ class DeleteArticleController
             'mailDeleteArticle'
         );
 
-        if ($result->statusCode() === 202) {
+        if (!$result->statusCode() === 202) {
             $this->setFlash(
-                'success',
-                'Un email vous a été envoyé pour confirmer la modification de l\'article.'
+                'danger',
+                'Le mail n\'a pas pu être envoyé.'
             );
         }
-
+        $this->setFlash(
+            'success',
+            'Un email a été envoyé pour confirmer
+                 la suppression de l\'article.'
+        );
         return new Response(
             301, [
-            'Location' => '/account'
+                'Location' => '/account'
             ]
         );
     }
