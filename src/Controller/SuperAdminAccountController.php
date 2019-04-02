@@ -74,7 +74,7 @@ class SuperAdminAccountController
         if(array_key_exists('auth', $_SESSION) 
             && $_SESSION['auth']->getRank() < 3
         ) {
-            $this->setFlash('warning', 'Vous ne puvez pas accéder à cette espace!');
+            $this->setFlash('warning', 'Vous ne pouvez pas accéder à cette espace!');
             return new Response(
                 301, [
                 'Location' => '/'

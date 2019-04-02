@@ -81,17 +81,17 @@ class DeleteArticleController
                 );
             }
 
-            if($request->getMethod() === 'GET') {
-                $view = $container->get(RenderInterfaces::class)->render(
-                    'deleteArticle', ['posts' => $posts,
-                    'articles' => $articles, 'comments' => $comments]
-                );
-                $response->getBody()->write($view);
-                return $response;
-            }
+            //if($request->getMethod() === 'GET') {
+                //$view = $container->get(RenderInterfaces::class)->render(
+                   // 'deleteArticle', ['posts' => $posts,
+                   // 'articles' => $articles, 'comments' => $comments]
+                //);
+                //$response->getBody()->write($view);
+               // return $response;
+            //}
         }
 
-        $email = $_SESSION['auth']->getEmail();
+        $email = $articles['email'];
 
         if(isset($articles['id'])  === true) {
             $deleteArticle = $this->article->deleteArticle($articles['id']);
