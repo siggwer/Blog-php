@@ -71,7 +71,7 @@ class CommentController
                 $request->getAttribute('articles', 0)
             );
 
-            if ($posts && $articles && $comments === false) {
+            if ($posts && $articles === false) {
                 $this->setFlash("danger", "Article inconnu");
                 return new Response(
                     301, [
