@@ -88,7 +88,7 @@ class Application implements ApplicationInterface
             if ($middlewares === null) {
                 $middlewares = [];
             }
-            $middlewaresGlobals = (include __DIR__ . '/../etc/middlewares.php');
+            $middlewaresGlobals = (include __DIR__ . '/../config/middlewares.php');
             $middlewares = array_merge($middlewaresGlobals, $middlewares);
 
             $dispatcher = new Dispatcher($this->container, $middlewares);
