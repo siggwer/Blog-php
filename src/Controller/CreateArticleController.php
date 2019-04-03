@@ -160,16 +160,20 @@ class CreateArticleController
             $from, $to, 'mailCreate'
         );
 
-        if($result->statusCode() === 202) {
+        if (!$result->statusCode() === 202) {
             $this->setFlash(
-                'success',
-                'Un email vous a été envoyé pour confirmer la création de l\'article.'
+                'danger',
+                'Le mail n\'a pas pu être envoyé.'
             );
         }
-
+        $this->setFlash(
+            'success',
+            'Un email a été envoyé pour confirmer
+                 la création de l\'article.'
+        );
         return new Response(
             301, [
-            'Location' => '/account'
+                'Location' => '/account'
             ]
         );
     }

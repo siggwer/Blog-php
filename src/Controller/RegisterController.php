@@ -126,6 +126,7 @@ class RegisterController
             );
         }
         $tokenRegister = $this->generateToken();
+
         $passwordHash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
 
         $users = new User(
@@ -133,7 +134,7 @@ class RegisterController
             'pseudo' => $pseudo,
             'password' => $passwordHash,
             'email' => $email,
-            'email_token' => $tokenRegister
+            'emailToken' => $tokenRegister
             ]
         );
 
@@ -163,16 +164,20 @@ class RegisterController
         $result = $this->mailHelper->sendMail(
             'Confirmation de votre compte', $from, $to, 'mailVerify'
         );
-        if ($result->statusCode() === 202) {
+        if (!$result->statusCode() === 202) {
             $this->setFlash(
-                'success',
-                'Un email vous a été envoyé pour confirmer votre compte'
+                'danger',
+                'Le mail n\'a pas pu être envoyé.'
             );
         }
-
+        $this->setFlash(
+            'success',
+            'Un email a été envoyé pour confirmer
+                 la création de votre compte.'
+        );
         return new Response(
             301, [
-            'Location' => '/'
+                'Location' => '/'
             ]
         );
     }
