@@ -3,7 +3,6 @@
 
 namespace Framework;
 
-
 use Framework\Interfaces\RenderInterfaces;
 
 class Render implements RenderInterfaces

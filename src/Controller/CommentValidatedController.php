@@ -45,7 +45,8 @@ class CommentValidatedController
      * @param Comments   $comment
      * @param MailHelper $mailHelper
      */
-    public function __construct(Users $user,
+    public function __construct(
+        Users $user,
         Articles $article,
         Comments $comment,
         MailHelper $mailHelper
@@ -67,12 +68,14 @@ class CommentValidatedController
      * @throws \DI\NotFoundException
      * @throws \SendGrid\Mail\TypeException
      */
-    public function __invoke(ServerRequestInterface $request,
+    public function __invoke(
+        ServerRequestInterface $request,
         ResponseInterface $response,
         Container $container
     ) {
         $comments = $this->comment->getCommentForvalidated(
-            $request->getAttribute('comments', 0));
+            $request->getAttribute('comments', 0)
+        );
 
         $email = $comments['email'];
 
@@ -80,9 +83,9 @@ class CommentValidatedController
         $commentValidated = $this->comment->validatedComment($request->getAttribute('comments'));
 
 
-        if($commentValidated) {
+        if ($commentValidated) {
             $this->setFlash('success', 'Le commentaire a bien été validé');
-        }else{
+        } else {
             $this->setFlash('warning', 'Un problème est survenue');
         }
 
@@ -97,7 +100,9 @@ class CommentValidatedController
         ];
 
         $result = $this->mailHelper->sendMail(
-            'Validation du commentaire', $from, $to,
+            'Validation du commentaire',
+            $from,
+            $to,
             'mailValidatedComment'
         );
 
@@ -113,7 +118,8 @@ class CommentValidatedController
                  la validation du commentaire'
         );
         return new Response(
-            301, [
+            301,
+            [
             'Location' => '/adminaccount'
             ]
         );

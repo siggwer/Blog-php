@@ -42,7 +42,8 @@ class LoginController
      * @throws \DI\NotFoundException
      */
 
-    public function __invoke(ServerRequestInterface $request,
+    public function __invoke(
+        ServerRequestInterface $request,
         ResponseInterface $response,
         Container $container
     ) {
@@ -60,22 +61,24 @@ class LoginController
         $user = $this->userServices->getUserByPseudo($pseudo);
 
         if (array_key_exists('auth', $_SESSION)) {
-            if (!empty($_SESSION['auth']) 
+            if (!empty($_SESSION['auth'])
                 && $_SESSION['auth']->getPseudo() === $pseudo
             ) {
                 $this->setFlash('warning', 'Vous êtes déjà connecté !');
                 return new Response(
-                    301, [
+                    301,
+                    [
                     'Location' => '/account'
                     ]
                 );
-            }if(!empty($_SESSION['auth']) 
-                && $_SESSION['auth']->getPseudo() === $pseudo 
+            }if (!empty($_SESSION['auth'])
+                && $_SESSION['auth']->getPseudo() === $pseudo
                 && $_SESSION['auth']->getRank() === 3
             ) {
                 $this->setFlash('warning', 'Vous êtes déjà connecté !');
                 return new Response(
-                    301, [
+                    301,
+                    [
                     'Location' => '/adminaccount'
                     ]
                 );
@@ -90,7 +93,12 @@ class LoginController
                 $token = $this->generateToken();
                 setcookie(
                     'remember-me',
-                    $token, time() + 3600 * 24 * 7, '/', null, false, true
+                    $token,
+                    time() + 3600 * 24 * 7,
+                    '/',
+                    null,
+                    false,
+                    true
                 );
             }
 
@@ -98,7 +106,8 @@ class LoginController
 
             $this->setFlash('success', 'Vous êtes maintenant connecté !');
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => '/account'
                 ]
             );
@@ -112,7 +121,12 @@ class LoginController
                 $token = $this->generateToken();
                 setcookie(
                     'remember-me',
-                    $token, time() + 3600 * 24 * 7, '/', null, false, true
+                    $token,
+                    time() + 3600 * 24 * 7,
+                    '/',
+                    null,
+                    false,
+                    true
                 );
             }
 
@@ -120,7 +134,8 @@ class LoginController
 
             $this->setFlash('success', 'Vous êtes maintenant connecté !');
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => '/adminaccount'
                 ]
             );
@@ -128,7 +143,8 @@ class LoginController
 
         $this->setFlash('danger', 'Mauvais mot de passe ou pseudo');
         return new Response(
-            301, [
+            301,
+            [
             'Location' => '/login'
             ]
         );

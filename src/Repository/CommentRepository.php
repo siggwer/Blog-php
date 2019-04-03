@@ -45,7 +45,8 @@ class CommentRepository implements CommentRepositoryInterface
     {
         return $this->database->request(
             'SELECT `comment`.`id`, `comment`.`comments`, `comment`.`author`, DATE_FORMAT(`comment_date`, \'%d/%m/%Y\ à %Hh%imin\') AS creation_date_fr, `comment`.`validated` FROM `comment`
-        WHERE article_id = :id', [
+        WHERE article_id = :id',
+            [
             ':id' => $id
             ]
         )->fetch();
@@ -63,7 +64,8 @@ class CommentRepository implements CommentRepositoryInterface
         LEFT JOIN `article` ON `comment`.`article_id` = `article`.`id`
           WHERE article_id = :id
            AND validated = 1
-            ORDER BY comment_date DESC', [
+            ORDER BY comment_date DESC',
+            [
                 ':id' => $id,
             ]
         )->fetchAll();
@@ -79,7 +81,8 @@ class CommentRepository implements CommentRepositoryInterface
         $this->database->request(
             'INSERT INTO comment(
             author, comments, comment_date, article_id) 
-            VALUES(:author, :comments, NOW(), :article_id)', [
+            VALUES(:author, :comments, NOW(), :article_id)',
+            [
             ':author' => $comment['author'],
             ':comments' => $comment['comments'],
             'article_id' => $comment['article_id']
@@ -105,7 +108,8 @@ class CommentRepository implements CommentRepositoryInterface
             comment_date = NOW(),
             article_id = :article_id,
             validated = :validated
-        WHERE article_id = :id', [
+        WHERE article_id = :id',
+            [
             ':author' => $comment['author'],
             ':comment' => $comment['comment'],
             ':article_id' => $comment['id'],
@@ -129,7 +133,8 @@ class CommentRepository implements CommentRepositoryInterface
         ON `comment`.`article_id` = `article`.`id` 
 	    LEFT JOIN `user` 
 	    ON `article`.`author_id` = `user`.`id`
-	    WHERE `comment`.`id`= :id', [
+	    WHERE `comment`.`id`= :id',
+            [
             ':id' => $id
             ]
         )->fetch();
@@ -145,7 +150,8 @@ class CommentRepository implements CommentRepositoryInterface
         return $this->database->request(
             'UPDATE comment 
         SET validated = 1 
-        WHERE id = :id', [
+        WHERE id = :id',
+            [
                 'id' => $id
             ]
         );
@@ -161,7 +167,8 @@ class CommentRepository implements CommentRepositoryInterface
         return $this->database->request(
             'DELETE
         FROM comment 
-        WHERE id = :id', [
+        WHERE id = :id',
+            [
             'id' => $id
             ]
         );

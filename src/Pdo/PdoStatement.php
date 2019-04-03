@@ -4,6 +4,7 @@ namespace App\Pdo;
 
 use PDOStatement as PDOState;
 use App\Pdo\Interfaces\PdoStatementInterface;
+
 class PdoStatement implements PdoStatementInterface
 {
     /**
@@ -60,5 +61,4 @@ class PdoStatement implements PdoStatementInterface
         }
         return null;
     }
-
 }

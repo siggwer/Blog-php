@@ -51,7 +51,8 @@ class SuperAdminAccountController
      * @param Articles $article
      * @param Comments $comment
      */
-    public function __construct(Users $user,
+    public function __construct(
+        Users $user,
         Articles $article,
         Comments $comment,
         checkauthAdmin $checkAuth
@@ -72,7 +73,8 @@ class SuperAdminAccountController
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
      */
-    public function __invoke(ServerRequestInterface $request,
+    public function __invoke(
+        ServerRequestInterface $request,
         ResponseInterface $response,
         Container $container
     ) {
@@ -101,7 +103,7 @@ class SuperAdminAccountController
         );
         }**/
 
-        if(array_key_exists('auth', $_SESSION)) {
+        if (array_key_exists('auth', $_SESSION)) {
             $posts = $this->users->allusers();
             $articles = $this->article->home();
             $comments = $this->comment->allComments();
@@ -109,7 +111,8 @@ class SuperAdminAccountController
 
         if ($request->getMethod() === 'GET') {
             $view = $container->get(RenderInterfaces::class)->render(
-                'superAdmin', [
+                'superAdmin',
+                [
                     'posts' => $posts,
                     'articles' => $articles,
                 'comments' => $comments]
@@ -118,5 +121,4 @@ class SuperAdminAccountController
         }
         return $response;
     }
-
 }

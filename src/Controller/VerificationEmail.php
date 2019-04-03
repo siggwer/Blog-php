@@ -39,7 +39,8 @@ class VerificationEmail
      *
      * @throws \Exception
      */
-    public function __invoke(ServerRequestInterface $request,
+    public function __invoke(
+        ServerRequestInterface $request,
         ResponseInterface $response,
         Container $container
     ) {
@@ -54,7 +55,8 @@ class VerificationEmail
                 "Votre lien d'activation n'est pas valide"
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => '/'
                 ]
             );
@@ -70,7 +72,8 @@ class VerificationEmail
                 "Votre lien n'est plus valide"
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => '/'
                 ]
             );
@@ -84,10 +87,10 @@ class VerificationEmail
             "Votre compte est actif. Vous pouvez vous connecter"
         );
         return new Response(
-            301, [
+            301,
+            [
             'Location' => '/'
             ]
         );
     }
-
 }

@@ -45,5 +45,4 @@ interface ArticleRepositoryInterface
      * @return mixed
      */
     public function deleteArticle(int $id);
-
 }

@@ -39,7 +39,8 @@ class ArticleRepository implements ArticleRepositoryInterface
     public function getByArticleId(int $id)
     {
         return $this->database->request(
-            'SELECT `article`.`id`,`title`, `chapo`, `content`, DATE_FORMAT(`publication_date`, \'%d/%m/%Y\') AS creation_date_fr, `author_id`,`pseudo`, `email`, `article`.`id` FROM `user` LEFT JOIN `article` ON `article`.`author_id` = `user`.`id` WHERE `article`.`id` = :id', [
+            'SELECT `article`.`id`,`title`, `chapo`, `content`, DATE_FORMAT(`publication_date`, \'%d/%m/%Y\') AS creation_date_fr, `author_id`,`pseudo`, `email`, `article`.`id` FROM `user` LEFT JOIN `article` ON `article`.`author_id` = `user`.`id` WHERE `article`.`id` = :id',
+            [
             ':id' => $id
             ]
         )->fetch();
@@ -53,7 +54,8 @@ class ArticleRepository implements ArticleRepositoryInterface
     public function getByArticlePseudo(string $pseudo)
     {
         return $this->database->request(
-            'SELECT article.id, title, chapo, content, DATE_FORMAT(publication_date, \'%d/%m/%Y à %Hh%imin\') AS creation_date_fr, `author_id`, pseudo, email, email_token, password, register_at, connexion_at, rank, article.id FROM user LEFT JOIN `article` ON article.author_id = user.id WHERE pseudo = :pseudo ORDER BY `publication_date` DESC', [
+            'SELECT article.id, title, chapo, content, DATE_FORMAT(publication_date, \'%d/%m/%Y à %Hh%imin\') AS creation_date_fr, `author_id`, pseudo, email, email_token, password, register_at, connexion_at, rank, article.id FROM user LEFT JOIN `article` ON article.author_id = user.id WHERE pseudo = :pseudo ORDER BY `publication_date` DESC',
+            [
             ':pseudo' => $pseudo
             ]
         )->fetchAll();
@@ -68,7 +70,8 @@ class ArticleRepository implements ArticleRepositoryInterface
     {
         $this->database->request(
             'INSERT INTO article(title, chapo, content, author_id, publication_date) 
-            VALUES(:title, :chapo, :content, :author_id, NOW())', [
+            VALUES(:title, :chapo, :content, :author_id, NOW())',
+            [
             ':title' => $id['title'],
             ':chapo' => $id['chapo'],
             ':content' => $id['content'],
@@ -96,7 +99,8 @@ class ArticleRepository implements ArticleRepositoryInterface
             content = :content,
             update_by = :update_by,
             publication_date = NOW()
-        WHERE id = :id', [
+        WHERE id = :id',
+            [
             ':id' => $articles['id'],
             ':title' => $articles['title'],
             ':chapo' => $articles['chapo'],
@@ -115,7 +119,8 @@ class ArticleRepository implements ArticleRepositoryInterface
     public function deleteArticle(int $id)
     {
         return $this->database->request(
-            'DELETE FROM article WHERE id = :id', [
+            'DELETE FROM article WHERE id = :id',
+            [
             ':id' => $id
             ]
         )->fetch();

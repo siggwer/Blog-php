@@ -14,4 +14,3 @@ return [
      RenderInterfaces::class => di_object(Render::class)
      ->constructor(di_get('twig.path'))
 ];
-

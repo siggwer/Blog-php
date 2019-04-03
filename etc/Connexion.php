@@ -32,7 +32,7 @@ abstract class Connexion
                 PDO::ERRMODE_EXCEPTION
             );
             return $this->connection;
-        } catch(Exception $errorConnection) {
+        } catch (Exception $errorConnection) {
             $_SESSION['message'] = sprintf(
                 'Erreur de connection : %s',
                 $errorConnection->getMessage()

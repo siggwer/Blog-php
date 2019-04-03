@@ -42,7 +42,8 @@ class ContactController
      * @throws \DI\NotFoundException
      * @throws \SendGrid\Mail\TypeException
      */
-    public function __invoke(ServerRequestInterface $request,
+    public function __invoke(
+        ServerRequestInterface $request,
         ResponseInterface $response,
         Container $container
     ) {
@@ -61,7 +62,8 @@ class ContactController
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->setFlash("danger", "Votre adresse n'est pas valide");
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => '/contact'
                 ]
             );
@@ -69,28 +71,30 @@ class ContactController
 
 
         $nameLength = strlen($name);
-        if (empty($name) || $nameLength < 4 ) {
+        if (empty($name) || $nameLength < 4) {
             $this->setFlash(
                 "danger",
                 "Votre nom doit contenir au moins 4 caractères
                  ou ne doit pas être vide"
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => '/contact'
                 ]
             );
         }
 
         $firstNameLength = strlen($firstName);
-        if (empty($firstName) || $firstNameLength < 4 ) {
+        if (empty($firstName) || $firstNameLength < 4) {
             $this->setFlash(
                 "danger",
                 "Votre nom doit contenir au moins 4 caractères
                  ou ne doit pas être vide"
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => '/contact'
                 ]
             );
@@ -103,7 +107,8 @@ class ContactController
                 "Votre message doit contenir au minimum 50 caractères"
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => '/contact'
                 ]
             );
@@ -120,7 +125,9 @@ class ContactController
 
         $result = $this->MailHelper->sendMail(
             'Confirmation de votre message',
-            $from, $to, 'mailVerify'
+            $from,
+            $to,
+            'mailVerify'
         );
         if ($result->statusCode() === 202) {
             $this->setFlash(
@@ -130,7 +137,8 @@ class ContactController
             );
         }
         return new Response(
-            301, [
+            301,
+            [
             'Location' => '/'
             ]
         );

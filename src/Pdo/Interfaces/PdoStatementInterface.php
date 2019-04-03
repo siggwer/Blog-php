@@ -2,7 +2,6 @@
 
 namespace App\Pdo\Interfaces;
 
-
 /**
  * Interface PdoStatementInterface
  *
@@ -35,5 +34,4 @@ interface PdoStatementInterface
      * @return mixed
      */
     public function fetchAll();
-
 }

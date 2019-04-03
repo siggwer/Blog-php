@@ -23,7 +23,8 @@ class MailHelper
      * @param string           $sendgridApiKey
      * @param RenderInterfaces $render
      */
-    public function __construct(string $sendGridApiKey,
+    public function __construct(
+        string $sendGridApiKey,
         RenderInterfaces $render
     ) {
 
@@ -41,7 +42,8 @@ class MailHelper
      *
      * @throws \SendGrid\Mail\TypeException
      */
-    private function builtMail(string $subject,
+    private function builtMail(
+        string $subject,
         array $from,
         array $to,
         string $template
@@ -52,7 +54,8 @@ class MailHelper
         $email->setSubject($subject);
         $email->addTo($to['email'], $to['name']);
         $email->addContent(
-            "text/html", $this->render->render($template)
+            "text/html",
+            $this->render->render($template)
         );
 
         return $email;
@@ -68,7 +71,8 @@ class MailHelper
      *
      * @throws \SendGrid\Mail\TypeException
      */
-    public function sendMail(string $subject,
+    public function sendMail(
+        string $subject,
         array $from,
         array $to,
         string $template
@@ -76,10 +80,9 @@ class MailHelper
 
         $mail = $this->builtMail($subject, $from, $to, $template);
 
-        try{
+        try {
             return $this->getSendGrid()->send($mail);
-
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             echo 'Caught exception: '. $e->getMessage() ."\n";
             exit;
         }

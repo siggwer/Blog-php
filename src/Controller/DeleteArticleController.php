@@ -45,7 +45,8 @@ class DeleteArticleController
      * @param Comments   $comment
      * @param MailHelper $mailHelper
      */
-    public function __construct(Users $user,
+    public function __construct(
+        Users $user,
         Articles $article,
         Comments $comment,
         MailHelper $mailHelper
@@ -56,11 +57,12 @@ class DeleteArticleController
         $this->mailHelper = $mailHelper;
     }
 
-    public function __invoke(ServerRequestInterface $request,
+    public function __invoke(
+        ServerRequestInterface $request,
         ResponseInterface $response,
         Container $container
     ) {
-        if(array_key_exists('auth', $_SESSION)) {
+        if (array_key_exists('auth', $_SESSION)) {
             $posts = $this->users->allArticlesByPseudo(
                 $_SESSION['auth']->getPseudo()
             );
@@ -74,7 +76,8 @@ class DeleteArticleController
             if ($posts && $articles === false) {
                 $this->setFlash("danger", "Article inconnu");
                 return new Response(
-                    301, [
+                    301,
+                    [
                     'Location' => '/account'
                     ]
                 );
@@ -83,20 +86,20 @@ class DeleteArticleController
 
         $email = $articles['email'];
 
-        if(isset($articles['id'])  === true) {
+        if (isset($articles['id'])  === true) {
             $deleteArticle = $this->article->deleteArticle($articles['id']);
         }
 
-        if($deleteArticle) {
+        if ($deleteArticle) {
             $this->comment->deleteComment($comments['article_id']);
             $this->setFlash('success', 'Votre article a bien été supprimé');
-        }else{
+        } else {
             $this->setFlash('warning', 'Un problème est survenue');
         }
 
-        if($deleteArticle) {
+        if ($deleteArticle) {
             $this->setFlash('success', 'Votre article a bien été modifié');
-        }else{
+        } else {
             $this->setFlash('warning', 'Un problème est survenue');
         }
 
@@ -111,7 +114,9 @@ class DeleteArticleController
         ];
 
         $result = $this->mailHelper->sendMail(
-            'Modification de l\'article.', $from, $to,
+            'Modification de l\'article.',
+            $from,
+            $to,
             'mailDeleteArticle'
         );
 
@@ -127,7 +132,8 @@ class DeleteArticleController
                  la suppression de l\'article.'
         );
         return new Response(
-            301, [
+            301,
+            [
                 'Location' => '/account'
             ]
         );

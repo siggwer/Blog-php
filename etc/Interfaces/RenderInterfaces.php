@@ -2,7 +2,6 @@
 
 namespace Framework\Interfaces;
 
-
 interface RenderInterfaces
 {
     /**

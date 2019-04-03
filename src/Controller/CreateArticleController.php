@@ -39,7 +39,8 @@ class CreateArticleController
      * @param Articles   $article
      * @param MailHelper $mailHelper
      */
-    public function __construct(Users $user,
+    public function __construct(
+        Users $user,
         Articles $article,
         MailHelper $mailHelper
     ) {
@@ -59,16 +60,17 @@ class CreateArticleController
      * @throws \DI\NotFoundException
      * @throws \SendGrid\Mail\TypeException
      */
-    public function __invoke(ServerRequestInterface $request,
+    public function __invoke(
+        ServerRequestInterface $request,
         ResponseInterface $response,
         Container $container
     ) {
-        if(array_key_exists('auth', $_SESSION)) {
+        if (array_key_exists('auth', $_SESSION)) {
             $posts = $this->users->allArticlesByPseudo(
                 $_SESSION['auth']->getPseudo('pseudo')
             );
 
-            if($request->getMethod() === 'GET') {
+            if ($request->getMethod() === 'GET') {
                 $view = $container->get(RenderInterfaces::class)->render(
                     'createArticle',
                     ['posts' => $posts]
@@ -87,42 +89,45 @@ class CreateArticleController
         $path = '/create';
 
         $titleLength = strlen($title);
-        if($titleLength < 10 ) {
+        if ($titleLength < 10) {
             $this->setFlash(
                 "danger",
                 "Votre titre doit contenir au moins 10 caractères
                  ou ne doit pas être vide"
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => $path
                 ]
             );
         }
 
         $chapoLength = strlen($chapo);
-        if($chapoLength < 20 ) {
+        if ($chapoLength < 20) {
             $this->setFlash(
                 "danger",
                 "Le chapoô doit contenir au moins 20 caractères
                  ou ne doit pas être vide"
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => $path
                 ]
             );
         }
 
         $contentLength = strlen($content);
-        if($contentLength < 30) {
+        if ($contentLength < 30) {
             $this->setFlash(
                 "danger",
                 "Votre contenu doit contenir au minimum 50 caractères
                  ou ne doit pas être vide"
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => $path
                 ]
             );
@@ -139,9 +144,9 @@ class CreateArticleController
             ]
         );
 
-        if($createArticle) {
+        if ($createArticle) {
             $this->setFlash('success', 'Votre article a bien été créé.');
-        }else{
+        } else {
             $this->setFlash('warning', 'Un problème est survenue');
         }
 
@@ -157,7 +162,9 @@ class CreateArticleController
 
         $result = $this->mailHelper->sendMail(
             'Création de l\'article',
-            $from, $to, 'mailCreate'
+            $from,
+            $to,
+            'mailCreate'
         );
 
         if (!$result->statusCode() === 202) {
@@ -172,10 +179,10 @@ class CreateArticleController
                  la création de l\'article.'
         );
         return new Response(
-            301, [
+            301,
+            [
                 'Location' => '/account'
             ]
         );
     }
-
 }

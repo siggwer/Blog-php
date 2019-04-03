@@ -3,7 +3,6 @@
 
 namespace Framework\Interfaces;
 
-
 interface RouterInterface
 {
     /**
@@ -16,5 +15,4 @@ interface RouterInterface
      * @return mixed
      */
     public function handleRequest(array $request = []);
-
 }

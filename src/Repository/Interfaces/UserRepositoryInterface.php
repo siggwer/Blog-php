@@ -7,7 +7,7 @@ use App\Pdo\Interfaces\PdoStatementInterface;
 use App\Model\User;
 use App\Service\Users;
 
-Interface UserRepositoryInterface
+interface UserRepositoryInterface
 {
     /**
      * @param $user

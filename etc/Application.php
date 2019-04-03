@@ -14,7 +14,7 @@ use Framework\Interfaces\ApplicationInterface;
 use Zend\Expressive\Router\FastRouteRouter;
 use Zend\Expressive\Router\Route;
 
-use function QuimCalpe\ResponseSender\send AS send_response;
+use function QuimCalpe\ResponseSender\send as send_response;
 
 class Application implements ApplicationInterface
 {
@@ -121,8 +121,6 @@ class Application implements ApplicationInterface
             $this->router->addRoute($routeAdd);
 
             $this->middlewares[$name] = $route['middlewares'];
-
         }
     }
-
 }

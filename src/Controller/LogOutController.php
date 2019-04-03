@@ -25,7 +25,8 @@ class LogOutController
         setcookie('remember', '', -1, '/', null, false, true);
         $this->setFlash('success', 'Vous êtes bien déconnecté');
         return new Response(
-            301, [
+            301,
+            [
             'Location' => '/'
             ]
         );

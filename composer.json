@@ -1,5 +1,7 @@
 {
-    "name": "jeromesauvage/blogphp",
+    "name": "jeromesauvage/blog-php",
+    "description": "openclassrooms projet 5 blog php poo",
+    "minimum-stability": "stable",
     "require": {
         "twig/twig": "^2.0",
         "php-di/php-di": "^5.4",
@@ -18,5 +20,8 @@
             "App\\": "src/",
             "Framework\\": "etc/"
         }
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*"
     }
 }

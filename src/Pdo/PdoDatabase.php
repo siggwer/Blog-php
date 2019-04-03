@@ -6,6 +6,7 @@ use DateTime;
 use PDO;
 use App\Pdo\Interfaces\PdoDatabaseInterface;
 use App\Pdo\Interfaces\PdoStatementInterface;
+
 class PdoDatabase extends PDO implements PdoDatabaseInterface
 {
     const TYPE_FIELD = [

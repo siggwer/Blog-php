@@ -50,31 +50,35 @@ class ArticlesDetailsController
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
      */
-    public function __invoke(ServerRequestInterface $request,
+    public function __invoke(
+        ServerRequestInterface $request,
         ResponseInterface $response,
         Container $container
     ) {
         $articles = $this->articles->getArticleWithId(
             $request->getAttribute(
-                'articles', 0
+                'articles',
+                0
             )
         );
         $comments = $this->comment->getCommentId(
             $request->getAttribute(
-                'articles', 0
+                'articles',
+                0
             )
         );
 
-        if($articles && $comments === false) {
+        if ($articles && $comments === false) {
             $this->setFlash("danger", "Article inconnu");
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => '/'
                 ]
             );
         }
 
-        if($request->getMethod() === 'GET') {
+        if ($request->getMethod() === 'GET') {
             $view = $container->get(RenderInterfaces::class)->render(
                 'articles',
                 ['articles' => $articles, 'comments' => $comments]
@@ -89,31 +93,33 @@ class ArticlesDetailsController
         $path = '/article_details/' . $articles['id'];
 
         $authorLength = strlen($author);
-        if($authorLength < 4) {
+        if ($authorLength < 4) {
             $this->setFlash(
                 "danger",
                 "Votre nom doit contenir au moins 4 caractères"
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => $path
                 ]
             );
         }
         $commentLength = strlen($comment);
-        if($commentLength < 3) {
+        if ($commentLength < 3) {
             $this->setFlash(
                 "danger",
                 "Votre commentaire doit contenir au minimum 3 caractères"
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => $path
                 ]
             );
         }
 
-        if(array_key_exists('auth', $_SESSION)) {
+        if (array_key_exists('auth', $_SESSION)) {
             $addComment = $this->comment->insertComment(
                 [
                 //'id' => $comments['id'],
@@ -122,29 +128,31 @@ class ArticlesDetailsController
                 'article_id' => $articles['id']
                 ]
             );
-        }else{
+        } else {
             $this->setFlash(
                 'warning',
                 'Vous devez être connecté pour ajouter un commentaire'
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => '/login'
                 ]
             );
         }
 
-        if($addComment) {
+        if ($addComment) {
             $this->setFlash(
                 'success',
                 'Votre commentaire est en cours de modération'
             );
-        }else{
+        } else {
             $this->setFlash('warning', 'Un problème est survenue');
         }
 
         return new Response(
-            301, [
+            301,
+            [
             'Location' => $path
             ]
         );

@@ -45,7 +45,8 @@ class DeleteCommentController
      * @param Comments   $comment
      * @param MailHelper $mailHelper
      */
-    public function __construct(Users $user,
+    public function __construct(
+        Users $user,
         Articles $article,
         Comments $comment,
         MailHelper $mailHelper
@@ -65,7 +66,8 @@ class DeleteCommentController
      *
      * @throws \SendGrid\Mail\TypeException
      */
-    public function __invoke(ServerRequestInterface $request,
+    public function __invoke(
+        ServerRequestInterface $request,
         ResponseInterface $response,
         Container $container
     ) {
@@ -78,9 +80,9 @@ class DeleteCommentController
         $deleteComment = $this->comment->deleteComment($request->getAttribute('comments'));
 
 
-        if($deleteComment) {
+        if ($deleteComment) {
             $this->setFlash('success', 'Le commentaire a bien été supprimé');
-        }else{
+        } else {
             $this->setFlash('warning', 'Un problème est survenue');
         }
 
@@ -96,7 +98,9 @@ class DeleteCommentController
 
         $result = $this->mailHelper->sendMail(
             'Validation du commentaire',
-            $from, $to, 'mailDeleteComment'
+            $from,
+            $to,
+            'mailDeleteComment'
         );
 
         if (!$result->statusCode() === 202) {
@@ -111,7 +115,8 @@ class DeleteCommentController
                  la suppression du commentaire'
         );
         return new Response(
-            301, [
+            301,
+            [
             'Location' => '/adminaccount'
             ]
         );

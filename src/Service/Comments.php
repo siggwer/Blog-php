@@ -81,7 +81,6 @@ class Comments
     {
         $comment = $this->comment->getCommentForvalidated($id);
         return $comment;
-
     }
 
     /**
@@ -93,7 +92,6 @@ class Comments
     {
         $comment = $this->comment->validatedComment($id);
         return $comment;
-
     }
 
     /**
@@ -106,5 +104,4 @@ class Comments
         $comment = $this->comment->deleteComment($id);
         return $comment;
     }
-
 }

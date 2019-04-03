@@ -23,7 +23,6 @@ try {
     $app = new Application();
     $app->init();
     $app->handleRequest();
-
 } catch (Exception $exception) {
     echo($exception->getMessage());
 }

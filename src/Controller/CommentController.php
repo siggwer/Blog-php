@@ -56,7 +56,8 @@ class CommentController
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
      */
-    public function __invoke(ServerRequestInterface $request,
+    public function __invoke(
+        ServerRequestInterface $request,
         ResponseInterface $response,
         Container $container
     ) {
@@ -74,7 +75,8 @@ class CommentController
             if ($posts && $articles === false) {
                 $this->setFlash("danger", "Article inconnu");
                 return new Response(
-                    301, [
+                    301,
+                    [
                     'Location' => '/account'
                     ]
                 );
@@ -82,7 +84,8 @@ class CommentController
 
             if ($request->getMethod() === 'GET') {
                 $view = $container->get(RenderInterfaces::class)->render(
-                    'modifyComment', ['posts' => $posts,
+                    'modifyComment',
+                    ['posts' => $posts,
                         'articles' => $articles,
                     'comments' => $comments]
                 );

@@ -39,7 +39,8 @@ class AdministrationAccount
      * @param Articles $article
      * @param Comments $comment
      */
-    public function __construct(Users $user,
+    public function __construct(
+        Users $user,
         Articles $article,
         Comments $comment
     ) {
@@ -58,27 +59,30 @@ class AdministrationAccount
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
      */
-    public function __invoke(ServerRequestInterface $request,
+    public function __invoke(
+        ServerRequestInterface $request,
         ResponseInterface $response,
         Container $container
     ) {
-        if(!array_key_exists('auth', $_SESSION)) {
+        if (!array_key_exists('auth', $_SESSION)) {
             if (empty($_SESSION['auth'])) {
                 $this->setFlash(
                     'warning',
                     'Vous devez être connecté pour accéder à votre espace'
                 );
                 return new Response(
-                    301, [
+                    301,
+                    [
                     'Location' => '/login'
                     ]
                 );
             }
-        }if(!empty($_SESSION['auth']) 
+        }if (!empty($_SESSION['auth'])
             && $_SESSION['auth']->getRank() === 3
         ) {
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => '/adminaccount'
                 ]
             );

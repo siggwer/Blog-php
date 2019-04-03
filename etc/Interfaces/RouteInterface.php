@@ -2,7 +2,6 @@
 
 namespace Framework\Interfaces;
 
-
 interface RouteInterface
 {
     public function __construct($path, $controller, array $params = []);

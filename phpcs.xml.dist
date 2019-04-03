@@ -18,7 +18,7 @@
  <exclude-pattern>/Diagrammes</exclude-pattern>
  <file>config</file>
  <file>etc</file>
- <file>public/file>
+ <file>public</file>
  <file>src</file>
 
 </ruleset>

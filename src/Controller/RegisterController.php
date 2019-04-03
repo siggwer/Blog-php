@@ -34,7 +34,8 @@ class RegisterController
      * @param Users      $users
      * @param MailHelper $mailHelper
      */
-    public function __construct(Users $users,
+    public function __construct(
+        Users $users,
         MailHelper $mailHelper
     ) {
         $this->mailHelper = $mailHelper;
@@ -52,7 +53,8 @@ class RegisterController
      * @throws \DI\NotFoundException
      * @throws \SendGrid\Mail\TypeException
      */
-    public function __invoke(ServerRequestInterface $request,
+    public function __invoke(
+        ServerRequestInterface $request,
         ResponseInterface $response,
         Container $container
     ) {
@@ -73,17 +75,20 @@ class RegisterController
 
         if (!addslashes(!htmlspecialchars(!htmlentities(trim($pseudo))))) {
             $this->setFlash(
-                "attention", "Votre pseudo n'est pas valide"
+                "attention",
+                "Votre pseudo n'est pas valide"
             );
             return new Response(301, ['Location' => '/register']);
         }
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->setFlash(
-                "danger", "Votre adresse mail n'est pas valide"
+                "danger",
+                "Votre adresse mail n'est pas valide"
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => '/register'
                 ]
             );
@@ -91,10 +96,12 @@ class RegisterController
 
         if ($email === $users->getPseudo()) {
             $this->setFlash(
-                "danger", "Vous êtes déjà enregistré avec ce pseudo"
+                "danger",
+                "Vous êtes déjà enregistré avec ce pseudo"
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => '/register'
                 ]
             );
@@ -108,7 +115,8 @@ class RegisterController
                 "Votre mot de passe doit contenir au minimum 8 caractères"
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => '/register'
                 ]
             );
@@ -120,7 +128,8 @@ class RegisterController
                  n'est pas identique à votre mot de passe"
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => '/register'
                 ]
             );
@@ -141,14 +150,17 @@ class RegisterController
         $userRegister = $this->users->registerUser($users);
 
         $renderHtml = $container->get(RenderInterfaces::class)->render(
-            'mailVerify', [
+            'mailVerify',
+            [
             'user' => $userRegister
             ]
         );
         $renderText = $container->get(RenderInterfaces::class)->render(
-            'mailVerify', [
+            'mailVerify',
+            [
             'user' => $userRegister
-            ], 'text'
+            ],
+            'text'
         );
 
         $from =[
@@ -162,7 +174,10 @@ class RegisterController
         ];
 
         $result = $this->mailHelper->sendMail(
-            'Confirmation de votre compte', $from, $to, 'mailVerify'
+            'Confirmation de votre compte',
+            $from,
+            $to,
+            'mailVerify'
         );
         if (!$result->statusCode() === 202) {
             $this->setFlash(
@@ -176,7 +191,8 @@ class RegisterController
                  la création de votre compte.'
         );
         return new Response(
-            301, [
+            301,
+            [
                 'Location' => '/'
             ]
         );

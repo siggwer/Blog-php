@@ -34,7 +34,8 @@ class UserRepository implements UserRepositoryInterface
         $this->database->request(
             '
           INSERT INTO user (pseudo, password, email, email_token, register_at, connexion_at, rank) 
-          VALUES (:pseudo, :password, :email, :emailToken, NOW(), NULL, 1)', [
+          VALUES (:pseudo, :password, :email, :emailToken, NOW(), NULL, 1)',
+            [
                 ':pseudo' => $user->getPseudo(),
                 ':password' => $user->getPassword(),
                 ':email' => $user->getEmail(),
@@ -58,7 +59,8 @@ class UserRepository implements UserRepositoryInterface
             email_token = :email_token,
             connexion_at = :connexion_at,
             rank = :rank
-        WHERE id = :userId', [
+        WHERE id = :userId',
+            [
             ':email' => $user->getEmail(),
             ':email_token' => $user->getEmailtoken(),
             ':connexion_at' => $user->getConnexionat(),
@@ -77,7 +79,8 @@ class UserRepository implements UserRepositoryInterface
     {
         return new User(
             $this->database->request(
-                'SELECT id, pseudo, password, email, email_token, register_at, connexion_at, rank FROM user WHERE email = :email', [
+                'SELECT id, pseudo, password, email, email_token, register_at, connexion_at, rank FROM user WHERE email = :email',
+                [
                 ':email' => $email
                 ]
             )->fetch()
@@ -93,7 +96,8 @@ class UserRepository implements UserRepositoryInterface
     {
         return new User(
             $this->database->request(
-                'SELECT id, pseudo, password, email, email_token, register_at, connexion_at, rank FROM user WHERE pseudo = :pseudo', [
+                'SELECT id, pseudo, password, email, email_token, register_at, connexion_at, rank FROM user WHERE pseudo = :pseudo',
+                [
                 ':pseudo' => $pseudo
                 ]
             )->fetch()
@@ -109,7 +113,8 @@ class UserRepository implements UserRepositoryInterface
     {
         return new User(
             $this->database->request(
-                'SELECT id, password, email, email_token, register_at, connexion_at, rank FROM user WHERE id = :userId LIMIT 0, 1', [
+                'SELECT id, password, email, email_token, register_at, connexion_at, rank FROM user WHERE id = :userId LIMIT 0, 1',
+                [
                 ':userId' => $userId
                 ]
             )->fetch()
@@ -124,7 +129,8 @@ class UserRepository implements UserRepositoryInterface
     public function getRank(User $rankAdmin)
     {
         return $this->database->request(
-            'SELECT * FROM blog.user  WHERE rank = :rankAdmin', [
+            'SELECT * FROM blog.user  WHERE rank = :rankAdmin',
+            [
             ':rankAdmin' => intval($rankAdmin->getRank())
             ]
         )->fetchAll();
@@ -147,7 +153,8 @@ class UserRepository implements UserRepositoryInterface
     {
         return new User(
             $this->database->request(
-                'SELECT * FROM user WHERE pseudo = :pseudo', [
+                'SELECT * FROM user WHERE pseudo = :pseudo',
+                [
                 ':pseudo' => $pseudo
                 ]
             )->fetch()

@@ -3,6 +3,7 @@
 namespace App\Repository\Interfaces;
 
 use App\Pdo\Interfaces\PdoStatementInterface;
+
 interface CommentRepositoryInterface
 {
     /**

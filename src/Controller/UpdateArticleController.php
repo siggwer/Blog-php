@@ -46,7 +46,8 @@ class UpdateArticleController
      * @param Comments   $comment
      * @param MailHelper $mailHelper
      */
-    public function __construct(Users $user,
+    public function __construct(
+        Users $user,
         Articles $article,
         Comments $comment,
         MailHelper $mailHelper
@@ -68,11 +69,12 @@ class UpdateArticleController
      * @throws \DI\NotFoundException
      * @throws \SendGrid\Mail\TypeException
      */
-    public function __invoke(ServerRequestInterface $request,
+    public function __invoke(
+        ServerRequestInterface $request,
         ResponseInterface $response,
         Container $container
     ) {
-        if(array_key_exists('auth', $_SESSION)) {
+        if (array_key_exists('auth', $_SESSION)) {
             $posts = $this->users->allArticlesByPseudo(
                 $_SESSION['auth']->getPseudo()
             );
@@ -86,27 +88,30 @@ class UpdateArticleController
             if ($posts && $articles && $comments === false) {
                 $this->setFlash("danger", "Article inconnu");
                 return new Response(
-                    301, [
+                    301,
+                    [
                     'Location' => '/account'
                     ]
                 );
-            }else{
-                if(!empty($_SESSION['auth']) 
-                    && $_SESSION['auth']->getPseudo() === $posts 
+            } else {
+                if (!empty($_SESSION['auth'])
+                    && $_SESSION['auth']->getPseudo() === $posts
                     && $_SESSION['auth']->getRank() === 3
                 ) {
                     $this->setFlash('warning', 'Vous êtes déjà connecté !');
                     return new Response(
-                        301, [
+                        301,
+                        [
                         'Location' => '/adminaccount'
                         ]
                     );
                 }
             }
 
-            if($request->getMethod() === 'GET') {
+            if ($request->getMethod() === 'GET') {
                 $view = $container->get(RenderInterfaces::class)->render(
-                    'updateArticle', ['posts' => $posts,
+                    'updateArticle',
+                    ['posts' => $posts,
                         'articles' => $articles,
                     'comments' => $comments]
                 );
@@ -124,42 +129,45 @@ class UpdateArticleController
         $path = '/updateArticle/'.$articles['id'];
 
         $titleLength = strlen($title);
-        if($titleLength < 10 ) {
+        if ($titleLength < 10) {
             $this->setFlash(
                 "danger",
                 "Votre titre doit contenir au moins 10 caractères
                  ou ne doit pas être vide"
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => $path
                 ]
             );
         }
 
         $chapoLength = strlen($chapo);
-        if($chapoLength < 20 ) {
+        if ($chapoLength < 20) {
             $this->setFlash(
                 "danger",
                 "Le chapoô doit contenir au moins 20 caractères
                  ou ne doit pas être vide"
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => $path
                 ]
             );
         }
 
         $contentLength = strlen($content);
-        if($contentLength < 30) {
+        if ($contentLength < 30) {
             $this->setFlash(
                 "danger",
                 "Votre message doit contenir au minimum 50 caractères
                  ou ne doit pas être vide"
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => $path
                 ]
             );
@@ -176,9 +184,9 @@ class UpdateArticleController
             ]
         );
 
-        if($updateArticle) {
+        if ($updateArticle) {
             $this->setFlash('success', 'Votre article a bien été modifié');
-        }else{
+        } else {
             $this->setFlash('warning', 'Un problème est survenue');
         }
 
@@ -193,7 +201,9 @@ class UpdateArticleController
         ];
 
         $result = $this->mailHelper->sendMail(
-            'Modification de l\'article.', $from, $to,
+            'Modification de l\'article.',
+            $from,
+            $to,
             'mailUpdateArticle'
         );
 
@@ -205,7 +215,8 @@ class UpdateArticleController
         }
 
         return new Response(
-            301, [
+            301,
+            [
             'Location' => '/account'
             ]
         );

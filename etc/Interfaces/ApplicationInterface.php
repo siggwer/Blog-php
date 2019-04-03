@@ -1,7 +1,6 @@
 <?php
 namespace Framework\Interfaces;
 
-
 interface ApplicationInterface
 {
     /**
@@ -13,6 +12,4 @@ interface ApplicationInterface
      * @return mixed
      */
     public function handleRequest();
-
-
 }

@@ -2,7 +2,6 @@
 
 namespace App\Pdo\Interfaces;
 
-
 interface PdoDatabaseInterface
 {
     /**
@@ -26,5 +25,4 @@ interface PdoDatabaseInterface
      * @return int
      */
     public function lastId(): int;
-
 }

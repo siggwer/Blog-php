@@ -2,7 +2,6 @@
 
 namespace App\Service;
 
-
 use App\Repository\Interfaces\ArticleRepositoryInterface;
 use App\Pdo\Interfaces\PdoStatementInterface;
 
@@ -19,7 +18,6 @@ class Articles
     public function __construct(ArticleRepositoryInterface $articles)
     {
         $this->articles = $articles;
-
     }
 
     /**
@@ -80,5 +78,4 @@ class Articles
         $article = $this->articles->deleteArticle($id);
         return  $article;
     }
-
 }

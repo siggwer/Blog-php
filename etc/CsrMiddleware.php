@@ -19,9 +19,11 @@ class CsrMiddleware
      *
      * @return Response
      */
-    public function __invoke(ServerRequestInterface $request,
+    public function __invoke(
+        ServerRequestInterface $request,
         Response $response,
-        Container $container,  $next
+        Container $container,
+        $next
     ) {
         $csrf = $this->generateToken();
 
@@ -41,7 +43,8 @@ class CsrMiddleware
                 'Jeton invalide, merci de rafraichir et de réessayer'
             );
             return new Response(
-                301, [
+                301,
+                [
                 'Location' => $request->getUri()->getPath()
 
                 ]
