@@ -27,7 +27,6 @@ class MailHelper
         string $sendGridApiKey,
         RenderInterfaces $render
     ) {
-
         $this->sendgridApiKey = $sendGridApiKey;
         $this->render = $render;
     }
@@ -48,7 +47,6 @@ class MailHelper
         array $to,
         string $template
     ) {
-
         $email = new Mail();
         $email->setFrom($from['email'], $from['name']);
         $email->setSubject($subject);
@@ -77,7 +75,6 @@ class MailHelper
         array $to,
         string $template
     ) {
-
         $mail = $this->builtMail($subject, $from, $to, $template);
 
         try {
@@ -93,7 +90,6 @@ class MailHelper
      */
     private function getSendGrid()
     {
-
         return new \SendGrid($this->sendgridApiKey);
     }
 }

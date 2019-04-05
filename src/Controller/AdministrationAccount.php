@@ -77,7 +77,8 @@ class AdministrationAccount
                     ]
                 );
             }
-        }if (!empty($_SESSION['auth'])
+        }
+        if (!empty($_SESSION['auth'])
             && $_SESSION['auth']->getRank() === 3
         ) {
             return new Response(

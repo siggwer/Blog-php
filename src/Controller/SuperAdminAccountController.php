@@ -6,10 +6,10 @@ use App\Service\Users;
 use App\Service\Articles;
 use App\Service\Comments;
 use DI\Container;
+use GuzzleHttp\Psr7\Response;
 use Framework\Interfaces\RenderInterfaces;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Framework\CheckAuthAdmin;
 use Framework\GetField;
 use Framework\Flash;
 
@@ -54,13 +54,11 @@ class SuperAdminAccountController
     public function __construct(
         Users $user,
         Articles $article,
-        Comments $comment,
-        checkauthAdmin $checkAuth
+        Comments $comment
     ) {
         $this->users = $user;
         $this->article = $article;
         $this->comment = $comment;
-        $this->checkAuthAdmin = $checkAuth;
     }
 
     /**
@@ -78,9 +76,7 @@ class SuperAdminAccountController
         ResponseInterface $response,
         Container $container
     ) {
-        $this->checkAuthAdmin->checkAuthentification();
-
-        /**if(!array_key_exists('auth', $_SESSION)) {
+        if(!array_key_exists('auth', $_SESSION)) {
         $this->setFlash(
         'warning',
         'Vous devez être connecté pour accéder à votre espace'
@@ -101,7 +97,7 @@ class SuperAdminAccountController
         'Location' => '/'
         ]
         );
-        }**/
+        }
 
         if (array_key_exists('auth', $_SESSION)) {
             $posts = $this->users->allusers();

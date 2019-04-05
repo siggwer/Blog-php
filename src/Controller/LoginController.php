@@ -71,7 +71,8 @@ class LoginController
                     'Location' => '/account'
                     ]
                 );
-            }if (!empty($_SESSION['auth'])
+            }
+            if (!empty($_SESSION['auth'])
                 && $_SESSION['auth']->getPseudo() === $pseudo
                 && $_SESSION['auth']->getRank() === 3
             ) {
