@@ -44,13 +44,6 @@ class SuperAdminAccountController
      * @param Articles $article
      * @param Comments $comment
      */
-    /**
-     * SuperAdminAccountController constructor.
-     *
-     * @param Users    $user
-     * @param Articles $article
-     * @param Comments $comment
-     */
     public function __construct(
         Users $user,
         Articles $article,
