@@ -1,6 +1,5 @@
 Blog-php
 Openclassrooms projet 5 PHP POO
-
 <a href="https://www.codacy.com/app/siggwer/Blog-php?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=siggwer/Blog-php&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/ebdf191541024da1b3364534f80935af"/></a>
 
 "Hello,
