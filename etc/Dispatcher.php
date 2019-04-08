@@ -55,7 +55,6 @@ class Dispatcher
         } catch (NotFoundException $e) {
         }
     }
-
     /**
      * @param ServerRequestInterface $request
      * @param ResponseInterface      $response

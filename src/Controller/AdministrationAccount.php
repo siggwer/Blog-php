@@ -78,13 +78,14 @@ class AdministrationAccount
                 );
             }
         }
+
         if (!empty($_SESSION['auth'])
             && $_SESSION['auth']->getRank() === 3
         ) {
             return new Response(
                 301,
                 [
-                'Location' => '/adminaccount'
+                    'Location' => '/adminaccount'
                 ]
             );
         }

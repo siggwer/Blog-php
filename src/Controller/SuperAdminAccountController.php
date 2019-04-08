@@ -6,10 +6,10 @@ use App\Service\Users;
 use App\Service\Articles;
 use App\Service\Comments;
 use DI\Container;
-use GuzzleHttp\Psr7\Response;
 use Framework\Interfaces\RenderInterfaces;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Framework\CheckAuthAdmin;
 use Framework\GetField;
 use Framework\Flash;
 
@@ -44,14 +44,23 @@ class SuperAdminAccountController
      * @param Articles $article
      * @param Comments $comment
      */
+    /**
+     * SuperAdminAccountController constructor.
+     *
+     * @param Users    $user
+     * @param Articles $article
+     * @param Comments $comment
+     */
     public function __construct(
         Users $user,
         Articles $article,
-        Comments $comment
+        Comments $comment,
+        checkauthAdmin $checkAuth
     ) {
         $this->users = $user;
         $this->article = $article;
         $this->comment = $comment;
+        $this->checkAuthAdmin = $checkAuth;
     }
 
     /**
@@ -69,28 +78,7 @@ class SuperAdminAccountController
         ResponseInterface $response,
         Container $container
     ) {
-        if(!array_key_exists('auth', $_SESSION)) {
-        $this->setFlash(
-        'warning',
-        'Vous devez être connecté pour accéder à votre espace'
-        );
-        return new Response(
-        301, [
-        'Location' => '/login'
-        ]
-        );
-        }
-
-        if(array_key_exists('auth', $_SESSION)
-        && $_SESSION['auth']->getRank() < 3
-        ) {
-        $this->setFlash('warning', 'Vous ne pouvez pas accéder à cette espace!');
-        return new Response(
-        301, [
-        'Location' => '/'
-        ]
-        );
-        }
+        $this->checkAuthAdmin->checkAuthentification();
 
         if (array_key_exists('auth', $_SESSION)) {
             $posts = $this->users->allusers();
