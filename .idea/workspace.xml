@@ -2,39 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13609039-a9fd-4755-b412-934f679a578b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/Classe/Projet_5_diagramme_de _classes_preao_ajout_d_un_article.mdj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/Classe/Projet_5_diagramme_de_classes.mdj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/Sequence/Projet_5_diagramm_sequence_add_article.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/Sequence/Projet_5_diagramm_sequence_add_comment.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/Sequence/Projet_5_diagramm_sequence_authentification.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/Sequence/Projet_5_diagramm_sequence_consult_blog.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/Sequence/Projet_5_diagramm_sequence_consult_cv.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/Sequence/Projet_5_diagramm_sequence_create_member.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/Sequence/Projet_5_diagramm_sequence_delete_article.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/Sequence/Projet_5_diagramm_sequence_delete_comment.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/Sequence/Projet_5_diagramm_sequence_modify_article.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/Sequence/Projet_5_diagramm_sequence_modify_comment.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/Sequence/Projet_5_diagramm_sequence_modify_cv.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/Sequence/Projet_5_diagramm_sequence_send_mail.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/UseCase/Projet_5_usecase_add_article.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/UseCase/Projet_5_usecase_add_comment.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/UseCase/Projet_5_usecase_authentification.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/UseCase/Projet_5_usecase_consult_blog.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/UseCase/Projet_5_usecase_consult_cv.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/UseCase/Projet_5_usecase_create_member.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/UseCase/Projet_5_usecase_delete_article.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/UseCase/Projet_5_usecase_delete_comment.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/UseCase/Projet_5_usecase_modify_article.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/UseCase/Projet_5_usecase_modify_comment.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/UseCase/Projet_5_usecase_modify_cv.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrammes/UseCase/Projet_5_usecase_send_mail.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/serviceMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/serviceMail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etc/Application.php" beforeDir="false" afterPath="$PROJECT_DIR$/etc/Application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etc/Dispatcher.php" beforeDir="false" afterPath="$PROJECT_DIR$/etc/Dispatcher.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AdministrationAccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdministrationAccount.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/SuperAdminAccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SuperAdminAccountController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -66,11 +33,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/AdministrationAccount.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1241">
-              <caret line="82" column="44" selection-start-line="82" selection-start-column="44" selection-end-line="82" selection-end-column="47" />
-              <folding>
-                <element signature="e#34#56#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="136">
+              <caret line="8" column="1" selection-start-line="8" selection-end-line="8" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -78,27 +42,37 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/SuperAdminAccountController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1207">
-              <caret line="80" column="55" selection-start-line="80" selection-start-column="55" selection-end-line="80" selection-end-column="55" />
-              <folding>
-                <element signature="e#34#56#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="136">
+              <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etc/CheckAuthAdmin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="289">
+              <caret line="35" column="17" lean-forward="true" selection-start-line="32" selection-start-column="12" selection-end-line="38" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/layout.html.twig">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/layoutAdministration.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="50" column="1" lean-forward="true" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -115,7 +89,9 @@
         <option value="$PROJECT_DIR$/etc/Application.php" />
         <option value="$PROJECT_DIR$/src/Controller/AdministrationAccount.php" />
         <option value="$PROJECT_DIR$/etc/CheckAuthAdmin.php" />
+        <option value="$PROJECT_DIR$/templates/layout.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/SuperAdminAccountController.php" />
+        <option value="$PROJECT_DIR$/templates/layoutAdministration.html.twig" />
       </list>
     </option>
   </component>
@@ -150,7 +126,7 @@
       <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="361" />
     <option name="y" value="76" />
     <option name="width" value="965" />
@@ -167,6 +143,22 @@
             <path>
               <item name="Blog-php" type="b2602c69:ProjectViewProjectNode" />
               <item name="Blog-php" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Blog-php" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blog-php" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Blog-php" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blog-php" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Blog-php" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blog-php" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -213,15 +205,15 @@
       <workItem from="1554471711962" duration="630000" />
       <workItem from="1554491048656" duration="2105000" />
       <workItem from="1554724763356" duration="6954000" />
-      <workItem from="1554732224885" duration="384000" />
+      <workItem from="1554732224885" duration="1380000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12031000" />
+    <option name="totallyTimeSpent" value="13027000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="7" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27507162" />
@@ -387,33 +379,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layout.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etc/CheckAuthAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="35" column="17" lean-forward="true" selection-start-line="32" selection-start-column="12" selection-end-line="38" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/AdministrationAccount.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1241">
-          <caret line="82" column="44" selection-start-line="82" selection-start-column="44" selection-end-line="82" selection-end-column="47" />
-          <folding>
-            <element signature="e#34#56#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="136">
+          <caret line="8" column="1" selection-start-line="8" selection-end-line="8" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/SuperAdminAccountController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="80" column="55" selection-start-line="80" selection-start-column="55" selection-end-line="80" selection-end-column="55" />
-          <folding>
-            <element signature="e#34#56#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="136">
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/layout.html.twig">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etc/CheckAuthAdmin.php">
+    <entry file="file://$PROJECT_DIR$/templates/layoutAdministration.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="340">
+          <caret line="50" column="1" lean-forward="true" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
         </state>
       </provider>
     </entry>
