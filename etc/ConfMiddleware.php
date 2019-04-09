@@ -31,7 +31,7 @@ class ConfMiddleware
                 return new Response(
                     301,
                     [
-                    'Location' => '/'
+                        'Location' => '/'
                     ]
                 );
             }

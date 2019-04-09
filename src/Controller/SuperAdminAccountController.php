@@ -6,7 +6,6 @@ use App\Service\Users;
 use App\Service\Articles;
 use App\Service\Comments;
 use DI\Container;
-use GuzzleHttp\Psr7\Response;
 use Framework\Interfaces\RenderInterfaces;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -81,20 +80,11 @@ class SuperAdminAccountController
     ) {
         $this->checkAuthAdmin->checkAuthentification();
 
-        if (isset($checkAuthAdmin)) {
-            $posts = $this->users->allusers();
-            $articles = $this->article->home();
-            $comments = $this->comment->allComments();
-        }
-        if (!isset($checkAuthAdmin)) {
-            $this->setFlash('warning', 'Vous ne pouvez pas accéder à cette espace!');
-            return new Response(
-                301,
-                [
-                    'Location' => '/'
-                ]
-            );
-        }
+
+        $posts = $this->users->allusers();
+        $articles = $this->article->home();
+        $comments = $this->comment->allComments();
+
 
         if ($request->getMethod() === 'GET') {
             $view = $container->get(RenderInterfaces::class)->render(

@@ -14,7 +14,10 @@ class CheckAuthAdmin
      */
     public function checkAuthentification()
     {
-        if (!array_key_exists('auth', $_SESSION)) {
+        $session = $_SESSION['auth'];
+
+        if (!array_key_exists('auth', $session)
+        ) {
             $this->setFlash(
                 'warning',
                 'Vous devez être connecté pour accéder à votre espace'
@@ -27,29 +30,16 @@ class CheckAuthAdmin
             );
         }
 
-
-        if (array_key_exists('auth', $_SESSION)
-            && $_SESSION['auth']->getRank() === 3
+        if (array_key_exists('auth',$session)
+        && $session->getRank() < 3
         ) {
-            $this->setFlash('success', 'Vous êtes connecté!');
+            $this->setFlash("danger", "Vous devez être admin pour entrer");
             return new Response(
                 301,
                 [
-                    'Location' => '/adminaccount'
+                    'Location' => '/account'
                 ]
             );
         }
-
-        if (array_key_exists('auth', $_SESSION)
-            && $_SESSION['auth']->getRank() < 3
-        ) {
-            $this->setFlash('warning', 'Vous ne pouvez pas accéder à cette espace!');
-        }
-        return new Response(
-            301,
-            [
-                'Location' => '/'
-            ]
-        );
     }
 }

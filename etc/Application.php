@@ -62,7 +62,7 @@ class Application implements ApplicationInterface
         $containerBuilder->addDefinitions(__DIR__ . '/../config/render.php');
         $containerBuilder->addDefinitions(__DIR__ . '/../config/serviceMail.php');
         $containerBuilder->addDefinitions(__DIR__ . '/../config/mail.php');
-        $containerBuilder->addDefinitions(__DIR__ . '/../config/serviceCheckAuthAdmin.php');
+        $containerBuilder->addDefinitions(__DIR__ . '/../config/serviceCheckAuthentification.php');
         $this->container = $containerBuilder->build();
         $this->loadRoutes();
     }

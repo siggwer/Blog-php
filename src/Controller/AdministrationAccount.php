@@ -6,6 +6,7 @@ use App\Service\Users;
 use App\Service\Articles;
 use App\Service\Comments;
 use DI\Container;
+use Framework\CheckAuthUser;
 use GuzzleHttp\Psr7\Response;
 use Framework\Interfaces\RenderInterfaces;
 use Psr\Http\Message\ResponseInterface;
@@ -33,6 +34,11 @@ class AdministrationAccount
     private $comment;
 
     /**
+     * @var
+     */
+    private $checkAuthUser;
+
+    /**
      * AdministrationAccount constructor.
      *
      * @param Users    $user
@@ -42,17 +48,19 @@ class AdministrationAccount
     public function __construct(
         Users $user,
         Articles $article,
-        Comments $comment
+        Comments $comment,
+        checkauthUser $checkAuth
     ) {
         $this->users = $user;
         $this->article = $article;
         $this->comment = $comment;
+        $this->checkAuthUser = $checkAuth;
     }
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param Container              $container
+     * @param ResponseInterface $response
+     * @param Container $container
      *
      * @return ResponseInterface
      *
@@ -64,31 +72,7 @@ class AdministrationAccount
         ResponseInterface $response,
         Container $container
     ) {
-        if (!array_key_exists('auth', $_SESSION)) {
-            if (empty($_SESSION['auth'])) {
-                $this->setFlash(
-                    'warning',
-                    'Vous devez être connecté pour accéder à votre espace'
-                );
-                return new Response(
-                    301,
-                    [
-                    'Location' => '/login'
-                    ]
-                );
-            }
-        }
-
-        if (!empty($_SESSION['auth'])
-            && $_SESSION['auth']->getRank() === 3
-        ) {
-            return new Response(
-                301,
-                [
-                    'Location' => '/adminaccount'
-                ]
-            );
-        }
+        $this->checkAuthUser->checkAuthentification();
 
         if (array_key_exists('auth', $_SESSION)) {
             $posts = $this->users->allArticlesByPseudo(
