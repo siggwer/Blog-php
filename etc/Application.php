@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Framework;
 
 use DI\Container;
@@ -112,6 +111,9 @@ class Application implements ApplicationInterface
         }
     }
 
+    /**
+     *
+     */
     private function loadRoutes()
     {
         $this->router = new FastRouteRouter();
