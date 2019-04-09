@@ -86,8 +86,7 @@ class SuperAdminAccountController
             $articles = $this->article->home();
             $comments = $this->comment->allComments();
         }
-        if(!isset($checkAuthAdmin))
-        {
+        if (!isset($checkAuthAdmin)) {
             $this->setFlash('warning', 'Vous ne pouvez pas accéder à cette espace!');
             return new Response(
                 301,
