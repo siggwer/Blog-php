@@ -49,7 +49,7 @@ class VerificationEmail
 
         $users = $this->users->getUserById($userId);
 
-        if ($users === false || $users->email_token() != $token) {
+        if ($users === false || $users->getEmailToken() != $token) {
             $this->setFlash(
                 "danger",
                 "Votre lien d'activation n'est pas valide"
@@ -65,7 +65,7 @@ class VerificationEmail
         $timezone = new DateTimeZone('Europe/Paris');
         $limit = new DateTime('-10 minute', $timezone);
 
-        $registerAt = $users->register_at();
+        $registerAt = $users->setRegisterAt();
         if ($limit > $registerAt) {
             $this->setFlash(
                 "warning",
@@ -79,7 +79,7 @@ class VerificationEmail
             );
         }
 
-        $users->setEmail_token(null);
+        $users->setEmailToken(null);
         $this->users->updateUser($users);
 
         $this->setFlash(

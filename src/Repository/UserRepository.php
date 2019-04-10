@@ -55,17 +55,19 @@ class UserRepository implements UserRepositoryInterface
     {
         return $this->database->request(
             'UPDATE user
-        SET email = :email,
-            email_token = :email_token,
+        SET pseudo = :pseudo,
+            email = :email,
+            email_token = :emailToken,
             connexion_at = :connexion_at,
             rank = :rank
         WHERE id = :userId',
             [
-            ':email' => $user->getEmail(),
-            ':email_token' => $user->getEmailtoken(),
-            ':connexion_at' => $user->getConnexionat(),
-            ':rank' => $user->getRank(),
-            ':userId' => $user->getId()
+                'pseudo' => $user->getPseudo(),
+                ':email' => $user->getEmail(),
+                ':email_token' => $user->getEmailtoken(),
+                ':connexion_at' => $user->getConnexionat(),
+                ':rank' => $user->getRank(),
+                ':userId' => $user->getId()
             ]
         );
     }
@@ -113,11 +115,11 @@ class UserRepository implements UserRepositoryInterface
     {
         return new User(
             $this->database->request(
-                'SELECT id, password, email, email_token, register_at, connexion_at, rank FROM user WHERE id = :userId LIMIT 0, 1',
+                'SELECT id,pseudo, password, email, email_token, register_at, connexion_at, rank FROM user WHERE id = :userId LIMIT 0, 1',
                 [
                 ':userId' => $userId
                 ]
-            )->fetch()
+            )->fetchAll()
         );
     }
 

@@ -38,8 +38,8 @@ class RegisterController
         Users $users,
         MailHelper $mailHelper
     ) {
-        $this->mailHelper = $mailHelper;
         $this->users = $users;
+        $this->mailHelper = $mailHelper;
     }
 
     /**
@@ -149,12 +149,19 @@ class RegisterController
 
         $userRegister = $this->users->registerUser($users);
 
-        $renderHtml = $container->get(RenderInterfaces::class)->render(
+        if (isset($userRegister)) {
+            $view = $container->get(RenderInterfaces::class)->render('mailVerify',['user' => $userRegister]);
+                var_dump($userRegister);
+            $response->getBody()->write($view);
+        }
+
+        /*$renderHtml = $container->get(RenderInterfaces::class)->render(
             'mailVerify',
             [
             'user' => $userRegister
             ]
         );
+
         $renderText = $container->get(RenderInterfaces::class)->render(
             'mailVerify',
             [
@@ -195,6 +202,7 @@ class RegisterController
             [
                 'Location' => '/'
             ]
-        );
+        );*/
+        return $response;
     }
 }
