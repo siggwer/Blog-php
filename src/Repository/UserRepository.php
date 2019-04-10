@@ -119,7 +119,7 @@ class UserRepository implements UserRepositoryInterface
                 [
                 ':userId' => $userId
                 ]
-            )->fetchAll()
+            )->fetch()
         );
     }
 

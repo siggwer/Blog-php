@@ -49,6 +49,9 @@ class VerificationEmail
 
         $users = $this->users->getUserById($userId);
 
+        var_dump($users);
+        exit;
+
         if ($users === false || $users->getEmailToken() != $token) {
             $this->setFlash(
                 "danger",
