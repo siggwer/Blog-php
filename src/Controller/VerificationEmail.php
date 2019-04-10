@@ -48,6 +48,8 @@ class VerificationEmail
         $token = $request->getAttribute('token');
 
         $users = $this->users->getUserById($userId);
+        var_dump($users);
+        exit;
 
         if ($users === false || $users->email_token() != $token) {
             $this->setFlash(
@@ -65,7 +67,7 @@ class VerificationEmail
         $timezone = new DateTimeZone('Europe/Paris');
         $limit = new DateTime('-10 minute', $timezone);
 
-        $registerAt = $users->register_at();
+        $registerAt = $users->setRegisterAt();
         if ($limit > $registerAt) {
             $this->setFlash(
                 "warning",
