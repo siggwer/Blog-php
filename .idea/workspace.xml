@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13609039-a9fd-4755-b412-934f679a578b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/config/mail.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/mail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layoutArticles.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layoutArticles.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layoutContact.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layoutContact.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layoutErrors.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layoutErrors.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,8 +41,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/RegisterController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="153" column="40" lean-forward="true" selection-start-line="153" selection-start-column="40" selection-end-line="153" selection-end-column="40" />
+            <state relative-caret-position="185">
+              <caret line="149" column="8" selection-start-line="149" selection-start-column="8" selection-end-line="149" selection-end-column="8" />
               <folding>
                 <element signature="e#34#53#0#PHP" expanded="true" />
               </folding>
@@ -50,10 +53,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/VerificationEmail.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="49" column="34" lean-forward="true" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="42" />
+            <state relative-caret-position="289">
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
               <folding>
-                <element signature="e#35#57#0#PHP" expanded="true" />
+                <element signature="e#34#56#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -62,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Service/Users.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="51" column="20" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
+            <state relative-caret-position="270">
+              <caret line="53" column="52" selection-start-line="53" selection-start-column="52" selection-end-line="53" selection-end-column="52" />
               <folding>
                 <element signature="e#31#85#0#PHP" expanded="true" />
               </folding>
@@ -71,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Repository/UserRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="121" column="20" selection-start-line="121" selection-start-column="20" selection-end-line="121" selection-end-column="20" />
+            <state relative-caret-position="372">
+              <caret line="122" column="10" lean-forward="true" selection-start-line="122" selection-start-column="10" selection-end-line="122" selection-end-column="10" />
               <folding>
                 <element signature="e#34#78#0#PHP" expanded="true" />
               </folding>
@@ -96,39 +99,42 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/mailVerify.html.twig">
+        <entry file="file://$PROJECT_DIR$/templates/layout.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="106" column="208" selection-start-line="106" selection-start-column="208" selection-end-line="106" selection-end-column="208" />
+            <state relative-caret-position="389">
+              <caret line="57" column="33" lean-forward="true" selection-start-line="56" selection-start-column="20" selection-end-line="58" selection-end-column="25" />
               <folding>
-                <element signature="n#style#0;n#p#1;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#p#1;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#span#0;n#p#1;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#1;n#div#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#p#1;n#div#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#span#0;n#p#1;n#div#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#2;n#div#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#p#2;n#div#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#span#0;n#p#2;n#div#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#6338#6345#0#HTML" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#2;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#0;n#td#0;n#tr#2;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#td#0;n#tr#2;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#3733#3740#1#HTML" expanded="true" />
+                <element signature="e#5334#5340#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/layoutArticles.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1020">
+              <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/mail.php">
+        <entry file="file://$PROJECT_DIR$/src/Model/User.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-850">
+              <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/mailVerify.text.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="9" column="106" selection-start-line="9" selection-start-column="106" selection-end-line="9" selection-end-column="106" />
-              <folding>
-                <element signature="e#7#38#0#PHP" expanded="true" />
-              </folding>
+              <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -155,6 +161,10 @@
         <option value="$PROJECT_DIR$/templates/mailVerify.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/VerificationEmail.php" />
         <option value="$PROJECT_DIR$/src/Repository/UserRepository.php" />
+        <option value="$PROJECT_DIR$/templates/layout.html.twig" />
+        <option value="$PROJECT_DIR$/templates/layoutContact.html.twig" />
+        <option value="$PROJECT_DIR$/templates/layoutErrors.html.twig" />
+        <option value="$PROJECT_DIR$/templates/layoutArticles.html.twig" />
       </list>
     </option>
   </component>
@@ -205,58 +215,50 @@
         <subPane>
           <expand>
             <path>
-              <item name="Blog-php" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Blog-php" type="462c0819:PsiDirectoryNode" />
+              <item name="Blog-php-emailservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blog-php-emailservice" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Blog-php" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Blog-php" type="462c0819:PsiDirectoryNode" />
+              <item name="Blog-php-emailservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blog-php-emailservice" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Blog-php" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Blog-php" type="462c0819:PsiDirectoryNode" />
+              <item name="Blog-php-emailservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blog-php-emailservice" type="462c0819:PsiDirectoryNode" />
               <item name="etc" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Blog-php" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Blog-php" type="462c0819:PsiDirectoryNode" />
+              <item name="Blog-php-emailservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blog-php-emailservice" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Blog-php-emailservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blog-php-emailservice" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Blog-php" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Blog-php" type="462c0819:PsiDirectoryNode" />
+              <item name="Blog-php-emailservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blog-php-emailservice" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Blog-php" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Blog-php" type="462c0819:PsiDirectoryNode" />
+              <item name="Blog-php-emailservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blog-php-emailservice" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Blog-php" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Blog-php" type="462c0819:PsiDirectoryNode" />
+              <item name="Blog-php-emailservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blog-php-emailservice" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Repository" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Blog-php" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Blog-php" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Repository" type="462c0819:PsiDirectoryNode" />
-              <item name="Interfaces" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Blog-php" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Blog-php" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Blog-php" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Blog-php" type="462c0819:PsiDirectoryNode" />
+              <item name="Blog-php-emailservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blog-php-emailservice" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -305,12 +307,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11156000" />
+    <option name="totallyTimeSpent" value="11344000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2679083" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27507162" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -323,7 +326,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.18817204" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.18817204" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -408,8 +411,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/CommentValidatedController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+        <state relative-caret-position="374">
+          <caret line="79" column="33" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="36" />
           <folding>
             <element signature="e#34#56#0#PHP" expanded="true" />
           </folding>
@@ -425,8 +428,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/mailVerify.text.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="24" selection-start-column="24" selection-end-column="24" />
+        <state relative-caret-position="153">
+          <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -470,8 +473,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="130" column="22" selection-start-line="130" selection-start-column="20" selection-end-line="130" selection-end-column="33" />
+        <state relative-caret-position="-850">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -521,8 +524,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/RegisterController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="153" column="40" lean-forward="true" selection-start-line="153" selection-start-column="40" selection-end-line="153" selection-end-column="40" />
+        <state relative-caret-position="185">
+          <caret line="149" column="8" selection-start-line="149" selection-start-column="8" selection-end-line="149" selection-end-column="8" />
           <folding>
             <element signature="e#34#53#0#PHP" expanded="true" />
           </folding>
@@ -531,18 +534,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/VerificationEmail.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="49" column="34" lean-forward="true" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="42" />
+        <state relative-caret-position="289">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
           <folding>
-            <element signature="e#35#57#0#PHP" expanded="true" />
+            <element signature="e#34#56#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Service/Users.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="51" column="20" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
+        <state relative-caret-position="270">
+          <caret line="53" column="52" selection-start-line="53" selection-start-column="52" selection-end-line="53" selection-end-column="52" />
           <folding>
             <element signature="e#31#85#0#PHP" expanded="true" />
           </folding>
@@ -551,11 +554,62 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/UserRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="121" column="20" selection-start-line="121" selection-start-column="20" selection-end-line="121" selection-end-column="20" />
+        <state relative-caret-position="372">
+          <caret line="122" column="10" lean-forward="true" selection-start-line="122" selection-start-column="10" selection-end-line="122" selection-end-column="10" />
           <folding>
             <element signature="e#34#78#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layoutContact.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2346">
+          <caret line="138" column="180" selection-start-line="138" selection-start-column="180" selection-end-line="138" selection-end-column="180" />
+          <folding>
+            <element signature="n#style#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#3522#3529#1#HTML" expanded="true" />
+            <element signature="e#5117#5123#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layoutErrors.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1547">
+          <caret line="91" column="180" selection-start-line="91" selection-start-column="180" selection-end-line="91" selection-end-column="180" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layoutLogin.html.twig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layoutAdministration.html.twig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/phrase.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="754">
+          <caret line="345" column="16" selection-start-line="345" selection-start-column="16" selection-end-line="345" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layout.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="57" column="33" lean-forward="true" selection-start-line="56" selection-start-column="20" selection-end-line="58" selection-end-column="25" />
+          <folding>
+            <element signature="n#style#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#3733#3740#1#HTML" expanded="true" />
+            <element signature="e#5334#5340#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layoutArticles.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
         </state>
       </provider>
     </entry>
