@@ -58,14 +58,14 @@ class UserRepository implements UserRepositoryInterface
         SET pseudo = :pseudo,
             email = :email,
             email_token = :emailToken,
-            connexion_at = :connexion_at,
+            connexion_at = :connexionAt,
             rank = :rank
         WHERE id = :userId',
             [
                 'pseudo' => $user->getPseudo(),
                 ':email' => $user->getEmail(),
-                ':email_token' => $user->getEmailtoken(),
-                ':connexion_at' => $user->getConnexionat(),
+                ':emailToken' => $user->getEmailToken(),
+                ':connexionAt' => $user->getConnexionat(),
                 ':rank' => $user->getRank(),
                 ':userId' => $user->getId()
             ]
@@ -98,7 +98,7 @@ class UserRepository implements UserRepositoryInterface
     {
         return new User(
             $this->database->request(
-                'SELECT id, pseudo, password, email, email_token, register_at, connexion_at, rank FROM user WHERE pseudo = :pseudo',
+                'SELECT id, pseudo, password, email, email_token AS emailToken, register_at AS registerAt, connexion_at AS connexionAt, rank FROM user WHERE pseudo = :pseudo',
                 [
                 ':pseudo' => $pseudo
                 ]
@@ -115,7 +115,7 @@ class UserRepository implements UserRepositoryInterface
     {
         return new User(
             $this->database->request(
-                'SELECT id,pseudo, password, email, email_token, register_at, connexion_at, rank FROM user WHERE id = :userId LIMIT 0, 1',
+                'SELECT id, pseudo, password, email, email_token AS emailToken, register_at AS registerAt, connexion_at AS connexionAt, rank FROM user WHERE id = :userId LIMIT 0, 1',
                 [
                 ':userId' => $userId
                 ]
