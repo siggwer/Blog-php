@@ -33,14 +33,13 @@ class ContactController
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param Container              $container
+     * @param ResponseInterface $response
+     * @param Container $container
      *
      * @return Response|ResponseInterface
      *
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
-     * @throws \SendGrid\Mail\TypeException
      */
     public function __invoke(
         ServerRequestInterface $request,
@@ -123,7 +122,7 @@ class ContactController
             'name' =>  explode('@', $email)[0],
         ];
 
-        $result = $this->MailHelper->sendMail(
+        $result = $this->mailHelper->sendMail(
             'Confirmation de votre message',
             $from,
             $to,

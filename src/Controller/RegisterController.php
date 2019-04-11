@@ -44,10 +44,10 @@ class RegisterController
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param Container              $container
+     * @param ResponseInterface $response
+     * @param Container $container
      *
-     * @return Response
+     * @return Response|ResponseInterface
      *
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
@@ -107,6 +107,19 @@ class RegisterController
             );
         }
 
+        if ($pseudo === $users->getPseudo()) {
+            $this->setFlash(
+                "danger",
+                "Vous êtes déjà enregistré avec ce pseudo"
+            );
+            return new Response(
+                301,
+                [
+                    'Location' => '/register'
+                ]
+            );
+        }
+
 
         $passLength = strlen($password);
         if ($passLength < 8) {
@@ -134,7 +147,7 @@ class RegisterController
                 ]
             );
         }
-        $tokenRegister = $this->generateToken();
+        $emailToken = $this->generateToken();
 
         $passwordHash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
 
@@ -143,19 +156,13 @@ class RegisterController
             'pseudo' => $pseudo,
             'password' => $passwordHash,
             'email' => $email,
-            'emailToken' => $tokenRegister
+            'emailToken' => $emailToken
             ]
         );
 
         $userRegister = $this->users->registerUser($users);
 
-        if (isset($userRegister)) {
-            $view = $container->get(RenderInterfaces::class)->render('mailVerify',['user' => $userRegister]);
-                var_dump($userRegister);
-            $response->getBody()->write($view);
-        }
-
-        /*$renderHtml = $container->get(RenderInterfaces::class)->render(
+        $renderHtml = $container->get(RenderInterfaces::class)->render(
             'mailVerify',
             [
             'user' => $userRegister
@@ -202,7 +209,6 @@ class RegisterController
             [
                 'Location' => '/'
             ]
-        );*/
-        return $response;
+        );
     }
 }
