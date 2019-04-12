@@ -191,8 +191,13 @@ class RegisterController
             'Confirmation de votre compte',
             $from,
             $to,
-            'mailVerify'
+            'mailVerify',
+            [
+                'user' => $userRegister
+            ]
         );
+        var_dump($result);
+        exit;
         if (!$result->statusCode() === 202) {
             $this->setFlash(
                 'danger',

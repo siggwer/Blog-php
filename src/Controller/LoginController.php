@@ -60,6 +60,7 @@ class LoginController
 
         $user = $this->userServices->getUserByPseudo($pseudo);
 
+
         if (array_key_exists('auth', $_SESSION)) {
             if (!empty($_SESSION['auth'])
                 && $_SESSION['auth']->getPseudo() === $pseudo
