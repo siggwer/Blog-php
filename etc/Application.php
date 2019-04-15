@@ -59,10 +59,8 @@ class Application implements ApplicationInterface
         $containerBuilder = new ContainerBuilder();
         $containerBuilder->useAutowiring(true);
         $containerBuilder->addDefinitions(__DIR__ . '/../config/db.php');
-        //$containerBuilder->addDefinitions(__DIR__. '/../config/repository.php');
         $containerBuilder->addDefinitions(__DIR__ . '/../config/render.php');
-        $containerBuilder->addDefinitions(__DIR__. '/../config/serviceMail.php');
-        //$containerBuilder->addDefinitions(__DIR__ . '/../config/mail.php');
+        $containerBuilder->addDefinitions(__DIR__ . '/../config/services.php');
         $this->container = $containerBuilder->build();
         $this->loadRoutes();
     }

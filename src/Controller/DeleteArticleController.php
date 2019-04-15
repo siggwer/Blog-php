@@ -9,6 +9,7 @@ use DI\Container;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Framework\Interfaces\RenderInterfaces;
 use Framework\GetField;
 use Framework\Flash;
 use Framework\MailHelper;
@@ -85,6 +86,7 @@ class DeleteArticleController
         }
 
         $email = $articles['email'];
+        $user = $_SESSION['auth']->getPseudo('pseudo');
 
         if (isset($articles['id'])  === true) {
             $deleteArticle = $this->article->deleteArticle($articles['id']);
@@ -98,10 +100,17 @@ class DeleteArticleController
         }
 
         if ($deleteArticle) {
-            $this->setFlash('success', 'Votre article a bien été modifié');
+            $this->setFlash('success', 'Votre article a bien été supprimé');
         } else {
             $this->setFlash('warning', 'Un problème est survenue');
         }
+
+        $renderHtml = $container->get(RenderInterfaces::class)->render(
+            'mailDeleteArticle',
+            [
+                'user' => $user
+            ]
+        );
 
         $from =[
             'email' => 'test@yopmail.com',
@@ -117,7 +126,10 @@ class DeleteArticleController
             'Modification de l\'article.',
             $from,
             $to,
-            'mailDeleteArticle'
+            'mailDeleteArticle',
+            [
+                'user' => $user
+            ]
         );
 
         if (!$result->statusCode() === 202) {
