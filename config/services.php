@@ -17,7 +17,7 @@ return [
     MailHelper::class => di_object(MailHelper::class)->constructor(
         di_get('sendgrid.api.key')
     ),
-    MailHelper::class => di_object(MailHelper::class),
+    //MailHelper::class => di_object(MailHelper::class),
     ArticleRepositoryInterface::class => di_object(ArticleRepository::class),
     //PostRepositoriesInterface::class => di_object(PdoPostRepository::class),
     CommentRepositoryInterface::class => di_object(CommentRepository::class),
