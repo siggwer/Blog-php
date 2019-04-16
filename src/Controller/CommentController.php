@@ -84,7 +84,7 @@ class CommentController
 
             if ($request->getMethod() === 'GET') {
                 $view = $container->get(RenderInterfaces::class)->render(
-                    'modifyComment',
+                    'comment',
                     ['posts' => $posts,
                         'articles' => $articles,
                     'comments' => $comments]

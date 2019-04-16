@@ -51,7 +51,7 @@ class VerificationEmail
         var_dump($users);
         exit;
 
-        if ($users === false || $users->email_token() != $token) {
+        if ($users === false || $users->getEmailToken() != $token) {
             $this->setFlash(
                 "danger",
                 "Votre lien d'activation n'est pas valide"
@@ -68,7 +68,8 @@ class VerificationEmail
         $limit = new DateTime('-10 minute', $timezone);
 
         $registerAt = $users->getRegisterAt();
-        if ($limit > $registerAt) {
+     
+      if ($limit > $registerAt) {
             $this->setFlash(
                 "warning",
                 "Votre lien n'est plus valide"
@@ -81,7 +82,9 @@ class VerificationEmail
             );
         }
 
-        $users->setEmail_token(null);
+        $users->setEmailToken(null);
+        $users->setRank('2');
+
         $this->users->updateUser($users);
 
         $this->setFlash(

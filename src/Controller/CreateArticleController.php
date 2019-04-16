@@ -6,9 +6,9 @@ use App\Service\Users;
 use App\Service\Articles;
 use DI\Container;
 use GuzzleHttp\Psr7\Response;
-use Framework\Interfaces\RenderInterfaces;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Framework\Interfaces\RenderInterfaces;
 use Framework\GetField;
 use Framework\Flash;
 use Framework\MailHelper;
@@ -85,6 +85,7 @@ class CreateArticleController
         $content = $this->getField('content');
         $author_id = $_SESSION['auth']->getId('id');
         $email = $_SESSION['auth']->getEmail('email');
+        $user = $_SESSION['auth']->getPseudo('pseudo');
 
         $path = '/create';
 
@@ -150,6 +151,13 @@ class CreateArticleController
             $this->setFlash('warning', 'Un problème est survenue');
         }
 
+        $renderHtml = $container->get(RenderInterfaces::class)->render(
+            'mailCreate',
+            [
+                'user' => $user
+            ]
+        );
+
         $from =[
             'email' => 'test1@yopmail.com',
             'name' => 'admin',
@@ -164,7 +172,10 @@ class CreateArticleController
             'Création de l\'article',
             $from,
             $to,
-            'mailCreate'
+            'mailCreate',
+            [
+                'user' => $user
+            ]
         );
 
         if (!$result->statusCode() === 202) {

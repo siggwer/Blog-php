@@ -125,6 +125,7 @@ class UpdateArticleController
         $content = $this->getField('content');
         $update_by = $_SESSION['auth']->getId();
         $email = $_SESSION['auth']->getEmail();
+        $user = $_SESSION['auth']->getPseudo('pseudo');
 
         $path = '/updateArticle/'.$articles['id'];
 
@@ -190,6 +191,13 @@ class UpdateArticleController
             $this->setFlash('warning', 'Un problème est survenue');
         }
 
+        $renderHtml = $container->get(RenderInterfaces::class)->render(
+            'mailUpdateArticle',
+            [
+                'user' => $user
+            ]
+        );
+
         $from =[
             'email' => 'test@yopmail.com',
             'name' => 'admin',
@@ -204,7 +212,10 @@ class UpdateArticleController
             'Modification de l\'article.',
             $from,
             $to,
-            'mailUpdateArticle'
+            'mailUpdateArticle',
+            [
+                'user' => $user
+            ]
         );
 
         if ($result->statusCode() === 202) {

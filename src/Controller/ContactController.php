@@ -28,13 +28,13 @@ class ContactController
      */
     public function __construct(MailHelper $mailHelper)
     {
-        $this->MailHelper = $mailHelper;
+        $this->mailHelper = $mailHelper;
     }
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param Container              $container
+     * @param ResponseInterface $response
+     * @param Container $container
      *
      * @return Response|ResponseInterface
      *
@@ -123,23 +123,28 @@ class ContactController
             'name' =>  explode('@', $email)[0],
         ];
 
-        $result = $this->MailHelper->sendMail(
+        $result = $this->mailHelper->sendMail(
             'Confirmation de votre message',
             $from,
             $to,
-            'mailVerify'
+            'mailContact'
         );
-        if ($result->statusCode() === 202) {
+
+        if (!$result->statusCode() === 202) {
             $this->setFlash(
-                'success',
-                'Merci pour votre message nous vous répondrons
-                 dans les meilleures délais'
+                'danger',
+                'Le mail n\'a pas pu être envoyé.'
             );
         }
+        $this->setFlash(
+            'success',
+            'Merci pour votre message nous vous répondrons
+                 dans les meilleures délais.'
+        );
         return new Response(
             301,
             [
-            'Location' => '/'
+                'Location' => '/'
             ]
         );
     }

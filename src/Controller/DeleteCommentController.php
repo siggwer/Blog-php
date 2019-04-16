@@ -9,6 +9,7 @@ use DI\Container;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Framework\Interfaces\RenderInterfaces;
 use Framework\GetField;
 use Framework\Flash;
 use Framework\MailHelper;
