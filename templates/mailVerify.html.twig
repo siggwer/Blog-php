@@ -80,7 +80,7 @@
                                         <tr>
                                             <td style="word-break:break-word;background:transparent;font-size:0px;padding:10px 25px;padding-top:0px;padding-bottom:0px;padding-right:25px;padding-left:25px;" align="left" background="transparent">
                                                 <div class="" style="cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;text-align:left;">
-                                                    <p style="font-weight: 400; line-height: 30px; margin: 13px 0px;"><span style="color: rgb(255, 237, 0);"><span style="font-size: 25px;">Bonjour {{ users.email }}</span></span>
+                                                    <p style="font-weight: 400; line-height: 30px; margin: 13px 0px;"><span style="color: rgb(255, 237, 0);"><span style="font-size: 25px;">Bonjour {{ user.pseudo }}</span></span>
                                                     </p>
                                                     <p style="font-weight: 400; line-height: 30px; margin: 13px 0px;"><span style="color: rgb(255, 255, 255);"><span style="font-size: 25px;">Bienvenue sur Mon Blog.</span></span>
                                                     </p>
@@ -104,7 +104,7 @@
                                                 <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate;width:100%;" align="left" border="0">
                                                     <tbody>
                                                     <tr>
-                                                        <td style="border:none;border-radius:4px;color:#FFFFFF;cursor:auto;padding:10px 25px;" align="center" valign="middle" bgcolor="#ffffff"><a href="http://localhost:8082/verifyToken/{{ users.id }}-{{ users.emailToken }}" style="text-decoration:none;line-height:100%;background:#ffffff;color:#FFFFFF;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;font-weight:normal;text-transform:none;margin:0px;" target="_blank">
+                                                        <td style="border:none;border-radius:4px;color:#FFFFFF;cursor:auto;padding:10px 25px;" align="center" valign="middle" bgcolor="#ffffff"><a href="http://localhost:8082/verify/{{ user.id }}-{{ user.emailToken }}" style="text-decoration:none;line-height:100%;background:#ffffff;color:#FFFFFF;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;font-weight:normal;text-transform:none;margin:0px;" target="_blank">
                                                                                  <span style="font-family: 'Open Sans', Helvetica, Arial, sans-serif;"><strong><span style="color: rgb(0, 159, 227);"><span style="font-size: 21px;">Confirmer votre inscription</span></span>
                                                                                  </strong>
                                                                                  </span>
