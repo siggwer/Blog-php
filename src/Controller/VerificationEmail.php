@@ -67,7 +67,7 @@ class VerificationEmail
         $timezone = new DateTimeZone('Europe/Paris');
         $limit = new DateTime('-10 minute', $timezone);
 
-        $registerAt = $users->setRegisterAt();
+        $registerAt = $users->getRegisterAt();
         if ($limit > $registerAt) {
             $this->setFlash(
                 "warning",
