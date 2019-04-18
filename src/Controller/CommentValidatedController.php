@@ -60,8 +60,7 @@ class CommentValidatedController
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param Container              $container
+     * @param Container $container
      *
      * @return Response
      *
@@ -71,7 +70,6 @@ class CommentValidatedController
      */
     public function __invoke(
         ServerRequestInterface $request,
-        ResponseInterface $response,
         Container $container
     ) {
         $comments = $this->comment->getCommentForvalidated(

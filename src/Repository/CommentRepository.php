@@ -29,7 +29,9 @@ class CommentRepository implements CommentRepositoryInterface
     public function all(): array
     {
         return $this->database->request(
-            'SELECT `comment`.`id`, `comment`.`comments`, `comment`.`author`, DATE_FORMAT(`comment_date`, \'%d/%m/%Y\ à %Hh%imin\') AS creation_date_fr, `comment`.`validated`, `article`.`title` FROM comment
+            'SELECT `comment`.`id`, `comment`.`comments`, `comment`.`author`, 
+                        DATE_FORMAT(`comment_date`, \'%d/%m/%Y\ à %Hh%imin\') AS creation_date_fr, 
+                        `comment`.`validated`, `article`.`title` FROM comment
         LEFT JOIN `article` ON `comment`.`article_id` = `article`.`id` 
         ORDER BY comment_date DESC'
         )
@@ -44,7 +46,9 @@ class CommentRepository implements CommentRepositoryInterface
     public function getComment(int $id)
     {
         return $this->database->request(
-            'SELECT `comment`.`id`, `comment`.`comments`, `comment`.`author`, DATE_FORMAT(`comment_date`, \'%d/%m/%Y\ à %Hh%imin\') AS creation_date_fr, `comment`.`validated` FROM `comment`
+            'SELECT `comment`.`id`, `comment`.`comments`, `comment`.`author`,
+                        DATE_FORMAT(`comment_date`, \'%d/%m/%Y\ à %Hh%imin\') AS creation_date_fr, 
+                        `comment`.`validated` FROM `comment`
         WHERE article_id = :id',
             [
             ':id' => $id
@@ -60,11 +64,13 @@ class CommentRepository implements CommentRepositoryInterface
     public function getCommentById(int $id): array
     {
         return $this->database->request(
-            'SELECT * FROM `comment`
+            'SELECT `comment`.`id`, `comment`.`comments`, `comment`.`author`,
+                        DATE_FORMAT(`comment_date`, \'%d/%m/%Y\ à %Hh%imin\') AS creation_date_fr, 
+                        `comment`.`validated`, `article`.`title` FROM `comment`
         LEFT JOIN `article` ON `comment`.`article_id` = `article`.`id`
-          WHERE article_id = :id
-           AND validated = 1
-            ORDER BY comment_date DESC',
+        WHERE article_id = :id
+        AND validated = 1
+        ORDER BY comment_date DESC',
             [
                 ':id' => $id,
             ]
@@ -158,9 +164,9 @@ class CommentRepository implements CommentRepositoryInterface
     }
 
     /**
-     * @param $comment
+     * @param int $id
      *
-     * @return array|mixed
+     * @return PdoStatementInterface|array
      */
     public function deleteComment(int $id)
     {

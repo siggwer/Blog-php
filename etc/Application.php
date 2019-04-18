@@ -67,6 +67,7 @@ class Application implements ApplicationInterface
 
     /**
      * @return mixed|void
+     *
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
      */
