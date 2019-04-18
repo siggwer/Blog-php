@@ -33,11 +33,6 @@ class SuperAdminAccountController
     private $comment;
 
     /**
-     * @var
-     */
-    private $checkAuthAdmin;
-
-    /**
      * SuperAdminAccountController constructor.
      *
      * @param Users $user
