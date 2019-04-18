@@ -12,7 +12,7 @@ use function DI\string as di_string;
 use function \DI\object as di_object;
 
 return [
-    'sendgrid.api.key' => di_string('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'),
+    'sendgrid.api.key' => di_string('SENDGRIDAPI_KEY'),
 
     MailHelper::class => di_object(MailHelper::class)->constructor(
         di_get('sendgrid.api.key')
