@@ -29,7 +29,6 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Commentaires</h5>
-                    {{ dump(comments) }}
                     {% if comments.validated == 1 %}
                         <h5 class="card-title">{{ comments.author |nl2br }}</h5>
                         <p class="card-text">{{ comments.comments |nl2br }}</p>
@@ -42,6 +41,7 @@
             </div>
         </div>
     </div>
+        <a class="btn btn-success" href="/adminaccount">Retour au compte</a>
         </div>
         <br />
 
