@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 03 avr. 2019 à 09:29
+-- Généré le :  mar. 16 avr. 2019 à 09:29
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -41,14 +41,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   PRIMARY KEY (`id`),
   KEY `fk_user_article` (`author_id`),
   KEY `index_date_article` (`publication_date`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `article`
---
-
-INSERT INTO `article` (`id`, `title`, `chapo`, `content`, `publication_date`, `update_date`, `author_id`, `update_by`) VALUES
-(2, 'Lorem Ipsum', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel tellus et quam eleifend aliquet at a leo. Praesent feugiat fringilla risus, non gravida quam bibendum ut.', 'Vivamus non scelerisque sem. Ut aliquam sem sapien, et egestas nulla vestibulum vel. Nunc maximus imperdiet posuere. Donec consectetur risus et mattis vehicula. Maecenas efficitur enim placerat, feugiat metus sit amet, consequat nulla. Phasellus tristique sapien eu congue placerat. Duis consectetur semper ligula mollis pretium. Sed at ex nunc. Integer eu nunc quis arcu rhoncus feugiat quis quis augue. Ut suscipit metus ut velit rhoncus, eu rutrum elit varius. Ut vestibulum dui id ante convallis, interdum blandit diam ullamcorper.&nbsp;', '2019-03-13 13:29:50', NULL, 13, NULL);
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -66,14 +59,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `article_id` int(10) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_article_id_idx` (`article_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `comment`
---
-
-INSERT INTO `comment` (`id`, `comments`, `author`, `comment_date`, `validated`, `article_id`) VALUES
-(1, 'test', 'test', '2019-03-15 15:55:55', 0, 2);
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -101,8 +87,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `pseudo`, `email`, `email_token`, `password`, `register_at`, `connexion_at`, `rank`) VALUES
-(13, 'test4', 'test4@yopmail.com', NULL, '$2y$12$JLK/.vZ8bFDxlVzsB6qTneIMNZ3ZoAOX4aW84GUIANSveZ3tlNftW', '2019-02-21 16:25:44', NULL, 2),
-(15, 'admin', 'test@yopmail.com', NULL, '$2y$12$ha9DT6J2krqkJYv4sx3VkehMM55yOKiZugDhrVEBOrxNIZZ2VEjfW', '2019-04-03 11:09:40', NULL, 1);
+(15, 'admin', 'test@yopmail.com', NULL, '$2y$12$1Ml36shti5Ds6IbYc9MYjOFsV.wb4Fykhd6I/bY6cqCRVq4G72qxa', '2019-04-15 15:09:41', NULL, 3);
 
 --
 -- Contraintes pour les tables déchargées
