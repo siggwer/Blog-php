@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="13609039-a9fd-4755-b412-934f679a578b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/config/services.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CommentValidatedController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommentValidatedController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +64,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/CommentValidatedController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
+            <state relative-caret-position="526">
               <caret line="72" column="27" selection-start-line="72" selection-start-column="27" selection-end-line="72" selection-end-column="27" />
               <folding>
                 <element signature="e#34#56#0#PHP" expanded="true" />
@@ -264,12 +262,12 @@
       <workItem from="1555096580262" duration="5843000" />
       <workItem from="1555321404548" duration="967000" />
       <workItem from="1555325642471" duration="9160000" />
-      <workItem from="1555659601618" duration="2648000" />
+      <workItem from="1555659601618" duration="3244000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45184000" />
+    <option name="totallyTimeSpent" value="45780000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
@@ -679,7 +677,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/CommentValidatedController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
+        <state relative-caret-position="526">
           <caret line="72" column="27" selection-start-line="72" selection-start-column="27" selection-end-line="72" selection-end-column="27" />
           <folding>
             <element signature="e#34#56#0#PHP" expanded="true" />
