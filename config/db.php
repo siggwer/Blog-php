@@ -21,8 +21,8 @@ return [
                                                port={db.port};
                                                charset=utf8'
     ),
-    'db.user' => di_env('db_user', 'root'),
-    'db.pass' => di_env('db_pass', 'admin2019'),
+    'db.user' => di_env('db_user', ''),
+    'db.pass' => di_env('db_pass', ''),
     'db.options' => [],
 
     PdoDatabaseInterface::class => di_object(PdoDatabase::class)->constructor(
