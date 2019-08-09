@@ -21,7 +21,7 @@ return [
                                                port={db.port};
                                                charset=utf8'
     ),
-    'db.user' => di_env('db_user', 'root'),
+    'db.user' => di_env('db_user', ''),
     'db.pass' => di_env('db_pass', ''),
     'db.options' => [],
 
