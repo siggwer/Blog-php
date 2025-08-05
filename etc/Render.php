@@ -4,16 +4,19 @@
 namespace Framework;
 
 use Framework\Interfaces\RenderInterfaces;
+use Twig\Environment;
+use Twig\Extension\DebugExtension;
+use Twig\Loader\FilesystemLoader;
 
 class Render implements RenderInterfaces
 {
     /**
-     * @var \Twig_Environment
+     * @var Environment
      */
     private $twig;
 
     /**
-     * @var \Twig_Loader_Filesystem
+     * @var FilesystemLoader
      */
     private $loader;
 
@@ -24,16 +27,16 @@ class Render implements RenderInterfaces
      */
     public function __construct(string $path)
     {
-        $this->loader = new \Twig_Loader_Filesystem($path);
-        $this->twig = new \Twig_Environment($this->loader, array('debug' => true));
-        $this->twig->addExtension(new \Twig_Extension_Debug());
+        $this->loader = new FilesystemLoader($path);
+        $this->twig = new Environment($this->loader, ['debug' => true]);
+        $this->twig->addExtension(new DebugExtension());
     }
 
     /**
      * @param string      $namespace
      * @param null|string $path
      *
-     * @throws \Twig_Error_Loader
+     * @throws \Twig\Error\LoaderError
      */
     public function addPath(string $namespace, ?string $path = null): void
     {
@@ -56,9 +59,9 @@ class Render implements RenderInterfaces
      *
      * @return mixed|string
      *
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
     public function render(string $view, array $params = null, $type = 'html')
     {

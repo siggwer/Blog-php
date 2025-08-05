@@ -1,22 +1,19 @@
-Blog-php
-Openclassrooms projet 5 PHP POO
+# Blog-php
 
+OpenClassrooms Project 5: a professional blog in PHP using object-oriented programming.
 
-<a href="https://www.codacy.com/app/siggwer/Blog-php?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=siggwer/Blog-php&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/ebdf191541024da1b3364534f80935af"/></a>
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ebdf191541024da1b3364534f80935af)](https://www.codacy.com/app/siggwer/Blog-php?utm_source=github.com&utm_medium=referral&utm_content=siggwer/Blog-php&utm_campaign=Badge_Grade)
 
+Welcome to my OpenClassrooms Project 5.
 
-"Hello,
+Project description: the goal is to develop a professional blog.
 
-You are on my project 5 openclassrooms.
+Install the project: download the archive and unzip it in the 'www' directory of Wamp (or another server) and modify the `config/db.php` file to match your configuration.
 
-Project Description: The project is therefore to develop your professional blog.
+The database is in the `/bdd` folder and is named `blog`.
 
-Install the project: Download the archive and unzip it in the directory 'www' of Wamp (or other), and modify the file config / db.php and adapt it to your configuration.
+To test the project you can log in as administrator with the account `admin` (`password: 123456789`).
 
-The database is in the / bdd folder and is named "blog".
+To start the project create a virtual host that points to `/public/index.php`.
 
-To test the project you can log in as administrator with the admin account (username: admin, password 123456789).
-
-To start the project create a virtualhost that points to the folder /public/index.php
-
-To finish I use the sendgrid feature for email sending, so that it works you will have to modify the /config/mail.php file."
+For email sending the project uses SendGrid; edit the `/config/mail.php` file to configure it.
