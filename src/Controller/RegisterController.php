@@ -73,11 +73,8 @@ class RegisterController
         $users = $this->users->getUserByPseudo($pseudo);
 
 
-        if (!addslashes(!htmlspecialchars(!htmlentities(trim($pseudo))))) {
-            $this->setFlash(
-                "attention",
-                "Votre pseudo n'est pas valide"
-            );
+        if (!preg_match('/^[A-Za-z0-9_]{3,20}$/', $pseudo)) {
+            $this->setFlash('attention', "Votre pseudo n'est pas valide");
             return new Response(301, ['Location' => '/register']);
         }
 
