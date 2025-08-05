@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Pdo;
 
 use PDOStatement as PDOState;
@@ -8,9 +10,9 @@ use App\Pdo\Interfaces\PdoStatementInterface;
 class PdoStatement implements PdoStatementInterface
 {
     /**
-     * @var PdoStatement $statement
+     * @var PDOState $statement
      */
-    private $statement;
+    private PDOState $statement;
 
     /**
      * PdoStatement constructor.
