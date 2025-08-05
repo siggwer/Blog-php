@@ -8,9 +8,23 @@ Welcome to my OpenClassrooms Project 5.
 
 Project description: the goal is to develop a professional blog.
 
-Install the project: download the archive and unzip it in the 'www' directory of Wamp (or another server) and modify the `config/db.php` file to match your configuration.
+## Installation
 
-The database is in the `/bdd` folder and is named `blog`.
+This project requires PHP 8.3 or higher.
+
+```bash
+git clone https://github.com/siggwer/Blog-php.git
+cd Blog-php
+composer install
+```
+
+Import the database dump located in `bdd/Dump_base_de_donnees_projet_5_blog.sql` into your MySQL server, for example:
+
+```bash
+mysql -u <user> -p <database> < bdd/Dump_base_de_donnees_projet_5_blog.sql
+```
+
+Configure the `config/db.php` file to match your database settings.
 
 To test the project you can log in as administrator with the account `admin` (`password: 123456789`).
 
