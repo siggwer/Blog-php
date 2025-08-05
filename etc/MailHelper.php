@@ -45,7 +45,8 @@ class MailHelper
         string $subject,
         array $from,
         array $to,
-        string $template
+        string $template,
+        array $paramsTemplate = []
     ) {
         $email = new Mail();
         $email->setFrom($from['email'], $from['name']);
@@ -53,7 +54,7 @@ class MailHelper
         $email->addTo($to['email'], $to['name']);
         $email->addContent(
             "text/html",
-            $this->render->render($template)
+            $this->render->render($template, $paramsTemplate)
         );
 
         return $email;
@@ -73,9 +74,10 @@ class MailHelper
         string $subject,
         array $from,
         array $to,
-        string $template
+        string $template,
+        array $paramsTemplate = []
     ) {
-        $mail = $this->builtMail($subject, $from, $to, $template);
+        $mail = $this->builtMail($subject, $from, $to, $template, $paramsTemplate);
 
         try {
             return $this->getSendGrid()->send($mail);

@@ -28,7 +28,16 @@ class ArticleRepository implements ArticleRepositoryInterface
      */
     public function all(): array
     {
-        return $this->database->request('SELECT `article`.`id`,`title`, `chapo`, `content`, DATE_FORMAT(`publication_date`, \'%d/%m/%Y\') AS creation_date_fr, `author_id`,`pseudo`,`email`, `article`.`id` FROM `user` LEFT JOIN `article` ON `article`.`author_id` = `user`.`id` WHERE `content` IS NOT NULL ORDER BY `publication_date` DESC')->fetchAll();
+        return $this->database->request(
+            'SELECT `article`.`id`,`title`, `chapo`, `content`, DATE_FORMAT(`publication_date`, \'%d/%m/%Y\')
+                      AS creation_date_fr, `author_id`,`pseudo`,`email`, `article`.`id`
+                       FROM `user` 
+                       LEFT JOIN `article` 
+                       ON `article`.`author_id` = `user`.`id` 
+                       WHERE `content` 
+                       IS NOT NULL
+                        ORDER BY `publication_date` DESC'
+        )->fetchAll();
     }
 
     /**
@@ -39,7 +48,12 @@ class ArticleRepository implements ArticleRepositoryInterface
     public function getByArticleId(int $id)
     {
         return $this->database->request(
-            'SELECT `article`.`id`,`title`, `chapo`, `content`, DATE_FORMAT(`publication_date`, \'%d/%m/%Y\') AS creation_date_fr, `author_id`,`pseudo`, `email`, `article`.`id` FROM `user` LEFT JOIN `article` ON `article`.`author_id` = `user`.`id` WHERE `article`.`id` = :id',
+            'SELECT `article`.`id`,`title`, `chapo`, `content`, DATE_FORMAT(`publication_date`, \'%d/%m/%Y\') 
+                        AS creation_date_fr, `author_id`,`pseudo`, `email`, `article`.`id`
+                         FROM `user` 
+                         LEFT JOIN `article` 
+                         ON `article`.`author_id` = `user`.`id` 
+                         WHERE `article`.`id` = :id',
             [
             ':id' => $id
             ]
@@ -54,7 +68,15 @@ class ArticleRepository implements ArticleRepositoryInterface
     public function getByArticlePseudo(string $pseudo)
     {
         return $this->database->request(
-            'SELECT article.id, title, chapo, content, DATE_FORMAT(publication_date, \'%d/%m/%Y à %Hh%imin\') AS creation_date_fr, `author_id`, pseudo, email, email_token, password, register_at, connexion_at, rank, article.id FROM user LEFT JOIN `article` ON article.author_id = user.id WHERE pseudo = :pseudo ORDER BY `publication_date` DESC',
+            'SELECT article.id, title, chapo, content,
+                        DATE_FORMAT(publication_date, \'%d/%m/%Y à %Hh%imin\') AS creation_date_fr, 
+                        `author_id`, pseudo, email, email_token, password, 
+                         register_at, connexion_at, rank, article.id 
+                        FROM `user` 
+                        LEFT JOIN `article`
+                         ON article.author_id = user.id 
+                         WHERE pseudo = :pseudo 
+                         ORDER BY `publication_date` DESC',
             [
             ':pseudo' => $pseudo
             ]

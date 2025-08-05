@@ -38,16 +38,16 @@ class RegisterController
         Users $users,
         MailHelper $mailHelper
     ) {
-        $this->mailHelper = $mailHelper;
         $this->users = $users;
+        $this->mailHelper = $mailHelper;
     }
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param Container              $container
+     * @param ResponseInterface $response
+     * @param Container $container
      *
-     * @return Response
+     * @return Response|ResponseInterface
      *
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
@@ -73,11 +73,8 @@ class RegisterController
         $users = $this->users->getUserByPseudo($pseudo);
 
 
-        if (!addslashes(!htmlspecialchars(!htmlentities(trim($pseudo))))) {
-            $this->setFlash(
-                "attention",
-                "Votre pseudo n'est pas valide"
-            );
+        if (!preg_match('/^[A-Za-z0-9_]{3,20}$/', $pseudo)) {
+            $this->setFlash('attention', "Votre pseudo n'est pas valide");
             return new Response(301, ['Location' => '/register']);
         }
 
@@ -103,6 +100,19 @@ class RegisterController
                 301,
                 [
                 'Location' => '/register'
+                ]
+            );
+        }
+
+        if ($pseudo === $users->getPseudo()) {
+            $this->setFlash(
+                "danger",
+                "Vous êtes déjà enregistré avec ce pseudo"
+            );
+            return new Response(
+                301,
+                [
+                    'Location' => '/register'
                 ]
             );
         }
@@ -134,7 +144,7 @@ class RegisterController
                 ]
             );
         }
-        $tokenRegister = $this->generateToken();
+        $emailToken = $this->generateToken();
 
         $passwordHash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
 
@@ -143,7 +153,7 @@ class RegisterController
             'pseudo' => $pseudo,
             'password' => $passwordHash,
             'email' => $email,
-            'emailToken' => $tokenRegister
+            'emailToken' => $emailToken
             ]
         );
 
@@ -155,6 +165,7 @@ class RegisterController
             'user' => $userRegister
             ]
         );
+
         $renderText = $container->get(RenderInterfaces::class)->render(
             'mailVerify',
             [
@@ -177,8 +188,12 @@ class RegisterController
             'Confirmation de votre compte',
             $from,
             $to,
-            'mailVerify'
+            'mailVerify',
+            [
+                'user' => $userRegister
+            ]
         );
+
         if (!$result->statusCode() === 202) {
             $this->setFlash(
                 'danger',

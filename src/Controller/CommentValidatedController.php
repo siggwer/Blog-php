@@ -9,6 +9,7 @@ use DI\Container;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Framework\Interfaces\RenderInterfaces;
 use Framework\GetField;
 use Framework\Flash;
 use Framework\MailHelper;
@@ -59,8 +60,7 @@ class CommentValidatedController
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param Container              $container
+     * @param Container $container
      *
      * @return Response
      *
@@ -70,7 +70,7 @@ class CommentValidatedController
      */
     public function __invoke(
         ServerRequestInterface $request,
-        ResponseInterface $response,
+        Response $response,
         Container $container
     ) {
         $comments = $this->comment->getCommentForvalidated(
@@ -78,7 +78,7 @@ class CommentValidatedController
         );
 
         $email = $comments['email'];
-
+        $user = explode('@', $email)[0];
 
         $commentValidated = $this->comment->validatedComment($request->getAttribute('comments'));
 
@@ -88,6 +88,13 @@ class CommentValidatedController
         } else {
             $this->setFlash('warning', 'Un problème est survenue');
         }
+
+        $renderHtml = $container->get(RenderInterfaces::class)->render(
+            'mailValidatedComment',
+            [
+                'user' => $user
+            ]
+        );
 
         $from =[
             'email' => 'test@yopmail.com',
@@ -103,7 +110,10 @@ class CommentValidatedController
             'Validation du commentaire',
             $from,
             $to,
-            'mailValidatedComment'
+            'mailValidatedComment',
+            [
+                'user' => $user
+            ]
         );
 
         if (!$result->statusCode() === 202) {
