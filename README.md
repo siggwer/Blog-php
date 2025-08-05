@@ -1,24 +1,39 @@
 # Blog-php
 
-OpenClassrooms Project 5: a professional blog in PHP using object-oriented programming.
-
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ebdf191541024da1b3364534f80935af)](https://www.codacy.com/app/siggwer/Blog-php?utm_source=github.com&utm_medium=referral&utm_content=siggwer/Blog-php&utm_campaign=Badge_Grade)
 
-Welcome to my OpenClassrooms Project 5.
+## Overview
 
-Project description: the goal is to develop a professional blog.
+OpenClassrooms Project 5: a professional blog built with PHP and object-oriented programming.
 
-Install the project: download the archive and unzip it in the 'www' directory of Wamp (or another server) and modify the `config/db.php` file to match your configuration.
+## Prerequisites
 
-The database is in the `/bdd` folder and is named `blog`.
+- PHP 8.3 or higher
+- Composer
+- MySQL or MariaDB
+- A web server with virtual host support (e.g., Apache)
+- SendGrid account for email delivery
 
-To start the project create a virtual host that points to `/public/index.php`.
+## Installation
 
-The database is in the / bdd folder and is named "blog".
+1. Clone this repository.
+2. Install dependencies:
+   ```bash
+   composer install
+   ```
 
-To start the project create a virtualhost that points to the folder /public/index.php
+## Configuration
 
-To finish I use the sendgrid feature for email sending, so that it works you will have to modify the /config/mail.php file."
+1. Import the database schema from `bdd/blog.sql` into your database server.
+2. Update `config/db.php` with your database connection settings.
+3. Configure your web server's virtual host to point to `public/index.php`.
+4. Add your SendGrid API key and mail settings in `config/mail.php`.
 
-For email sending the project uses SendGrid; edit the `/config/mail.php` file to configure it.
+## Usage
+
+After completing the configuration, access the site through the configured virtual host to manage and publish blog posts.
+
+## Contributing
+
+Contributions are welcome. Please open an issue or submit a pull request and run `phpcs` to ensure coding standards before submitting.
 
