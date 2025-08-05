@@ -14,4 +14,11 @@ The database is in the `/bdd` folder and is named `blog`.
 
 To start the project create a virtual host that points to `/public/index.php`.
 
+The database is in the / bdd folder and is named "blog".
+
+To start the project create a virtualhost that points to the folder /public/index.php
+
+To finish I use the sendgrid feature for email sending, so that it works you will have to modify the /config/mail.php file."
+
 For email sending the project uses SendGrid; edit the `/config/mail.php` file to configure it.
+
