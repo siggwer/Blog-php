@@ -65,6 +65,6 @@ class PdoDatabase extends PDO implements PdoDatabaseInterface
      */
     public function lastId(): int
     {
-        return parent::lastInsertId();
+        return (int) parent::lastInsertId();
     }
 }
