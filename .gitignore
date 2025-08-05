@@ -1,4 +1,4 @@
-./idea
+/idea
 config/db.php
 config/mail.php
 vendor
