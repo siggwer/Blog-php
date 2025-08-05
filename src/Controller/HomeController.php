@@ -12,28 +12,11 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class HomeController
 {
-    /**
-     * @var Articles
-     */
-    private $articles;
-
-    /**
-     * HomeController constructor.
-     *
-     * @param Articles $articles
-     */
-    public function __construct(Articles $articles)
+    public function __construct(private Articles $articles)
     {
-        $this->articles = $articles;
     }
 
     /**
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param Container              $container
-     *
-     * @return ResponseInterface
-     *
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
      */
@@ -41,13 +24,14 @@ class HomeController
         ServerRequestInterface $request,
         ResponseInterface $response,
         Container $container
-    ) {
+    ): ResponseInterface {
         $articles = $this->articles->home();
         $view = $container->get(RenderInterfaces::class)->render(
             'home',
             ['articles' => $articles]
         );
         $response->getBody()->write($view);
+
         return $response;
     }
 }
