@@ -12,8 +12,6 @@ Install the project: download the archive and unzip it in the 'www' directory of
 
 The database is in the `/bdd` folder and is named `blog`.
 
-To test the project you can log in as administrator with the account `admin` (`password: 123456789`).
-
 To start the project create a virtual host that points to `/public/index.php`.
 
 For email sending the project uses SendGrid; edit the `/config/mail.php` file to configure it.
